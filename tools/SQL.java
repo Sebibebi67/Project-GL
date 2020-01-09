@@ -1,4 +1,6 @@
-import com.mysql.cj.*;
+package tools;
+
+import tools.com.mysql.cj.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
