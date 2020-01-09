@@ -165,4 +165,48 @@ public class Query{
         return courses;
     }
 
+    public static ArrayList<Object> absence(String loginEtu){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        int idEtudiant = getStudentID(loginEtu); 
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<Date> dateDebut = new ArrayList<Date>();
+            ArrayList<Integer> heureDebut = new ArrayList<Integer>();
+            ArrayList<Date> dateFin = new ArrayList<Date>();
+            ArrayList<Integer> heureFin = new ArrayList<Integer>();
+            ArrayList<Boolean> estJustifiee = new ArrayList<Boolean>();
+            while(res.next()){
+                dateDebut.add(res.getDate("dateDebut"));
+                heureDebut.add(res.getInt("heureDebut"));
+                dateFin.add(res.getDate("dateFin"));
+                heureFin.add(res.getInt("heureFin"));
+                estJustifiee.add(res.getBoolean("estJustifiee"));
+            }
+            queryResult.add(dateDebut);
+            queryResult.add(heureDebut);
+            queryResult.add(dateFin);
+            queryResult.add(heureFin);
+            queryResult.add(estJustifiee);
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
 }
