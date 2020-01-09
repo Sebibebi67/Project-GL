@@ -37,6 +37,33 @@ public class Query{
         return id;
     }
 
+    public static int getModuleID(String nomModule){
+        Connection conn = null;
+        int id = -1;
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idModule FROM Module WHERE nomModule = "+nomModule+";";
+            ResultSet res = statement.executeQuery(query);
+            id = res.getInt("idEtudiant");
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return id;
+    }
+
     public static ArrayList<Object> exams(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -75,9 +102,9 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Integer> studentAverage(int idModule, String loginEtu){
+    public static ArrayList<Float> studentAverage(int idModule, String loginEtu){
         Connection conn = null;
-        ArrayList<Integer> average = new ArrayList<Integer>();
+        ArrayList<Float> average = new ArrayList<Float>();
         int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -87,7 +114,7 @@ public class Query{
             String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" AND idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                average.add(res.getInt("average"));
+                average.add(res.getFloat("average"));
             }
 
         } catch(SQLException | ClassNotFoundException e) {
@@ -247,6 +274,36 @@ public class Query{
             }
         }
         return queryResult;
+    }
+
+    public static ArrayList<Float> courseAverage(String nomModule){
+        Connection conn = null;
+        ArrayList<Float> average = new ArrayList<Float>();
+        int idModule = getModuleID(nomModule);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" GROUP BY idEtudiant;";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                average.add(res.getFloat("note"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return average;
     }
 
 }
