@@ -12,7 +12,7 @@ public class Query{
 
     public static int getStudentID(String loginEtu){
         Connection conn = null;
-        int id = null;
+        int id = -1;
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,12 +40,13 @@ public class Query{
     public static ArrayList<Object> exams(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
+        int idEtudiant = getStudentID(loginEtu); 
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomNote, note, coefficient FROM Note WHERE idModule ="+idModule+" AND idEtudiant = "+loginEtu+";";
+            String query = "SELECT nomNote, note, coefficient FROM Note WHERE idModule ="+idModule+" AND idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nomNote = new ArrayList<String>();
             ArrayList<Integer> note = new ArrayList<Integer>();
@@ -77,12 +78,13 @@ public class Query{
     public static ArrayList<Integer> studentAverage(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Integer> average = new ArrayList<Integer>();
+        int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" AND idEtudiant = "+loginEtu+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" AND idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getInt("average"));
@@ -106,12 +108,13 @@ public class Query{
     public static ArrayList<Integer> mark(String nomNote, String loginEtu){
         Connection conn = null;
         ArrayList<Integer> mark = new ArrayList<Integer>();
+        int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note FROM Note WHERE nomNote = "+nomNote+" AND idEtudiant = "+loginEtu+";";
+            String query = "SELECT note FROM Note WHERE nomNote = "+nomNote+" AND idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 mark.add(res.getInt("note"));
