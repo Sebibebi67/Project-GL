@@ -393,6 +393,35 @@ public class Query{
         return average;
     }
 
+    public static ArrayList<Object> coursesTaught(String loginEns){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idModule FROM Enseigne WHERE idEnseignant = "+getTeacherID(loginEns)+";";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                queryResult.add(res.getInt("idModule"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
     public static ArrayList<Object> attendees(int idModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
