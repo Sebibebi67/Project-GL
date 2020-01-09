@@ -570,4 +570,34 @@ public class Query{
         return queryResult;
     }
 
+    public static ArrayList<String> juryHelper(String loginEtu){
+        Connection conn = null;
+        ArrayList<String> juryHelper = new ArrayList<String>();
+        int idEtudiant = getStudentID(loginEtu);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = "+idEtudiant+";";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                juryHelper.add(res.getString("aideAuJury"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return juryHelper;
+    }
+
 }
