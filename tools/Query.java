@@ -451,4 +451,51 @@ public class Query{
         return queryResult;
     }
 
+    public static ArrayList<Object> unjustif(){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, dateDebut, heureDebut, dateFin, heureFin FROM
+            Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant WHERE estJustifiee = false";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<Date> dateDebut = new ArrayList<Date>();
+            ArrayList<Integer> heureDebut = new ArrayList<Integer>();
+            ArrayList<Date> dateFin = new ArrayList<Date>();
+            ArrayList<Integer> heureFin = new ArrayList<Integer>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                dateDebut.add(res.getDate("dateDebut"));
+                heureDebut.add(res.getInt("heureDebut"));
+                dateFin.add(res.getDate("dateFin"));
+                heureFin.add(res.getInt("heureFin"));
+            }
+            queryResult.add(nom);
+            queryResult.add(prenom);
+            queryResult.add(dateDebut);
+            queryResult.add(heureDebut);
+            queryResult.add(dateFin);
+            queryResult.add(heureFin);
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
 }
