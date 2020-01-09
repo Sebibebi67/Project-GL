@@ -1,12 +1,6 @@
 package tools;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Time;
-import java.sql.CallableStatement;
+import java.sql.*;
 
 public class SQL{
 
