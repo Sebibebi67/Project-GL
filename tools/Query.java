@@ -135,4 +135,34 @@ public class Query{
         return mark;
     }
 
+    public static ArrayList<String> courses(String loginEtu){
+        Connection conn = null;
+        ArrayList<String> courses = new ArrayList<String>();
+        int idEtudiant = getStudentID(loginEtu);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT DISTINCT nomModule FROM Module WHERE idModule IN (SELECT idModule FROM Assiste WHERE idEtudiant = "+idEtudiant+");";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                courses.add(res.getString("note"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return courses;
+    }
+
 }
