@@ -17,7 +17,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "select * from (UE join Enseignant on UE.idResponsable = Enseignant.idEnseignant) join Utilisateur on Utilisateur.idUtilisateur = Enseignant.idUtilisateur where login = 'jkeaton1'";
+            String query = "SELECT nomNote, note, coefficient FROM Note WHERE idModule = ? AND idEtudiant = ?;";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 //System.out.println("test4");
