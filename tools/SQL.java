@@ -2,16 +2,30 @@ package tools;
 
 import java.sql.*;
 
+/**
+ * 
+ * This class is composed of methodes used to interact with the database
+ * @author Adam RIVIERE (Group 8)
+ * 
+ */
+
 public class SQL{
 
+    private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
+    private static String user      = "test";
+    private static String password  = "azerty"; 
+
+    /**
+    * Create a user
+    * @author Adam RIVIERE (group 8)
+    * @param String nom surname of the user
+    * @param String prenom name of the user
+    * @param String mdp password of the user
+    * @param String role role of the user
+    */
     public static void inscrire(String nom, String prenom, String mdp, String role){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -38,14 +52,17 @@ public class SQL{
         }
     }
 
+    /**
+    * Create a unit
+    * @author Adam RIVIERE (group 8)
+    * @param String nomUE name of the unit
+    * @param String loginRespo login of the teacher responsible for this unit
+    * @param int nbCredits number of credits allowed to this unit
+    * @param String filiere sector of the unit
+    */
     public static void creerUE(String nomUE, String loginRespo, int nbCredits, String filiere){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -72,14 +89,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Create a course
+    * @author Adam RIVIERE (group 8)
+    * @param String nomModule name of the course
+    * @param String loginRespo login of the teacher responsible for this course
+    */
     public static void creerModule(String nomModule, String loginRespo){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -104,14 +122,17 @@ public class SQL{
         }
     }
 
+    /**
+    * Assign a course to a unit
+    * @author Adam RIVIERE (group 8)
+    * @param String nomModule name of the course
+    * @param String titreUE name of the unit
+    * @param int coefficient coefficient of the course in the unit
+    * @param String fil sector of the course
+    */
     public static void constitue(String nomModule, String titreUE, int coefficient, String fil){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -138,14 +159,17 @@ public class SQL{
         }
     }
 
+    /**
+    * Assign a teacher to a class
+    * @author Adam RIVIERE (group 8)
+    * @param String loginU login of the user
+    * @param String nomModule name of the course
+    * @param String role type of class (CM/TP/TD)
+    * @param int idGroupe number of the group
+    */
     public static void enseigne(String loginU, String nomModule, String role, int idGroupe){ // forcer idGroupe = 0 si role == CM dans le menu deroulant
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -172,14 +196,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Assign a student to a class
+    * @author Adam RIVIERE (group 8)
+    * @param String loginU login of the user
+    * @param String nomModule name of the course
+    */
     public static void assiste(String loginU, String nomModule){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -204,14 +229,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Assign a student to a group
+    * @author Adam RIVIERE (group 8)
+    * @param int numero number of the group
+    * @param String loginEtu login of the student
+    */
     public static void assignerGroupeTD(int numero, String loginEtu){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -236,14 +262,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Assign a student to a group
+    * @author Adam RIVIERE (group 8)
+    * @param int numero number of the group
+    * @param String loginEtu login of the student
+    */
     public static void assignerGroupeTP(int numero, String loginEtu){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -268,14 +295,21 @@ public class SQL{
         }
     }
 
+    /**
+    * Add an absence in a course for a student
+    * @author Adam RIVIERE (group 8)
+    * @param String loginEtu login of the student
+    * @param String loginEns login of the teacher
+    * @param String nomModule name of the course
+    * @param String fil sector of the student
+    * @param Date dateDebut day of the begining of the absence
+    * @param Date dateFin day of the end of the absence
+    * @param Time heureDebut hour of the begining of the absence
+    * @param Time heureFin hour of the end of the absence
+    */
     public static void creerAbsence(String loginEtu, String loginEns, String nomModule, String fil, Date dateDebut, Date dateFin, Time heureDebut, Time heureFin){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -306,14 +340,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Change the sector of a student
+    * @author Adam RIVIERE (group 8)
+    * @param String newFiliere new sector of the student
+    * @param String loginEtu login of the student
+    */
     public static void modifierFiliereEtudiant(String newFiliere, String loginEtu){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -338,14 +373,19 @@ public class SQL{
         }
     }
 
+    /**
+    * Add a grade to a student
+    * @author Adam RIVIERE (group 8)
+    * @param String nomNote name of the evaluation
+    * @param int valeur grade of the student
+    * @param int coeff coefficient of the evaluation
+    * @param Date date of the evaluation
+    * @param String loginU login of the student
+    * @param String nomModule name of the course
+    */
     public static void note(String nomNote, int valeur, int coeff, Date jour, String loginU, String nomModule){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -374,14 +414,17 @@ public class SQL{
         }
     }
 
+    /**
+    * Add a grade to a course
+    * @author Adam RIVIERE (group 8)
+    * @param String loginU login of the student
+    * @param String nomModule name of the course
+    * @param String questionnaire comments on the course
+    * @param int note grade of the course
+    */
     public static void satisfaction(String loginU, String nomModule, String questionnaire, int note){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -408,14 +451,14 @@ public class SQL{
         }
     }
 
+    /**
+    * Delete a user
+    * @author Adam RIVIERE (group 8)
+    * @param String loginU login of the user
+    */
     public static void supprimer(String loginU){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -439,14 +482,15 @@ public class SQL{
         }
     }
 
+    /**
+    * Delete a unit
+    * @author Adam RIVIERE (group 8)
+    * @param String nom name of the unit
+    * @param String fil sector of the unit
+    */
     public static void supprUE(String nom, String fil){
         Connection conn = null;
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
