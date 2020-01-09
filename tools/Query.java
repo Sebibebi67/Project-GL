@@ -285,7 +285,37 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" GROUP BY idEtudiant;";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+";";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                average.add(res.getFloat("note"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return average;
+    }
+
+    public static ArrayList<Float> examAverage(String nomNote, String nomModule){
+        Connection conn = null;
+        ArrayList<Float> average = new ArrayList<Float>();
+        int idModule = getModuleID(nomModule);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+nomNote+" AND idModule = "+idModule+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getFloat("note"));
