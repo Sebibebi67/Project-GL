@@ -451,16 +451,16 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Float> studentAverages(String loginEtu){
+    public static ArrayList<Object> studentAverages(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
-        int idModule = getModuleID(nomModule);
+        int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomModule, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = "+getStudentID(loginEtu)+";";
+            String query = "SELECT nomModule, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = "+idEtudiant+";";
             ArrayList<String> nomModule = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
@@ -486,7 +486,7 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Float> moduleAverages(String nomModule){
+    public static ArrayList<Object> moduleAverages(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idModule = getModuleID(nomModule);
@@ -495,7 +495,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING idModule = "+getModuleID(nomModule)+";";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING idModule = "+idModule+";";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
