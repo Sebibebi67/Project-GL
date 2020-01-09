@@ -401,10 +401,10 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idModule FROM Enseigne WHERE idEnseignant = "+getTeacherID(loginEns)+";";
+            String query = "SELECT nomModule FROM Enseigne JOIN Module ON Enseigne.idModule = Module.idModule WHERE idEnseignant = "+getTeacherID(loginEns)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                queryResult.add(res.getInt("idModule"));
+                queryResult.add(res.getString("nomModule"));
             }
 
         } catch(SQLException | ClassNotFoundException e) {
@@ -430,10 +430,10 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idEtudiant FROM Etudiant JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+idModule+";";
+            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+idModule+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                queryResult.add(res.getInt("idEtudiant"));
+                queryResult.add(res.getInt("login"));
             }
 
         } catch(SQLException | ClassNotFoundException e) {
