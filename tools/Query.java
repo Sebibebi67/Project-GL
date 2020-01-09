@@ -37,6 +37,33 @@ public class Query{
         return id;
     }
 
+    public static int getTeacherID(String loginEns){
+        Connection conn = null;
+        int id = -1;
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEns+";";
+            ResultSet res = statement.executeQuery(query);
+            id = res.getInt("idEnseignant");
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return id;
+    }
+
     public static int getModuleID(String nomModule){
         Connection conn = null;
         int id = -1;
