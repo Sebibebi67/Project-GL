@@ -209,4 +209,44 @@ public class Query{
         return queryResult;
     }
 
+    public static ArrayList<Object> results(String nomNote){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, note, coefficient FROM Note, Utilisateur JOIN Etudiant ON Etudiant.idEtudiant=Note.idEtudiant AND Etudiant.idUtilisateur=Utilisateur.idUtilisateur WHERE nomNote = "+nomNote+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<Integer> note = new ArrayList<Integer>();
+            ArrayList<Integer> coefficient = new ArrayList<Integer>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                note.add(res.getInt("note"));
+                coefficient.add(res.getInt("coefficient"));
+            }
+            queryResult.add(nom);
+            queryResult.add(prenom);
+            queryResult.add(note);
+            queryResult.add(coefficient);
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
 }
