@@ -6,15 +6,14 @@ import java.util.ArrayList;
 
 public class Query{
 
+    private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
+    private static String user      = "test";
+    private static String password  = "azerty"; 
+
     public static ArrayList<Object> exams(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {
-            // db parameters
-            String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-            String user      = "test";
-            String password  = "azerty";
-            
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
