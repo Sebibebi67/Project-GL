@@ -422,7 +422,7 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Object> attendees(int idModule){
+    public static ArrayList<Object> attendees(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {
@@ -430,11 +430,52 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+idModule+";";
+            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+getModuleID(nomModule)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 queryResult.add(res.getInt("login"));
             }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+    
+    public static ArrayList<Float> moduleAverages(String nomModule){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<Object>();
+        int idModule = getModuleID(nomModule);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s
+            FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant
+            GROUP BY Etudiant.idEtudiant
+            HAVING idModule = "+getModuleID(nomModule)+";";
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<Float> average = new ArrayList<Float>();
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                nom.add(res.getFloat("nom"));
+                prenom.add(res.getFloat("prenom"));
+                average.add(res.getFloat("s"));
+            }
+            queryResult.add(nom);
+            queryResult.add(prenom);
+            queryResult.add(average);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
