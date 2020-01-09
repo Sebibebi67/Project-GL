@@ -1,11 +1,11 @@
 package tools;
 
-import tools.com.mysql.cj.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.sql.CallableStatement;
 
 public class SQL{
@@ -92,7 +92,7 @@ public class SQL{
             
             Statement statement = conn.createStatement();
             CallableStatement call = conn.prepareCall("{call creerModule(?,?)}");
-            call.setString("nomModule",nom);
+            call.setString("nomModule",nomModule);
             call.setString("loginRespo",loginRespo);
             call.execute();
             statement.close();
@@ -396,7 +396,7 @@ public class SQL{
             CallableStatement call = conn.prepareCall("{call satisfaction(?,?,?,?)}");
             call.setString("loginU",loginU);
             call.setString("nomModule",nomModule);
-            call.setText("questionnaire",questionnaire);
+            call.setString("questionnaire",questionnaire);
             call.setInt("note",note);
             call.execute();
             statement.close();
