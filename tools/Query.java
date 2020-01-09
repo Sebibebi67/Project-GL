@@ -433,7 +433,7 @@ public class Query{
             String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+getModuleID(nomModule)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                queryResult.add(res.getInt("login"));
+                queryResult.add(res.getString("login"));
             }
 
         } catch(SQLException | ClassNotFoundException e) {
@@ -465,7 +465,7 @@ public class Query{
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                nomModule.add(res.getFloat("nomModule"));
+                nomModule.add(res.getString("nomModule"));
                 average.add(res.getFloat("s"));
             }
             queryResult.add(nomModule);
@@ -501,8 +501,8 @@ public class Query{
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                nom.add(res.getFloat("nom"));
-                prenom.add(res.getFloat("prenom"));
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
                 average.add(res.getFloat("s"));
             }
             queryResult.add(nom);
