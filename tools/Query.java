@@ -174,6 +174,41 @@ public class Query{
     }
 
     /**
+    * Returns student's information given its login.
+    * @author Dejan PARIS
+    * @param String loginEtu Student's login
+    */
+    public static ArrayList<Object> studentData(String loginEtu){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM Etudiant WHERE idEtudiant = "+getStudentID(loginEtu)+";";
+            ResultSet res = statement.executeQuery(query);
+            queryResult.add(res.getString("aideAuJury"));
+            queryResult.add(res.getInt("TP"));
+            queryResult.add(res.getInt("TD"));
+            queryResult.add(res.getString("filiere"));
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
+    /**
     * Returns each evaluations' name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
     * @param String nomModule Module's name
