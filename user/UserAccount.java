@@ -5,9 +5,12 @@ public class UserAccount {
 	private String login;
 	private String password;
 
-	public UserAccount () {
-
-	}
+    public UserAccount () {}
+    
+    public UserAccount (String login, String pswd) {
+        this.login = login;
+        this.password = pswd;
+    }
 
 
     /**
