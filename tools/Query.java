@@ -451,7 +451,7 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> studentAverages(String loginEtu){
+    public static ArrayList<Object> studentCoursesAverage(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idEtudiant = getStudentID(loginEtu);
@@ -486,7 +486,7 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> moduleAverages(String nomModule){
+    public static ArrayList<Object> moduleStudentsAverage(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idModule = getModuleID(nomModule);
@@ -524,7 +524,7 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Object> unjustif(){
+    public static ArrayList<Object> unjustified(){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {
