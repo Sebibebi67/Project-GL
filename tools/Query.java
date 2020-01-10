@@ -4,6 +4,12 @@ package tools;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * 
+ * This class is composed by usefull tools which simplify the code
+ * @author Sébastien HERT 
+ * 
+ */
 public class Query{
 
     private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
@@ -21,15 +27,13 @@ public class Query{
             String query = "SELECT idEtudiant FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEtu+";";
             ResultSet res = statement.executeQuery(query);
             id = res.getInt("idEtudiant");
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }    
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -48,15 +52,13 @@ public class Query{
             String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEns+";";
             ResultSet res = statement.executeQuery(query);
             id = res.getInt("idEnseignant");
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }    
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -75,15 +77,13 @@ public class Query{
             String query = "SELECT idModule FROM Module WHERE nomModule = "+nomModule+";";
             ResultSet res = statement.executeQuery(query);
             id = res.getInt("idModule");
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }    
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -143,15 +143,13 @@ public class Query{
             while(res.next()){
                 average.add(res.getFloat("average"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }  
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -173,15 +171,13 @@ public class Query{
             while(res.next()){
                 mark.add(res.getInt("note"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }           
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -203,15 +199,13 @@ public class Query{
             while(res.next()){
                 courses.add(res.getString("note"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }   
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -233,7 +227,6 @@ public class Query{
             while(res.next()){
                 ue.add(res.getString("UE"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -241,7 +234,6 @@ public class Query{
                 if(conn != null){
                     conn.close();
                 }
-                
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -277,15 +269,13 @@ public class Query{
             queryResult.add(dateFin);
             queryResult.add(heureFin);
             queryResult.add(estJustifiee);
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }  
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -317,15 +307,13 @@ public class Query{
             queryResult.add(prenom);
             queryResult.add(note);
             queryResult.add(coefficient);
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }    
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -347,7 +335,6 @@ public class Query{
             while(res.next()){
                 average.add(res.getFloat("average"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -377,7 +364,6 @@ public class Query{
             while(res.next()){
                 average.add(res.getFloat("average"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -385,7 +371,6 @@ public class Query{
                 if(conn != null){
                     conn.close();
                 }
-                
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -407,15 +392,13 @@ public class Query{
             while(res.next()){
                 average.add(res.getFloat("average"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                } 
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -436,15 +419,13 @@ public class Query{
             while(res.next()){
                 queryResult.add(res.getString("nomModule"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }  
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -465,15 +446,13 @@ public class Query{
             while(res.next()){
                 queryResult.add(res.getString("login"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }   
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -500,7 +479,6 @@ public class Query{
             }
             queryResult.add(nomModule);
             queryResult.add(average);
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -508,7 +486,6 @@ public class Query{
                 if(conn != null){
                     conn.close();
                 }
-                
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -538,15 +515,13 @@ public class Query{
             queryResult.add(nom);
             queryResult.add(prenom);
             queryResult.add(average);
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                }   
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -584,15 +559,13 @@ public class Query{
             queryResult.add(heureDebut);
             queryResult.add(dateFin);
             queryResult.add(heureFin);
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                } 
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
@@ -614,15 +587,13 @@ public class Query{
             while(res.next()){
                 juryHelper.add(res.getString("aideAuJury"));
             }
-
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
-                }
-                
+                } 
             }catch(SQLException ex){
                 ex.printStackTrace();
             }

@@ -2,8 +2,8 @@ package tools;
 
 /**
  * 
- * This class is composed by usefull tools which simplify the code
- * @author Sébastien HERT (Group 8)
+ * This class is made of useful tools to simplify the code
+ * @author Sébastien HERT 
  * 
  */
 
@@ -11,7 +11,7 @@ public class Tool{
 
     /**
     * Print a String
-    * @author Sébastien HERT (group 8)
+    * @author Sébastien HERT 
     * @param String s to print
     */
     public static void print(String s){
@@ -20,7 +20,7 @@ public class Tool{
 
     /**
     * Print a Object
-    * @author Sébastien HERT (group 8)
+    * @author Sébastien HERT 
     * @param Object o to print
     */
     public static void display(Object o){
