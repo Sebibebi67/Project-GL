@@ -74,7 +74,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT idModule FROM Module WHERE nomModule = "+nomModule+";";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idEtudiant");
+            id = res.getInt("idModule");
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
