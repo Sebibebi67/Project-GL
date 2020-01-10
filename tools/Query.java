@@ -16,6 +16,31 @@ public class Query{
     private static String user      = "test";
     private static String password  = "azerty"; 
 
+    public static int getUserID(String login){
+        Connection conn = null;
+        int id = -1;
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = "+login+";";
+            ResultSet res = statement.executeQuery(query);
+            id = res.getInt("idUtilisateur");
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }    
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return id;
+    }
+
     public static int getStudentID(String loginEtu){
         Connection conn = null;
         int id = -1;
@@ -89,6 +114,37 @@ public class Query{
             }
         }
         return id;
+    }
+
+    public static ArrayList<Object> userData(String login){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM Utilisateur WHERE idUtilisateur = "+getUserID(login)+";";
+            ResultSet res = statement.executeQuery(query);
+            queryResult.add(res.getString("login"));
+            queryResult.add(res.getString("mdp"));
+            queryResult.add(res.getString("nom"));
+            queryResult.add(res.getString("prenom"));
+            queryResult.add(res.getString("role"));
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
     }
 
     public static ArrayList<Object> exams(String nomModule, String loginEtu){
