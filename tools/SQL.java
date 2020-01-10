@@ -170,9 +170,6 @@ public class SQL{
     public static void enseigne(String loginU, String nomModule, String role, int idGroupe){ // forcer idGroupe = 0 si role == CM dans le menu deroulant
         Connection conn = null;
         try {
-            if(role != "CM" && role != "TD" && role != "TP"){ // default role is CM
-                role = "CM";
-            }
             int idG = idGroupe;
             if(role == "CM"){ // no need of group id if the course is for the entire class
                 idG = 0;
