@@ -6,7 +6,6 @@ public class Person{
 
     private ArrayList<Role> roles;
 
-    private Role role;
     private String surname;
     private String firstname;
 
@@ -26,20 +25,6 @@ public class Person{
      */
     public void setRoles(ArrayList<Role> roles) {
         this.roles = roles;
-    }
-
-    /**
-     * @return Role return the role
-     */
-    public Role getRole() {
-        return role;
-    }
-
-    /**
-     * @param role the role to set
-     */
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     /**
@@ -70,4 +55,7 @@ public class Person{
         this.firstname = firstname;
     }
 
+    public String toString() {
+        return surname + " " + firstname;
+    }
 }

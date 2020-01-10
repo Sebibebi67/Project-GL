@@ -38,4 +38,7 @@ public class UserAccount {
         this.password = password;
     }
 
+    public String toString() {
+        return login;
+    }
 }
