@@ -2,8 +2,7 @@ package study;
 
 import java.util.ArrayList;
 
-import user.ModuleManager;
-import user.Student;
+import tools.Query;
 
 /**
  * 
@@ -13,14 +12,31 @@ import user.Student;
  * @author Sébastien HERT
  * 
  */
-public abstract class Module{
+public class Module{
 
     private String name;
     private TeachingUnit unit;
-    private ModuleManager manager;
-    private ArrayList<Student> attendees;
+    // private ArrayList<Student> attendees;
+    private int coeff;
+
+    public int getCoeff() {
+        return this.coeff;
+    }
+
+    public void setCoeff(int coeff) {
+        this.coeff = coeff;
+    }
 
     public Module(){}
+
+    public Module(String name){
+        this.name= name;
+        ArrayList<Object> array = new ArrayList<>();
+        array = Query.coeffInTU(name);
+
+        unit = new TeachingUnit(array.get(0).toString());
+        coeff = (int) array.get(1);
+    }
 
     /**
      * @return String return the name
@@ -50,33 +66,19 @@ public abstract class Module{
         this.unit = unit;
     }
 
-    /**
-     * @return ModuleManager return the manager
-     */
-    public ModuleManager getManager() {
-        return manager;
-    }
+    // /**
+    //  * @return ArrayList<Student> return the attendees
+    //  */
+    // public ArrayList<Student> getAttendees() {
+    //     return attendees;
+    // }
 
-    /**
-     * @param manager the manager to set
-     */
-    public void setManager(ModuleManager manager) {
-        this.manager = manager;
-    }
-
-    /**
-     * @return ArrayList<Student> return the attendees
-     */
-    public ArrayList<Student> getAttendees() {
-        return attendees;
-    }
-
-    /**
-     * @param attendees the attendees to set
-     */
-    public void setAttendees(ArrayList<Student> attendees) {
-        this.attendees = attendees;
-    }
+    // /**
+    //  * @param attendees the attendees to set
+    //  */
+    // public void setAttendees(ArrayList<Student> attendees) {
+    //     this.attendees = attendees;
+    // }
 
     public String toString() {
         return name;
