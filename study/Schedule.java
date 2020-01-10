@@ -2,7 +2,8 @@ package study;
 
 /**
  * 
- * This class contains all the methods and attributs which are linked with to the structure of all the Module for a graduating class
+ * This class contains all methods and attributes linked to
+ * the structure of all the Module for a graduating class
  * @author Sébastien HERT 
  * 
  */

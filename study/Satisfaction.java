@@ -1,7 +1,8 @@
 package study;
 /**
  * 
- * This class contains all the methods and attributs which are linked with Satisfaction given by students to a Module
+ * This class contains all methods and attributes linked to Satisfaction 
+ * answer given by students to a Module
  * @author Sébastien HERT 
  * 
  */
