@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 /**
  * 
- * This class is composed by usefull tools which simplify the code
- * @author Sébastien HERT 
+ * This class is made of useful complex SQL queries for the program 
+ * @author Dejan PARIS
+ * @author Thomas LEPERCQ 
  * 
  */
 public class Query{
@@ -16,6 +17,11 @@ public class Query{
     private static String user      = "test";
     private static String password  = "azerty"; 
 
+    /**
+    * Returns the student's ID given its login.
+    * @author Thomas LEPERCQ 
+    * @param String loginEtu Student's login
+    */
     public static int getStudentID(String loginEtu){
         Connection conn = null;
         int id = -1;
@@ -41,6 +47,11 @@ public class Query{
         return id;
     }
 
+    /**
+    * Returns the teacher's ID given its login.
+    * @author Dejan PARIS 
+    * @param String loginEns Teacher's login
+    */
     public static int getTeacherID(String loginEns){
         Connection conn = null;
         int id = -1;
@@ -66,6 +77,11 @@ public class Query{
         return id;
     }
 
+    /**
+    * Returns the module's ID given its name.
+    * @author Thomas LEPERCQ 
+    * @param String nomModule Module's name
+    */
     public static int getModuleID(String nomModule){
         Connection conn = null;
         int id = -1;
@@ -91,6 +107,12 @@ public class Query{
         return id;
     }
 
+    /**
+    * Returns each evaluations' name, mark and coefficient for a given module and student.
+    * @author Thomas LEPERCQ 
+    * @param String nomModule Module's name
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<Object> exams(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -129,6 +151,12 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns average mark for a given module and student.
+    * @author Thomas LEPERCQ 
+    * @param String nomModule Module's name
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<Float> studentAverage(int idModule, String loginEtu){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
@@ -157,6 +185,12 @@ public class Query{
         return average;
     }
 
+    /**
+    * Returns mark for a given evaluation and student.
+    * @author Thomas LEPERCQ 
+    * @param String nomNote Evaluation's name
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<Integer> mark(String nomNote, String loginEtu){
         Connection conn = null;
         ArrayList<Integer> mark = new ArrayList<Integer>();
@@ -185,6 +219,11 @@ public class Query{
         return mark;
     }
 
+    /**
+    * Returns all attended modules for a given student.
+    * @author Thomas LEPERCQ
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<String> courses(String loginEtu){
         Connection conn = null;
         ArrayList<String> courses = new ArrayList<String>();
@@ -213,6 +252,11 @@ public class Query{
         return courses;
     }
 
+    /**
+    * Returns all attended UEs for a given student.
+    * @author Thomas LEPERCQ
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<String> attendedUEs(String loginEtu){
         Connection conn = null;
         ArrayList<String> ue = new ArrayList<String>();
@@ -241,6 +285,11 @@ public class Query{
         return ue;
     }
 
+    /**
+    * Returns all missed classes for a given student.
+    * @author Thomas LEPERCQ 
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<Object> absence(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -283,6 +332,11 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns mark of each student for a given evaluation.
+    * @author Thomas LEPERCQ 
+    * @param String nomNote Evaluation's name
+    */
     public static ArrayList<Object> results(String nomNote){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -321,6 +375,11 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns average mark for a given module.
+    * @author Thomas LEPERCQ 
+    * @param String nomModule Module's name
+    */
     public static ArrayList<Float> courseAverage(String nomModule){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
@@ -350,6 +409,12 @@ public class Query{
         return average;
     }
 
+    /**
+    * Returns average mark for a given evaluation.
+    * @author Thomas LEPERCQ 
+    * @param String nomNote Evaluation's name
+    * @param String nomModule Module's name
+    */
     public static ArrayList<Float> examAverage(String nomNote, String nomModule){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
@@ -378,6 +443,11 @@ public class Query{
         return average;
     }
 
+    /**
+    * Returns average mark of satisfaction for a given module.
+    * @author Thomas LEPERCQ 
+    * @param String nomModule Module's name
+    */
     public static ArrayList<Float> satisfactionAverage(String nomModule){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
@@ -406,6 +476,11 @@ public class Query{
         return average;
     }
 
+    /**
+    * Returns all courses taught by a given teacher.
+    * @author Dejan PARIS 
+    * @param String loginEns Teacher's login
+    */
     public static ArrayList<Object> coursesTaught(String loginEns){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -433,6 +508,11 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns all students attending a given course.
+    * @author Dejan PARIS 
+    * @param String nomModule Module's name
+    */
     public static ArrayList<Object> attendees(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -460,7 +540,12 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> studentAverages(String loginEtu){
+    /**
+    * Returns average mark for each course attended by a given student.
+    * @author Dejan PARIS 
+    * @param String loginEtu Student's login
+    */
+    public static ArrayList<Object> studentModulesAverage(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idEtudiant = getStudentID(loginEtu);
@@ -493,7 +578,12 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> moduleAverages(String nomModule){
+    /**
+    * Returns name and average mark for all student attending a given module.
+    * @author Dejan PARIS
+    * @param String nomModule Module's name
+    */
+    public static ArrayList<Object> moduleStudentsAverage(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idModule = getModuleID(nomModule);
@@ -529,7 +619,11 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Object> unjustif(){
+    /**
+    * Returns all unjustified absences for everyone.
+    * @author Dejan PARIS
+    */
+    public static ArrayList<Object> unjustified(){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {
@@ -573,6 +667,11 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns automatically generated answer wether a given student should double this year, invalidate it or pass it.
+    * @author Thomas LEPERCQ
+    * @param String loginEtu Student's login
+    */
     public static ArrayList<String> juryHelper(String loginEtu){
         Connection conn = null;
         ArrayList<String> juryHelper = new ArrayList<String>();
