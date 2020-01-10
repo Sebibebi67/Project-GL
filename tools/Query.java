@@ -18,6 +18,36 @@ public class Query{
     private static String password  = "azerty"; 
 
     /**
+    * Returns the user's ID given its login.
+    * @author Dejan PARIS 
+    * @param String login User's login
+    */
+    public static int getUserID(String login){
+        Connection conn = null;
+        int id = -1;
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = "+login+";";
+            ResultSet res = statement.executeQuery(query);
+            id = res.getInt("idUtilisateur");
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }    
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return id;
+    }
+
+    /**
     * Returns the student's ID given its login.
     * @author Thomas LEPERCQ 
     * @param String loginEtu Student's login
@@ -108,15 +138,52 @@ public class Query{
     }
 
     /**
+    * Returns user's information given its login.
+    * @author Dejan PARIS
+    * @param String login User's login
+    */
+    public static ArrayList<Object> userData(String login){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT * FROM Utilisateur WHERE idUtilisateur = "+getUserID(login)+";";
+            ResultSet res = statement.executeQuery(query);
+            queryResult.add(res.getString("login"));
+            queryResult.add(res.getString("mdp"));
+            queryResult.add(res.getString("nom"));
+            queryResult.add(res.getString("prenom"));
+            queryResult.add(res.getString("role"));
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
+    /**
     * Returns each evaluations' name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
     * @param String nomModule Module's name
     * @param String loginEtu Student's login
     */
-    public static ArrayList<Object> exams(int idModule, String loginEtu){
+    public static ArrayList<Object> exams(String nomModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         int idEtudiant = getStudentID(loginEtu); 
+        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -157,10 +224,11 @@ public class Query{
     * @param String nomModule Module's name
     * @param String loginEtu Student's login
     */
-    public static ArrayList<Float> studentAverage(int idModule, String loginEtu){
+    public static ArrayList<Float> studentAverage(String nomModule, String loginEtu){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
         int idEtudiant = getStudentID(loginEtu);
+        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
