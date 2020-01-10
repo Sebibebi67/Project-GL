@@ -219,6 +219,36 @@ public class Query{
         return courses;
     }
 
+    public static ArrayList<String> ues(String loginEtu){
+        Connection conn = null;
+        ArrayList<String> courses = new ArrayList<String>();
+        int idEtudiant = getStudentID(loginEtu);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT DISTINCT (nomUE) FROM UE WHERE idUE IN (SELECT idUE FROM Constitue WHERE nomModule IN (SELECT DISTINCT (nomModule) FROM Module WHERE idModule IN (SELECT idModule FROM Assiste WHERE idEtudiant = "+idEtudiant+")));";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                courses.add(res.getString("note"));
+            }
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return courses;
+    }
+
     public static ArrayList<Object> absence(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
@@ -451,7 +481,7 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> studentAverages(String loginEtu){
+    public static ArrayList<Object> studentCoursesAverage(String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idEtudiant = getStudentID(loginEtu);
@@ -486,7 +516,7 @@ public class Query{
         return queryResult;
     }
     
-    public static ArrayList<Object> moduleAverages(String nomModule){
+    public static ArrayList<Object> moduleStudentsAverage(String nomModule){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
         int idModule = getModuleID(nomModule);
@@ -524,7 +554,7 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Object> unjustif(){
+    public static ArrayList<Object> unjustified(){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {

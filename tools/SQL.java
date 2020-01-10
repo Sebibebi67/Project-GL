@@ -170,6 +170,10 @@ public class SQL{
     public static void enseigne(String loginU, String nomModule, String role, int idGroupe){ // forcer idGroupe = 0 si role == CM dans le menu deroulant
         Connection conn = null;
         try {
+            int idG = idGroupe;
+            if(role == "CM"){ // no need of group id if the course is for the entire class
+                idG = 0;
+            }
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
@@ -179,7 +183,7 @@ public class SQL{
             call.setString("loginU",loginU);
             call.setString("nomModule",nomModule);
             call.setString("role",role);
-            call.setInt("idGroupe",idGroupe);
+            call.setInt("idGroupe",idG);
             call.execute();
             statement.close();
 
