@@ -47,7 +47,13 @@
                                         <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="313.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ComboBox prefHeight="34.0" prefWidth="280.0" />
+                                          <ComboBox prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                             <columns>
+                                                <TableColumn prefWidth="135.0" text="Nom note" />
+                                                <TableColumn prefWidth="136.0" text="note" />
+                                             </columns>
+                                          </TableView>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -67,7 +73,13 @@
                                         <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ComboBox prefHeight="34.0" prefWidth="280.0" />
+                                          <ComboBox prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                            <columns>
+                                              <TableColumn prefWidth="131.0" text="date" />
+                                              <TableColumn prefWidth="140.0" text="justification" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -83,11 +95,17 @@
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="310.0" minHeight="10.0" prefHeight="301.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="312.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <ComboBox prefHeight="30.0" prefWidth="276.0" />
+                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                            <columns>
+                                              <TableColumn prefWidth="145.0" text="note" />
+                                              <TableColumn prefWidth="126.0" text="commentaire" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </GridPane>
                                  </children></AnchorPane>
