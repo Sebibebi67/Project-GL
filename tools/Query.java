@@ -321,13 +321,13 @@ public class Query{
     }
 
     /**
-    * Returns all attended UEs for a given student.
+    * Returns all attended TUs for a given student.
     * @author Thomas LEPERCQ
     * @param String loginEtu Student's login
     */
-    public static ArrayList<String> attendedUEs(String loginEtu){
+    public static ArrayList<String> attendedTUs(String loginEtu){
         Connection conn = null;
-        ArrayList<String> ue = new ArrayList<String>();
+        ArrayList<String> tu = new ArrayList<String>();
         int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -337,7 +337,7 @@ public class Query{
             String query = "SELECT DISTINCT (nomUE) FROM UE WHERE idUE IN ( SELECT idUE FROM Constitue WHERE nomModule IN ( SELECT nomModule FROM Assiste WHERE idEtudiant = "+idEtudiant+" ) );";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                ue.add(res.getString("UE"));
+                tu.add(res.getString("UE"));
             }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -350,7 +350,7 @@ public class Query{
                 ex.printStackTrace();
             }
         }
-        return ue;
+        return tu;
     }
 
     /**
