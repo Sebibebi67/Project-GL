@@ -1,5 +1,11 @@
 package admin;
 
+import java.sql.Date;
+import java.sql.Time;
+
+import user.Student;
+import user.Teacher;
+
 /**
  * 
  * This class contains all the methods and attributs linked with the management of absences
@@ -9,8 +15,119 @@ package admin;
 
 public class Absence {
 
+	private Date beginDate;
+	private Date endDate;
+	private Time beginHour;
+	private Time endHour;
+	private Student student;
+	private Module module;
+	private Teacher teacher;
+
 	public Absence () {
 
+	}
+
+
+    /**
+     * @return Date return the beginDate
+     */
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    /**
+     * @param beginDate the beginDate to set
+     */
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    /**
+     * @return Date return the endDate
+     */
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    /**
+     * @param endDate the endDate to set
+     */
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    /**
+     * @return Time return the beginHour
+     */
+    public Time getBeginHour() {
+        return beginHour;
+    }
+
+    /**
+     * @param beginHour the beginHour to set
+     */
+    public void setBeginHour(Time beginHour) {
+        this.beginHour = beginHour;
+    }
+
+    /**
+     * @return Time return the endHour
+     */
+    public Time getEndHour() {
+        return endHour;
+    }
+
+    /**
+     * @param endHour the endHour to set
+     */
+    public void setEndHour(Time endHour) {
+        this.endHour = endHour;
+    }
+
+    /**
+     * @return Student return the student
+     */
+    public Student getStudent() {
+        return student;
+    }
+
+    /**
+     * @param student the student to set
+     */
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    /**
+     * @return Module return the module
+     */
+    public Module getModule() {
+        return module;
+    }
+
+    /**
+     * @param module the module to set
+     */
+    public void setModule(Module module) {
+        this.module = module;
+    }
+
+    /**
+     * @return Teacher return the teacher
+     */
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    /**
+     * @param teacher the teacher to set
+     */
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+	}
+	
+	public String toString() {
+		return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
 	}
 
 }
