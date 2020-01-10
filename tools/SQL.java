@@ -5,7 +5,11 @@ import java.sql.*;
 /**
  * 
  * This class is composed of methodes used to interact with the database
+<<<<<<< HEAD
  * @author Adam RIVIERE 
+=======
+ * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
  * 
  */
 
@@ -17,7 +21,11 @@ public class SQL{
 
     /**
     * Create a user
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String nom surname of the user
     * @param String prenom name of the user
     * @param String mdp password of the user
@@ -54,7 +62,11 @@ public class SQL{
 
     /**
     * Create a unit
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String nomUE name of the unit
     * @param String loginRespo login of the teacher responsible for this unit
     * @param int nbCredits number of credits allowed to this unit
@@ -91,7 +103,11 @@ public class SQL{
 
     /**
     * Create a course
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String nomModule name of the course
     * @param String loginRespo login of the teacher responsible for this course
     */
@@ -124,7 +140,11 @@ public class SQL{
 
     /**
     * Assign a course to a unit
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String nomModule name of the course
     * @param String titreUE name of the unit
     * @param int coefficient coefficient of the course in the unit
@@ -161,7 +181,11 @@ public class SQL{
 
     /**
     * Assign a teacher to a class
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String loginU login of the user
     * @param String nomModule name of the course
     * @param String role type of class (CM/TP/TD)
@@ -268,7 +292,11 @@ public class SQL{
 
     /**
     * Assign a student to a group
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param int numero number of the group
     * @param String loginEtu login of the student
     */
@@ -301,7 +329,11 @@ public class SQL{
 
     /**
     * Add an absence in a course for a student
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String loginEtu login of the student
     * @param String loginEns login of the teacher
     * @param String nomModule name of the course
@@ -346,7 +378,11 @@ public class SQL{
 
     /**
     * Change the sector of a student
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String newFiliere new sector of the student
     * @param String loginEtu login of the student
     */
@@ -380,6 +416,7 @@ public class SQL{
     /**
     * Add a grade to a student
     * @author Adam RIVIERE 
+    * @author Adam RIVIERE  
     * @param String nomNote name of the evaluation
     * @param int valeur grade of the student
     * @param int coeff coefficient of the evaluation
@@ -420,7 +457,11 @@ public class SQL{
 
     /**
     * Add a grade to a course
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String loginU login of the student
     * @param String nomModule name of the course
     * @param String questionnaire comments on the course
@@ -457,7 +498,11 @@ public class SQL{
 
     /**
     * Delete a user
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String loginU login of the user
     */
     public static void supprimer(String loginU){
@@ -488,7 +533,11 @@ public class SQL{
 
     /**
     * Delete a unit
+<<<<<<< HEAD
     * @author Adam RIVIERE 
+=======
+    * @author Adam RIVIERE  
+>>>>>>> 31ae06333a46ce2ebda25b06568d5f8e2cb65ead
     * @param String nom name of the unit
     * @param String fil sector of the unit
     */
