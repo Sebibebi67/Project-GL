@@ -209,6 +209,39 @@ public class Query{
     }
 
     /**
+    * Returns module's information given its name.
+    * @author Dejan PARIS
+    * @param String loginEtu Student's login
+    */
+    public static ArrayList<Object> coeffInTU(String moduleName){
+        Connection conn = null;
+        ArrayList<Object> queryResult = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nomUE, coeff FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE idModule = "+getModuleID(moduleName)+";";
+            ResultSet res = statement.executeQuery(query);
+            queryResult.add(res.getString("nomUE"));
+            queryResult.add(res.getInt("coeff"));
+
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
+    /**
     * Returns each evaluations' name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
     * @param String nomModule Module's name
@@ -294,16 +327,16 @@ public class Query{
     * @param String nomNote Evaluation's name
     * @param String loginEtu Student's login
     */
-    public static ArrayList<Integer> mark(String nomNote, String loginEtu){
+    public static ArrayList<Integer> mark(String markName, String loginEtu){
         Connection conn = null;
         ArrayList<Integer> mark = new ArrayList<Integer>();
-        int idEtudiant = getStudentID(loginEtu);
+        int id = getStudentID(loginEtu);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note FROM Note WHERE nomNote = "+nomNote+" AND idEtudiant = "+idEtudiant+";";
+            String query = "SELECT note FROM Note WHERE nomNote = "+markName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 mark.add(res.getInt("note"));
