@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * 
  * This class is composed of methodes used to interact with the database
- * @author Adam RIVIERE (Group 8)
+ * @author Adam RIVIERE 
  * 
  */
 
@@ -17,7 +17,7 @@ public class SQL{
 
     /**
     * Create a user
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nom surname of the user
     * @param String prenom name of the user
     * @param String mdp password of the user
@@ -54,7 +54,7 @@ public class SQL{
 
     /**
     * Create a unit
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nomUE name of the unit
     * @param String loginRespo login of the teacher responsible for this unit
     * @param int nbCredits number of credits allowed to this unit
@@ -91,7 +91,7 @@ public class SQL{
 
     /**
     * Create a course
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nomModule name of the course
     * @param String loginRespo login of the teacher responsible for this course
     */
@@ -124,7 +124,7 @@ public class SQL{
 
     /**
     * Assign a course to a unit
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nomModule name of the course
     * @param String titreUE name of the unit
     * @param int coefficient coefficient of the course in the unit
@@ -161,7 +161,7 @@ public class SQL{
 
     /**
     * Assign a teacher to a class
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String loginU login of the user
     * @param String nomModule name of the course
     * @param String role type of class (CM/TP/TD)
@@ -202,7 +202,7 @@ public class SQL{
 
     /**
     * Assign a student to a class
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String loginU login of the user
     * @param String nomModule name of the course
     */
@@ -235,7 +235,7 @@ public class SQL{
 
     /**
     * Assign a student to a group
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param int numero number of the group
     * @param String loginEtu login of the student
     */
@@ -268,7 +268,7 @@ public class SQL{
 
     /**
     * Assign a student to a group
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param int numero number of the group
     * @param String loginEtu login of the student
     */
@@ -301,7 +301,7 @@ public class SQL{
 
     /**
     * Add an absence in a course for a student
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String loginEtu login of the student
     * @param String loginEns login of the teacher
     * @param String nomModule name of the course
@@ -346,7 +346,7 @@ public class SQL{
 
     /**
     * Change the sector of a student
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String newFiliere new sector of the student
     * @param String loginEtu login of the student
     */
@@ -379,7 +379,7 @@ public class SQL{
 
     /**
     * Add a grade to a student
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nomNote name of the evaluation
     * @param int valeur grade of the student
     * @param int coeff coefficient of the evaluation
@@ -420,7 +420,7 @@ public class SQL{
 
     /**
     * Add a grade to a course
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String loginU login of the student
     * @param String nomModule name of the course
     * @param String questionnaire comments on the course
@@ -457,7 +457,7 @@ public class SQL{
 
     /**
     * Delete a user
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String loginU login of the user
     */
     public static void supprimer(String loginU){
@@ -488,7 +488,7 @@ public class SQL{
 
     /**
     * Delete a unit
-    * @author Adam RIVIERE (group 8)
+    * @author Adam RIVIERE 
     * @param String nom name of the unit
     * @param String fil sector of the unit
     */
