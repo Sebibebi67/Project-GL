@@ -91,10 +91,11 @@ public class Query{
         return id;
     }
 
-    public static ArrayList<Object> exams(int idModule, String loginEtu){
+    public static ArrayList<Object> exams(String nomModule, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         int idEtudiant = getStudentID(loginEtu); 
+        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -129,10 +130,11 @@ public class Query{
         return queryResult;
     }
 
-    public static ArrayList<Float> studentAverage(int idModule, String loginEtu){
+    public static ArrayList<Float> studentAverage(String nomModule, String loginEtu){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
         int idEtudiant = getStudentID(loginEtu);
+        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
