@@ -271,7 +271,7 @@ public class Query{
         return courses;
     }
 
-    public static ArrayList<String> attendedUEs(String loginEtu){
+    public static ArrayList<String> attendedTUs(String loginEtu){
         Connection conn = null;
         ArrayList<String> ue = new ArrayList<String>();
         int idEtudiant = getStudentID(loginEtu);
