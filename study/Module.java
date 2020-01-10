@@ -7,7 +7,7 @@ import user.Student;
 
 /**
  * 
- * This class contains all the methods and attributs which are linked with the
+ * This class contains all methods and attributes linked to the
  * Modules dispenced in the University
  * 
  * @author Sébastien HERT

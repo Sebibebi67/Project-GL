@@ -2,7 +2,8 @@ package study;
 
 /**
  * 
- * This class contains all the methods and attributs which are linked with a Teaching unit, composed by modules and which composes the schedule for a graduating class.
+ * This class contains all methods and attributes linked to a Teaching unit
+ * made of modules and which are included in the schedule for a graduating class.
  * @author Sébastien HERT 
  * 
  */

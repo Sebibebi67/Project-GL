@@ -8,7 +8,7 @@ import user.ExamManager;
 
 /**
  * 
- * This class contains all the methods and attributs which are linked an Exam
+ * This class contains all methods and attributes linked to an Exam
  * 
  * @author Sébastien HERT
  * 
