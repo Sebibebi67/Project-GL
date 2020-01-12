@@ -264,15 +264,17 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomNote, note, coefficient FROM Note WHERE nomModule ="+moduleName+" AND idEtudiant = "+id+";";
+            String query = "SELECT nomNote, note, coefficient, dateEvaluation FROM Note WHERE nomModule ="+moduleName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nomNote = new ArrayList<String>();
             ArrayList<Integer> note = new ArrayList<Integer>();
             ArrayList<Integer> coefficient = new ArrayList<Integer>();
+            ArrayList<Date> dateEvaluation = new ArrayList<Date>();
             while(res.next()){
                 nomNote.add(res.getString("nomNote"));
                 note.add(res.getInt("note"));
                 coefficient.add(res.getInt("coefficient"));
+                dateEvaluation.add(res.getDate("dateEvaluation"));
             }
             queryResult.add(nomNote);
             queryResult.add(note);
