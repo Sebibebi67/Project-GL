@@ -38,8 +38,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="148.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="217.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="303.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <ComboBox prefHeight="37.0" prefWidth="572.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
