@@ -791,16 +791,16 @@ public class Query{
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Date> dateDebut = new ArrayList<Date>();
-            ArrayList<Integer> heureDebut = new ArrayList<Integer>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
             ArrayList<Date> dateFin = new ArrayList<Date>();
-            ArrayList<Integer> heureFin = new ArrayList<Integer>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
             while(res.next()){
                 nom.add(res.getString("nom"));
                 prenom.add(res.getString("prenom"));
                 dateDebut.add(res.getDate("dateDebut"));
-                heureDebut.add(res.getInt("heureDebut"));
+                heureDebut.add(res.getTime("heureDebut"));
                 dateFin.add(res.getDate("dateFin"));
-                heureFin.add(res.getInt("heureFin"));
+                heureFin.add(res.getTime("heureFin"));
             }
             queryResult.add(nom);
             queryResult.add(prenom);
