@@ -108,11 +108,11 @@ public class Query{
     }
 
     /**
-    * Returns the module's ID given its name.
+    * Returns the TU's ID given its name.
     * @author Thomas LEPERCQ 
-    * @param String nomModule Module's name
+    * @param String tu TU's name
     */
-    public static int getModuleID(String nomModule){
+    public static int getTUID(String tu){
         Connection conn = null;
         int id = -1;
         try {
@@ -120,9 +120,9 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idModule FROM Module WHERE nomModule = "+nomModule+";";
+            String query = "SELECT idUE FROM UE WHERE nomUE = "+tu+";";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idModule");
+            id = res.getInt("idUE");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -221,7 +221,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomUE, coeff FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE idModule = "+getModuleID(moduleName)+";";
+            String query = "SELECT nomUE, coeff FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             queryResult.add(res.getString("nomUE"));
             queryResult.add(res.getInt("coeff"));
@@ -244,20 +244,19 @@ public class Query{
     /**
     * Returns each evaluations' name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     * @param String loginEtu Student's login
     */
-    public static ArrayList<Object> exams(String nomModule, String loginEtu){
+    public static ArrayList<Object> exams(String moduleName, String loginEtu){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
-        int idEtudiant = getStudentID(loginEtu); 
-        int idModule = getModuleID(nomModule);
+        int id = getStudentID(loginEtu); 
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomNote, note, coefficient FROM Note WHERE idModule ="+idModule+" AND idEtudiant = "+idEtudiant+";";
+            String query = "SELECT nomNote, note, coefficient FROM Note WHERE nomModule ="+moduleName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nomNote = new ArrayList<String>();
             ArrayList<Integer> note = new ArrayList<Integer>();
@@ -289,20 +288,19 @@ public class Query{
     /**
     * Returns average mark for a given module and student.
     * @author Thomas LEPERCQ 
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     * @param String loginEtu Student's login
     */
-    public static ArrayList<Float> studentAverage(String nomModule, String loginEtu){
+    public static ArrayList<Float> studentAverage(String moduleName, String loginEtu){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
-        int idEtudiant = getStudentID(loginEtu);
-        int idModule = getModuleID(nomModule);
+        int id = getStudentID(loginEtu);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+" AND idEtudiant = "+idEtudiant+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomModule = "+moduleName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getFloat("average"));
@@ -438,15 +436,15 @@ public class Query{
             String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Date> dateDebut = new ArrayList<Date>();
-            ArrayList<Integer> heureDebut = new ArrayList<Integer>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
             ArrayList<Date> dateFin = new ArrayList<Date>();
-            ArrayList<Integer> heureFin = new ArrayList<Integer>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
             ArrayList<Boolean> estJustifiee = new ArrayList<Boolean>();
             while(res.next()){
                 dateDebut.add(res.getDate("dateDebut"));
-                heureDebut.add(res.getInt("heureDebut"));
+                heureDebut.add(res.getTime("heureDebut"));
                 dateFin.add(res.getDate("dateFin"));
-                heureFin.add(res.getInt("heureFin"));
+                heureFin.add(res.getTime("heureFin"));
                 estJustifiee.add(res.getBoolean("estJustifiee"));
             }
             queryResult.add(dateDebut);
@@ -514,18 +512,17 @@ public class Query{
     /**
     * Returns average mark for a given module.
     * @author Thomas LEPERCQ 
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     */
-    public static ArrayList<Float> courseAverage(String nomModule){
+    public static ArrayList<Float> courseAverage(String moduleName){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
-        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE idModule = "+idModule+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getFloat("average"));
@@ -548,19 +545,18 @@ public class Query{
     /**
     * Returns average mark for a given evaluation.
     * @author Thomas LEPERCQ 
-    * @param String nomNote Evaluation's name
-    * @param String nomModule Module's name
+    * @param String markName Evaluation's name
+    * @param String moduleName Module's name
     */
-    public static ArrayList<Float> examAverage(String nomNote, String nomModule){
+    public static ArrayList<Float> examAverage(String markName, String moduleName){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
-        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+nomNote+" AND idModule = "+idModule+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+markName+" AND nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getFloat("average"));
@@ -582,18 +578,17 @@ public class Query{
     /**
     * Returns average mark of satisfaction for a given module.
     * @author Thomas LEPERCQ 
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     */
-    public static ArrayList<Float> satisfactionAverage(String nomModule){
+    public static ArrayList<Float> satisfactionAverage(String moduleName){
         Connection conn = null;
         ArrayList<Float> average = new ArrayList<Float>();
-        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE idModule = "+idModule+";";
+            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average.add(res.getFloat("average"));
@@ -647,9 +642,9 @@ public class Query{
     /**
     * Returns all students attending a given course.
     * @author Dejan PARIS 
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     */
-    public static ArrayList<Object> attendees(String nomModule){
+    public static ArrayList<Object> attendees(String moduleName){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<>();
         try {
@@ -657,7 +652,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+getModuleID(nomModule)+";";
+            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 queryResult.add(res.getString("login"));
@@ -717,18 +712,17 @@ public class Query{
     /**
     * Returns name and average mark for all student attending a given module.
     * @author Dejan PARIS
-    * @param String nomModule Module's name
+    * @param String moduleName Module's name
     */
-    public static ArrayList<Object> moduleStudentsAverage(String nomModule){
+    public static ArrayList<Object> moduleStudentsAverage(String moduleName){
         Connection conn = null;
         ArrayList<Object> queryResult = new ArrayList<Object>();
-        int idModule = getModuleID(nomModule);
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING idModule = "+idModule+";";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomModule = "+moduleName+";";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
@@ -767,7 +761,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, dateDebut, heureDebut, dateFin, heureFin FROM Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant WHERE estJustifiee = false";
+            String query = "SELECT nom, prenom, dateDebut, heureDebut, dateFin, heureFin FROM Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant WHERE estJustifiee = false;";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -834,6 +828,35 @@ public class Query{
             }
         }
         return juryHelper;
+    }
+
+    /**
+    * Returns the course concerned by the TU.
+    * @author Dejan PARIS
+    */
+    public static String courseOfTU(String tu){
+        Connection conn = null;
+        String course = "";
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT filiere FROM UE WHERE idUE = "+getTUID(tu)+";";
+            ResultSet res = statement.executeQuery(query);
+            course = res.getString("filiere");
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return course;
     }
 
 }

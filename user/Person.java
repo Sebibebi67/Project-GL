@@ -12,6 +12,14 @@ public class Person{
 
     private UserAccount account;
 
+    public UserAccount getAccount() {
+        return this.account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
+    }
+
     public Person(){
         roles = new ArrayList<Role>();
     }

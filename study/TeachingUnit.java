@@ -1,6 +1,6 @@
 package study;
 
-import user.TUManager;
+import tools.Query;
 
 /**
  * 
@@ -9,13 +9,25 @@ import user.TUManager;
  * @author Sébastien HERT 
  * 
  */
-public abstract class TeachingUnit {
+public class TeachingUnit {
 
     private String name;
-    private TUManager manager;
-    private String course;
+    private Course course;
+
+    public Course getCourse() {
+        return this.course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public TeachingUnit() {}
+
+    public TeachingUnit(String name) {
+        this.name = name;
+        this.course = new Course(Query.courseOfTU(name));
+    }
 
 
     /**
@@ -30,34 +42,6 @@ public abstract class TeachingUnit {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return TUManager return the manager
-     */
-    public TUManager getManager() {
-        return manager;
-    }
-
-    /**
-     * @param manager the manager to set
-     */
-    public void setManager(TUManager manager) {
-        this.manager = manager;
-    }
-
-    /**
-     * @return String return the course
-     */
-    public String getCourse() {
-        return course;
-    }
-
-    /**
-     * @param course the course to set
-     */
-    public void setCourse(String course) {
-        this.course = course;
     }
 
     public String toString() {
