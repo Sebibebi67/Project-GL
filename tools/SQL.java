@@ -90,10 +90,10 @@ public class SQL{
     }
 
     /**
-    * Create a course
+    * Create a module
     * @author Adam RIVIERE 
-    * @param String nomModule name of the course
-    * @param String loginRespo login of the teacher responsible for this course
+    * @param String nomModule name of the module
+    * @param String loginRespo login of the teacher responsible for this module
     */
     public static void creerModule(String nomModule, String loginRespo){
         Connection conn = null;
@@ -123,12 +123,12 @@ public class SQL{
     }
 
     /**
-    * Assign a course to a unit
+    * Assign a module to a unit
     * @author Adam RIVIERE 
-    * @param String nomModule name of the course
+    * @param String nomModule name of the module
     * @param String titreUE name of the unit
-    * @param int coefficient coefficient of the course in the unit
-    * @param String fil sector of the course
+    * @param int coefficient coefficient of the module in the unit
+    * @param String fil sector of the module
     */
     public static void constitue(String nomModule, String titreUE, int coefficient, String fil){
         Connection conn = null;
@@ -163,7 +163,7 @@ public class SQL{
     * Assign a teacher to a class
     * @author Adam RIVIERE 
     * @param String loginU login of the user
-    * @param String nomModule name of the course
+    * @param String nomModule name of the module
     * @param String role type of class (CM/TP/TD)
     * @param int idGroupe number of the group
     */
@@ -171,7 +171,7 @@ public class SQL{
         Connection conn = null;
         try {
             int idG = idGroupe;
-            if(role == "CM"){ // no need of group id if the course is for the entire class
+            if(role == "CM"){ // no need of group id if the module is for the entire class
                 idG = 0;
             }
             // create a connection to the database
@@ -204,7 +204,7 @@ public class SQL{
     * Assign a student to a class
     * @author Adam RIVIERE 
     * @param String loginU login of the user
-    * @param String nomModule name of the course
+    * @param String nomModule name of the module
     */
     public static void assiste(String loginU, String nomModule){
         Connection conn = null;
@@ -300,11 +300,11 @@ public class SQL{
     }
 
     /**
-    * Add an absence in a course for a student
+    * Add an absence in a module for a student
     * @author Adam RIVIERE 
     * @param String loginEtu login of the student
     * @param String loginEns login of the teacher
-    * @param String nomModule name of the course
+    * @param String nomModule name of the module
     * @param String fil sector of the student
     * @param Date dateDebut day of the begining of the absence
     * @param Date dateFin day of the end of the absence
@@ -385,7 +385,7 @@ public class SQL{
     * @param int coeff coefficient of the evaluation
     * @param Date date of the evaluation
     * @param String loginU login of the student
-    * @param String nomModule name of the course
+    * @param String nomModule name of the module
     */
     public static void note(String nomNote, int valeur, int coeff, Date jour, String loginU, String nomModule){
         Connection conn = null;
@@ -419,12 +419,12 @@ public class SQL{
     }
 
     /**
-    * Add a grade to a course
+    * Add a grade to a module
     * @author Adam RIVIERE 
     * @param String loginU login of the student
-    * @param String nomModule name of the course
-    * @param String questionnaire comments on the course
-    * @param int note grade of the course
+    * @param String nomModule name of the module
+    * @param String questionnaire comments on the module
+    * @param int note grade of the module
     */
     public static void satisfaction(String loginU, String nomModule, String questionnaire, int note){
         Connection conn = null;
