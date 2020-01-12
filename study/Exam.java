@@ -1,7 +1,6 @@
 package study;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 
 import user.ExamManager;
@@ -17,12 +16,20 @@ public class Exam{
 
     private String name;
     private Date date;
-    private Time time;
     private Module module;
+    private int coeff;
     private ExamManager manager;
     private ArrayList<String> attendees;
     
     public Exam(){}
+
+    public Exam(String name, Date date, int coeff, Module module){
+        this.name = name;
+        this.date = date;
+        this.coeff = coeff;
+        this.module = module;
+
+    }
 
     /**
      * @return Date return the date
@@ -53,20 +60,6 @@ public class Exam{
     }
 
     /**
-     * @return Time return the time
-     */
-    public Time getTime() {
-        return time;
-    }
-
-    /**
-     * @param time the time to set
-     */
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    /**
      * @return Module return the module
      */
     public Module getModule() {
@@ -93,6 +86,14 @@ public class Exam{
     public void setManager(ExamManager manager) {
         this.manager = manager;
     }
+    
+    public int getCoeff() {
+        return this.coeff;
+    }
+
+    public void setCoeff(int coeff) {
+        this.coeff = coeff;
+    }
 
     /**
      * @return ArrayList<String> return the attendees
@@ -109,6 +110,6 @@ public class Exam{
     }
 
     public String toString() {
-        return name + " : " + date.toString() + " " + time.toString();
+        return name + " : " + date.toString();
     }
 }
