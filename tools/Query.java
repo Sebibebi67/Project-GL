@@ -437,9 +437,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array of absences with Arrays for their dates, hours and justification state.
     */
-    public static ArrayList<Object> absence(String loginEtu){
+    public static ArrayList<ArrayList<?>> absence(String loginEtu){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         int idEtudiant = getStudentID(loginEtu); 
         try {
             // create a connection to the database
