@@ -64,7 +64,7 @@
                   <Button fx:id="absencesButton" layoutX="70.0" layoutY="92.0" mnemonicParsing="false" onAction="#selectionAbsences" prefHeight="63.0" prefWidth="449.0" text="absences" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button fx:id="satisfactionButton" mnemonicParsing="false" onAction="#selectionSatisfaction" prefHeight="63.0" prefWidth="449.0" text="satisfaction" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Button fx:id="modulesButton" mnemonicParsing="false" onAction="#selectionModules" prefHeight="63.0" prefWidth="449.0" text="modules" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                  <Button fx:id="etudiantsButton" mnemonicParsing="false" onAction="#selectionEtudiants" prefHeight="63.0" prefWidth="449.0" text="étudiants" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <Button fx:id="etudiantsButton" mnemonicParsing="false" onAction="#selectionEtudiants" prefHeight="63.0" prefWidth="449.0" text="bulletin étudiants" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </children>

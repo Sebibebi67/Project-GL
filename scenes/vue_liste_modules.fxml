@@ -29,7 +29,7 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <TableView fx:id="tableModulesProf" layoutX="-1.0" onMouseClicked="#Selection" prefHeight="371.0" prefWidth="640.0">
+            <TableView fx:id="tableModulesProf" layoutX="-1.0" onMouseClicked="#SelectionModule" prefHeight="371.0" prefWidth="640.0">
               <columns>
                 <TableColumn fx:id="coursColumn" prefWidth="639.0" text="coursColumn" />
               </columns>
