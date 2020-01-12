@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="469.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="469.0" prefWidth="705.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdministrationBulletinController">
   <children>
     <MenuBar prefHeight="41.0" prefWidth="651.0" VBox.vgrow="NEVER">
       <menus>
@@ -40,17 +40,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox prefHeight="30.0" prefWidth="233.0" promptText="promotion">
+                  <ComboBox fx:id="comboPromotion" onAction="#selectionPromotion" prefHeight="30.0" prefWidth="233.0" promptText="promotion">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox layoutX="10.0" layoutY="38.0" prefHeight="30.0" prefWidth="233.0" promptText="filière" GridPane.columnIndex="1">
+                  <ComboBox fx:id="comboFiliere" layoutX="10.0" layoutY="38.0" onAction="#selectionFiliere" prefHeight="30.0" prefWidth="233.0" promptText="filière" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox layoutX="224.0" layoutY="38.0" prefHeight="30.0" prefWidth="233.0" promptText="Étudiant" GridPane.columnIndex="2">
+                  <ComboBox fx:id="comboEtudiant" layoutX="224.0" layoutY="38.0" onAction="#selectionEtudiant" prefHeight="30.0" prefWidth="233.0" promptText="Étudiant" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
@@ -68,7 +68,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tableMoyennesEleve" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn prefWidth="129.0" text="module" />
                       <TableColumn minWidth="0.0" prefWidth="96.0" text="moyenne" />
@@ -78,10 +78,10 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TableView>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <TableView fx:id="tableAbsencesEleve" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                     <columns>
                       <TableColumn prefWidth="165.0" text="date absence" />
-                      <TableColumn prefWidth="149.0" text="justification" />
+                      <TableColumn prefWidth="181.0" text="justification" />
                     </columns>
                      <GridPane.margin>
                         <Insets left="5.0" />
@@ -101,14 +101,14 @@
                 <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="132.0" text="Génerer bulletin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="132.0" text="détail notes" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="genererBulletinButton" mnemonicParsing="false" onAction="#genererBulletinBouton" prefHeight="50.0" prefWidth="132.0" text="Génerer bulletin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="detailButton" mnemonicParsing="false" onAction="#selectionnerDetailButton" prefHeight="50.0" prefWidth="132.0" text="détail notes" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <Label text="aide au jury:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="15.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField editable="false" GridPane.columnIndex="1">
+                  <TextField fx:id="aideJuryField" editable="false" onAction="#recupererAideJury" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
@@ -118,4 +118,4 @@
          </bottom>
       </BorderPane>
   </children>
-</VBox>
+</fx:root>
