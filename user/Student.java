@@ -4,22 +4,17 @@ import java.util.ArrayList;
 
 import admin.*;
 import study.*;
-import study.Module;
 import tools.*;
 
 public class Student implements Role{
 
     private String login;
-
     private EduForm form;
     private Group td;
     private Group tp;
     private Course course;
 
     private String juryAdvice;
-
-    private ArrayList<Module> modules;
-
 
     public Student(){
         
@@ -71,6 +66,14 @@ public class Student implements Role{
         this.juryAdvice = juryAdvice;
     }
 
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public void getData(String login){
         ArrayList<Object> array = new ArrayList<>();
         array = Query.studentData(login);
@@ -83,19 +86,9 @@ public class Student implements Role{
 
 
         this.form = new EduForm(login);
-
-        this.createModuleList();
     }
 
-    public void createModuleList(){
-        ArrayList<String> modulesNames = new ArrayList<>();
 
-        modulesNames = Query.courses(this.login);
-
-        for (int i = 0 ; i < modulesNames.size(); i++){
-            modules.add(new Module(modulesNames.get(i).toString()));
-        }
-    }
 
 
 }

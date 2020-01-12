@@ -21,10 +21,24 @@ public class Absence {
 	private Time endHour;
 	private Student student;
 	private Module module;
-	private Teacher teacher;
+    private Teacher teacher;
+    private Boolean justified;
+
+
 
 	public Absence () {
 
+    }
+    
+    public Absence (Date beginDate, Time beginHour, Date endDate, Time endHour, Boolean justified) {
+        this.beginDate = beginDate;
+        this.beginHour = beginHour;
+
+        this.endDate = endDate;
+        this.endHour = endHour;
+
+
+        this.justified = justified;
 	}
 
 
@@ -128,6 +142,14 @@ public class Absence {
 	
 	public String toString() {
 		return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
-	}
+    }
+    
+    public Boolean getJustified() {
+        return this.justified;
+    }
+
+    public void isJustified(Boolean justified) {
+        this.justified = justified;
+    }
 
 }
