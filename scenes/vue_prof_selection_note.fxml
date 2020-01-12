@@ -97,12 +97,10 @@
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="312.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ComboBox prefHeight="30.0" prefWidth="276.0" promptText="Élève" />
-                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                          <TableView prefHeight="348.0" prefWidth="272.0">
                                             <columns>
                                               <TableColumn prefWidth="145.0" text="note" />
                                               <TableColumn prefWidth="126.0" text="commentaire" />
@@ -126,11 +124,11 @@
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="338.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="363.0" minHeight="10.0" prefHeight="345.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TableView prefHeight="400.0" prefWidth="368.0">
+                              <TableView prefHeight="353.0" prefWidth="371.0">
                                  <columns>
                                     <TableColumn prefWidth="83.0" text="Nom" />
                                     <TableColumn prefWidth="95.0" text="Prenom" />
