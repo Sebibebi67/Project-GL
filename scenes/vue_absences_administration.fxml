@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="400.0" prefWidth="640.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AbsenceAdministrationController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -38,7 +38,7 @@
                 <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="140.0" prefWidth="647.0">
+                  <TableView fx:id="tableAbsences" prefHeight="140.0" prefWidth="647.0">
                     <columns>
                       <TableColumn prefWidth="126.0" text="Nom" />
                       <TableColumn prefWidth="86.0" text="Prenom" />
@@ -59,18 +59,18 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="29.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <CheckBox fx:id="justificationCheckBox" mnemonicParsing="false" onAction="#justificationAbsence" prefHeight="32.0" prefWidth="29.0" text="justifier" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </CheckBox>
-                        <DatePicker GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <ComboBox prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <DatePicker fx:id="dateAbsencePicker" onAction="#selectionDateAbsence" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <ComboBox fx:id="moduleCombo" onAction="#selectionModuleAbsence" prefHeight="26.0" prefWidth="215.0" promptText="module" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets left="10.0" right="20.0" />
                            </GridPane.margin>
                         </ComboBox>
-                        <ComboBox prefHeight="26.0" prefWidth="213.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <ComboBox fx:id="etudiantCombo" onAction="#selectionEtudiant" prefHeight="26.0" prefWidth="213.0" promptText="nom,prenom,id" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets left="10.0" right="10.0" />
                            </GridPane.margin>
@@ -82,4 +82,4 @@
          </children>
     </AnchorPane>
   </children>
-</VBox>
+</fx:root>

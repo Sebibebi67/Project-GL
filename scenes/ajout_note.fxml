@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="400.0" prefWidth="640.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjoutNoteController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -51,16 +51,16 @@
                     </rowConstraints>
                      <children>
                         <Label text="Nom de la note:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                        <TextField GridPane.columnIndex="1">
+                        <TextField fx:id="nomNoteField" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="25.0" right="25.0" />
                            </GridPane.margin>
                         </TextField>
                         <Label prefHeight="16.0" prefWidth="80.0" text="coefficient:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                        <TextField layoutX="147.0" layoutY="40.0" GridPane.columnIndex="3" />
+                        <TextField fx:id="coefficientField" layoutX="147.0" layoutY="40.0" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tableNouvellesNotes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn prefWidth="218.0" text="Nom" />
                       <TableColumn prefWidth="202.0" text="Prénom" />
@@ -79,11 +79,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField text="Nom" />
-                        <TextField text="Prénom" GridPane.columnIndex="1" />
-                        <TextField text="Note" GridPane.columnIndex="2" />
-                        <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="108.0" text="ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="108.0" text="supprimer" GridPane.columnIndex="4" />
+                        <TextField fx:id="nomEleveField" text="Nom" />
+                        <TextField fx:id="prenomEleveField" text="Prénom" GridPane.columnIndex="1" />
+                        <TextField fx:id="noteEleveField" text="Note" GridPane.columnIndex="2" />
+                        <Button fx:id="ajouterNoteButton" mnemonicParsing="false" onAction="#ajouterNote" prefHeight="44.0" prefWidth="108.0" text="ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="supprimerButton" mnemonicParsing="false" onAction="#supprimerNote" prefHeight="44.0" prefWidth="108.0" text="supprimer" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
                </children>
@@ -91,4 +91,4 @@
          </children>
     </AnchorPane>
   </children>
-</VBox>
+</fx:root>

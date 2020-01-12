@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="400.0" prefWidth="640.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ModuleAdminController">
    <children>
       <Label text="cours :" />
       <MenuBar VBox.vgrow="NEVER">
@@ -48,8 +48,8 @@
                                           <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="313.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ComboBox prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
-                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                          <ComboBox fx:id="comboEleveNotes" onAction="#selectionEleveNotes" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                          <TableView fx:id="tableNotesEleve" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                              <columns>
                                                 <TableColumn prefWidth="135.0" text="Nom note" />
                                                 <TableColumn prefWidth="136.0" text="note" />
@@ -74,8 +74,8 @@
                                           <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ComboBox prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
-                                          <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                          <ComboBox fx:id="comboEleveAbsences" onAction="#selectionElevesAbsence" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                          <TableView fx:id="tableAbsencesEleve" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                              <columns>
                                                 <TableColumn prefWidth="131.0" text="date" />
                                                 <TableColumn prefWidth="140.0" text="justification" />
@@ -100,7 +100,7 @@
                                           <RowConstraints maxHeight="312.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <TableView prefHeight="348.0" prefWidth="272.0">
+                                          <TableView fx:id="tableSatisfactionCour" prefHeight="348.0" prefWidth="272.0">
                                              <columns>
                                                 <TableColumn prefWidth="145.0" text="note" />
                                                 <TableColumn prefWidth="126.0" text="commentaire" />
@@ -129,7 +129,7 @@
                               <RowConstraints maxHeight="226.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <TableView prefHeight="353.0" prefWidth="371.0">
+                              <TableView fx:id="tableNotesElevesCour" prefHeight="353.0" prefWidth="371.0">
                                  <columns>
                                     <TableColumn prefWidth="83.0" text="Nom" />
                                     <TableColumn prefWidth="95.0" text="Prenom" />
@@ -146,4 +146,4 @@
          </children>
       </AnchorPane>
    </children>
-</VBox>
+</fx:root>
