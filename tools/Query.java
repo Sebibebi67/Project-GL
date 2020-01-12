@@ -255,9 +255,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array of evaluations with Arrays for their names, marks and coefficient 
     */
-    public static ArrayList<Object> exams(String moduleName, String loginEtu){
+    public static ArrayList<ArrayList<?>> exams(String moduleName, String loginEtu){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         int id = getStudentID(loginEtu); 
         try {
             // create a connection to the database
@@ -437,9 +437,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array of absences with Arrays for their dates, hours and justification state.
     */
-    public static ArrayList<Object> absence(String loginEtu){
+    public static ArrayList<ArrayList<?>> absence(String loginEtu){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         int idEtudiant = getStudentID(loginEtu); 
         try {
             // create a connection to the database
@@ -486,9 +486,9 @@ public class Query{
     * @return an Array of results with Arrays for the name and firstname of the student
     * and Arrays for the mark and coefficient associated with the student.
     */
-    public static ArrayList<Object> results(String nomNote){
+    public static ArrayList<ArrayList<?>> results(String nomNote){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -631,9 +631,9 @@ public class Query{
     * @param String loginEns Teacher's login
     * @return an Array the courses names.
     */
-    public static ArrayList<Object> coursesTaught(String loginEns){
+    public static ArrayList<String> coursesTaught(String loginEns){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<String> queryResult = new ArrayList<>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -664,9 +664,9 @@ public class Query{
     * @param String moduleName Module's name
     * @return an Array with the login of the students.
     */
-    public static ArrayList<Object> attendees(String moduleName){
+    public static ArrayList<String> attendees(String moduleName){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<String> queryResult = new ArrayList<>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -697,9 +697,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array with Arrays for the modules' names and the average mark associated with it.
     */
-    public static ArrayList<Object> studentModulesAverage(String loginEtu){
+    public static ArrayList<ArrayList<?>> studentModulesAverage(String loginEtu){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<Object>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -737,9 +737,9 @@ public class Query{
     * @return an Array with Arrays for the students' name and firstname
     * and the average mark associated with him.
     */
-    public static ArrayList<Object> moduleStudentsAverage(String moduleName){
+    public static ArrayList<ArrayList<?>> moduleStudentsAverage(String moduleName){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<Object>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -778,9 +778,9 @@ public class Query{
     * @return an Array of absences with Arrays for the name and firstname of the student and
     * dates and hours of the absence associated with him.
     */
-    public static ArrayList<Object> unjustified(){
+    public static ArrayList<ArrayList<?>> unjustified(){
         Connection conn = null;
-        ArrayList<Object> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
