@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -136,7 +137,15 @@
                                     <TableColumn prefWidth="108.0" text="identifiant" />
                                  </columns>
                               </TableView>
-                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="nouvelle note" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="nouvelle note" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="25.0" />
+                                 </GridPane.margin></Button>
+                              <Button layoutX="25.0" layoutY="364.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="nouvelle absence" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets right="25.0" />
+                                 </GridPane.margin>
+                              </Button>
                            </children>
                         </GridPane>
                      </children>
