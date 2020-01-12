@@ -436,15 +436,15 @@ public class Query{
             String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Date> dateDebut = new ArrayList<Date>();
-            ArrayList<Integer> heureDebut = new ArrayList<Integer>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
             ArrayList<Date> dateFin = new ArrayList<Date>();
-            ArrayList<Integer> heureFin = new ArrayList<Integer>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
             ArrayList<Boolean> estJustifiee = new ArrayList<Boolean>();
             while(res.next()){
                 dateDebut.add(res.getDate("dateDebut"));
-                heureDebut.add(res.getInt("heureDebut"));
+                heureDebut.add(res.getTime("heureDebut"));
                 dateFin.add(res.getDate("dateFin"));
-                heureFin.add(res.getInt("heureFin"));
+                heureFin.add(res.getTime("heureFin"));
                 estJustifiee.add(res.getBoolean("estJustifiee"));
             }
             queryResult.add(dateDebut);
