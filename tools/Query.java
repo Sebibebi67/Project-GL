@@ -21,6 +21,7 @@ public class Query{
     * Returns the user's ID given its login.
     * @author Dejan PARIS 
     * @param String login User's login
+    * @return User's ID
     */
     public static int getUserID(String login){
         Connection conn = null;
@@ -51,6 +52,7 @@ public class Query{
     * Returns the student's ID given its login.
     * @author Thomas LEPERCQ 
     * @param String loginEtu Student's login
+    * @return Student's ID
     */
     public static int getStudentID(String loginEtu){
         Connection conn = null;
@@ -81,6 +83,7 @@ public class Query{
     * Returns the teacher's ID given its login.
     * @author Dejan PARIS 
     * @param String loginEns Teacher's login
+    * @return Teacher's ID
     */
     public static int getTeacherID(String loginEns){
         Connection conn = null;
@@ -111,6 +114,7 @@ public class Query{
     * Returns the TU's ID given its name.
     * @author Thomas LEPERCQ 
     * @param String tu TU's name
+    * @return TU's ID
     */
     public static int getTUID(String tu){
         Connection conn = null;
@@ -141,6 +145,7 @@ public class Query{
     * Returns user's information given its login.
     * @author Dejan PARIS
     * @param String login User's login
+    * @return an Array with user's information (login, password, name, firstname and role)
     */
     public static ArrayList<Object> userData(String login){
         Connection conn = null;
@@ -177,6 +182,7 @@ public class Query{
     * Returns student's information given its login.
     * @author Dejan PARIS
     * @param String loginEtu Student's login
+    * @return an Array with student's information
     */
     public static ArrayList<Object> studentData(String loginEtu){
         Connection conn = null;
@@ -212,6 +218,7 @@ public class Query{
     * Returns module's information given its name.
     * @author Dejan PARIS
     * @param String loginEtu Student's login
+    * @return an Array with the name of TU and the coefficient of the module in this TU.
     */
     public static ArrayList<Object> coeffInTU(String moduleName){
         Connection conn = null;
@@ -246,6 +253,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
     * @param String loginEtu Student's login
+    * @return an Array of evaluations with Arrays for their names, marks and coefficient 
     */
     public static ArrayList<Object> exams(String moduleName, String loginEtu){
         Connection conn = null;
@@ -290,6 +298,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
     * @param String loginEtu Student's login
+    * @return an Array with the average mark
     */
     public static ArrayList<Float> studentAverage(String moduleName, String loginEtu){
         Connection conn = null;
@@ -324,6 +333,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String nomNote Evaluation's name
     * @param String loginEtu Student's login
+    * @return an Array with the mark.
     */
     public static ArrayList<Integer> mark(String markName, String loginEtu){
         Connection conn = null;
@@ -357,6 +367,7 @@ public class Query{
     * Returns all attended modules for a given student.
     * @author Thomas LEPERCQ
     * @param String loginEtu Student's login
+    * @return an Array with the courses names.
     */
     public static ArrayList<String> courses(String loginEtu){
         Connection conn = null;
@@ -390,6 +401,7 @@ public class Query{
     * Returns all attended TUs for a given student.
     * @author Thomas LEPERCQ
     * @param String loginEtu Student's login
+    * @return an Array with the TUs names.
     */
     public static ArrayList<String> attendedTUs(String loginEtu){
         Connection conn = null;
@@ -423,6 +435,7 @@ public class Query{
     * Returns all missed classes for a given student.
     * @author Thomas LEPERCQ 
     * @param String loginEtu Student's login
+    * @return an Array of absences with Arrays for their dates, hours and justification state.
     */
     public static ArrayList<Object> absence(String loginEtu){
         Connection conn = null;
@@ -470,6 +483,8 @@ public class Query{
     * Returns mark of each student for a given evaluation.
     * @author Thomas LEPERCQ 
     * @param String nomNote Evaluation's name
+    * @return an Array of results with Arrays for the name and firstname of the student
+    * and Arrays for the mark and coefficient associated with the student.
     */
     public static ArrayList<Object> results(String nomNote){
         Connection conn = null;
@@ -513,6 +528,7 @@ public class Query{
     * Returns average mark for a given module.
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
+    * @return an Array with the average mark.
     */
     public static ArrayList<Float> courseAverage(String moduleName){
         Connection conn = null;
@@ -547,6 +563,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String markName Evaluation's name
     * @param String moduleName Module's name
+    * @return an Array with the average mark.
     */
     public static ArrayList<Float> examAverage(String markName, String moduleName){
         Connection conn = null;
@@ -579,6 +596,7 @@ public class Query{
     * Returns average mark of satisfaction for a given module.
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
+    * @return an Array with the average mark.
     */
     public static ArrayList<Float> satisfactionAverage(String moduleName){
         Connection conn = null;
@@ -611,6 +629,7 @@ public class Query{
     * Returns all courses taught by a given teacher.
     * @author Dejan PARIS 
     * @param String loginEns Teacher's login
+    * @return an Array the courses names.
     */
     public static ArrayList<Object> coursesTaught(String loginEns){
         Connection conn = null;
@@ -643,6 +662,7 @@ public class Query{
     * Returns all students attending a given course.
     * @author Dejan PARIS 
     * @param String moduleName Module's name
+    * @return an Array with the login of the students.
     */
     public static ArrayList<Object> attendees(String moduleName){
         Connection conn = null;
@@ -675,6 +695,7 @@ public class Query{
     * Returns average mark for each course attended by a given student.
     * @author Dejan PARIS 
     * @param String loginEtu Student's login
+    * @return an Array with Arrays for the modules' names and the average mark associated with it.
     */
     public static ArrayList<Object> studentModulesAverage(String loginEtu){
         Connection conn = null;
@@ -713,6 +734,8 @@ public class Query{
     * Returns name and average mark for all student attending a given module.
     * @author Dejan PARIS
     * @param String moduleName Module's name
+    * @return an Array with Arrays for the students' name and firstname
+    * and the average mark associated with him.
     */
     public static ArrayList<Object> moduleStudentsAverage(String moduleName){
         Connection conn = null;
@@ -752,6 +775,8 @@ public class Query{
     /**
     * Returns all unjustified absences for everyone.
     * @author Dejan PARIS
+    * @return an Array of absences with Arrays for the name and firstname of the student and
+    * dates and hours of the absence associated with him.
     */
     public static ArrayList<Object> unjustified(){
         Connection conn = null;
@@ -801,6 +826,7 @@ public class Query{
     * Returns automatically generated answer wether a given student should double this year, invalidate it or pass it.
     * @author Thomas LEPERCQ
     * @param String loginEtu Student's login
+    * @return an Array with the automatically generated answer.
     */
     public static ArrayList<String> juryHelper(String loginEtu){
         Connection conn = null;
@@ -833,6 +859,7 @@ public class Query{
     /**
     * Returns the course concerned by the TU.
     * @author Dejan PARIS
+    * @return an Array with the course.
     */
     public static String courseOfTU(String tu){
         Connection conn = null;
