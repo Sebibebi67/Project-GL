@@ -964,6 +964,7 @@ public class Query{
     /**
     * Returns the list of all the absences for a given module.
     * @author Dejan PARIS
+    * @param String moduleName Module's name.
     * @return an Array with the list of all the absences.
     */
     public static ArrayList<ArrayList<?>> allModuleAbsences(String moduleName){
@@ -1013,6 +1014,7 @@ public class Query{
     /**
     * Returns the list of all the satisfactions for a given module.
     * @author Dejan PARIS
+    * @param String moduleName Module's name.
     * @return an Array with the list of all the satisfactions.
     */
     public static ArrayList<ArrayList<?>> allModuleSatisfactions(String moduleName){
@@ -1028,8 +1030,8 @@ public class Query{
             ArrayList<Integer> note = new ArrayList<Integer>();
             ArrayList<String> questionnaire = new ArrayList<String>();
             while(res.next()){
-                note.add(res.getInt("nom"));
-                questionnaire.add(res.getString("prenom"));
+                note.add(res.getInt("note"));
+                questionnaire.add(res.getString("questionnaire"));
             }
             result.add(note);
             result.add(questionnaire);
@@ -1047,4 +1049,42 @@ public class Query{
         return result;
     }
 
+    /**
+    * Returns the list of all the students in a given course.
+    * @author Dejan PARIS
+    * @param String course Course's name.
+    * @return an Array with the list of all the students in the course.
+    */
+    public static ArrayList<ArrayList<String>> allStudentsInCourse(String course){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE filiere = "+course+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+            }
+            result.add(nom);
+            result.add(prenom);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+    
 }
