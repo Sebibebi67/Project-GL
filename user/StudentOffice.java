@@ -6,4 +6,6 @@ public class StudentOffice extends Administration{
 
 	}
 
+	public void newAbsence(){}
+
 }

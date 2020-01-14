@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 import user.Student;
-import user.Teacher;
+import user.Professor;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class Absence {
 	private Time endHour;
 	private Student student;
 	private Module module;
-    private Teacher teacher;
+    private Professor teacher;
     private Boolean justified;
 
 
@@ -39,7 +39,16 @@ public class Absence {
 
 
         this.justified = justified;
-	}
+    }
+    
+    public Absence(Date date, Time beginHour, Time endHour, Student student, Professor professor){
+        this.beginDate = date;
+        this.endDate = date;
+        this.beginHour = beginHour;
+        this.endHour = endHour;
+        this.student = student;
+        this.teacher = professor;
+    }
 
 
     /**
@@ -129,14 +138,14 @@ public class Absence {
     /**
      * @return Teacher return the teacher
      */
-    public Teacher getTeacher() {
+    public Professor getTeacher() {
         return teacher;
     }
 
     /**
      * @param teacher the teacher to set
      */
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(Professor teacher) {
         this.teacher = teacher;
 	}
 	
