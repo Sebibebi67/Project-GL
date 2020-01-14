@@ -302,9 +302,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array with the average mark
     */
-    public static ArrayList<Float> studentAverage(String moduleName, String loginEtu){
+    public static double studentAverage(String moduleName, String loginEtu){
         Connection conn = null;
-        ArrayList<Float> average = new ArrayList<Float>();
+        double average = -1;
         int id = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -313,9 +313,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomModule = "+moduleName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-                average.add(res.getFloat("average"));
-            }
+            average = res.getFloat("average");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -337,9 +335,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array with the mark.
     */
-    public static ArrayList<Integer> mark(String markName, String loginEtu){
+    public static int mark(String markName, String loginEtu){
         Connection conn = null;
-        ArrayList<Integer> mark = new ArrayList<Integer>();
+        int mark = -1;
         int id = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -348,9 +346,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT note FROM Note WHERE nomNote = "+markName+" AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-                mark.add(res.getInt("note"));
-            }
+            mark = res.getInt("note");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -532,9 +528,9 @@ public class Query{
     * @param String moduleName Module's name
     * @return an Array with the average mark.
     */
-    public static ArrayList<Float> courseAverage(String moduleName){
+    public static double courseAverage(String moduleName){
         Connection conn = null;
-        ArrayList<Float> average = new ArrayList<Float>();
+        double average = -1;
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -543,7 +539,7 @@ public class Query{
             String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                average.add(res.getFloat("average"));
+                average = res.getDouble("average");
             }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -567,9 +563,9 @@ public class Query{
     * @param String moduleName Module's name
     * @return an Array with the average mark.
     */
-    public static ArrayList<Float> examAverage(String markName, String moduleName){
+    public static double examAverage(String markName, String moduleName){
         Connection conn = null;
-        ArrayList<Float> average = new ArrayList<Float>();
+        double average = -1;
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -577,9 +573,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+markName+" AND nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-                average.add(res.getFloat("average"));
-            }
+            average = res.getDouble("average");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -600,9 +594,9 @@ public class Query{
     * @param String moduleName Module's name
     * @return an Array with the average mark.
     */
-    public static ArrayList<Float> satisfactionAverage(String moduleName){
+    public static double satisfactionAverage(String moduleName){
         Connection conn = null;
-        ArrayList<Float> average = new ArrayList<Float>();
+        double average = -1.0;
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -610,9 +604,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-                average.add(res.getFloat("average"));
-            }
+            average = res.getDouble("average");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -830,9 +822,9 @@ public class Query{
     * @param String loginEtu Student's login
     * @return an Array with the automatically generated answer.
     */
-    public static ArrayList<String> juryHelper(String loginEtu){
+    public static String juryHelper(String loginEtu){
         Connection conn = null;
-        ArrayList<String> juryHelper = new ArrayList<String>();
+        String juryHelper = new String();
         int idEtudiant = getStudentID(loginEtu);
         try {
             // create a connection to the database
@@ -841,9 +833,7 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
-            while(res.next()){
-                juryHelper.add(res.getString("aideAuJury"));
-            }
+            juryHelper = res.getString("aideAuJury");
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
