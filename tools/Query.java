@@ -893,7 +893,7 @@ public class Query{
     * @author Adam RIVIERE
     * @return an Array with the list of all the students.
     */
-    public static ArrayList<ArrayList<String>> SOStudents(){
+    public static ArrayList<ArrayList<String>> studentsSO(){
         Connection conn = null;
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
         try {
@@ -936,7 +936,7 @@ public class Query{
     * @author Adam RIVIERE
     * @return a list of all modules.
     */
-    public static ArrayList<String> SOModules(){
+    public static ArrayList<String> modulesSO(){
         Connection conn = null;
         ArrayList<String> result = new ArrayList<String>();
         try {
@@ -949,6 +949,55 @@ public class Query{
             while(res.next()){
                 result.add(res.getString("nomModule"));
             }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+    * Returns the list of all the absences for a given module.
+    * @author Dejan PARIS
+    * @return an Array with the list of all the absences.
+    */
+    public static ArrayList<ArrayList<String>> allModulesAbsences(String moduleName){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM Absence JOIN Utilisateur ON Absence.idEtudiant = Utilisateur.idEtudiant WHERE idModule = "+getModuleID(moduleName)+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<Date> dateFin = new ArrayList<String>();
+            ArrayList<Date> dateDebut = new ArrayList<String>();
+            ArrayList<Time> heureFin = new ArrayList<String>();
+            ArrayList<Time> heureDebut = new ArrayList<String>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                dateFin.add(res.getString("dateFin"));
+                dateDebut.add(res.getString("dateDebut"));
+                heureFin.add(res.getString("heureFin"));
+                heureDebut.add(res.getString("heureDebut"));
+            }
+            result.add(nom);
+            result.add(prenom);
+            result.add(dateDebut);
+            result.add(dateFin);
+            result.add(heureDebut);
+            result.add(heureFin);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
