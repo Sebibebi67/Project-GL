@@ -883,7 +883,7 @@ public class Query{
     * @author Adam RIVIERE
     * @return an Array with the list of all the students.
     */
-    public static ArrayList<ArrayList<String>> SOStudents(){
+    public static ArrayList<ArrayList<String>> studentsSO(){
         Connection conn = null;
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
         try {
@@ -926,7 +926,7 @@ public class Query{
     * @author Adam RIVIERE
     * @return a list of all modules.
     */
-    public static ArrayList<String> SOModules(){
+    public static ArrayList<String> modulesSO(){
         Connection conn = null;
         ArrayList<String> result = new ArrayList<String>();
         try {
@@ -939,6 +939,92 @@ public class Query{
             while(res.next()){
                 result.add(res.getString("nomModule"));
             }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+    * Returns the list of all the absences for a given module.
+    * @author Dejan PARIS
+    * @return an Array with the list of all the absences.
+    */
+    public static ArrayList<ArrayList<?>> allModuleAbsences(String moduleName){
+        Connection conn = null;
+        ArrayList<ArrayList<?>> result = new ArrayList<ArrayList<?>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM Absence JOIN Utilisateur ON Absence.idEtudiant = Utilisateur.idEtudiant WHERE nomModule = "+moduleName+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<Date> dateFin = new ArrayList<Date>();
+            ArrayList<Date> dateDebut = new ArrayList<Date>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                dateFin.add(res.getDate("dateFin"));
+                dateDebut.add(res.getDate("dateDebut"));
+                heureFin.add(res.getTime("heureFin"));
+                heureDebut.add(res.getTime("heureDebut"));
+            }
+            result.add(nom);
+            result.add(prenom);
+            result.add(dateDebut);
+            result.add(dateFin);
+            result.add(heureDebut);
+            result.add(heureFin);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+    * Returns the list of all the satisfactions for a given module.
+    * @author Dejan PARIS
+    * @return an Array with the list of all the satisfactions.
+    */
+    public static ArrayList<ArrayList<?>> allModuleSatisfactions(String moduleName){
+        Connection conn = null;
+        ArrayList<ArrayList<?>> result = new ArrayList<ArrayList<?>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT note, questionnaire FROM Satisfaction WHERE nomModule = "+moduleName+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<Integer> note = new ArrayList<Integer>();
+            ArrayList<String> questionnaire = new ArrayList<String>();
+            while(res.next()){
+                note.add(res.getInt("nom"));
+                questionnaire.add(res.getString("prenom"));
+            }
+            result.add(note);
+            result.add(questionnaire);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
