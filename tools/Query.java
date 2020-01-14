@@ -656,21 +656,29 @@ public class Query{
     * Returns all students attending a given course.
     * @author Dejan PARIS 
     * @param String moduleName Module's name
-    * @return an Array with the login of the students.
+    * @return an Array with the firstnames, surnames and logins of the students.
     */
-    public static ArrayList<String> attendees(String moduleName){
+    public static ArrayList<ArrayList<String>> attendees(String moduleName){
         Connection conn = null;
-        ArrayList<String> queryResult = new ArrayList<>();
+        ArrayList<ArrayList<String>> queryResult = new ArrayList<ArrayList<String>>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE nomModule = "+moduleName+";";
+            String query = "SELECT nom, prenom, login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<String> login = new ArrayList<String>();
             while(res.next()){
-                queryResult.add(res.getString("login"));
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                login.add(res.getString("login"));
             }
+            queryResult.add(nom);
+            queryResult.add(prenom);
+            queryResult.add(login);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
