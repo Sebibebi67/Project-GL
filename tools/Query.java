@@ -888,4 +888,47 @@ public class Query{
         return course;
     }
 
+    /**
+    * Returns the list of all the students.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the students.
+    */
+    public static ArrayList<ArrayList<String>> SOStudents(){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT DISTINCT nom,prenom,login,filiere FROM Utilisateur JOIN Etudiant ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur;";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<String> login = new ArrayList<String>();
+            ArrayList<String> filiere = new ArrayList<String>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                login.add(res.getString("login"));
+                filiere.add(res.getString("filiere"));
+            }
+            result.add(nom);
+            result.add(prenom);
+            result.add(login);
+            result.add(filiere);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 }
