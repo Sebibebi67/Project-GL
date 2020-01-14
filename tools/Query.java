@@ -931,4 +931,36 @@ public class Query{
         return result;
     }
 
+    /**
+    * Returns the list of all modules.
+    * @author Adam RIVIERE
+    * @return a list of all modules.
+    */
+    public static ArrayList<String> SOModules(){
+        Connection conn = null;
+        ArrayList<String> result = new ArrayList<String>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT DISTINCT nomModule FROM Module;";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                result.add(res.getString("nomModule"));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 }
