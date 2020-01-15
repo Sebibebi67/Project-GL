@@ -300,7 +300,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
     * @param String loginEtu Student's login
-    * @return an Array with the average mark
+    * @return a double (number type) with the average mark
     */
     public static double studentAverage(String moduleName, String loginEtu){
         Connection conn = null;
@@ -333,7 +333,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String nomNote Evaluation's name
     * @param String loginEtu Student's login
-    * @return an Array with the mark.
+    * @return an integer with the mark.
     */
     public static int mark(String markName, String loginEtu){
         Connection conn = null;
@@ -526,7 +526,7 @@ public class Query{
     * Returns average mark for a given module.
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
-    * @return an Array with the average mark.
+    * @return a double (number type) with the average mark.
     */
     public static double courseAverage(String moduleName){
         Connection conn = null;
@@ -561,7 +561,7 @@ public class Query{
     * @author Thomas LEPERCQ 
     * @param String markName Evaluation's name
     * @param String moduleName Module's name
-    * @return an Array with the average mark.
+    * @return a double (number type) with the average mark.
     */
     public static double examAverage(String markName, String moduleName){
         Connection conn = null;
@@ -592,7 +592,7 @@ public class Query{
     * Returns average mark of satisfaction for a given module.
     * @author Thomas LEPERCQ 
     * @param String moduleName Module's name
-    * @return an Array with the average mark.
+    * @return a double (number type) with the average mark.
     */
     public static double satisfactionAverage(String moduleName){
         Connection conn = null;
@@ -828,7 +828,7 @@ public class Query{
     * Returns automatically generated answer wether a given student should double this year, invalidate it or pass it.
     * @author Thomas LEPERCQ
     * @param String loginEtu Student's login
-    * @return an Array with the automatically generated answer.
+    * @return a String with the automatically generated answer.
     */
     public static String juryHelper(String loginEtu){
         Connection conn = null;
@@ -859,7 +859,7 @@ public class Query{
     /**
     * Returns the course concerned by the TU.
     * @author Dejan PARIS
-    * @return an Array with the course.
+    * @return a String with the course.
     */
     public static String courseOfTU(String tu){
         Connection conn = null;
@@ -932,7 +932,7 @@ public class Query{
     /**
     * Returns the list of all modules.
     * @author Adam RIVIERE
-    * @return a list of all modules.
+    * @return an Array list of all modules.
     */
     public static ArrayList<String> modulesSO(){
         Connection conn = null;
