@@ -11,9 +11,9 @@ import java.sql.*;
 
 public class SQL{
 
-    private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-    private static String user      = "test";
-    private static String password  = "azerty"; 
+    private static String url       = "jdbc:mysql://barn-e-01:3306";
+    private static String user      = "1920_INFO2_PDB";
+    private static String password  = "MeWNxYu6xnUGh4DTza6aP4DVKv6Wh9yT"; 
 
     /**
     * Create a user

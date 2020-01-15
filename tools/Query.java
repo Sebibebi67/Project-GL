@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class Query{
 
     private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-    private static String user      = "test";
-    private static String password  = "azerty"; 
+    private static String user      = "1920_INFO2_PDB";
+    private static String password  = "MeWNxYu6xnUGh4DTza6aP4DVKv6Wh9yT"; 
 
     /**
     * Returns the user's ID given its login.
@@ -1087,4 +1087,41 @@ public class Query{
         return result;
     }
     
+    /**
+    * Search method : finds the students whose name begins like the 'template' parameter.
+    * @author Dejan PARIS
+    * @param String template Beginning of the name to search for.
+    * @return an Array with the list of all the matching names.
+    */
+    public static ArrayList<ArrayList<String>> allStudentsNamesLike(String template){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, X) ="+template+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+            }
+            result.add(nom);
+            result.add(prenom);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
 }
