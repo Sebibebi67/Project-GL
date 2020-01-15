@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * This class is made of useful complex SQL queries for the program 
  * @author Dejan PARIS
  * @author Thomas LEPERCQ 
+ * @author Adam RIVIERE
  * 
  */
 public class Query{
