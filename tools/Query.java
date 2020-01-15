@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class Query{
 
     private static String url       = "jdbc:mysql://localhost:3306/PPDBDD";
-    private static String user      = "test";
-    private static String password  = "azerty"; 
+    private static String user      = "1920_INFO2_PDB";
+    private static String password  = "MeWNxYu6xnUGh4DTza6aP4DVKv6Wh9yT"; 
 
     /**
     * Returns the user's ID given its login.
