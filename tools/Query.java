@@ -9,11 +9,12 @@ import java.util.ArrayList;
  * This class is made of useful complex SQL queries for the program 
  * @author Dejan PARIS
  * @author Thomas LEPERCQ 
+ * @author Adam RIVIERE
  * 
  */
 public class Query{
 
-    private static String url       = "jdbc:sqlserver://localhost:3306/PPDBDD";
+    private static String url       = "jdbc:sqlserver://barn-e-01:3306";
     private static String user      = "1920_INFO2_PDB";
     private static String password  = "MeWNxYu6xnUGh4DTza6aP4DVKv6Wh9yT"; 
 
