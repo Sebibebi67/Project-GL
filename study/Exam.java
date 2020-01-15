@@ -3,8 +3,6 @@ package study;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import user.ExamManager;
-
 /**
  * 
  * This class contains all methods and attributes linked to an Exam
@@ -18,7 +16,6 @@ public class Exam{
     private Date date;
     private Module module;
     private int coeff;
-    private ExamManager manager;
     private ArrayList<String> attendees;
     
     public Exam(){}
@@ -71,20 +68,6 @@ public class Exam{
      */
     public void setModule(Module module) {
         this.module = module;
-    }
-
-    /**
-     * @return ExamManager return the manager
-     */
-    public ExamManager getManager() {
-        return manager;
-    }
-
-    /**
-     * @param manager the manager to set
-     */
-    public void setManager(ExamManager manager) {
-        this.manager = manager;
     }
     
     public int getCoeff() {

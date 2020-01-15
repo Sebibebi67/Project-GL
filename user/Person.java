@@ -5,42 +5,31 @@ import java.util.ArrayList;
 
 public class Person{
 
-    private ArrayList<Role> roles;
+    private Role role;
 
     private String surname;
     private String firstname;
 
     private UserAccount account;
 
-    public UserAccount getAccount() {
-        return this.account;
-    }
-
-    public void setAccount(UserAccount account) {
-        this.account = account;
-    }
-
-    public Person(){
-        roles = new ArrayList<Role>();
-    }
+    public Person(){}
 
     public Person(String login, String pswd){
-        roles = new ArrayList<Role>();
         this.getData(login, pswd);        
     }
 
     /**
-     * @return ArrayList<Role> return the roles
+     * @return Role return the role
      */
-    public ArrayList<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
     /**
-     * @param roles the roles to set
+     * @param role the role to set
      */
-    public void setRoles(ArrayList<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     /**
@@ -71,6 +60,14 @@ public class Person{
         this.firstname = firstname;
     }
 
+    public UserAccount getAccount() {
+        return this.account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
+    }
+
     public String toString() {
         return surname + " " + firstname;
     }
@@ -87,16 +84,16 @@ public class Person{
 
             switch(roleType){
                 case "Etudiant":
-                    roles.add(new Student(login));
+                    role = new Student(login);
                     break;
                 case "Enseignant":
-                    roles.add(new Professor());
+                    role = new Professor(login);
                     break;
                 case "Scolarite":
-                    roles.add(new StudentOffice());
+                    role = new StudentOffice();
                     break;
                 case "DDE":
-                    roles.add(new DepartementOfEducation());
+                    role = new DepartementOfEducation();
                     break;
                 default :
                     break;

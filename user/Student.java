@@ -88,7 +88,7 @@ public class Student implements Role{
         this.form = new EduForm(login);
     }
 
-
+    public void newAbsence(){}
 
 
 }

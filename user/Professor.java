@@ -17,17 +17,6 @@ public class Professor implements Role{
         this.createModule();
     }
 
-    public void createModule(){
-        modules = new ArrayList<>();
-
-        ArrayList<String> array = new ArrayList<>();
-        array = Query.coursesTaught(this.login);
-
-        for (int i = 0 ; i < array.size() ; i++){
-            modules.add(new Module(array.get(i)));
-        }
-    }
-
     public String getLogin() {
         return this.login;
     }
@@ -42,6 +31,20 @@ public class Professor implements Role{
 
     public void setModules(ArrayList<Module> modules) {
         this.modules = modules;
+    }
+
+    public void createModule(){
+        modules = new ArrayList<>();
+
+        ArrayList<String> array = new ArrayList<>();
+        array = Query.coursesTaught(this.login);
+
+        for (int i = 0 ; i < array.size() ; i++){
+            modules.add(new Module(array.get(i)));
+        }
+    }
+
+    public void newAbsence(){
     }
     
 
