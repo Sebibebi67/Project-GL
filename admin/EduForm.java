@@ -29,7 +29,9 @@ public class EduForm {
 
     private ArrayList<Absence> absences;
     private ArrayList<Module> modules;
-    private Map<Exam, Integer> exams;
+    private Map<String, Double> markModules;
+    private ArrayList<Exam> exams;
+    private Map<String, Double> markExams;
 
     public EduForm() {
     }
@@ -37,8 +39,12 @@ public class EduForm {
     public EduForm(String login) {
         this.login = login;
         this.createAbsences();
+
         this.createModuleList();
+        this.createMarkModules(); 
+
         this.createExams();
+        
     }
 
     public Student getStudent() {
@@ -57,13 +63,22 @@ public class EduForm {
         this.login = login;
     }
 
-    public Map<Exam, Integer> getExams(){
-        return exams;
+    public ArrayList<Exam> getExams() {
+		return this.exams;
+	}
+
+	public void setExams(ArrayList<Exam> exams) {
+		this.exams = exams;
+    }
+    
+    public Map<String, Double> getMarkExams(){
+        return this.markExams;
     }
 
-    public void setExam(Map<Exam, Integer> exams){
-        this.exams = exams;
+    public void setMarkExams(Map<String, Double>  map){
+        this.markExams = map;
     }
+
 
     public void createAbsences() {
         ArrayList<ArrayList<?>> array = new ArrayList<>();
@@ -75,7 +90,15 @@ public class EduForm {
                         (Date) array.get(2).get(i), (Time) array.get(3).get(i), (Boolean) array.get(4).get(i)));
             }
         }
+    }
 
+    public void createMarkModules(){
+        markModules = new HashMap<>();
+        for (int i =0; i<modules.size(); i++){
+            String moduleName = modules.get(i).getName();
+            double average = Query.studentAverage(moduleName, this.login);
+            markModules.put(moduleName, average);
+        }
     }
 
     public void createModuleList(){
@@ -83,15 +106,14 @@ public class EduForm {
 
         modulesNames = Query.courses(this.login);
 
+
         for (int i = 0 ; i < modulesNames.size(); i++){
             modules.add(new Module(modulesNames.get(i).toString()));
         }
     }
 
     public void createExams(){
-        exams = new HashMap<>();
-
-
+        markExams = new HashMap<>();
         for( int i = 0; i< modules.size(); i++ ){
             ArrayList<ArrayList<?>> array = new ArrayList<>();
             array = Query.exams(this.modules.get(i).getName(), this.login);
@@ -104,7 +126,8 @@ public class EduForm {
                         (Integer) array.get(2).get(j),
                         modules.get(i)
                     );
-                    exams.put(exam, (Integer) array.get(1).get(j));
+                    exams.add(exam);
+                    markExams.put(exam.getName(), (Double) array.get(1).get(j));
                 }
             }
         }
