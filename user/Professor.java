@@ -62,6 +62,30 @@ public class Professor implements Role{
 
     public void newAbsence(){
     }
+
+    public ArrayList<String> createListModules(){
+        ArrayList<String> array = new ArrayList<String>();
+        for(int i = 0;i < this.modules.size();i++){
+            array.add(this.modules.get(i).getName());
+        }
+        return array;
+    }
+
+    public ArrayList<ArrayList<String>> createTableAttendees(String moduleName){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(moduleName);
+        if(!attendees.isEmpty()){
+            int size = attendees.get(0).size();
+            for(int i = 0;i < size;i++){
+                ArrayList<String> student = new ArrayList<String>();
+                for(int j = 0;j < attendees.size();j++){
+                    student.add(attendees.get(j).get(i).toString());
+                }
+                array.add(student);
+            }
+        }
+        return array;
+    }
     
 
 }

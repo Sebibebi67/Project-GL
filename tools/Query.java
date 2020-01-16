@@ -734,7 +734,7 @@ public class Query{
     }
     
     /**
-    * Returns name and average mark for all student attending a given module.
+    * Returns name, login and average mark for all student attending a given module.
     * @author Dejan PARIS
     * @param String moduleName Module's name
     * @return an Array with Arrays for the students' name and firstname
@@ -748,10 +748,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomModule = "+moduleName+";";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomModule = "+moduleName+";";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
+            ArrayList<String> login = new ArrayList<String>();
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 nom.add(res.getString("nom"));
@@ -761,6 +762,7 @@ public class Query{
             queryResult.add(nom);
             queryResult.add(prenom);
             queryResult.add(average);
+            queryResult.add(login);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
