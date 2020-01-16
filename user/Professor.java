@@ -3,6 +3,7 @@ package user;
 import java.util.ArrayList;
 
 import tools.Query;
+import tools.Stockage;
 import study.Module;
 
 public class Professor implements Role{
@@ -79,12 +80,12 @@ public class Professor implements Role{
     /**
     * Returns the list of all the students for a given module.
     * @author Adam RIVIERE
-    * @param modueName name of the module selected
     * @return an Array with the list of all the students of the module with their average mark.
     */
-    public ArrayList<ArrayList<String>> viewTableAttendees(String moduleName){
+    public ArrayList<ArrayList<String>> viewTableAttendees(){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
-        ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(moduleName);
+        String name = Stockage.getActiveModule().getName();
+        ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(name);
         if(!attendees.isEmpty()){
             int size = attendees.get(0).size();
             for(int i = 0;i < size;i++){
@@ -165,9 +166,18 @@ public class Professor implements Role{
         return array;
     }
 
-    public ArrayList<ArrayList<String>> viewTableAbsences(String moduleName, String loginEtu){
+    public ArrayList<ArrayList<String>> viewTableAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         return array;
+    }
+
+    public Module getActiveModule(String name){
+        for (int i = 0; i<this.modules.size(); i++){
+            if( this.modules.get(i).getName().equals(name)){
+                return this.modules.get(i);
+            }
+        }
+        return null;
     }
 
 }

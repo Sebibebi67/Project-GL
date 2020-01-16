@@ -1,6 +1,7 @@
 package tools;
 
 import user.Person;
+import user.Professor;
 import user.Student;
 import study.Module;
 
@@ -9,6 +10,15 @@ public class Stockage{
     private static Person person;
     private static Module activeModule;
     private static Student student;
+    private static Professor professor;
+
+    public static Professor getProfessor() {
+        return professor;
+    }
+
+    public static void setProfessor(Professor p) {
+        professor = p;
+    }
     
     public static Person getPerson() {
         return person;
@@ -30,9 +40,12 @@ public class Stockage{
 		activeModule = module;
     }
     
-    public static void setActivModule(String name) {
+    public static void setActiveModuleStudent(String name) {
         activeModule = student.getActiveModule(name);
+    }
 
+    public static void setActiveModuleProfessor(String name) {
+        activeModule = professor.getActiveModule(name);
     }
 
 }

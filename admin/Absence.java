@@ -3,9 +3,6 @@ package admin;
 import java.sql.Date;
 import java.sql.Time;
 
-import user.Student;
-import user.Professor;
-
 /**
  * 
  * This class contains all the methods and attributs linked with the management of absences
@@ -19,9 +16,9 @@ public class Absence {
 	private Date endDate;
 	private Time beginHour;
 	private Time endHour;
-	private Student student;
-	private Module module;
-    private Professor teacher;
+	private String loginStudent;
+	private String moduleName;
+    private String loginTeacher;
     private Boolean justified;
 
 
@@ -41,13 +38,13 @@ public class Absence {
         this.justified = justified;
     }
     
-    public Absence(Date date, Time beginHour, Time endHour, Student student, Professor professor){
+    public Absence(Date date, Time beginHour, Time endHour, String loginStudent, String loginTeacher){
         this.beginDate = date;
         this.endDate = date;
         this.beginHour = beginHour;
         this.endHour = endHour;
-        this.student = student;
-        this.teacher = professor;
+        this.loginStudent = loginStudent;
+        this.loginTeacher = loginTeacher;
     }
 
 
@@ -110,48 +107,48 @@ public class Absence {
     /**
      * @return Student return the student
      */
-    public Student getStudent() {
-        return student;
+    public String getStudent() {
+        return loginStudent;
     }
 
     /**
      * @param student the student to set
      */
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(String student) {
+        this.loginStudent = student;
     }
 
     /**
      * @return Module return the module
      */
-    public Module getModule() {
-        return module;
+    public String getModuleName() {
+        return moduleName;
     }
 
     /**
      * @param module the module to set
      */
-    public void setModule(Module module) {
-        this.module = module;
+    public void setModuleName(String module) {
+        this.moduleName = module;
     }
 
     /**
      * @return Teacher return the teacher
      */
-    public Professor getTeacher() {
-        return teacher;
+    public String getTeacher() {
+        return loginTeacher;
     }
 
     /**
      * @param teacher the teacher to set
      */
-    public void setTeacher(Professor teacher) {
-        this.teacher = teacher;
+    public void setTeacher(String teacher) {
+        this.loginTeacher = teacher;
 	}
 	
-	public String toString() {
-		return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
-    }
+	// public String toString() {
+	// 	return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
+    // }
     
     public Boolean getJustified() {
         return this.justified;
