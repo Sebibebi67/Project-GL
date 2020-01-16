@@ -1,6 +1,5 @@
 package study;
 
-import user.Student;
 
 /**
  * 
@@ -12,39 +11,53 @@ import user.Student;
  */
 public class Satisfaction{
 
-    private Student student;
-    private Module module;
+    private String loginStudent;
+    private String moduleName;
     private int rating;
     private String review;
 
     public Satisfaction(){}
 
+    public Satisfaction(String login, String moduleName, int rating, String review){
+        this.loginStudent = login;
+        this.moduleName = moduleName;
+        this.rating = rating;
+        this.review = review;
+    }
+
+    public Satisfaction(String moduleName, int rating, String review){
+        this.loginStudent = null;
+        this.moduleName = moduleName;
+        this.rating = rating;
+        this.review = review;
+    }
+
     /**
      * @return Student return the student
      */
-    public Student getStudent() {
-        return student;
+    public String getloginStudent() {
+        return loginStudent;
     }
 
     /**
      * @param student the student to set
      */
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setloginStudent(String student) {
+        this.loginStudent = student;
     }
 
     /**
      * @return Module return the module
      */
-    public Module getModule() {
-        return module;
+    public String getmoduleName() {
+        return moduleName;
     }
 
     /**
      * @param module the module to set
      */
-    public void setModule(Module module) {
-        this.module = module;
+    public void setmoduleName(String module) {
+        this.moduleName = module;
     }
 
     /**
@@ -76,7 +89,7 @@ public class Satisfaction{
     }
 
     public String toString() {
-        return student.toString() + " rated " + module.toString() + " " + Integer.toString(rating) + " stars and wrote : " + review;
+        return loginStudent + " rated " + moduleName + " " + Integer.toString(rating) + " stars and wrote : " + review;
     }
 
 }

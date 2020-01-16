@@ -18,6 +18,7 @@ public class Module{
     private TeachingUnit unit;
     // private ArrayList<Student> attendees;
     private int coeff;
+    private ArrayList<Satisfaction> listSatisfaction;
 
     public int getCoeff() {
         return this.coeff;
@@ -25,6 +26,14 @@ public class Module{
 
     public void setCoeff(int coeff) {
         this.coeff = coeff;
+    }
+
+    public ArrayList<Satisfaction> getlistSatisfaction(){
+        return this.listSatisfaction;
+    }
+
+    public void setlistSatisfaction(ArrayList<Satisfaction> list){
+        this.listSatisfaction = list;
     }
 
     public Module(){}
@@ -36,6 +45,18 @@ public class Module{
 
         unit = new TeachingUnit(array.get(0).toString());
         coeff = (int) array.get(1);
+        listSatisfaction = getSatisfaction(name);
+    }
+
+    public ArrayList<Satisfaction> getSatisfaction(String moduleName){
+        ArrayList<Satisfaction> array = new ArrayList<Satisfaction>();
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
+        queryResult = Query.allModuleSatisfactions(moduleName);
+        for(int i = 0;i < queryResult.get(0).size();i++){
+            Satisfaction satisfaction = new Satisfaction(moduleName,(int) queryResult.get(0).get(i),queryResult.get(1).get(i).toString());
+            array.add(satisfaction);
+        }
+        return array;
     }
 
     /**
