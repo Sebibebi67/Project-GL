@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import javafx.Collection.*;
 
 /**
  * 
@@ -43,11 +42,6 @@ public class Tool{
             list = new ArrayList<>((Collection<?>) o);
         }
         return list;
-    }
-
-    public static ObservableList fromALtoOL(ArrayList<?> list){
-        ObservableList o = new ObservableList(list);
-        return o;
     }
 
 }

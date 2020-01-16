@@ -45,7 +45,7 @@ public class Professor implements Role{
         }
     }
 
-    public void createLsiStudent(String module){
+    public void createListStudent(String module){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         array = Query.attendees(module);
         if (!array.isEmpty()){
@@ -87,5 +87,37 @@ public class Professor implements Role{
         return array;
     }
     
+    public ArrayList<ArrayList<String>> createListAttendees(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        if(!this.students.isEmpty()){
+            for(int i = 0;i < students.size();i++){
+                ArrayList<String> student = new ArrayList<String>();
+                student.add(this.students.get(i).get(0).toString());
+                student.add(this.students.get(i).get(1).toString());
+                array.add(student);
+            }
+        }
+        return array;
+    }
+
+    public ArrayList<ArrayList<String>> createMarksAttendee(String moduleName, String login){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<?>> exams = Query.exams(moduleName, login);
+        if(!exams.isEmpty()){
+            for(int i = 0;i < exams.get(0).size();i++){
+                ArrayList<String> exam = new ArrayList<String>();
+                for(int j = 0;j < exams.size();j++){
+                    exam.add(exams.get(j).get(i).toString());
+                }
+                array.add(exam);
+            }
+        }
+        return array;
+    }
+
+    public ArrayList<ArrayList<String>> createTableSatisfaction(String moduleName){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        return array;
+    }
 
 }
