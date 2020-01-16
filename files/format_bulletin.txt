@@ -6,6 +6,8 @@ Remplacer $year par l'année d'études (1ère, 2ème ou 3ème).
 
 Remplacer $lastname par le nom, $firstname par le prénom, $course par la filière de l'étudiant.
 
+Remplacer $absences par le nombre d'absences injustifiées.
+
 
 
 Remplacer $table par le code d'une table HTML :
