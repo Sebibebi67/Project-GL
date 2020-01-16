@@ -45,7 +45,7 @@ public class Tool{
     }
 
     public static ObservableList fromALtoOL(ArrayList<?> list){
-        ObservableList o = new ObservableList();
+        ObservableList o = new ObservableList(list);
         return o;
     }
 
