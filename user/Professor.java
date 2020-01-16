@@ -63,6 +63,11 @@ public class Professor implements Role{
     public void newAbsence(){
     }
 
+    /**
+    * Returns the list of all the modules for a given teacher.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the modules of the professor.
+    */
     public ArrayList<String> viewListModules(){
         ArrayList<String> array = new ArrayList<String>();
         for(int i = 0;i < this.modules.size();i++){
@@ -71,6 +76,12 @@ public class Professor implements Role{
         return array;
     }
 
+    /**
+    * Returns the list of all the students for a given module.
+    * @author Adam RIVIERE
+    * @param modueName name of the module selected
+    * @return an Array with the list of all the students of the module with their average mark.
+    */
     public ArrayList<ArrayList<String>> viewTableAttendees(String moduleName){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(moduleName);
@@ -87,6 +98,11 @@ public class Professor implements Role{
         return array;
     }
     
+    /**
+    * Returns the list of all the students for a given module.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the students of the module.
+    */
     public ArrayList<ArrayList<String>> viewListAttendees(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         if(!this.students.isEmpty()){
@@ -100,6 +116,13 @@ public class Professor implements Role{
         return array;
     }
 
+    /**
+    * Returns the list of all the marks for a given student in a given module.
+    * @author Adam RIVIERE
+    * @param moduleName name of the selected module
+    * @param login login of the selected student
+    * @return an Array with the list of all the marks for a given student in a given module.
+    */
     public ArrayList<ArrayList<String>> viewMarksAttendee(String moduleName, String login){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         Student student = new Student(login);
@@ -120,6 +143,12 @@ public class Professor implements Role{
         return array;
     }
 
+    /**
+    * Returns the list of all the satisfaction reviews for a given module.
+    * @author Adam RIVIERE
+    * @param moduleName name of the selected module
+    * @return an Array with the list of all the satisfaction reviews for a given module.
+    */
     public ArrayList<ArrayList<String>> viewTableSatisfaction(String moduleName){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         Module module = new Module(moduleName);
@@ -133,6 +162,11 @@ public class Professor implements Role{
             satisfaction.add(module.getlistSatisfaction().get(i).getReview());
             array.add(satisfaction);
         }
+        return array;
+    }
+
+    public ArrayList<ArrayList<String>> viewTableAbsences(String moduleName, String loginEtu){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         return array;
     }
 
