@@ -115,5 +115,15 @@ public class Student implements Role{
         return list;
     }
 
+    public Module getActivModule(String name){
+        ArrayList<Module> modules = this.form.getModules();
+        for (int i = 0; i<modules.size(); i++){
+            if( modules.get(i).getName().equals(name)){
+                return modules.get(i);
+            }
+        }
+        return null;
+    }
+
 
 }
