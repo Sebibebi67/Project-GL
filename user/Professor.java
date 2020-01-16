@@ -63,7 +63,7 @@ public class Professor implements Role{
     public void newAbsence(){
     }
 
-    public ArrayList<String> createListModules(){
+    public ArrayList<String> viewListModules(){
         ArrayList<String> array = new ArrayList<String>();
         for(int i = 0;i < this.modules.size();i++){
             array.add(this.modules.get(i).getName());
@@ -71,7 +71,7 @@ public class Professor implements Role{
         return array;
     }
 
-    public ArrayList<ArrayList<String>> createTableAttendees(String moduleName){
+    public ArrayList<ArrayList<String>> viewTableAttendees(String moduleName){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(moduleName);
         if(!attendees.isEmpty()){
@@ -87,7 +87,7 @@ public class Professor implements Role{
         return array;
     }
     
-    public ArrayList<ArrayList<String>> createListAttendees(){
+    public ArrayList<ArrayList<String>> viewListAttendees(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         if(!this.students.isEmpty()){
             for(int i = 0;i < students.size();i++){
@@ -100,23 +100,29 @@ public class Professor implements Role{
         return array;
     }
 
-    public ArrayList<ArrayList<String>> createMarksAttendee(String moduleName, String login){
+    public ArrayList<ArrayList<String>> viewMarksAttendee(String moduleName, String login){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
-        ArrayList<ArrayList<?>> exams = Query.exams(moduleName, login);
-        if(!exams.isEmpty()){
-            for(int i = 0;i < exams.get(0).size();i++){
-                ArrayList<String> exam = new ArrayList<String>();
-                for(int j = 0;j < exams.size();j++){
-                    exam.add(exams.get(j).get(i).toString());
-                }
-                array.add(exam);
+        Student student = new Student(login);
+        ArrayList<String> examNames = new ArrayList<String>();
+        for(int i = 0;i < student.getForm().getExams().size();i++){
+            examNames.add(student.getForm().getExams().get(i).getName());
+        }
+        for(int i = 0;i < student.getForm().getExams().size();i++){
+            ArrayList<String> exam = new ArrayList<String>();
+            exam.add(examNames.get(i));
+            if(student.getForm().getMarkExams().get(examNames.get(i)) == -1){
+                exam.add("");
+            }else{
+                exam.add(student.getForm().getMarkExams().get(examNames.get(i)).toString());
             }
+            array.add(exam);
         }
         return array;
     }
 
-    public ArrayList<ArrayList<String>> createTableSatisfaction(String moduleName){
+    public ArrayList<ArrayList<String>> viewTableSatisfaction(String moduleName){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+
         return array;
     }
 

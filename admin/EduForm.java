@@ -79,6 +79,14 @@ public class EduForm {
         this.markExams = map;
     }
 
+    public ArrayList<Module> getModules() {
+        return this.modules;
+    }
+
+    public void setModules(ArrayList<Module> modules) {
+        this.modules = modules;
+    }
+
 
     public void createAbsences() {
         ArrayList<ArrayList<?>> array = new ArrayList<>();
