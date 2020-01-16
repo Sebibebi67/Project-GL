@@ -50,6 +50,37 @@ public class Query{
     }
 
     /**
+    * Returns the module's ID given its name.
+    * @author Adam RIVIERE 
+    * @param  moduleName name of the module
+    * @return Module's ID
+    */
+    public static int getModuleID(String moduleName){
+        Connection conn = null;
+        int id = -1;
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT idModule FROM Module WHERE login = "+moduleName+";";
+            ResultSet res = statement.executeQuery(query);
+            id = res.getInt("idModule");
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }    
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return id;
+    }
+
+    /**
     * Returns the student's ID given its login.
     * @author Thomas LEPERCQ 
     * @param String loginEtu Student's login
@@ -446,6 +477,55 @@ public class Query{
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
             String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+";";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<Date> dateDebut = new ArrayList<Date>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
+            ArrayList<Date> dateFin = new ArrayList<Date>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
+            ArrayList<Boolean> estJustifiee = new ArrayList<Boolean>();
+            while(res.next()){
+                dateDebut.add(res.getDate("dateDebut"));
+                heureDebut.add(res.getTime("heureDebut"));
+                dateFin.add(res.getDate("dateFin"));
+                heureFin.add(res.getTime("heureFin"));
+                estJustifiee.add(res.getBoolean("estJustifiee"));
+            }
+            queryResult.add(dateDebut);
+            queryResult.add(heureDebut);
+            queryResult.add(dateFin);
+            queryResult.add(heureFin);
+            queryResult.add(estJustifiee);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }  
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return queryResult;
+    }
+
+    /**
+    * Returns all missed classes for a given student and a given module.
+    * @author Adam RIVIERE
+    * @param String loginEtu Student's login
+    * @return an Array of absences with Arrays for their dates, hours and justification state.
+    */
+    public static ArrayList<ArrayList<?>> absenceModule(String loginEtu, String moduleName){
+        Connection conn = null;
+        ArrayList<ArrayList<?>> queryResult = new ArrayList<ArrayList<?>>();
+        int idEtudiant = getStudentID(loginEtu); 
+        int idModule = getModuleID(moduleName);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+" AND idModule = "+idModule+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Date> dateDebut = new ArrayList<Date>();
             ArrayList<Time> heureDebut = new ArrayList<Time>();
