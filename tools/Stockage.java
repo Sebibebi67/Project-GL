@@ -7,7 +7,7 @@ import study.Module;
 public class Stockage{
 
     private static Person person;
-    private static Module activModule;
+    private static Module activeModule;
     private static Student student;
     
     public static Person getPerson() {
@@ -22,16 +22,16 @@ public class Stockage{
         return student;
     }
 
-    public static Module getActivModule() {
-		return activModule;
+    public static Module getActiveModule() {
+		return activeModule;
 	}
 
-    public static void setActivModule(Module module) {
-		activModule = module;
+    public static void setActiveModule(Module module) {
+		activeModule = module;
     }
     
     public static void setActivModule(String name) {
-        activModule = student.getActivModule(name);
+        activeModule = student.getActiveModule(name);
 
     }
 
