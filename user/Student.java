@@ -90,5 +90,29 @@ public class Student implements Role{
 
     public void newAbsence(){}
 
+    public ArrayList<?> viewTableMark(){
+        ArrayList<> list = new ArrayList<>();
+        ArrayList<Modules> modules = this.form.getModules();
+
+        for (int i =0; i<modules.size(); i++){
+            ArrayList<String> module = new ArrayList<>();
+
+            String unitName = modules.get(i).getUnit().getName();
+            module.add(unitName);
+
+            String moduleName = modules.get(i).getName();
+            module.add(moduleName);
+
+            Double mark = Query.studentAverage(moduleName, this.login);
+            if (mark == -1){
+                module.add("");
+            }else{
+                module.add(mark.toString());
+            }
+            list.add(module);
+        }
+        return list;
+    }
+
 
 }
