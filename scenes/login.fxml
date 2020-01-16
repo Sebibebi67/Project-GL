@@ -41,14 +41,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <PasswordField prefHeight="26.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="passwordtextField" prefHeight="26.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Label layoutX="99.0" layoutY="188.0" text="login" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                   <ImageView fitHeight="92.0" fitWidth="124.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="file:/app/users/alex/Images/magritte_trahison.jpg" />
                      </image></ImageView>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="connexion" mnemonicParsing="false" onAction="#loginProgram" prefHeight="32.0" prefWidth="111.0" text="connexion" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
