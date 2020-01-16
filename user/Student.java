@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import admin.*;
 import study.*;
+import study.Module;
 import tools.*;
 
 public class Student implements Role{
@@ -91,8 +92,8 @@ public class Student implements Role{
     public void newAbsence(){}
 
     public ArrayList<?> viewTableMark(){
-        ArrayList<> list = new ArrayList<>();
-        ArrayList<Modules> modules = this.form.getModules();
+        ArrayList<ArrayList<?>> list = new ArrayList<>();
+        ArrayList<Module> modules = this.form.getModules();
 
         for (int i =0; i<modules.size(); i++){
             ArrayList<String> module = new ArrayList<>();
