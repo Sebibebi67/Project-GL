@@ -15,11 +15,4 @@ public class Stockage{
         person = p;
     }
 
-
-    public static void addPerson(String login, String pswd){
-        person = new Person(login,pswd);
-    }
-
-
-
 }
