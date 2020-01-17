@@ -345,12 +345,16 @@ public class SQL{
     }
 
     /**
-    * Returns average mark for a given module.
-    * @author Thomas LEPERCQ 
+    * Creates a new absence in the database.
+    * @author Adam RIVIERE
+    * @param Time beginHour hour of the begining of the absence
+    * @param Time endHour hour of the end of the absence
     * @param String moduleName Module's name
-    * @return a double (number type) with the average mark.
+    * @param String loginS login of the absent student
+    * @param String loginP login of the professor
+    * @param Date date of the absence
     */
-    public static void courseAverage(Time beginHour, Time endHour, String moduleName, String loginS, String loginP, Date date){
+    public static void createAbsence(Time beginHour, Time endHour, String moduleName, String loginS, String loginP, Date date){
         Connection conn = null;
         int idModule = Query.getModuleID(moduleName);
         int idStudent = Query.getStudentID(loginS);
