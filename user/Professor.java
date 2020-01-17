@@ -2,6 +2,7 @@ package user;
 
 import java.util.ArrayList;
 
+import admin.Absence;
 import tools.Query;
 import tools.Stockage;
 import study.Module;
@@ -169,8 +170,9 @@ public class Professor implements Role{
     public ArrayList<ArrayList<String>> viewTableAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         Module module = Stockage.getActiveModule();
-        Student student = Stockage.getActiveStudent();
-        ArrayList<String> absences = student.getForm().getAbsences();
+        Student student = Stockage.getStudent();
+        ArrayList<Absence> absences = student.getForm().getAbsences();
+
         return array;
     }
 

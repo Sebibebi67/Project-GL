@@ -59,7 +59,7 @@ public class EduForm {
         return this.absences;
     }
 
-    public setAbsences(ArrayList<Absence> absences){
+    public void setAbsences(ArrayList<Absence> absences){
         this.absences = absences;
     }
 
