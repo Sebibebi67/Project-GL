@@ -1,5 +1,6 @@
 package tools;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -50,6 +51,39 @@ public class Tool{
             result = "Oui";
         }
         return result;
+    }
+
+    public static boolean isInt(String str){
+        try{
+            Integer.parseInt(str);
+            return true;
+        }catch(NumberFormatException e){}
+        return false;
+    }
+
+    public static int stringToInt(String str){
+        int n = 0;
+        try{
+            n = Integer.parseInt(str);
+            
+        }catch(NumberFormatException e){}
+        return n;
+    }
+
+    public static boolean isHour(int h){
+        return (h>=0 && h<24);
+    }
+
+    public static boolean isMinute(int m){
+        return (m>=0 && m<60);
+    }
+
+    public static boolean isTime(String h, String m){
+        return Tool.isInt(h) && Tool.isInt(m) && Tool.isHour(Tool.stringToInt(h)) && Tool.isMinute(Tool.stringToInt(m));
+    }
+
+    public static Time newTime(String h, String m){
+        return new java.sql.Time(Tool.stringToInt(h), Tool.stringToInt(m), 0);
     }
 
 }

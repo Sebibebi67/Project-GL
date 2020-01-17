@@ -299,50 +299,50 @@ public class SQL{
         }
     }
 
-    /**
-    * Add an absence in a module for a student
-    * @author Adam RIVIERE 
-    * @param String loginEtu login of the student
-    * @param String loginEns login of the teacher
-    * @param String nomModule name of the module
-    * @param String fil sector of the student
-    * @param Date dateDebut day of the begining of the absence
-    * @param Date dateFin day of the end of the absence
-    * @param Time heureDebut hour of the begining of the absence
-    * @param Time heureFin hour of the end of the absence
-    */
-    public static void creerAbsence(String loginEtu, String loginEns, String nomModule, String fil, Date dateDebut, Date dateFin, Time heureDebut, Time heureFin){
-        Connection conn = null;
-        try {
-            // create a connection to the database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+    // /**
+    // * Add an absence in a module for a student
+    // * @author Adam RIVIERE 
+    // * @param String loginEtu login of the student
+    // * @param String loginEns login of the teacher
+    // * @param String nomModule name of the module
+    // * @param String fil sector of the student
+    // * @param Date dateDebut day of the begining of the absence
+    // * @param Date dateFin day of the end of the absence
+    // * @param Time heureDebut hour of the begining of the absence
+    // * @param Time heureFin hour of the end of the absence
+    // */
+    // public static void creerAbsence(String loginEtu, String loginEns, String nomModule, String fil, Date dateDebut, Date dateFin, Time heureDebut, Time heureFin){
+    //     Connection conn = null;
+    //     try {
+    //         // create a connection to the database
+    //         Class.forName("com.mysql.cj.jdbc.Driver");
+    //         conn = DriverManager.getConnection(url, user, password);
             
-            Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call creerAbsence(?,?,?,?,?,?,?,?)}");
-            call.setString("loginEtu",loginEtu);
-            call.setString("loginEns",loginEns);
-            call.setString("nomModule",nomModule);
-            call.setString("fil",fil);
-            call.setDate("dateDebut",dateDebut);
-            call.setDate("dateFin",dateFin);
-            call.setTime("heureDebut",heureDebut);
-            call.setTime("heureFin",heureFin);
-            call.execute();
-            statement.close();
+    //         Statement statement = conn.createStatement();
+    //         CallableStatement call = conn.prepareCall("{call creerAbsence(?,?,?,?,?,?,?,?)}");
+    //         call.setString("loginEtu",loginEtu);
+    //         call.setString("loginEns",loginEns);
+    //         call.setString("nomModule",nomModule);
+    //         call.setString("fil",fil);
+    //         call.setDate("dateDebut",dateDebut);
+    //         call.setDate("dateFin",dateFin);
+    //         call.setTime("heureDebut",heureDebut);
+    //         call.setTime("heureFin",heureFin);
+    //         call.execute();
+    //         statement.close();
 
-        } catch(SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try{
-                if(conn != null){
-                    conn.close();
-                }
-            }catch(SQLException ex){
-                ex.printStackTrace();
-            }
-        }
-    }
+    //     } catch(SQLException | ClassNotFoundException e) {
+    //         e.printStackTrace();
+    //     } finally {
+    //         try{
+    //             if(conn != null){
+    //                 conn.close();
+    //             }
+    //         }catch(SQLException ex){
+    //             ex.printStackTrace();
+    //         }
+    //     }
+    // }
 
     /**
     * Creates a new absence in the database.
