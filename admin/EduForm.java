@@ -201,7 +201,7 @@ public class EduForm {
         int absenceTotal = 0;
         for (int i=0 ; i<this.absences.size() ; i++)
         {
-            if (!this.absences.get(i).getJustified())
+            if (!this.absences.get(i).isJustified())
             {
                 absenceTotal++;
             }
