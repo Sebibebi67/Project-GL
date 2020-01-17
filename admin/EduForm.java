@@ -157,22 +157,41 @@ public class EduForm {
     }
 
     /**
-     * Lists all of the TUs containing the modules of 'modules'.
-     * @return List of TUs.
+     * Lists all of the TUs containing the modules of 'modules', and their averages marks.
+     * @return List of a list of TUs and a list of the respective average marks.
+     * @author Dejan PARIS
      */
     public ArrayList<ArrayList<?>> listOfTUs()
     {
+        int coeff = 0; double prev;
         ArrayList<ArrayList<?>> units = new ArrayList<>();
         ArrayList<String> names = new ArrayList<>();
-        ArrayList<Integer> averages = new ArrayList<>();
-        int unitMark = 0;
+        ArrayList<Double> averages = new ArrayList<>();
         for (int i=0 ; i<modules.size() ; i++)
         {
             if (!names.contains(modules.get(i).getUnit().getName()))
             {
                 names.add(modules.get(i).getUnit().getName());
+                double zero = 0;
+                averages.add(zero);
             }
         }
+        for (int i=0 ; i<names.size() ; i++)
+        {
+            for (int j=0 ; j<modules.size() ; j++)
+            {
+                coeff = 0;
+                if (names.get(i).equals(modules.get(j).getUnit().getName()))
+                {
+                    prev = averages.get(i);
+                    averages.set(i, prev + markModules.get(modules.get(j).getName()));
+                    coeff++;
+                }
+            }
+            prev = averages.get(i); averages.set(i, prev / coeff);
+        }
+        units.add(names);
+        units.add(averages);
         return units;
     }
 
@@ -180,33 +199,46 @@ public class EduForm {
      * Generates a HTML table from a student's registered marks.
      * @param student Student whose marks will be put into the table.
      * @return HTML code used to create the table.
+     * @author Dejan PARIS
      */
     public String createReportTable(Person student)
     {
+        int even = -1;
         String code = "";
         ArrayList<ArrayList<?>> units = listOfTUs();
 
-        for (int i=0 ; i<units.size() ; i++)
+        for (int i=0 ; i<units.get(0).size() ; i++)
         {
-            if (i>0) { code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n"; }
-            //code += "<tr><th> "+units.get(i).getName()+" </th><th> "+1+" </th></tr>";
+            if (i>0)
+                code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n";
+            code += "<tr><th> "+units.get(0).get(i)+" </th><th> "+units.get(1).get(i)+" </th></tr>\n";
+            for (int j=0 ; j<modules.size() ; j++)
+            {
+                if (units.get(0).get(i).equals(modules.get(j).getUnit().getName()))
+                {
+                    if (even == -1)
+                        code += "<tr><td id=\"mod1\"> "+modules.get(j).getName()+" </td><td id=\"mod1\"> "+markModules.get(modules.get(j).getName())+" </td></tr>\n";
+                    else
+                        code += "<tr><td id=\"mod2\"> "+modules.get(j).getName()+" </td><td id=\"mod2\"> "+markModules.get(modules.get(j).getName())+" </td></tr>\n";
+                    even *= -1;
+                }
+            }
         }
 
-        return "";
+        return code;
     }
 
     /**
      * Creates a report of a student's registered marks.
      * @param student Student whose report will be created.
+     * @author Dejan PARIS
      */
     public void generateReport(Person student) throws IOException
     {
         File tmpDir = new File("./reports");
         File tmpFile = new File("./reports/template.html");
         if (!tmpDir.exists())
-        {
             tmpDir.mkdirs();
-        }
         if (!tmpFile.exists())
         {
             // appeler une erreur
@@ -229,30 +261,22 @@ public class EduForm {
         for (int i=0 ; i<this.absences.size() ; i++)
         {
             if (!this.absences.get(i).isJustified())
-            {
                 absenceTotal++;
-            }
         }
 
         int y1 = Year.now().getValue();
         int y2;
         if (MonthDay.now().getMonthValue() < 9)
-        {
             y2 = y1-1;
-        } else
-        {
+        else
             y2 = y1+1;
-        }
 
         String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, createReportTable(student), Integer.toString(absenceTotal)};
         String[] tags = {"$y1", "$y2", "$year", "$lastname", "$firstname", "$course", "$table", "$absences"};
 
         String text = Files.readString(Path.of(path));
         for (int i=0 ; i<9 ; i++)
-        {
             text = text.replace(tags[i], data[i]);
-        }
         Files.writeString(Path.of(path), text);
     }
-
 }
