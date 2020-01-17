@@ -2,8 +2,15 @@ package admin;
 
 import user.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.MonthDay;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -139,6 +146,78 @@ public class EduForm {
                 }
             }
         }
+    }
+
+    /**
+     * Generates a HTML table from a student's registered marks.
+     * @param student Student whose marks will be put into the table.
+     * @return HTML code used to create the table.
+     */
+    public String createReportTable(Person student)
+    {
+        //String code = "";
+
+        return "";
+    }
+
+    /**
+     * Creates a report of a student's registered marks.
+     * @param student Student whose report will be created.
+     */
+    public void generateReport(Person student) throws IOException
+    {
+        File tmpDir = new File("./reports");
+        File tmpFile = new File("./reports/template.html");
+        if (!tmpDir.exists())
+        {
+            tmpDir.mkdirs();
+        }
+        if (!tmpFile.exists())
+        {
+            // appeler une erreur
+        }
+
+        String surname = student.getSurname();
+        String firstname = student.getFirstname();
+        Course course = ((Student) student.getRole()).getCourse();
+
+        String path = "./reports/"+surname+"_"+firstname+"_"+course.toString()+".html";
+        Files.copy(Path.of(tmpFile.getPath()), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
+        File report = new File(path);
+        if (!report.exists())
+        {
+            // appeler une erreur
+        }
+
+        int year = course.year();
+        int absenceTotal = 0;
+        for (int i=0 ; i<this.absences.size() ; i++)
+        {
+            if (!this.absences.get(i).getJustified())
+            {
+                absenceTotal++;
+            }
+        }
+
+        int y1 = Year.now().getValue();
+        int y2;
+        if (MonthDay.now().getMonthValue() < 9)
+        {
+            y2 = y1-1;
+        } else
+        {
+            y2 = y1+1;
+        }
+
+        String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, createReportTable(student), Integer.toString(absenceTotal)};
+        String[] tags = {"$y1", "$y2", "$year", "$lastname", "$firstname", "$course", "$table", "$absences"};
+
+        String text = Files.readString(Path.of(path));
+        for (int i=0 ; i<9 ; i++)
+        {
+            text = text.replace(tags[i], data[i]);
+        }
+        Files.writeString(Path.of(path), text);
     }
 
 }
