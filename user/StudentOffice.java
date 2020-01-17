@@ -33,6 +33,5 @@ public class StudentOffice extends Administration{
 		modules = Query.modulesSO();
 	}
 
-	public void newAbsence(){}
 
 }

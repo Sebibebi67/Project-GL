@@ -1,5 +1,6 @@
 package user;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import admin.Absence;
@@ -61,9 +62,6 @@ public class Professor implements Role{
                 students.add(student);
             }
         }
-    }
-
-    public void newAbsence(){
     }
 
     /**
@@ -183,6 +181,10 @@ public class Professor implements Role{
         }
 
         return array;
+    }
+
+    public void newAbsence(String beginHourH, String beginHourM, String endHourH, String endHourM, String moduleName, String loginS, Date date ){
+        
     }
 
     public Module getActiveModule(String name){
