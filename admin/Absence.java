@@ -150,11 +150,11 @@ public class Absence {
 	// 	return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
     // }
     
-    public Boolean getJustified() {
+    public Boolean isJustified() {
         return this.justified;
     }
 
-    public void isJustified(Boolean justified) {
+    public void setJustified(Boolean justified) {
         this.justified = justified;
     }
 

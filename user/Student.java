@@ -89,8 +89,6 @@ public class Student implements Role{
         this.form = new EduForm(login);
     }
 
-    public void newAbsence(){}
-
     public ArrayList<?> viewTableMark(){
         ArrayList<ArrayList<?>> list = new ArrayList<>();
         ArrayList<Module> modules = this.form.getModules();

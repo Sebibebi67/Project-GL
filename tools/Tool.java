@@ -44,4 +44,12 @@ public class Tool{
         return list;
     }
 
+    public static String booleanToString(boolean bool){
+        String result = "Non";
+        if(bool == true){
+            result = "Oui";
+        }
+        return result;
+    }
+
 }

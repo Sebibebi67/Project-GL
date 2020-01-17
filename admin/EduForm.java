@@ -62,6 +62,14 @@ public class EduForm {
         this.student = student;
     }
 
+    public ArrayList<Absence> getAbsences(){
+        return this.absences;
+    }
+
+    public void setAbsences(ArrayList<Absence> absences){
+        this.absences = absences;
+    }
+
     public String getLogin() {
         return this.login;
     }

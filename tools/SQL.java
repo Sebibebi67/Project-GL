@@ -345,6 +345,42 @@ public class SQL{
     }
 
     /**
+    * Creates a new absence in the database.
+    * @author Adam RIVIERE
+    * @param Time beginHour hour of the begining of the absence
+    * @param Time endHour hour of the end of the absence
+    * @param String moduleName Module's name
+    * @param String loginS login of the absent student
+    * @param String loginP login of the professor
+    * @param Date date of the absence
+    */
+    public static void createAbsence(Time beginHour, Time endHour, String moduleName, String loginS, String loginP, Date date){
+        Connection conn = null;
+        int idModule = Query.getModuleID(moduleName);
+        int idStudent = Query.getStudentID(loginS);
+        int idProfessor = Query.getTeacherID(loginP);
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "INSERT INTO Absence(idEtudiant, idEnseignant, idModule, dateDebut, dateFin, heureDebut, heureFin, estJustifiee) VALUES("+idStudent+","+idProfessor+","+idModule+","+date+","+date+","+beginHour+","+endHour+","+false+");";
+            statement.executeQuery(query);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
     * Change the sector of a student
     * @author Adam RIVIERE  
     * @param String newFiliere new sector of the student

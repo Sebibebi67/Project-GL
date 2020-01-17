@@ -1,9 +1,12 @@
 package user;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
+import admin.Absence;
 import tools.Query;
 import tools.Stockage;
+import tools.Tool;
 import study.Module;
 
 public class Professor implements Role{
@@ -59,9 +62,6 @@ public class Professor implements Role{
                 students.add(student);
             }
         }
-    }
-
-    public void newAbsence(){
     }
 
     /**
@@ -168,7 +168,23 @@ public class Professor implements Role{
 
     public ArrayList<ArrayList<String>> viewTableAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = Stockage.getActiveModule();
+        Student student = Stockage.getStudent();
+        ArrayList<Absence> absences = student.getForm().getAbsences();
+        for(int i = 0;i < absences.size();i++){
+            if(absences.get(i).getModuleName().equals(module.getName())){
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(absences.get(i).getBeginDate().toString());
+                list.add(Tool.booleanToString(absences.get(i).isJustified()));
+                array.add(list);
+            }
+        }
+
         return array;
+    }
+
+    public void newAbsence(String beginHourH, String beginHourM, String endHourH, String endHourM, String moduleName, String loginS, Date date ){
+        
     }
 
     public Module getActiveModule(String name){
@@ -178,6 +194,11 @@ public class Professor implements Role{
             }
         }
         return null;
+    }
+
+    public Student getActiveStudent(String login){
+        Student student = new Student(login);
+        return student;
     }
 
 }
