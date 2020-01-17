@@ -180,4 +180,13 @@ public class Professor implements Role{
         return null;
     }
 
+    public Student getActiveStudent(String login){
+        for(int i = 0;i < this.students.size();i++){
+            if(this.students.get(i).getLogin().equals(login)){
+                return this.students.get(i);
+            }
+        }
+        return null;
+    }
+
 }
