@@ -157,13 +157,40 @@ public class EduForm {
     }
 
     /**
+     * Lists all of the TUs containing the modules of 'modules'.
+     * @return List of TUs.
+     */
+    public ArrayList<ArrayList<?>> listOfTUs()
+    {
+        ArrayList<ArrayList<?>> units = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<Integer> averages = new ArrayList<>();
+        int unitMark = 0;
+        for (int i=0 ; i<modules.size() ; i++)
+        {
+            if (!names.contains(modules.get(i).getUnit().getName()))
+            {
+                names.add(modules.get(i).getUnit().getName());
+            }
+        }
+        return units;
+    }
+
+    /**
      * Generates a HTML table from a student's registered marks.
      * @param student Student whose marks will be put into the table.
      * @return HTML code used to create the table.
      */
     public String createReportTable(Person student)
     {
-        //String code = "";
+        String code = "";
+        ArrayList<ArrayList<?>> units = listOfTUs();
+
+        for (int i=0 ; i<units.size() ; i++)
+        {
+            if (i>0) { code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n"; }
+            //code += "<tr><th> "+units.get(i).getName()+" </th><th> "+1+" </th></tr>";
+        }
 
         return "";
     }
