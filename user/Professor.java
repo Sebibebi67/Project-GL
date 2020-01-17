@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import admin.Absence;
 import tools.Query;
 import tools.Stockage;
+import tools.Tool;
 import study.Module;
 
 public class Professor implements Role{
@@ -172,6 +173,14 @@ public class Professor implements Role{
         Module module = Stockage.getActiveModule();
         Student student = Stockage.getStudent();
         ArrayList<Absence> absences = student.getForm().getAbsences();
+        for(int i = 0;i < absences.size();i++){
+            if(absences.get(i).getModuleName().equals(module.getName())){
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(absences.get(i).getBeginDate().toString());
+                list.add(Tool.booleanToString(absences.get(i).isJustified()));
+                array.add(list);
+            }
+        }
 
         return array;
     }
