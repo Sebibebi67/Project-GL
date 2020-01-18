@@ -1262,4 +1262,39 @@ public class Query{
         }
         return result;
     }
+
+    /**
+    * Search method : finds the students whose name begins like the 'template' parameter.
+    * @author Dejan PARIS
+    * @param String template Beginning of the name to search for.
+    * @return an Array with the list of all the matching names.
+    */
+    public static ArrayList<ArrayList<String>> justify(String login, String nomMod, Date date, Time debut, Time fin){
+        Connection conn = null;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String request = "SELECT estJustifiee FROM Absence WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            ResultSet res = statement.executeQuery(request);
+            Boolean bool = res.getBoolean("estJustifiee");
+            Boolean estJustifiee  = !bool;
+            String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            statement.executeQuery(query);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 }
