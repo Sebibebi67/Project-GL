@@ -3,8 +3,9 @@ package user;
 
 public class StudentOffice extends Administration{
 
-	public StudentOffice () {
-		initArray();
+	public StudentOffice (String login) {
+		this.initArray();
+		this.setLogin(login);
 	}
 
 }

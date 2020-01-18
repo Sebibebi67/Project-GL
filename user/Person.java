@@ -95,7 +95,7 @@ public class Person{
                     role = new Professor(login);
                     break;
                 case "Scolarite":
-                    role = new StudentOffice();
+                    role = new StudentOffice(login);
                     break;
                 case "DDE":
                     role = new DepartementOfEducation();
