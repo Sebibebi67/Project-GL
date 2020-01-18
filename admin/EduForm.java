@@ -164,24 +164,24 @@ public class EduForm {
     public ArrayList<ArrayList<?>> listOfTUs()
     {
         int coeff = 0; double prev;
-        ArrayList<ArrayList<?>> units = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
+        ArrayList<ArrayList<?>> result = new ArrayList<>();
+        ArrayList<TeachingUnit> units = new ArrayList<>();
         ArrayList<Double> averages = new ArrayList<>();
         for (int i=0 ; i<modules.size() ; i++)
         {
-            if (!names.contains(modules.get(i).getUnit().getName()))
+            if (!units.contains(modules.get(i).getUnit()))
             {
-                names.add(modules.get(i).getUnit().getName());
+                units.add(modules.get(i).getUnit());
                 double zero = 0;
                 averages.add(zero);
             }
         }
-        for (int i=0 ; i<names.size() ; i++)
+        for (int i=0 ; i<units.size() ; i++)
         {
             for (int j=0 ; j<modules.size() ; j++)
             {
                 coeff = 0;
-                if (names.get(i).equals(modules.get(j).getUnit().getName()))
+                if (units.get(i).equals(modules.get(j).getUnit()))
                 {
                     prev = averages.get(i);
                     averages.set(i, prev + markModules.get(modules.get(j).getName()));
@@ -190,9 +190,9 @@ public class EduForm {
             }
             prev = averages.get(i); averages.set(i, prev / coeff);
         }
-        units.add(names);
-        units.add(averages);
-        return units;
+        result.add(units);
+        result.add(averages);
+        return result;
     }
 
     /**
@@ -211,10 +211,10 @@ public class EduForm {
         {
             if (i>0)
                 code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n";
-            code += "<tr><th> "+units.get(0).get(i)+" </th><th> "+units.get(1).get(i)+" </th></tr>\n";
+            code += "<tr><th> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th><th> "+units.get(1).get(i)+" </th></tr>\n";
             for (int j=0 ; j<modules.size() ; j++)
             {
-                if (units.get(0).get(i).equals(modules.get(j).getUnit().getName()))
+                if (units.get(0).get(i).equals(modules.get(j).getUnit()))
                 {
                     if (even == -1)
                         code += "<tr><td id=\"mod1\"> "+modules.get(j).getName()+" </td><td id=\"mod1\"> "+markModules.get(modules.get(j).getName())+" </td></tr>\n";

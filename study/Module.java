@@ -105,4 +105,9 @@ public class Module{
         return name;
     }
 
+    public boolean equals(Module module)
+    {
+        return this.name.equals(module.name);
+    }
+
 }
