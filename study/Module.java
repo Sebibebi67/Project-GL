@@ -107,7 +107,7 @@ public class Module{
 
     public boolean equals(Module module)
     {
-        return this.name.equals(module.name);
+        return this.name.equals(module.getName());
     }
 
 }

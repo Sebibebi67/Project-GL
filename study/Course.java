@@ -42,6 +42,6 @@ public class Course{
 
     public boolean equals(Course course)
     {
-        return this.name.equals(course.name);
+        return this.name.equals(course.getName());
     }
 }

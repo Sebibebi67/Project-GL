@@ -50,7 +50,7 @@ public class TeachingUnit {
 
     public boolean equals(TeachingUnit unit)
     {
-        return this.name.equals(unit.name) && this.course.equals(unit.course);
+        return this.name.equals(unit.getName()) && this.course.equals(unit.getCourse());
     }
 
 }
