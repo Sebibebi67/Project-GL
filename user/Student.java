@@ -118,7 +118,7 @@ public class Student implements Role{
         return list;
     }
 
-    public ArrayList<String> listModules(){
+    public ArrayList<String> viewlistModules(){
         ArrayList<String> array = new ArrayList<String>();
         for(int i = 0;i < this.form.getModules().size();i++){
             array.add(this.form.getModules().get(i).getName());
@@ -134,6 +134,21 @@ public class Student implements Role{
             }
         }
         return null;
+    }
+
+    public ArrayList<ArrayList<String>> viewTableModuleMarks(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = Stockage.getActiveModule();
+        for(int i = 0;i < this.form.getExams().size();i++){
+            if(this.form.getExams().get(i).getModule().getName().equals(module.getName())){
+                ArrayList<String> list = new ArrayList<String>();
+                String name= this.form.getExams().get(i).getName();
+                list.add(name);
+                list.add(this.form.getMarkExams().get(name).toString());
+                array.add(list);
+            }
+        }
+        return array;
     }
 
 
