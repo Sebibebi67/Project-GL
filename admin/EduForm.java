@@ -249,9 +249,8 @@ public class EduForm {
         Course course = ((Student) student.getRole()).getCourse();
 
         String path = "./reports/"+surname+"_"+firstname+"_"+course.toString()+".html";
-        Files.copy(Path.of(tmpFile.getPath()), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
-        File report = new File(path);
-        if (!report.exists())
+        Files.copy(Path.of("./reports/template.html"), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
+        if (!(new File(path)).exists())
         {
             // appeler une erreur ou recommencer
         }
