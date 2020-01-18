@@ -1096,11 +1096,10 @@ public class Query{
 
     /**
     * Returns the list of all the absences.
-    * @author Dejan PARIS
-    * @param String moduleName Module's name.
+    * @author Adam RIVIERE
     * @return an Array with the list of all the absences.
     */
-    public static ArrayList<ArrayList<?>> allAbsences(String moduleName){
+    public static ArrayList<ArrayList<?>> allAbsences(){
         Connection conn = null;
         ArrayList<ArrayList<?>> result = new ArrayList<ArrayList<?>>();
         try {
