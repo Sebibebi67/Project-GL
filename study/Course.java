@@ -39,4 +39,9 @@ public class Course{
     public Course(String s){
         this.name = s;
     }
+
+    public boolean equals(Course course)
+    {
+        return this.name.equals(course.getName());
+    }
 }

@@ -95,4 +95,9 @@ public class Exam{
     public String toString() {
         return name + " : " + date.toString();
     }
+
+    public boolean equals(Exam exam)
+    {
+        return this.name.equals(exam.getName()) && this.module.equals(exam.getModule());
+    }
 }

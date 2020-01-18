@@ -48,4 +48,9 @@ public class TeachingUnit {
         return name;
     }
 
+    public boolean equals(TeachingUnit unit)
+    {
+        return this.name.equals(unit.getName()) && this.course.equals(unit.getCourse());
+    }
+
 }

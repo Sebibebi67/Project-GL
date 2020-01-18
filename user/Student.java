@@ -89,7 +89,7 @@ public class Student implements Role{
         this.form = new EduForm(login);
     }
 
-    public ArrayList<?> viewTableMark(){
+    public ArrayList<ArrayList<?>> viewTableMark(){
         ArrayList<ArrayList<?>> list = new ArrayList<>();
         ArrayList<Module> modules = this.form.getModules();
 
@@ -111,6 +111,14 @@ public class Student implements Role{
             list.add(module);
         }
         return list;
+    }
+
+    public ArrayList<String> listModules(){
+        ArrayList<String> array = new ArrayList<String>();
+        for(int i = 0;i < this.form.getModules().size();i++){
+            array.add(this.form.getModules().get(i).getName());
+        }
+        return array;
     }
 
     public Module getActiveModule(String name){

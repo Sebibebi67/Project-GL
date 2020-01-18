@@ -7,7 +7,7 @@ import tools.Query;
 /**
  * 
  * This class contains all methods and attributes linked to the
- * Modules dispenced in the University
+ * Modules dispensed in the University
  * 
  * @author Sébastien HERT
  * 
@@ -103,6 +103,11 @@ public class Module{
 
     public String toString() {
         return name;
+    }
+
+    public boolean equals(Module module)
+    {
+        return this.name.equals(module.getName());
     }
 
 }
