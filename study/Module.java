@@ -7,7 +7,7 @@ import tools.Query;
 /**
  * 
  * This class contains all methods and attributes linked to the
- * Modules dispenced in the University
+ * Modules dispensed in the University
  * 
  * @author Sébastien HERT
  * 

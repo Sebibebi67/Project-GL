@@ -12,7 +12,6 @@ public class UserAccount {
         this.password = pswd;
     }
 
-
     /**
      * @return String return the login
      */
