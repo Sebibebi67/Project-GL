@@ -118,6 +118,14 @@ public class Student implements Role{
         return list;
     }
 
+    public ArrayList<String> listModules(){
+        ArrayList<String> array = new ArrayList<String>();
+        for(int i = 0;i < this.form.getModules().size();i++){
+            array.add(this.form.getModules().get(i).getName());
+        }
+        return array;
+    }
+
     public Module getActiveModule(String name){
         ArrayList<Module> modules = this.form.getModules();
         for (int i = 0; i<modules.size(); i++){
