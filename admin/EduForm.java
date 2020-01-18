@@ -241,7 +241,7 @@ public class EduForm {
             tmpDir.mkdirs();
         if (!tmpFile.exists())
         {
-            // appeler une erreur
+            // appeler une erreur ou recréer le template
         }
 
         String surname = student.getSurname();
@@ -253,7 +253,7 @@ public class EduForm {
         File report = new File(path);
         if (!report.exists())
         {
-            // appeler une erreur
+            // appeler une erreur ou recommencer
         }
 
         int year = course.year();
