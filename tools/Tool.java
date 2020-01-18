@@ -62,7 +62,7 @@ public class Tool{
     }
 
     public static int stringToInt(String str){
-        int n = 0;
+        int n = -1;
         try{
             n = Integer.parseInt(str);
             
