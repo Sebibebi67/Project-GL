@@ -1058,7 +1058,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM Absence JOIN Utilisateur ON Absence.idEtudiant = Utilisateur.idEtudiant WHERE nomModule = "+moduleName+";";
+            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM (Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE nomModule = "+moduleName+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1080,6 +1080,62 @@ public class Query{
             result.add(dateFin);
             result.add(heureDebut);
             result.add(heureFin);
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+    * Returns the list of all the absences.
+    * @author Dejan PARIS
+    * @param String moduleName Module's name.
+    * @return an Array with the list of all the absences.
+    */
+    public static ArrayList<ArrayList<?>> allAbsences(String moduleName){
+        Connection conn = null;
+        ArrayList<ArrayList<?>> result = new ArrayList<ArrayList<?>>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT nom, prenom, login, nomMod, dateDebut, heureFin, heureDebut, estJustifiee FROM ((Absence JOIN Module ON Absence.idModule = Module.idModule) JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur;";
+            ResultSet res = statement.executeQuery(query);
+            ArrayList<String> nom = new ArrayList<String>();
+            ArrayList<String> prenom = new ArrayList<String>();
+            ArrayList<String> login = new ArrayList<String>();
+            ArrayList<String> nomMod = new ArrayList<String>();
+            ArrayList<Date> dateDebut = new ArrayList<Date>();
+            ArrayList<Time> heureDebut = new ArrayList<Time>();
+            ArrayList<Time> heureFin = new ArrayList<Time>();
+            ArrayList<Boolean> estJustifiee = new ArrayList<Boolean>();
+            while(res.next()){
+                nom.add(res.getString("nom"));
+                prenom.add(res.getString("prenom"));
+                login.add(res.getString("login"));
+                nomMod.add(res.getString("nomMod"));
+                dateDebut.add(res.getDate("dateDebut"));
+                heureFin.add(res.getTime("heureFin"));
+                heureDebut.add(res.getTime("heureDebut"));
+                estJustifiee.add(res.getBoolean("estJustifiee"));
+            }
+            result.add(nom);
+            result.add(prenom);
+            result.add(login);
+            result.add(nomMod);
+            result.add(dateDebut);
+            result.add(heureDebut);
+            result.add(heureFin);
+            result.add(estJustifiee);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
