@@ -83,7 +83,15 @@ public class Tool{
     }
 
     public static Time newTime(String h, String m){
-        return new java.sql.Time(Tool.stringToInt(h), Tool.stringToInt(m), 0);
+        return Time.valueOf(addingZero(h)+addingZero(m)+"00");
+    }
+
+    public static String addingZero(String s){
+        if (Tool.stringToInt(s)<10){
+            return "0"+s;
+        }else{
+            return s;
+        }
     }
 
 }
