@@ -1,5 +1,6 @@
 package tools;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -92,6 +93,20 @@ public class Tool{
         }else{
             return s;
         }
+    }
+
+    public static String dateToString(Date date, Time begin, Time end){
+        return "Le "+Tool.getFrenchDate(date)+" de "+Tool.getHMTime(begin)+" à "+Tool.getHMTime(end);
+    }
+
+    public static String getFrenchDate(Date date){
+        String[] frenchDate = date.toString().split("-");
+        return frenchDate[2]+"-"+frenchDate[1]+"-"+frenchDate[0];
+    }
+
+    public static String getHMTime(Time time){
+        String[] newTime = time.toString().split("-");
+        return newTime[0]+"H"+newTime[1];
     }
 
 }
