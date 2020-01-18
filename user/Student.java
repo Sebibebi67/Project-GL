@@ -151,5 +151,13 @@ public class Student implements Role{
         return array;
     }
 
+    public void newSatisfaction(String mark, String review){
+        if(Tool.isInt(mark)){
+            int sMark = Tool.stringToInt(mark);
+            SQL.satisfaction(this.login, Stockage.getActiveModule().getName(), review, sMark);
+        }else{
+            //error message
+        }
+    }
 
 }
