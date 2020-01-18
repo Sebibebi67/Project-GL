@@ -185,7 +185,7 @@ public class EduForm {
                 {
                     prev = averages.get(i);
                     averages.set(i, prev + markModules.get(modules.get(j).getName()));
-                    coeff++;
+                    coeff += modules.get(j).getCoeff();
                 }
             }
             prev = averages.get(i); averages.set(i, prev / coeff);
