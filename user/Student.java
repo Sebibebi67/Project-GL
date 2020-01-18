@@ -160,4 +160,18 @@ public class Student implements Role{
         }
     }
 
+    public ArrayList<ArrayList<String>> viewTableModuleAbsences(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = Stockage.getActiveModule();
+        for(int i = 0;i < this.form.getAbsences().size();i++){
+            if(this.form.getAbsences().get(i).getModuleName().equals(module.getName())){
+                ArrayList<String> absence = new ArrayList<String>();
+                absence.add(Tool.dateToString(this.form.getAbsences().get(i).getBeginDate(), this.form.getAbsences().get(i).getBeginHour(), this.form.getAbsences().get(i).getEndHour()));
+                absence.add(Tool.booleanToString(this.form.getAbsences().get(i).isJustified()));
+                array.add(absence);
+            }
+        }
+        return array;
+    }
+
 }
