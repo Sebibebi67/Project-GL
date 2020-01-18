@@ -90,4 +90,9 @@ public abstract class Administration implements Role {
 		return absences;
 	}
 
+	public void updateJustification(String login, String module, String date){
+		Object[] obj = Tool.stringToDate(date);
+		Query.justify(login, module, (Date) obj[0], (Time) obj[1], (Time) obj[2]);
+	}
+
 }

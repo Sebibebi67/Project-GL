@@ -1265,13 +1265,15 @@ public class Query{
 
     /**
     * Search method : finds the students whose name begins like the 'template' parameter.
-    * @author Dejan PARIS
-    * @param String template Beginning of the name to search for.
-    * @return an Array with the list of all the matching names.
+    * @author Adam RIVIERE
+    * @param String login login of the student.
+    * @param String nomMod name of the module.
+    * @param Date date date of the absence.
+    * @param Time debut begining of the absence.
+    * @param Time fin end of the absence.
     */
-    public static ArrayList<ArrayList<String>> justify(String login, String nomMod, Date date, Time debut, Time fin){
+    public static void justify(String login, String nomMod, Date date, Time debut, Time fin){
         Connection conn = null;
-        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1294,7 +1296,6 @@ public class Query{
                 ex.printStackTrace();
             }
         }
-        return result;
     }
 
 }
