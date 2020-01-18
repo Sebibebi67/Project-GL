@@ -1,10 +1,12 @@
 package user;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import admin.Absence;
 import tools.Query;
+import tools.SQL;
 import tools.Stockage;
 import tools.Tool;
 import study.Module;
@@ -184,7 +186,13 @@ public class Professor implements Role{
     }
 
     public void newAbsence(String beginHourH, String beginHourM, String endHourH, String endHourM, String moduleName, String loginS, Date date ){
-        
+        if(Tool.isTime(beginHourH, beginHourM) && Tool.isTime(endHourH, endHourM)){
+            Time beginTime = Tool.newTime(beginHourH, beginHourM);
+            Time endTime = Tool.newTime(endHourH, endHourM);
+            SQL.createAbsence(beginTime, endTime, moduleName, loginS, login, date);
+        }else{
+            //error message
+        }
     }
 
     public Module getActiveModule(String name){
