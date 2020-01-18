@@ -158,4 +158,9 @@ public class Absence {
         this.justified = justified;
     }
 
+    public boolean equals(Absence absence)
+    {
+        return this.loginStudent.equals(absence.getStudent()) && this.moduleName.equals(absence.getModuleName()) && this.beginDate.equals(absence.getBeginDate()) && this.beginHour.equals(absence.getBeginHour()) && this.endDate.equals(absence.getEndDate()) && this.endHour.equals(absence.getEndHour());
+    }
+
 }
