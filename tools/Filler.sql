@@ -13,11 +13,11 @@ call inscrire('FERRY','Jules','obligatoire','Scolarite');
 call inscrire('DDE','Admin','motdepassesécurisé','DDE');
 
 --modifierFiliereEtudiant ('IN newFiliere VARCHAR('45')',' IN loginEtu VARCHAR('45')')
-call modifierFiliereEtudiant('INFO','ajobard');
-call modifierFiliereEtudiant('SNUM','shert');
-call modifierFiliereEtudiant('PHOT','dparis');
-call modifierFiliereEtudiant('PHOT','ariviere');
-call modifierFiliereEtudiant('INFO','tlepercq');
+call modifierFiliereEtudiant('INFO2','ajobard');
+call modifierFiliereEtudiant('SNUM2','shert');
+call modifierFiliereEtudiant('PHOT2','dparis');
+call modifierFiliereEtudiant('PHOT2','ariviere');
+call modifierFiliereEtudiant('INFO2','tlepercq');
 
 --assignerGroupeTD ('IN numero INT',' IN loginEtu VARCHAR('45')')
 call assignerGroupeTD(1,'ajobard');
@@ -34,11 +34,11 @@ call assignerGroupeTP(3,'ariviere');
 call assignerGroupeTP(2,'tlepercq');
 
 --creerUE('IN nomUE varchar('45')',' IN loginRespo varchar('45')',' IN nbCredits int',' IN filiere varchar('45')')
-call creerUE('Sciences','leuler',6,'INFO');
-call creerUE('Sciences','leuler',6,'SNUM');
-call creerUE('Education Civique','nbonaparte',6,'INFO');
-call creerUE('Langues','bpivot',6,'PHOT');
-call creerUE('Langues','bpivot',6,'SNUM');
+call creerUE('Sciences','leuler',6,'INFO2');
+call creerUE('Sciences','leuler',6,'SNUM2');
+call creerUE('Education Civique','nbonaparte',6,'INFO2');
+call creerUE('Langues','bpivot',6,'PHOT2');
+call creerUE('Langues','bpivot',6,'SNUM2');
 
 --creerModule('IN nomModule varchar('45')',' IN loginRespo varchar('45')')
 call creerModule('Maths','leuler');
@@ -71,11 +71,11 @@ call assiste('tlepercq','Maths');
 call assiste('tlepercq','Theatre');
 
 --constitue ('IN nomModule VARCHAR('45')',' IN titreUE VARCHAR('45')',' IN coefficient INT',' IN fil VARCHAR('45')')
-call constitue('Maths','Sciences',1,'INFO');
-call constitue('Maths','Sciences',1,'SNUM');
-call constitue('Histoire','Education Civique',2,'INFO');
-call constitue('Theatre','Education Civique',1,'INFO');
-call constitue('Francais','Langues',2,'PHOT');
-call constitue('Francais','Langues',2,'SNUM');
-call constitue('Anglais','Langues',3,'PHOT');
-call constitue('Anglais','Langues',3,'SNUM');
+call constitue('Maths','Sciences',1,'INFO2');
+call constitue('Maths','Sciences',1,'SNUM2');
+call constitue('Histoire','Education Civique',2,'INFO2');
+call constitue('Theatre','Education Civique',1,'INFO2');
+call constitue('Francais','Langues',2,'PHOT2');
+call constitue('Francais','Langues',2,'SNUM2');
+call constitue('Anglais','Langues',3,'PHOT2');
+call constitue('Anglais','Langues',3,'SNUM2');
