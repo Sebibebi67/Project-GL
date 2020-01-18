@@ -109,4 +109,26 @@ public class Tool{
         return newTime[0]+"H"+newTime[1];
     }
 
+    public static Object[] stringToDate(String s){
+        Object[] obj = new Object[3];
+        String[] newS = s.split(" ");
+
+        obj[0] = Tool.parseDate(newS[1]);
+        obj[1] = Tool.parseTime(newS[3]);
+        obj[2] = Tool.parseTime(newS[5]);
+
+        return obj;
+
+    }
+
+    public static Date parseDate(String s){
+        String[] newS = s.split("-");
+        return  Date.valueOf(newS[2]+"-"+newS[1]+"-"+newS[0]);
+    }
+
+    public static Time parseTime(String s){
+        String[] newS = s.split("H");
+        return Time.valueOf(newS[1]+":"+newS[0]+":00");
+    }
+
 }
