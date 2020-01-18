@@ -136,7 +136,9 @@ public class Professor implements Role{
         Student student = new Student(login);
         ArrayList<String> examNames = new ArrayList<String>();
         for(int i = 0;i < student.getForm().getExams().size();i++){
-            examNames.add(student.getForm().getExams().get(i).getName());
+            if(student.getForm().getExams().get(i).getName().equals(moduleName)){
+                examNames.add(student.getForm().getExams().get(i).getName());
+            }
         }
         for(int i = 0;i < student.getForm().getExams().size();i++){
             ArrayList<String> exam = new ArrayList<String>();

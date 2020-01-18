@@ -4,8 +4,11 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
+import admin.Absence;
 import tools.Query;
+import tools.Stockage;
 import tools.Tool;
+import study.Module;
 
 public abstract class Administration implements Role {
 
@@ -94,5 +97,125 @@ public abstract class Administration implements Role {
 		Object[] obj = Tool.stringToDate(date);
 		Query.justify(login, module, (Date) obj[0], (Time) obj[1], (Time) obj[2]);
 	}
+
+	public Module getActiveModule(String name){
+        for (int i = 0; i<this.modules.size(); i++){
+            if( this.modules.get(i).equals(name)){
+                return new Module(name);
+            }
+        }
+        return null;
+    }
+
+    public Student getActiveStudent(String login){
+        Student student = new Student(login);
+        return student;
+	}
+	
+	/**
+    * Returns the list of all the students for a given module.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the students of the module with their average mark.
+    */
+    public ArrayList<ArrayList<String>> viewTableAttendees(){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        String name = Stockage.getActiveModule().getName();
+        ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(name);
+        if(!attendees.isEmpty()){
+            int size = attendees.get(0).size();
+            for(int i = 0;i < size;i++){
+                ArrayList<String> student = new ArrayList<String>();
+                for(int j = 0;j < attendees.size();j++){
+                    student.add(attendees.get(j).get(i).toString());
+                }
+                array.add(student);
+            }
+        }
+        return array;
+	}
+	
+	/**
+    * Returns the list of all the students for a given module.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the students of the module.
+    */
+	public ArrayList<ArrayList<String>> viewListAttendees(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        if(!this.students.isEmpty()){
+            for(int i = 0;i < students.size();i++){
+                ArrayList<String> student = new ArrayList<String>();
+                student.add(this.students.get(i).get(0).toString());
+                student.add(this.students.get(i).get(1).toString());
+                array.add(student);
+            }
+        }
+        return array;
+	}
+	
+	/**
+    * Returns the list of all the marks for a given student in a given module.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the marks for a given student in a given module.
+    */
+    public ArrayList<ArrayList<String>> viewMarksAttendee(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+		Student student = Stockage.getStudent();
+		String module = Stockage.getActiveModule().getName();
+        ArrayList<String> examNames = new ArrayList<String>();
+        for(int i = 0;i < student.getForm().getExams().size();i++){
+			if(student.getForm().getExams().get(i).getName().equals(module)){
+				examNames.add(student.getForm().getExams().get(i).getName());
+			}
+        }
+        for(int i = 0;i < student.getForm().getExams().size();i++){
+            ArrayList<String> exam = new ArrayList<String>();
+            exam.add(examNames.get(i));
+            if(student.getForm().getMarkExams().get(examNames.get(i)) == -1){
+                exam.add("");
+            }else{
+                exam.add(student.getForm().getMarkExams().get(examNames.get(i)).toString());
+            }
+            array.add(exam);
+        }
+        return array;
+	}
+	
+	/**
+    * Returns the list of all the satisfaction reviews for a given module.
+    * @author Adam RIVIERE
+    * @return an Array with the list of all the satisfaction reviews for a given module.
+    */
+    public ArrayList<ArrayList<String>> viewTableSatisfaction(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = Stockage.getActiveModule();
+        for(int i = 0;i < module.getlistSatisfaction().size();i++){
+            ArrayList<String> satisfaction = new ArrayList<String>();
+            if(module.getlistSatisfaction().get(i).getRating() == -1){
+                satisfaction.add("");
+            }else{
+                satisfaction.add(Integer.toString(module.getlistSatisfaction().get(i).getRating()));
+            }
+            satisfaction.add(module.getlistSatisfaction().get(i).getReview());
+            array.add(satisfaction);
+        }
+        return array;
+	}
+	
+	public ArrayList<ArrayList<String>> viewTableAbsences(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = Stockage.getActiveModule();
+        Student student = Stockage.getStudent();
+        ArrayList<Absence> absences = student.getForm().getAbsences();
+        for(int i = 0;i < absences.size();i++){
+            if(absences.get(i).getModuleName().equals(module.getName())){
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(absences.get(i).getBeginDate().toString());
+                list.add(Tool.booleanToString(absences.get(i).isJustified()));
+                array.add(list);
+            }
+        }
+
+        return array;
+    }
 
 }
