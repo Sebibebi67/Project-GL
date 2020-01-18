@@ -75,6 +75,11 @@ public class Student implements Role{
         this.login = login;
     }
 
+    public boolean equals(Student student)
+    {
+        return this.login.equals(student.getLogin());
+    }
+
     public void getData(String login){
         ArrayList<Object> array = new ArrayList<>();
         array = Query.studentData(login);

@@ -40,6 +40,11 @@ public class Professor implements Role{
         this.modules = modules;
     }
 
+    public boolean equals(Professor professor)
+    {
+        return this.login.equals(professor.getLogin());
+    }
+
     public void createModule(){
         modules = new ArrayList<>();
 

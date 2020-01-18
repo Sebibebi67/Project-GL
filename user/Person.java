@@ -72,6 +72,11 @@ public class Person{
         return surname + " " + firstname;
     }
 
+    public boolean equals(Person person)
+    {
+        return this.account.equals(person.getAccount());
+    }
+
     public void getData(String login, String pswd){
         ArrayList<Object> array = new ArrayList<>();
         array = Query.userData(login);

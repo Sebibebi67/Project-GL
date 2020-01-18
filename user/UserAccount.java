@@ -43,4 +43,9 @@ public class UserAccount {
     public String toString() {
         return login;
     }
+
+    public boolean equals(UserAccount account)
+    {
+        return this.login.equals(account.getLogin());
+    }
 }

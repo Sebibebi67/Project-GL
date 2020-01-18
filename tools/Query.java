@@ -1184,7 +1184,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, X) ="+template+";";
+            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ="+template+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
