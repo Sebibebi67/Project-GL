@@ -87,22 +87,22 @@ public class Person{
             this.firstname = array.get(3).toString();
             String roleType = array.get(4).toString();
 
-            switch(roleType){
-                case "Etudiant":
-                    role = new Student(login);
-                    break;
-                case "Enseignant":
-                    role = new Professor(login);
-                    break;
-                case "Scolarite":
-                    role = new StudentOffice(login);
-                    break;
-                case "DDE":
-                    role = new DepartementOfEducation(login);
-                    break;
-                default :
-                    break;
-            }
+            // switch(roleType){
+            //     case "Etudiant":
+            //         role = new Student(login);
+            //         break;
+            //     case "Enseignant":
+            //         role = new Professor(login);
+            //         break;
+            //     case "Scolarite":
+            //         role = new StudentOffice(login);
+            //         break;
+            //     case "DDE":
+            //         role = new DepartementOfEducation(login);
+            //         break;
+            //     default :
+            //         break;
+            // }
 
 
         }

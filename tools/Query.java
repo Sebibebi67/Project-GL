@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Query{
 
-    private static String url       = "jdbc:sqlserver://barn-e-01:3306";
+    private static String url       = "jdbc:mysql://barn-e-01:3306";
     private static String user      = "1920_INFO2_PDB";
     private static String password  = "MeWNxYu6xnUGh4DTza6aP4DVKv6Wh9yT"; 
 
@@ -30,11 +30,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = "+login+";";
+            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = '"+login+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idUtilisateur");
+            while(res.next()) {
+                id = res.getInt("idUtilisateur");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -61,11 +63,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idModule FROM Module WHERE nomMod = "+moduleName+";";
+            String query = "SELECT idModule FROM Module WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idModule");
+            while(res.next()) {
+                id = res.getInt("idModule");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -92,11 +96,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idEtudiant FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEtu+";";
+            String query = "SELECT idEtudiant FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = '"+loginEtu+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idEtudiant");
+            while(res.next()) {
+                id = res.getInt("idEtudiant");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -123,11 +129,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEns+";";
+            String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = '"+loginEns+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idEnseignant");
+            while(res.next()) {
+                id = res.getInt("idEnseignant");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -154,11 +162,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idUE FROM UE WHERE nomUE = "+tu+";";
+            String query = "SELECT idUE FROM UE WHERE nomUE = '"+tu+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idUE");
+            while(res.next()) {
+                id = res.getInt("idUE");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -185,15 +195,17 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM Utilisateur WHERE idUtilisateur = "+getUserID(login)+";";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("login"));
-            queryResult.add(res.getString("mdp"));
-            queryResult.add(res.getString("nom"));
-            queryResult.add(res.getString("prenom"));
-            queryResult.add(res.getString("role"));
+            while(res.next()) {
+                queryResult.add(res.getString("login"));
+                queryResult.add(res.getString("mdp"));
+                queryResult.add(res.getString("nom"));
+                queryResult.add(res.getString("prenom"));
+                queryResult.add(res.getString("role"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -222,14 +234,16 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM Etudiant WHERE idEtudiant = "+getStudentID(loginEtu)+";";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("aideAuJury"));
-            queryResult.add(res.getInt("TP"));
-            queryResult.add(res.getInt("TD"));
-            queryResult.add(res.getString("filiere"));
+            while(res.next()) {
+                queryResult.add(res.getString("aideAuJury"));
+                queryResult.add(res.getInt("TP"));
+                queryResult.add(res.getInt("TD"));
+                queryResult.add(res.getString("filiere"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -258,12 +272,14 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomUE, coefficient FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE nomMod = "+moduleName+";";
+            String query = "SELECT nomUE, coefficient FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("nomUE"));
-            queryResult.add(res.getInt("coefficient"));
+            while(res.next()) {
+                queryResult.add(res.getString("nomUE"));
+                queryResult.add(res.getInt("coefficient"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -294,9 +310,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomNote, note, coefficient, dateEvaluation FROM Note WHERE nomMod ="+moduleName+" AND idEtudiant = "+id+";";
+            String query = "SELECT nomNote, note, coefficient, dateEvaluation FROM Note WHERE nomMod ='"+moduleName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nomNote = new ArrayList<String>();
             ArrayList<Integer> note = new ArrayList<Integer>();
@@ -341,11 +357,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = "+moduleName+" AND idEtudiant = "+id+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = '"+moduleName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            average = res.getFloat("average");
+            while(res.next()) {
+                average = res.getFloat("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -374,11 +392,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note FROM Note WHERE nomNote = "+markName+" AND idEtudiant = "+id+";";
+            String query = "SELECT note FROM Note WHERE nomNote = '"+markName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            mark = res.getInt("note");
+            while(res.next()) {
+                mark = res.getInt("note");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -406,7 +426,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT DISTINCT nomMod FROM Module WHERE idModule IN (SELECT idModule FROM Assiste WHERE idEtudiant = "+idEtudiant+");";
             ResultSet res = statement.executeQuery(query);
@@ -440,7 +460,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT DISTINCT (nomUE) FROM UE WHERE idUE IN ( SELECT idUE FROM Constitue WHERE nomMod IN ( SELECT nomMod FROM Assiste WHERE idEtudiant = "+idEtudiant+" ) );";
             ResultSet res = statement.executeQuery(query);
@@ -474,7 +494,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+";";
             ResultSet res = statement.executeQuery(query);
@@ -523,7 +543,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+" AND idModule = "+idModule+";";
             ResultSet res = statement.executeQuery(query);
@@ -571,9 +591,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, note, coefficient FROM Note, Utilisateur JOIN Etudiant ON Etudiant.idEtudiant=Note.idEtudiant AND Etudiant.idUtilisateur=Utilisateur.idUtilisateur WHERE nomNote = "+nomNote+";";
+            String query = "SELECT nom, prenom, note, coefficient FROM Note, Utilisateur JOIN Etudiant ON Etudiant.idEtudiant=Note.idEtudiant AND Etudiant.idUtilisateur=Utilisateur.idUtilisateur WHERE nomNote = '"+nomNote+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -615,9 +635,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = "+moduleName+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average = res.getDouble("average");
@@ -650,11 +670,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+markName+" AND nomMod = "+moduleName+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = '"+markName+"' AND nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            average = res.getDouble("average");
+            while(res.next()) {
+                average = res.getDouble("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -681,11 +703,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomMod = "+moduleName+";";
+            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            average = res.getDouble("average");
+            while(res.next()) {
+                average = res.getDouble("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -712,9 +736,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomMod FROM Enseigne JOIN Module ON Enseigne.idModule = Module.idModule WHERE idEnseignant = "+getTeacherID(loginEns)+";";
+            String query = "SELECT DISTINCT nomMod FROM Enseigne JOIN Module ON Enseigne.idModule = Module.idModule WHERE idEnseignant = "+getTeacherID(loginEns)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 queryResult.add(res.getString("nomMod"));
@@ -745,9 +769,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE nomMod = "+moduleName+";";
+            String query = "SELECT nom, prenom, login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant WHERE idModule = "+getModuleID(moduleName)+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -787,9 +811,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = "+idEtudiant+";";
+            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = '"+idEtudiant+"';";
             ArrayList<String> nomMod = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
@@ -826,9 +850,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomMod = "+moduleName+";";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomMod = '"+moduleName+"';";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
@@ -869,7 +893,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT nom, prenom, dateDebut, heureDebut, dateFin, heureFin FROM Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant WHERE estJustifiee = false;";
             ResultSet res = statement.executeQuery(query);
@@ -920,11 +944,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = "+idEtudiant+";";
+            String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = '"+idEtudiant+"';";
             ResultSet res = statement.executeQuery(query);
-            juryHelper = res.getString("aideAuJury");
+            while(res.next()){
+                juryHelper = res.getString("aideAuJury");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -950,11 +976,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT filiere FROM UE WHERE idUE = "+getTUID(tu)+";";
             ResultSet res = statement.executeQuery(query);
-            course = res.getString("filiere");
+            while(res.next()){
+                course = res.getString("filiere");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -980,7 +1008,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT DISTINCT nom,prenom,login,filiere FROM Utilisateur JOIN Etudiant ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur;";
             ResultSet res = statement.executeQuery(query);
@@ -1023,7 +1051,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT DISTINCT nomMod FROM Module;";
             ResultSet res = statement.executeQuery(query);
@@ -1056,9 +1084,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM (Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE nomMod = "+moduleName+";";
+            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM (Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1105,7 +1133,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT nom, prenom, login, nomMod, dateDebut, heureFin, heureDebut, estJustifiee FROM ((Absence JOIN Module ON Absence.idModule = Module.idModule) JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur;";
             ResultSet res = statement.executeQuery(query);
@@ -1161,9 +1189,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note, questionnaire FROM Satisfaction WHERE nomMod = "+moduleName+";";
+            String query = "SELECT note, questionnaire FROM Satisfaction WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Integer> note = new ArrayList<Integer>();
             ArrayList<String> questionnaire = new ArrayList<String>();
@@ -1199,9 +1227,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE filiere = "+course+";";
+            String query = "SELECT nom, prenom FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE filiere = '"+course+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1237,9 +1265,9 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ="+template+";";
+            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ='"+template+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1277,13 +1305,16 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String request = "SELECT estJustifiee FROM Absence WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            String request = "SELECT estJustifiee FROM Absence WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = '"+date+"' AND heureDebut = '"+debut+"' AND heureFin = '"+fin+"';";
             ResultSet res = statement.executeQuery(request);
-            Boolean bool = res.getBoolean("estJustifiee");
+            Boolean bool = null;
+            while(res.next()){
+                bool = res.getBoolean("estJustifiee");
+            }
             Boolean estJustifiee  = !bool;
-            String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = '"+date+"' AND heureDebut = '"+debut+"' AND heureFin = '"+fin+"';";
             statement.executeQuery(query);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
