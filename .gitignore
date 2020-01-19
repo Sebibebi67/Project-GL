@@ -3,7 +3,7 @@
 ##############################
 .mtj.tmp/
 *.class
-# *.jar
+*.jar
 *.war
 *.ear
 *.nar
@@ -50,7 +50,7 @@ out/
 bin/
 tmp/
 .metadata
-# .classpath
+.classpath
 .project
 *.tmp
 *.bak
