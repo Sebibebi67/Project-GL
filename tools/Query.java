@@ -1315,7 +1315,7 @@ public class Query{
             }
             Boolean estJustifiee  = !bool;
             String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = '"+date+"' AND heureDebut = '"+debut+"' AND heureFin = '"+fin+"';";
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
