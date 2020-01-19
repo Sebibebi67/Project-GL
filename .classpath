@@ -6,3 +6,4 @@
 <classpathentry kind="lib" path="./lib/javafx.swing.jar"/>
 <classpathentry kind="lib" path="./lib/javafx.web.jar"/>
 <classpathentry kind="lib" path="./lib/javafx-swt.jar"/>
+<classpathentry kinf="lib" path="./lib/jdbc.jar"/>

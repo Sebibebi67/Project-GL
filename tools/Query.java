@@ -55,7 +55,7 @@ public class Query{
     * @param  moduleName name of the module
     * @return Module's ID
     */
-    public static int getModuleID(String moduleName){
+    public static int getModuleID(String moduleName){////////////////////////////////////////
         Connection conn = null;
         int id = -1;
         try {
@@ -148,7 +148,7 @@ public class Query{
     * @param String tu TU's name
     * @return TU's ID
     */
-    public static int getTUID(String tu){
+    public static int getTUID(String tu){///////////////////////////////////////////:
         Connection conn = null;
         int id = -1;
         try {
