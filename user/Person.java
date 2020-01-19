@@ -80,30 +80,35 @@ public class Person{
     public void getData(String login, String pswd){
         ArrayList<Object> array = new ArrayList<>();
         array = Query.userData(login);
-        
-        if(array.get(1).toString().equals(pswd)){
-            this.account = new UserAccount(login, pswd);
-            this.surname = array.get(2).toString();
-            this.firstname = array.get(3).toString();
-            String roleType = array.get(4).toString();
+        if (array.isEmpty()){
+            Tool.print("Person not exists");
+        }else{
+            
+            if(array.get(1).toString().equals(pswd)){
+                this.account = new UserAccount(login, pswd);
+                this.surname = array.get(2).toString();
+                this.firstname = array.get(3).toString();
+                String roleType = array.get(4).toString();
 
-            switch(roleType){
-                case "Etudiant":
-                    role = new Student(login);
-                    break;
-                case "Enseignant":
-                    role = new Professor(login);
-                    break;
-                case "Scolarite":
-                    role = new StudentOffice(login);
-                    break;
-                case "DDE":
-                    role = new DepartementOfEducation(login);
-                    break;
-                default :
-                    break;
+                switch(roleType){
+                    case "Etudiant":
+                        role = new Student(login);
+                        break;
+                    case "Enseignant":
+                        role = new Professor(login);
+                        break;
+                    case "Scolarite":
+                        role = new StudentOffice(login);
+                        break;
+                    case "DDE":
+                        role = new DepartementOfEducation(login);
+                        break;
+                    default :
+                        break;
+                }
+            }else{
+                Tool.print("Wrong pswd");
             }
-
 
         }
 
