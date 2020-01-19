@@ -65,9 +65,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idModule FROM Module WHERE nomMod = "+moduleName+";";
+            String query = "SELECT idModule FROM Module WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idModule");
+            while(res.next()) {
+                id = res.getInt("idModule");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -96,9 +98,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idEtudiant FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEtu+";";
+            String query = "SELECT idEtudiant FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = '"+loginEtu+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idEtudiant");
+            while(res.next()) {
+                id = res.getInt("idEtudiant");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -127,9 +131,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = "+loginEns+";";
+            String query = "SELECT idEnseignant FROM Enseignant JOIN Utilisateur ON Enseignant.idUtilisateur = Utilisateur.idUtilisateur WHERE login = '"+loginEns+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idEnseignant");
+            while(res.next()) {
+                id = res.getInt("idEnseignant");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -158,9 +164,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idUE FROM UE WHERE nomUE = "+tu+";";
+            String query = "SELECT idUE FROM UE WHERE nomUE = '"+tu+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idUE");
+            while(res.next()) {
+                id = res.getInt("idUE");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -230,10 +238,12 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM Etudiant WHERE idEtudiant = "+getStudentID(loginEtu)+";";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("aideAuJury"));
-            queryResult.add(res.getInt("TP"));
-            queryResult.add(res.getInt("TD"));
-            queryResult.add(res.getString("filiere"));
+            while(res.next()) {
+                queryResult.add(res.getString("aideAuJury"));
+                queryResult.add(res.getInt("TP"));
+                queryResult.add(res.getInt("TD"));
+                queryResult.add(res.getString("filiere"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -264,10 +274,12 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomUE, coefficient FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE nomMod = "+moduleName+";";
+            String query = "SELECT nomUE, coefficient FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("nomUE"));
-            queryResult.add(res.getInt("coefficient"));
+            while(res.next()) {
+                queryResult.add(res.getString("nomUE"));
+                queryResult.add(res.getInt("coefficient"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -300,7 +312,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomNote, note, coefficient, dateEvaluation FROM Note WHERE nomMod ="+moduleName+" AND idEtudiant = "+id+";";
+            String query = "SELECT nomNote, note, coefficient, dateEvaluation FROM Note WHERE nomMod ='"+moduleName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nomNote = new ArrayList<String>();
             ArrayList<Integer> note = new ArrayList<Integer>();
@@ -347,9 +359,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = "+moduleName+" AND idEtudiant = "+id+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = '"+moduleName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            average = res.getFloat("average");
+            while(res.next()) {
+                average = res.getFloat("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -380,9 +394,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note FROM Note WHERE nomNote = "+markName+" AND idEtudiant = "+id+";";
+            String query = "SELECT note FROM Note WHERE nomNote = '"+markName+"' AND idEtudiant = "+id+";";
             ResultSet res = statement.executeQuery(query);
-            mark = res.getInt("note");
+            while(res.next()) {
+                mark = res.getInt("note");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -577,7 +593,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, note, coefficient FROM Note, Utilisateur JOIN Etudiant ON Etudiant.idEtudiant=Note.idEtudiant AND Etudiant.idUtilisateur=Utilisateur.idUtilisateur WHERE nomNote = "+nomNote+";";
+            String query = "SELECT nom, prenom, note, coefficient FROM Note, Utilisateur JOIN Etudiant ON Etudiant.idEtudiant=Note.idEtudiant AND Etudiant.idUtilisateur=Utilisateur.idUtilisateur WHERE nomNote = '"+nomNote+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -621,7 +637,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = "+moduleName+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
                 average = res.getDouble("average");
@@ -656,9 +672,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = "+markName+" AND nomMod = "+moduleName+";";
+            String query = "SELECT SUM(note*coefficient)/SUM(coefficient) AS average FROM Note WHERE nomNote = '"+markName+"' AND nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            average = res.getDouble("average");
+            while(res.next()) {
+                average = res.getDouble("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -687,9 +705,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomMod = "+moduleName+";";
+            String query = "SELECT AVG(noteSatisfaction) as average FROM Satisfaction WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
-            average = res.getDouble("average");
+            while(res.next()) {
+                average = res.getDouble("average");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
