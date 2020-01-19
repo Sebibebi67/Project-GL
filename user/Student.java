@@ -85,7 +85,7 @@ public class Student implements Role{
         array = Query.studentData(login);
         //string aideJury, int TP, int TD, String Filière
 
-        this.juryAdvice = array.get(0).toString();
+        this.juryAdvice = (String) array.get(0);
         this.tp = new Group("TP", (Integer) array.get(1));
         this.td = new Group("TD", (Integer) array.get(2));
         this.course = new Course(array.get(3).toString());

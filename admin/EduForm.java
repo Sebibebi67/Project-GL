@@ -125,13 +125,14 @@ public class EduForm {
     }
 
     public void createModuleList(){
+        modules = new ArrayList<>();
         ArrayList<String> modulesNames = new ArrayList<>();
 
         modulesNames = Query.courses(this.login);
 
 
         for (int i = 0 ; i < modulesNames.size(); i++){
-            modules.add(new Module(modulesNames.get(i).toString()));
+            modules.add(new Module((String) modulesNames.get(i)));
         }
     }
 
