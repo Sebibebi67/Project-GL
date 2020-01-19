@@ -31,8 +31,15 @@ public class Tool{
     * @author Sébastien HERT 
     * @param Object o to print
     */
-    public static void display(Object o){
+    public static void print(Object o){
         System.out.println(o.toString());
+    }
+
+    public static void print(ArrayList<String> array){
+        for(int i =0; i<array.size(); i++){
+            System.out.print(array.get(i));
+        }
+        System.out.println("");
     }
 
     public static List<?> objectToList(Object o){
