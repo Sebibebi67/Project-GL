@@ -98,7 +98,7 @@ public class Person{
                     role = new StudentOffice(login);
                     break;
                 case "DDE":
-                    role = new DepartementOfEducation();
+                    role = new DepartementOfEducation(login);
                     break;
                 default :
                     break;
