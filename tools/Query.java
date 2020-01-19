@@ -793,7 +793,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = "+idEtudiant+";";
+            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = '"+idEtudiant+"';";
             ArrayList<String> nomMod = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
@@ -832,7 +832,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomMod = "+moduleName+";";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomMod = '"+moduleName+"';";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
@@ -926,9 +926,11 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = "+idEtudiant+";";
+            String query = "SELECT aideAuJury FROM Etudiant WHERE idEtudiant = '"+idEtudiant+"';";
             ResultSet res = statement.executeQuery(query);
-            juryHelper = res.getString("aideAuJury");
+            while(res.next()){
+                juryHelper = res.getString("aideAuJury");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -958,7 +960,9 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT filiere FROM UE WHERE idUE = "+getTUID(tu)+";";
             ResultSet res = statement.executeQuery(query);
-            course = res.getString("filiere");
+            while(res.next()){
+                course = res.getString("filiere");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -1062,7 +1066,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM (Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE nomMod = "+moduleName+";";
+            String query = "SELECT nom, prenom, dateFin, dateDebut, heureFin, heureDebut FROM (Absence JOIN Etudiant ON Absence.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1167,7 +1171,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT note, questionnaire FROM Satisfaction WHERE nomMod = "+moduleName+";";
+            String query = "SELECT note, questionnaire FROM Satisfaction WHERE nomMod = '"+moduleName+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Integer> note = new ArrayList<Integer>();
             ArrayList<String> questionnaire = new ArrayList<String>();
@@ -1205,7 +1209,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE filiere = "+course+";";
+            String query = "SELECT nom, prenom FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur WHERE filiere = '"+course+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1243,7 +1247,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ="+template+";";
+            String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ='"+template+"';";
             ResultSet res = statement.executeQuery(query);
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
@@ -1283,11 +1287,14 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String request = "SELECT estJustifiee FROM Absence WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            String request = "SELECT estJustifiee FROM Absence WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = '"+date+"' AND heureDebut = '"+debut+"' AND heureFin = '"+fin+"';";
             ResultSet res = statement.executeQuery(request);
-            Boolean bool = res.getBoolean("estJustifiee");
+            Boolean bool = null;
+            while(res.next()){
+                bool = res.getBoolean("estJustifiee");
+            }
             Boolean estJustifiee  = !bool;
-            String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = "+date+" AND heureDebut = "+debut+" AND heureFin = "+fin+";";
+            String query = "UPDATE Absence SET estJustifiee = "+estJustifiee+" WHERE idEtudiant = "+Query.getStudentID(login)+" AND idModule = "+Query.getModuleID(nomMod)+" AND dateDebut = '"+date+"' AND heureDebut = '"+debut+"' AND heureFin = '"+fin+"';";
             statement.executeQuery(query);
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
