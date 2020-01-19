@@ -30,11 +30,13 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url+"?user="+user+"&password="+password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = "+login+";";
+            String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = '"+login+"';";
             ResultSet res = statement.executeQuery(query);
-            id = res.getInt("idUtilisateur");
+            while(res.next()) {
+                id = res.getInt("idUtilisateur");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -189,11 +191,13 @@ public class Query{
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM Utilisateur WHERE idUtilisateur = "+getUserID(login)+";";
             ResultSet res = statement.executeQuery(query);
-            queryResult.add(res.getString("login"));
-            queryResult.add(res.getString("mdp"));
-            queryResult.add(res.getString("nom"));
-            queryResult.add(res.getString("prenom"));
-            queryResult.add(res.getString("role"));
+            while(res.next()) {
+                queryResult.add(res.getString("login"));
+                queryResult.add(res.getString("mdp"));
+                queryResult.add(res.getString("nom"));
+                queryResult.add(res.getString("prenom"));
+                queryResult.add(res.getString("role"));
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();

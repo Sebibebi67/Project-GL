@@ -7,9 +7,3 @@
 <classpathentry kind="lib" path="./lib/javafx.web.jar"/>
 <classpathentry kind="lib" path="./lib/javafx-swt.jar"/>
 <classpathentry kinf="lib" path="./lib/jdbc.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre8.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre8-shaded.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre11.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre11-shaded.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre12.jar"/>
-<classpathentry kinf="lib" path="./mssql-jdbc-7.4.1.jre12-shaded.jar"/>

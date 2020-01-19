@@ -13,6 +13,7 @@ public class Test{
         String login = "dparis";
         String pswd = "priority";
         Main.createPerson(pswd, login);
+        Tool.print(Stockage.getPerson());
 
     }
 
