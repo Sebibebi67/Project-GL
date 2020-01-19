@@ -210,8 +210,8 @@ public class EduForm {
         for (int i=0 ; i<units.get(0).size() ; i++)
         {
             if (i>0)
-                code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n";
-            code += "<tr><th> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th><th> "+Double.toString((double) units.get(1).get(i)) + " </th></tr>\n";
+                code += "<tr>\n<td id=\"blank\"></td>\n<td id=\"blank\"></td>\n</tr>\n";
+            code += "<tr>\n<th> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th>\n<th> "+Double.toString((double) units.get(1).get(i)) + " </th>\n</tr>\n";
             
             even = -1;
             for (int j=0 ; j<modules.size() ; j++)
