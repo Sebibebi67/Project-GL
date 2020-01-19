@@ -30,7 +30,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"?user="+user+"&password="+password);
             Statement statement = conn.createStatement();
             String query = "SELECT idUtilisateur FROM Utilisateur WHERE login = "+login+";";
             ResultSet res = statement.executeQuery(query);
@@ -185,7 +185,7 @@ public class Query{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
             String query = "SELECT * FROM Utilisateur WHERE idUtilisateur = "+getUserID(login)+";";
             ResultSet res = statement.executeQuery(query);
