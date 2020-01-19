@@ -197,13 +197,13 @@ public class EduForm {
 
     /**
      * Generates a HTML table from a student's registered marks.
-     * @param student Student whose marks will be put into the table.
      * @return HTML code used to create the table.
      * @author Dejan PARIS
      */
-    public String createReportTable(Person student)
+    public String createReportTable()
     {
-        int even = -1;
+        int even;
+        int mod = 1;
         String code = "";
         ArrayList<ArrayList<?>> units = listOfTUs();
 
@@ -211,16 +211,16 @@ public class EduForm {
         {
             if (i>0)
                 code += "<tr><td id=\"blank\"></td><td id=\"blank\"></td></tr>\n";
-            code += "<tr><th> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th><th> "+units.get(1).get(i)+" </th></tr>\n";
+            code += "<tr><th> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th><th> "+Double.toString((double) units.get(1).get(i)) + " </th></tr>\n";
+            
+            even = -1;
             for (int j=0 ; j<modules.size() ; j++)
             {
                 if (units.get(0).get(i).equals(modules.get(j).getUnit()))
                 {
-                    if (even == -1)
-                        code += "<tr><td id=\"mod1\"> "+modules.get(j).getName()+" </td><td id=\"mod1\"> "+markModules.get(modules.get(j).getName())+" </td></tr>\n";
-                    else
-                        code += "<tr><td id=\"mod2\"> "+modules.get(j).getName()+" </td><td id=\"mod2\"> "+markModules.get(modules.get(j).getName())+" </td></tr>\n";
+                    code += "<tr>\n<td id=\"mod"+Integer.toString(mod)+"\"> "+modules.get(j).getName()+" </td>\n<td id=\"mod"+Integer.toString(mod)+"\"> "+Double.toString(markModules.get(modules.get(j).getName()))+" </td>\n</tr>\n";
                     even *= -1;
+                    mod += even;
                 }
             }
         }
@@ -229,14 +229,20 @@ public class EduForm {
     }
 
     /**
-     * Creates a report of a student's registered marks.
+     * Creates a report of a student's registered marks. Can be detailed (all marks) or not (only averages).
      * @param student Student whose report will be created.
+     * @param option The report will be short if 0, detailed if not.
      * @author Dejan PARIS
      */
-    public void generateReport(Person student) throws IOException
+    public void generateReport(Person student, int option) throws IOException
     {
         File tmpDir = new File("./reports");
-        File tmpFile = new File("./reports/template.html");
+        File tmpFile;
+        if (option == 0)
+            tmpFile = new File("./reports/template.html");
+        else
+            tmpFile = new File("./reports/template_detail.html");
+
         if (!tmpDir.exists())
             tmpDir.mkdirs();
         if (!tmpFile.exists())
@@ -248,8 +254,12 @@ public class EduForm {
         String firstname = student.getFirstname();
         Course course = ((Student) student.getRole()).getCourse();
 
-        String path = "./reports/"+surname+"_"+firstname+"_"+course.toString()+".html";
-        Files.copy(Path.of("./reports/template.html"), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
+        String path = "./reports/"+surname+"_"+firstname+"_"+course.toString();
+        if (option != 0)
+            path += "_detail";
+        path += ".html";
+
+        Files.copy(Path.of(tmpFile.getPath()), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
         if (!(new File(path)).exists())
         {
             // appeler une erreur ou recommencer
@@ -270,12 +280,113 @@ public class EduForm {
         else
             y2 = y1+1;
 
-        String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, createReportTable(student), Integer.toString(absenceTotal)};
+        String table;
+        if (option == 0)
+            table = createReportTable();
+        else
+            table = createDetailedReportTable();
+
+        String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, table, Integer.toString(absenceTotal)};
         String[] tags = {"$y1", "$y2", "$year", "$lastname", "$firstname", "$course", "$table", "$absences"};
 
         String text = Files.readString(Path.of(path));
         for (int i=0 ; i<9 ; i++)
             text = text.replace(tags[i], data[i]);
         Files.writeString(Path.of(path), text);
+    }
+
+    /**
+     * Generates a "detailed" HTML table from a student's registered marks.
+     * @return HTML code used to create the table.
+     * @author Dejan PARIS
+     */
+    public String createDetailedReportTable()
+    {
+        int mod = 1;
+        int even;
+        int cols = findMaxExams();
+        int counter = 0;
+        String code = "";
+        ArrayList<ArrayList<?>> units = listOfTUs();
+
+        code += "<tr>\n<th id=\"mod0name\"> UE / Module </th>\n<th id=\"mod0mark\"> Moyenne </th>\n";
+        for (int k=0 ; k<cols ; k++)
+        {
+            code += "<th id=\"mod0mark\"> Note (Coefficient) </th>\n";
+        }
+        code += "</tr>\n";
+
+        for (int i=0 ; i<units.get(0).size() ; i++)
+        {
+            if (i>0)
+            {
+                code += "<tr>";
+                for (int k=0 ; k<cols+2 ; k++)
+                {
+                    code += "<td id=\"blank\"></td>\n";
+                }
+                code += "</tr>\n";
+            }
+
+            code += "<tr>\n<th id=\"mod0name\"> "+((TeachingUnit) (units.get(0).get(i))).getName()+" </th>\n<th id=\"mod0mark\"> "+Double.toString((double) units.get(1).get(i)) + " </th>\n";
+            for (int k=0 ; k<cols ; k++)
+            {
+                code += "<th id=\"mod0mark\"></th>";
+            }
+            code += "</tr>\n";
+
+            even = -1;
+            for (int j=0 ; j<modules.size() ; j++)
+            {
+                if (units.get(0).get(i).equals(modules.get(j).getUnit()))
+                {
+                    code += "<tr>\n<td id=\"mod"+Integer.toString(mod)+"name\"> "+modules.get(j).getName()+" </td>\n<td id=\"mod"+Integer.toString(mod)+"mark\"> "+Double.toString(markModules.get(modules.get(j).getName()))+" </td>\n";
+                    for (int k=0 ; k<exams.size() ; k++)
+                    {
+                        if (modules.get(j).equals(exams.get(k).getModule()))
+                        {
+                            code += "<td id=\"mod"+Integer.toString(mod)+"mark\"> "+Double.toString(markExams.get(exams.get(k).getName()))+" ("+Integer.toString(exams.get(k).getCoeff())+") </td>\n";
+                            counter++;
+                        }
+                    }
+                    for (int k=0 ; k<cols-counter ; k++)
+                    {
+                        code += "<td id=\"mod"+Integer.toString(mod)+"mark\"></td>\n";
+                    }
+                    code += "</tr>\n";
+                    counter = 0;
+                    even *= -1;
+                    mod += even;
+                }
+            }
+        }
+
+        return code;
+    }
+
+    /**
+     * Finds the maximum number of exams for any of the modules that the student attends.
+     * @return Maximum number of exams for a single module.
+     * @author Dejan PARIS
+     */
+    public int findMaxExams()
+    {
+        int max = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i=0 ; i<modules.size() ; i++)
+        {
+            list.add(0);
+        }
+        for (int i=0 ; i<exams.size() ; i++)
+        {
+            int index = modules.indexOf(exams.get(i).getModule());
+            int prev = list.get(index);
+            list.set(index, prev+1);
+        }
+        for (int i=0 ; i<modules.size() ; i++)
+        {
+            if (max < list.get(i)) max = list.get(i);
+        }
+        return max;
     }
 }
