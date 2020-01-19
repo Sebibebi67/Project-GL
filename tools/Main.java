@@ -5,7 +5,7 @@ import user.*;
 public class Main{
 
     public static void main(String[] args) {
-        
+        Test.initStudent();
     }
 
     public static void createPerson(String pswd, String login){
