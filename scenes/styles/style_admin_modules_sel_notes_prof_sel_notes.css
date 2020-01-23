@@ -1,0 +1,88 @@
+.root
+{
+    -fx-background-color: #f0f4ff;
+    -fx-font: 12px verdana;
+}
+
+.menu-bar
+{
+    -fx-background-color: rgb(43, 42, 105);
+}
+
+.menu:showing
+{
+    -fx-background-color: rgb(48, 47, 110);
+}
+
+.menu:showing .label
+{
+    -fx-text-fill: white;
+}
+
+.menu .label
+{
+    -fx-text-fill: white;
+}
+
+.button
+{
+    -fx-color: #c4ceff;
+    -fx-font-weight: normal;
+}
+
+.tab
+{
+    -fx-color: #c4ceff;
+}
+
+.tab-header-background
+{
+    -fx-background-color: #f0f4ff;  
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgb(180, 180, 180);
+}
+
+.table-view
+{
+    -fx-color: #f0f4ff;
+    -fx-padding: 1px;
+    -fx-border-width: 3px;
+    -fx-border-color: rgb(47, 84, 151);
+}
+
+.table-view .label
+{
+    -fx-font-weight: normal;
+}
+
+.virtual-flow
+{
+    -fx-color:white;
+}
+
+.table-row-cell:filled:odd
+{
+    -fx-background-color: white;
+}
+
+.table-column
+{
+    -fx-border-width: 1 1 0 0;
+    -fx-border-color: rgb(165, 165, 165);
+}
+
+.scroll-bar
+{
+    -fx-color: #c4ceff;
+}
+
+.combo-box
+{
+    -fx-color: #c4ceff;
+}
+
+GridPane
+{
+    -fx-padding: 5px;
+    -fx-hgap: 5px;
+}
