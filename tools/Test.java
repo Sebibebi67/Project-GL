@@ -8,7 +8,10 @@ package tools;
  */
 public class Test{
 
-
+    /**
+     * Creates a valid student
+     * @author Sébastien HERT
+     */
     public static void initStudent(){
         String login = "dparis";
         String pswd = "priority";
@@ -17,6 +20,10 @@ public class Test{
 
     }
 
+    /**
+     * Creates a valid professor
+     * @author Sébastien HERT
+     */
     public static void initProfessor(){
         String login = "leuler";
         String pswd = "eipimoins1egal0";
@@ -24,6 +31,10 @@ public class Test{
         Tool.print(Stockage.getPerson());
     }
 
+    /**
+     * Creates a valid student office
+     * @author Sébastien HERT
+     */
     public static void initSO(){
         String login = "jferry";
         String pswd = "obligatoire";
@@ -31,6 +42,10 @@ public class Test{
         Tool.print(Stockage.getPerson());
     }
 
+    /**
+     * Creates a valid departement of education
+     * @author Sébastien HERT
+     */
     public static void initDOE(){
         String login = "adde";
         String pswd = "motdepassesécurisé";
@@ -38,6 +53,10 @@ public class Test{
         Tool.print(Stockage.getPerson());
     }
 
+    /**
+     * Tests an invalid login
+     * @author Sébastien HERT
+     */
     public static void initErrorLogin(){
         String login = "toto";
         String pswd = "yapadepano";
@@ -45,6 +64,10 @@ public class Test{
         Tool.print(Stockage.getPerson());
     }
 
+    /**
+     * Tests an invalid password
+     * @author Sébastien HERT
+     */
     public static void initErrorPswd(){
         String login = "dparis";
         String pswd = "yapadepano";
