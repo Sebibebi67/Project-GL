@@ -25,6 +25,7 @@ import tools.Query;
  * of a student.
  * 
  * @author Sébastien HERT
+ * @author Dejan PARIS
  * 
  */
 
@@ -40,9 +41,16 @@ public class EduForm {
     private ArrayList<Exam> exams;
     private Map<String, Double> markExams;
 
+    /**
+     * Constructor
+     */
     public EduForm() {
     }
 
+    /**
+     * Constructor
+     * @param login login of the student
+     */
     public EduForm(String login) {
         this.login = login;
         this.createAbsences();
@@ -54,55 +62,96 @@ public class EduForm {
         
     }
 
+    /**
+     * @return the student
+     */
     public Student getStudent() {
         return this.student;
     }
 
+    /**
+     * @param student student to set
+     */
     public void setStudent(Student student) {
         this.student = student;
     }
 
+    /**
+     * @return an list of the absences of the student
+     */
     public ArrayList<Absence> getAbsences(){
         return this.absences;
     }
 
+    /**
+     * @param absences list of absences to set
+     */
     public void setAbsences(ArrayList<Absence> absences){
         this.absences = absences;
     }
 
+    /**
+     * @return login of the student
+     */
     public String getLogin() {
         return this.login;
     }
 
+    /**
+     * @param login login to set
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * @return a list of the exams
+     */
     public ArrayList<Exam> getExams() {
 		return this.exams;
 	}
 
+    /**
+     * @param exams exams to set
+     */
 	public void setExams(ArrayList<Exam> exams) {
 		this.exams = exams;
     }
     
+    /**
+     * @return the exams and the marks
+     */
     public Map<String, Double> getMarkExams(){
         return this.markExams;
     }
 
+    /**
+     * @param map exams and marks to set
+     */
     public void setMarkExams(Map<String, Double>  map){
         this.markExams = map;
     }
 
+    /**
+     * @return a list of modules
+     */
     public ArrayList<Module> getModules() {
         return this.modules;
     }
 
+    /**
+     * @param modules list of modules to set
+     */
     public void setModules(ArrayList<Module> modules) {
         this.modules = modules;
     }
 
-
+    /**
+     * Creates a list of absences from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.absence
+     */
     public void createAbsences() {
         ArrayList<ArrayList<?>> array = new ArrayList<>();
         array = Query.absence(this.login);
@@ -115,6 +164,12 @@ public class EduForm {
         }
     }
 
+    /**
+     * Creates a map with the modules and the marks from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.studentAverage
+     */
     public void createMarkModules(){
         markModules = new HashMap<>();
         for (int i =0; i<modules.size(); i++){
@@ -124,6 +179,12 @@ public class EduForm {
         }
     }
 
+    /**
+     * Creates a list of modules from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.courses
+     */
     public void createModuleList(){
         modules = new ArrayList<>();
         ArrayList<String> modulesNames = new ArrayList<>();
@@ -136,6 +197,12 @@ public class EduForm {
         }
     }
 
+    /**
+     * Creates a map with the exams and the marks from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.exams
+     */
     public void createExams(){
         markExams = new HashMap<>();
         for( int i = 0; i< modules.size(); i++ ){
