@@ -14,9 +14,7 @@ public class Main extends Application{
 
     private Stage window;
     public static void main(String[] args) {
-        Test.initErrorLogin();
         launch(args);
-        // Test.initErrorPswd();
     }
 
     public static void createPerson(String pswd, String login){
