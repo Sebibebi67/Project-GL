@@ -1,12 +1,29 @@
 package user;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to a user account
+ * 
+ * @author Sébastien HERT
+ * @author Dejan PARIS
+ * 
+ */
+
 public class UserAccount {
 
 	private String login;
 	private String password;
 
+    /**
+     * Constructor
+     */
     public UserAccount () {}
     
+    /**
+     * Constructor
+     * @param login login of the user
+     * @param pswd password of the user
+     */
     public UserAccount (String login, String pswd) {
         this.login = login;
         this.password = pswd;
@@ -40,10 +57,19 @@ public class UserAccount {
         this.password = password;
     }
 
+    /**
+     * @return the login of the user
+     */
     public String toString() {
         return login;
     }
 
+    /**
+     * Tests if an account is equal to an other one
+     * @author Dejan PARIS
+     * @param account account to test
+     * @return true or false
+     */
     public boolean equals(UserAccount account)
     {
         return this.login.equals(account.getLogin());
