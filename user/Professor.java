@@ -11,40 +11,81 @@ import tools.Stockage;
 import tools.Tool;
 import study.Module;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to a Professor
+ * 
+ * @author Sébastien HERT
+ * @author Adam RIVIERE
+ * @author Dejan PARIS
+ * 
+ */
+
 public class Professor implements Role{
 
     private String login;
     private ArrayList<Module> modules;
     private ArrayList<ArrayList<Object>> students;
 
+    /**
+     * Constructor
+     */
     public Professor(){}
 
+    /**
+     * Constructor
+     * @param login login of the teacher
+     */
     public Professor(String login){
         this.login = login;
         this.createModule();
     }
 
+    /**
+     * @return login of the professor
+     */
     public String getLogin() {
         return this.login;
     }
 
+    /**
+     * @param login login to set
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * @return a list of modules
+     */
     public ArrayList<Module> getModules() {
         return this.modules;
     }
 
+    /**
+     * @param modules list of modules to set
+     */
     public void setModules(ArrayList<Module> modules) {
         this.modules = modules;
     }
 
+    /**
+     * Tests if a professor is equal to an other one
+     * @author Dejan PARIS
+     * @param professor teacher to test
+     * @return true or false
+     */
     public boolean equals(Professor professor)
     {
         return this.login.equals(professor.getLogin());
     }
 
+    /**
+     * Creates a list of modules from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.coursesTaught
+     */
     public void createModule(){
         modules = new ArrayList<>();
 
@@ -56,6 +97,13 @@ public class Professor implements Role{
         }
     }
 
+    /**
+     * Creates a list of the students of a module from the database
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @param module name of the module
+     * @see Query.attendees
+     */
     public void createListStudent(String module){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         array = Query.attendees(module);
@@ -73,6 +121,7 @@ public class Professor implements Role{
 
     /**
     * Returns the list of all the modules for a given teacher.
+    * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the modules of the professor.
     */
@@ -86,6 +135,7 @@ public class Professor implements Role{
 
     /**
     * Returns the list of all the students for a given module.
+    * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module with their average mark.
     */
@@ -108,6 +158,7 @@ public class Professor implements Role{
     
     /**
     * Returns the list of all the students for a given module.
+    * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module.
     */
@@ -126,6 +177,7 @@ public class Professor implements Role{
 
     /**
     * Returns the list of all the marks for a given student in a given module.
+    * @author Sébastien HERT
     * @author Adam RIVIERE
     * @param moduleName name of the selected module
     * @param login login of the selected student
@@ -155,6 +207,7 @@ public class Professor implements Role{
 
     /**
     * Returns the list of all the satisfaction reviews for a given module.
+    * @author Sébastien HERT
     * @author Adam RIVIERE
     * @param moduleName name of the selected module
     * @return an Array with the list of all the satisfaction reviews for a given module.
@@ -175,6 +228,12 @@ public class Professor implements Role{
         return array;
     }
 
+    /**
+     * Creates an AL<AL<String>> which contains all the names, dates and justifications of the absences of a student in a module to be displayed
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @return the list of the absences
+     */
     public ArrayList<ArrayList<String>> viewTableAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         Module module = Stockage.getActiveModule();
@@ -192,6 +251,17 @@ public class Professor implements Role{
         return array;
     }
 
+    /**
+     * Creates a new absence
+     * @author Sébastien HERT
+     * @param beginHourH begining hour of the absence
+     * @param beginHourM begining minute of the absence
+     * @param endHourH end hour of the absence
+     * @param endHourM end minute of the absence
+     * @param moduleName module concerned
+     * @param loginS login of the student
+     * @param date date of the absence
+     */
     public void newAbsence(String beginHourH, String beginHourM, String endHourH, String endHourM, String moduleName, String loginS, Date date ){
         if(Tool.isTime(beginHourH, beginHourM) && Tool.isTime(endHourH, endHourM)){
             Time beginTime = Tool.newTime(beginHourH, beginHourM);
@@ -202,6 +272,12 @@ public class Professor implements Role{
         }
     }
 
+    /**
+     * Gets the active module
+     * @author Sébastien HERT
+     * @param name name of the module
+     * @return the active module
+     */
     public Module getActiveModule(String name){
         for (int i = 0; i<this.modules.size(); i++){
             if( this.modules.get(i).getName().equals(name)){
@@ -211,6 +287,12 @@ public class Professor implements Role{
         return null;
     }
 
+    /**
+     * Gets the active student
+     * @author Sébastien HERT
+     * @param login of the student
+     * @return the active student
+     */
     public Student getActiveStudent(String login){
         Student student = new Student(login);
         return student;
