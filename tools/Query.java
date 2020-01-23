@@ -1329,4 +1329,45 @@ public class Query{
         }
     }
 
+    /**
+    * Gives the ranking of a student in a module in his course.
+    * @author Dejan PARIS
+    * @param login login of the student.
+    * @param nomMod name of the module.
+    * @param course course of the student.
+    */
+    public static ArrayList<Integer> moduleRank(String login, String nomMod, String course){
+        Connection conn = null;
+        ArrayList<Integer> rank = new ArrayList<>();
+        ArrayList<String> logins = new ArrayList<String>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT login FROM Utilisateur JOIN Etudiant ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE filiere = '"+course+"';";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                logins.add(res.getString("login"));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                } 
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        rank.set(0, logins.size());
+        ArrayList<Double> avg = new ArrayList<>();
+        for (int i=0 ; i<rank.get(0) ; i++)
+        {
+            //avg.add(studentModulesAverage(login));
+        }
+        return rank;
+    }
+
 }
