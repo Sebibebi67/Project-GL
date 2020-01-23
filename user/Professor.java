@@ -120,7 +120,7 @@ public class Professor implements Role{
     }
 
     /**
-    * Returns the list of all the modules for a given teacher.
+    * Returns the list of all the modules for a given teacher to be displayed.
     * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the modules of the professor.
@@ -134,7 +134,7 @@ public class Professor implements Role{
     }
 
     /**
-    * Returns the list of all the students for a given module.
+    * Returns the list of all the students for a given module to be displayed.
     * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module with their average mark.
@@ -157,7 +157,7 @@ public class Professor implements Role{
     }
     
     /**
-    * Returns the list of all the students for a given module.
+    * Returns the list of all the students for a given module to be displayed.
     * @author Sébastien HERT
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module.
@@ -176,7 +176,7 @@ public class Professor implements Role{
     }
 
     /**
-    * Returns the list of all the marks for a given student in a given module.
+    * Returns the list of all the marks for a given student in a given module to be displayed.
     * @author Sébastien HERT
     * @author Adam RIVIERE
     * @param moduleName name of the selected module
@@ -206,7 +206,7 @@ public class Professor implements Role{
     }
 
     /**
-    * Returns the list of all the satisfaction reviews for a given module.
+    * Returns the list of all the satisfaction reviews for a given module to be displayed.
     * @author Sébastien HERT
     * @author Adam RIVIERE
     * @param moduleName name of the selected module
@@ -229,7 +229,7 @@ public class Professor implements Role{
     }
 
     /**
-     * Creates an AL<AL<String>> which contains all the names, dates and justifications of the absences of a student in a module to be displayed
+     * Creates an AL<AL<String>> which contains all the names, dates and justifications of the absences of a student in a module to be displayed.
      * @author Sébastien HERT
      * @author Adam RIVIERE
      * @return the list of the absences
