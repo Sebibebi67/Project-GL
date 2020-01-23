@@ -10,47 +10,83 @@ import tools.Stockage;
 import tools.Tool;
 import study.Module;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to an Exam
+ * 
+ * @author Sébastien HERT
+ * @author Adam RIVIERE
+ * 
+ */
 public abstract class Administration implements Role {
 
 	private String login;
-	ArrayList<ArrayList<String>> students;
-	ArrayList<String> modules;
+	private ArrayList<ArrayList<String>> students;
+	private ArrayList<String> modules;
 
-	public Administration () {
 
-	}
+    /**
+     * Constructor
+     */
+	public Administration () {}
 
-	public String getLogin()
-	{
+
+    /**
+     * @return login the login
+     */
+	public String getLogin(){
 		return this.login;
 	}
 
-	public void setLogin(String login)
-	{
+    /**
+     * @param login the login to set
+     */
+	public void setLogin(String login){
 		this.login = login;
 	}
 
+    /**
+     * @return students the AL<AL<String> which contains the name, the firstname,the login and the course for each student
+     */
 	public ArrayList<ArrayList<String>> getStudents() {
 		return this.students;
 	}
 
+    /**
+     * @param students the AL<AL<String> which contains the name, the firstname, the login and the course for each student to set
+     */
 	public void setStudents(ArrayList<ArrayList<String>> students) {
 		this.students = students;
 	}
 
+    /**
+     * @return modules the AL<String> which contains the name of all modules
+     */
 	public ArrayList<String> getModules() {
 		return this.modules;
 	}
 
+    /**
+     * @param modules the AL<String> which contains the name of all modules to set
+     */
 	public void setModules(ArrayList<String> modules) {
 		this.modules = modules;
 	}
-
+    /**
+     * Inits all the arrays used is the class Administration
+     * @author Sébastien HERT
+     */
 	public void initArray(){
 		students = new ArrayList<>();
 		modules = new ArrayList<>();
 	}
 
+    /**
+     * Creates the list which contains the name, the firstname, the login and the course for each student to set
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.studentsSO()
+     */
 	public void createStudents(){
 		ArrayList<ArrayList<String>> array = new ArrayList<>();
 		array = Query.studentsSO();
@@ -66,11 +102,23 @@ public abstract class Administration implements Role {
 		}
 	}
 
+    /**
+     * Creates the list which contains the name of all modules
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @see Query.modulesSO()
+     */
 	public void createModules(){
 		modules = Query.modulesSO();
 	}
 
-	
+    /**
+     * Creates the list which contains the name, the firstname and the login of a student, the module name, the date and the hour and if his/her  absence is jusitified. All parameters are Strings.
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @return list of absences for the UI
+     * @see Query.allAbsences()
+     */
 	public ArrayList<ArrayList<String>> viewAbsences(){
 		ArrayList<ArrayList<?>> array = new ArrayList<>();
 		ArrayList<ArrayList<String>> absences = new ArrayList<>();
@@ -93,11 +141,26 @@ public abstract class Administration implements Role {
 		return absences;
 	}
 
+    /**
+     * Changes the justification of an absence
+     * @author Sébastien HERT
+     * @author Adam RIVIERE
+     * @param login String
+     * @param module String
+     * @param date String
+     * @see Query.justify(login, module, date, timeBegin, timeEnd)
+     * @see Tool.stringToDate(date)
+     */
 	public void updateJustification(String login, String module, String date){
 		Object[] obj = Tool.stringToDate(date);
 		Query.justify(login, module, (Date) obj[0], (Time) obj[1], (Time) obj[2]);
 	}
-
+    /**
+     * Creates the module by given the name
+     * @author Sébastien HERT
+     * @param name of the module in String
+     * @return module a module (eventually null)
+     */
 	public Module getActiveModule(String name){
         for (int i = 0; i<this.modules.size(); i++){
             if( this.modules.get(i).equals(name)){
@@ -106,14 +169,19 @@ public abstract class Administration implements Role {
         }
         return null;
     }
-
+    /**
+     * Creates the student by given the login
+     * @author Sébastien HERT
+     * @param login of the student
+     * @return student a student
+     */
     public Student getActiveStudent(String login){
         Student student = new Student(login);
         return student;
 	}
 	
 	/**
-    * Returns the list of all the students for a given module.
+    * Returns the list of all the students for a given module for the UI
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module with their average mark.
     */
@@ -135,7 +203,7 @@ public abstract class Administration implements Role {
 	}
 	
 	/**
-    * Returns the list of all the students for a given module.
+    * Returns the list of all the students for a given module for the UI
     * @author Adam RIVIERE
     * @return an Array with the list of all the students of the module.
     */
@@ -200,7 +268,12 @@ public abstract class Administration implements Role {
         }
         return array;
 	}
-	
+
+    /**
+    * Returns the list of all the absences for a given module.
+    * @author Sébastien HERT
+    * @return an Array with all the absences for a given module.
+    */
 	public ArrayList<ArrayList<String>> viewTableAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         Module module = Stockage.getActiveModule();
