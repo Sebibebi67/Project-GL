@@ -164,19 +164,27 @@ public class Absence {
     public void setTeacher(String teacher) {
         this.loginTeacher = teacher;
 	}
-	
-	// public String toString() {
-	// 	return student.toString() + " absent from " + module.toString() + " taught by " + teacher.toString() + " from " + beginDate.toString() + " ; " + beginHour.toString() + " to " + endDate.toString() + " ; " + endHour.toString() + ".";
-    // }
     
+    /**
+     * @return justify
+     */
     public Boolean isJustified() {
         return this.justified;
     }
 
+    /**
+     * @param justified boolean to set
+     */
     public void setJustified(Boolean justified) {
         this.justified = justified;
     }
 
+    /**
+     * Tests if an absence is equal to an other
+     * @author Dejan PARIS
+     * @param absence
+     * @return
+     */
     public boolean equals(Absence absence)
     {
         return this.loginStudent.equals(absence.getStudent()) && this.moduleName.equals(absence.getModuleName()) && this.beginDate.equals(absence.getBeginDate()) && this.beginHour.equals(absence.getBeginHour()) && this.endDate.equals(absence.getEndDate()) && this.endHour.equals(absence.getEndHour());
