@@ -3,6 +3,15 @@ package user;
 import tools.*;
 import java.util.ArrayList;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to a Person
+ * 
+ * @author Sébastien HERT
+ * @author Dejan PARIS
+ * 
+ */
+
 public class Person{
 
     private Role role;
@@ -12,8 +21,16 @@ public class Person{
 
     private UserAccount account;
 
+    /**
+     * Constructor
+     */
     public Person(){}
 
+    /**
+     * Constructor
+     * @param login login of the user
+     * @param pswd password of the user
+     */
     public Person(String login, String pswd){
         this.getData(login, pswd);        
     }
@@ -60,23 +77,46 @@ public class Person{
         this.firstname = firstname;
     }
 
+    /**
+     * @return the account linked to the user
+     */
     public UserAccount getAccount() {
         return this.account;
     }
 
+    /**
+     * @param account acount to set
+     */
     public void setAccount(UserAccount account) {
         this.account = account;
     }
 
+    /**
+     * Prints the name and surname of a user
+     * @author Sébastien HERT
+     * @return a string with the name and the surname
+     */
     public String toString() {
         return surname + " " + firstname;
     }
 
+    /**
+     * Tests if a person is equal to an other one
+     * @author Dejan PARIS
+     * @param person  person to test
+     * @return true or false
+     */
     public boolean equals(Person person)
     {
         return this.account.equals(person.getAccount());
     }
 
+    /**
+     * Gets the data of the user from the database
+     * @author Sébastien HERT
+     * @param login login of the user
+     * @param pswd password of the user
+     */
     public void getData(String login, String pswd){
         ArrayList<Object> array = new ArrayList<>();
         array = Query.userData(login);
