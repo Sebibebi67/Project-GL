@@ -16,8 +16,18 @@ public class Satisfaction{
     private int rating;
     private String review;
 
+    /**
+     * Constructor
+     */
     public Satisfaction(){}
 
+    /**
+     * Constructor
+     * @param login login of the student
+     * @param moduleName name of the module
+     * @param rating mark of satisfaction
+     * @param review review of satisfaction
+     */
     public Satisfaction(String login, String moduleName, int rating, String review){
         this.loginStudent = login;
         this.moduleName = moduleName;
@@ -25,6 +35,12 @@ public class Satisfaction{
         this.review = review;
     }
 
+    /**
+     * Constructor
+     * @param moduleName name of the module
+     * @param rating mark of satisfaction
+     * @param review review of satisfaction
+     */
     public Satisfaction(String moduleName, int rating, String review){
         this.loginStudent = null;
         this.moduleName = moduleName;
@@ -88,6 +104,9 @@ public class Satisfaction{
         this.review = review;
     }
 
+    /**
+     * @return the name of the student, the name of the module, the mark and the review
+     */
     public String toString() {
         return loginStudent + " rated " + moduleName + " " + Integer.toString(rating) + " stars and wrote : " + review;
     }

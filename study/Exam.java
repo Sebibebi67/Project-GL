@@ -18,8 +18,18 @@ public class Exam{
     private int coeff;
     private ArrayList<String> attendees;
     
+    /**
+     * Constructor
+     */
     public Exam(){}
 
+    /**
+     * Constructor
+     * @param name name of the exam
+     * @param date date of the exam
+     * @param coeff coefficient of the exam
+     * @param module module of the exam
+     */
     public Exam(String name, Date date, int coeff, Module module){
         this.name = name;
         this.date = date;
@@ -70,10 +80,16 @@ public class Exam{
         this.module = module;
     }
     
+    /**
+     * @return the coefficient of the exam
+     */
     public int getCoeff() {
         return this.coeff;
     }
 
+    /**
+     * @param coeff coefficient to set
+     */
     public void setCoeff(int coeff) {
         this.coeff = coeff;
     }
@@ -92,10 +108,19 @@ public class Exam{
         this.attendees = attendees;
     }
 
+    /**
+     * @return the name and the date of the exam
+     */
     public String toString() {
         return name + " : " + date.toString();
     }
 
+    /**
+     * Tests if an exam is equal to an other one
+     * @author Dejan PARIS
+     * @param exam exam to be tested
+     * @return true or false
+     */
     public boolean equals(Exam exam)
     {
         return this.name.equals(exam.getName()) && this.module.equals(exam.getModule());
