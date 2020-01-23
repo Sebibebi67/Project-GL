@@ -18,10 +18,10 @@ public class SQL{
     /**
     * Create a user
     * @author Adam RIVIERE 
-    * @param String nom surname of the user
-    * @param String prenom name of the user
-    * @param String mdp password of the user
-    * @param String role role of the user
+    * @param nom surname of the user
+    * @param prenom name of the user
+    * @param mdp password of the user
+    * @param role role of the user
     */
     public static void inscrire(String nom, String prenom, String mdp, String role){
         Connection conn = null;
@@ -55,10 +55,10 @@ public class SQL{
     /**
     * Create a unit
     * @author Adam RIVIERE 
-    * @param String nomUE name of the unit
-    * @param String loginRespo login of the teacher responsible for this unit
-    * @param int nbCredits number of credits allowed to this unit
-    * @param String filiere sector of the unit
+    * @param nomUE name of the unit
+    * @param loginRespo login of the teacher responsible for this unit
+    * @param nbCredits number of credits allowed to this unit
+    * @param filiere sector of the unit
     */
     public static void creerUE(String nomUE, String loginRespo, int nbCredits, String filiere){
         Connection conn = null;
@@ -92,8 +92,8 @@ public class SQL{
     /**
     * Create a module
     * @author Adam RIVIERE 
-    * @param String nomModule name of the module
-    * @param String loginRespo login of the teacher responsible for this module
+    * @param nomModule name of the module
+    * @param loginRespo login of the teacher responsible for this module
     */
     public static void creerModule(String nomModule, String loginRespo){
         Connection conn = null;
@@ -125,10 +125,10 @@ public class SQL{
     /**
     * Assign a module to a unit
     * @author Adam RIVIERE 
-    * @param String nomModule name of the module
-    * @param String titreUE name of the unit
-    * @param int coefficient coefficient of the module in the unit
-    * @param String fil sector of the module
+    * @param nomModule name of the module
+    * @param titreUE name of the unit
+    * @param coefficient coefficient of the module in the unit
+    * @param fil sector of the module
     */
     public static void constitue(String nomModule, String titreUE, int coefficient, String fil){
         Connection conn = null;
@@ -162,10 +162,10 @@ public class SQL{
     /**
     * Assign a teacher to a class
     * @author Adam RIVIERE 
-    * @param String loginU login of the user
-    * @param String nomModule name of the module
-    * @param String role type of class (CM/TP/TD)
-    * @param int idGroupe number of the group
+    * @param loginU login of the user
+    * @param nomModule name of the module
+    * @param role type of class (CM/TP/TD)
+    * @param idGroupe number of the group
     */
     public static void enseigne(String loginU, String nomModule, String role, int idGroupe){ // forcer idGroupe = 0 si role == CM dans le menu deroulant
         Connection conn = null;
@@ -203,8 +203,8 @@ public class SQL{
     /**
     * Assign a student to a class
     * @author Adam RIVIERE 
-    * @param String loginU login of the user
-    * @param String nomModule name of the module
+    * @param loginU login of the user
+    * @param nomModule name of the module
     */
     public static void assiste(String loginU, String nomModule){
         Connection conn = null;
@@ -236,8 +236,8 @@ public class SQL{
     /**
     * Assign a student to a group
     * @author Adam RIVIERE 
-    * @param int numero number of the group
-    * @param String loginEtu login of the student
+    * @param numero number of the group
+    * @param loginEtu login of the student
     */
     public static void assignerGroupeTD(int numero, String loginEtu){
         Connection conn = null;
@@ -269,8 +269,8 @@ public class SQL{
     /**
     * Assign a student to a group
     * @author Adam RIVIERE 
-    * @param int numero number of the group
-    * @param String loginEtu login of the student
+    * @param numero number of the group
+    * @param loginEtu login of the student
     */
     public static void assignerGroupeTP(int numero, String loginEtu){
         Connection conn = null;
@@ -347,12 +347,12 @@ public class SQL{
     /**
     * Creates a new absence in the database.
     * @author Adam RIVIERE
-    * @param Time beginHour hour of the begining of the absence
-    * @param Time endHour hour of the end of the absence
-    * @param String moduleName Module's name
-    * @param String loginS login of the absent student
-    * @param String loginP login of the professor
-    * @param Date date of the absence
+    * @param beginHour hour of the begining of the absence
+    * @param endHour hour of the end of the absence
+    * @param moduleName Module's name
+    * @param loginS login of the absent student
+    * @param loginP login of the professor
+    * @param date of the absence
     */
     public static void createAbsence(Time beginHour, Time endHour, String moduleName, String loginS, String loginP, Date date){
         Connection conn = null;
@@ -383,8 +383,8 @@ public class SQL{
     /**
     * Change the sector of a student
     * @author Adam RIVIERE  
-    * @param String newFiliere new sector of the student
-    * @param String loginEtu login of the student
+    * @param newFiliere new sector of the student
+    * @param loginEtu login of the student
     */
     public static void modifierFiliereEtudiant(String newFiliere, String loginEtu){
         Connection conn = null;
@@ -416,12 +416,12 @@ public class SQL{
     /**
     * Add a grade to a student
     * @author Adam RIVIERE  
-    * @param String nomNote name of the evaluation
-    * @param int valeur grade of the student
-    * @param int coeff coefficient of the evaluation
-    * @param Date date of the evaluation
-    * @param String loginU login of the student
-    * @param String nomModule name of the module
+    * @param nomNote name of the evaluation
+    * @param valeur grade of the student
+    * @param coeff coefficient of the evaluation
+    * @param date of the evaluation
+    * @param loginU login of the student
+    * @param nomModule name of the module
     */
     public static void note(String nomNote, int valeur, int coeff, Date jour, String loginU, String nomModule){
         Connection conn = null;
@@ -457,10 +457,10 @@ public class SQL{
     /**
     * Add a grade to a module
     * @author Adam RIVIERE 
-    * @param String loginU login of the student
-    * @param String nomModule name of the module
-    * @param String questionnaire comments on the module
-    * @param int note grade of the module
+    * @param loginU login of the student
+    * @param nomModule name of the module
+    * @param questionnaire comments on the module
+    * @param note grade of the module
     */
     public static void satisfaction(String loginU, String nomModule, String questionnaire, int note){
         Connection conn = null;
@@ -494,7 +494,7 @@ public class SQL{
     /**
     * Delete a user
     * @author Adam RIVIERE 
-    * @param String loginU login of the user
+    * @param loginU login of the user
     */
     public static void supprimer(String loginU){
         Connection conn = null;
@@ -525,8 +525,8 @@ public class SQL{
     /**
     * Delete a unit
     * @author Adam RIVIERE 
-    * @param String nom name of the unit
-    * @param String fil sector of the unit
+    * @param nom name of the unit
+    * @param fil sector of the unit
     */
     public static void supprUE(String nom, String fil){
         Connection conn = null;

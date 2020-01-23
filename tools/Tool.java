@@ -21,7 +21,7 @@ public class Tool{
     /**
     * Prints a String
     * @author Sébastien HERT 
-    * @param String s to print
+    * @param s to print
     */
     public static void print(String s){
         System.out.println(s);
@@ -30,7 +30,7 @@ public class Tool{
     /**
     * Prints a Object
     * @author Sébastien HERT 
-    * @param Object o to print
+    * @param o to print
     */
     public static void print(Object o){
         System.out.println(o.toString());
@@ -39,7 +39,7 @@ public class Tool{
     /**
     * Prints an ArrayList
     * @author Sébastien HERT 
-    * @param ArrayListt array to print
+    * @param array to print
     */
     public static void print(ArrayList<String> array){
         for(int i =0; i<array.size(); i++){
@@ -51,7 +51,7 @@ public class Tool{
     /**
     * Converts an object into a list
     * @author Sébastien HERT 
-    * @param Object o to convert
+    * @param o to convert
     * @return a list made with the object
     */
     public static List<?> objectToList(Object o){
@@ -68,7 +68,7 @@ public class Tool{
     /**
     * Converts a boolean to a string
     * @author Adam RIVIERE
-    * @param Boolean bool to convert
+    * @param bool to convert
     * @return string with the value in french
     */
     public static String booleanToString(boolean bool){
@@ -82,7 +82,7 @@ public class Tool{
     /**
     * Verifies if a string is an integer
     * @author Sébastien HERT 
-    * @param String str to verify
+    * @param str to verify
     * @return true or false
     */
     public static boolean isInt(String str){
@@ -96,7 +96,7 @@ public class Tool{
     /**
     * Converts a string to integer
     * @author Sébastien HERT 
-    * @param String str to convert
+    * @param str to convert
     * @return an integer
     */
     public static int stringToInt(String str){
@@ -111,7 +111,7 @@ public class Tool{
     /**
     * Verifies if an int is an hour
     * @author Sébastien HERT 
-    * @param int h to verify
+    * @param h to verify
     * @return true or false
     */
     public static boolean isHour(int h){
@@ -121,7 +121,7 @@ public class Tool{
     /**
     * Verifies if an int is a minute
     * @author Sébastien HERT 
-    * @param int m to verify
+    * @param m to verify
     * @return true or false
     */
     public static boolean isMinute(int m){
@@ -131,8 +131,8 @@ public class Tool{
     /**
     * Verifies if a couple of integers is a time
     * @author Sébastien HERT 
-    * @param int h to verify
-    * @param int m to verify
+    * @param h to verify
+    * @param m to verify
     * @return true or false
     */
     public static boolean isTime(String h, String m){
@@ -142,8 +142,8 @@ public class Tool{
     /**
     * Converts a couple of integers to a time
     * @author Sébastien HERT 
-    * @param int h to use
-    * @param int m to use
+    * @param h to use
+    * @param m to use
     * @return a time
     */
     public static Time newTime(String h, String m){
@@ -153,7 +153,7 @@ public class Tool{
     /**
     * Adds a zero before a string
     * @author Sébastien HERT 
-    * @param String s to modify
+    * @param s to modify
     * @return the modified string
     */
     public static String addingZero(String s){
@@ -167,9 +167,9 @@ public class Tool{
     /**
     * Converts a date and time to a string
     * @author Sébastien HERT 
-    * @param Date date to convert
-    * @param Time begin to convert
-    * @param Time end to convert
+    * @param date to convert
+    * @param begin to convert
+    * @param end to convert
     * @return a string with the date and time
     */
     public static String dateToString(Date date, Time begin, Time end){
@@ -179,7 +179,7 @@ public class Tool{
     /**
     * Converts a Date to a string
     * @author Sébastien HERT 
-    * @param Date date to convert
+    * @param date to convert
     * @return a string with the date
     */
     public static String getFrenchDate(Date date){
@@ -190,7 +190,7 @@ public class Tool{
     /**
     * Converts a time to a string
     * @author Sébastien HERT 
-    * @param Time time to convert
+    * @param time to convert
     * @return a string with the time
     */
     public static String getHMTime(Time time){
@@ -201,7 +201,7 @@ public class Tool{
     /**
     * Converts a string to an object with three parts
     * @author Sébastien HERT 
-    * @param String s to convert
+    * @param s to convert
     * @return a three parts object
     */
     public static Object[] stringToDate(String s){
@@ -219,7 +219,7 @@ public class Tool{
     /**
     * Converts a string to a date
     * @author Sébastien HERT 
-    * @param String s to convert
+    * @param s to convert
     * @return a date
     * @see Tools.dateToString
     */
@@ -231,7 +231,7 @@ public class Tool{
     /**
     * Converts a string to a time
     * @author Sébastien HERT 
-    * @param String s to convert
+    * @param s to convert
     * @return a time
     * @see Tools.timeToString
     */

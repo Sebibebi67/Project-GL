@@ -7,6 +7,7 @@ import java.sql.Time;
  * 
  * This class contains all the methods and attributs linked with the management of absences
  * @author Sébastien HERT 
+ * @author Dejan PARIS
  * 
  */
 
@@ -22,11 +23,21 @@ public class Absence {
     private Boolean justified;
 
 
-
+    /**
+     * Constructor
+     */
 	public Absence () {
 
     }
     
+    /**
+     * Constructor
+     * @param beginDate date of the begining of the absence
+     * @param beginHour hour of the begining of the absence
+     * @param endDate date of the end of the absence
+     * @param endHour hour of the end of the absence
+     * @param justified justification of the absence
+     */
     public Absence (Date beginDate, Time beginHour, Date endDate, Time endHour, Boolean justified) {
         this.beginDate = beginDate;
         this.beginHour = beginHour;
@@ -38,6 +49,14 @@ public class Absence {
         this.justified = justified;
     }
     
+    /**
+     * Constructor
+     * @param date date of the absence
+     * @param beginHour hour of the begining of the absence
+     * @param endHour hour of the end of the absence
+     * @param loginStudent login of the absent student
+     * @param loginTeacher login of the teacher
+     */
     public Absence(Date date, Time beginHour, Time endHour, String loginStudent, String loginTeacher){
         this.beginDate = date;
         this.endDate = date;

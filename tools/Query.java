@@ -21,7 +21,7 @@ public class Query{
     /**
     * Returns the user's ID given its login.
     * @author Dejan PARIS 
-    * @param String login User's login
+    * @param login User's login
     * @return User's ID
     */
     public static int getUserID(String login){
@@ -87,7 +87,7 @@ public class Query{
     /**
     * Returns the student's ID given its login.
     * @author Thomas LEPERCQ 
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return Student's ID
     */
     public static int getStudentID(String loginEtu){
@@ -120,7 +120,7 @@ public class Query{
     /**
     * Returns the teacher's ID given its login.
     * @author Dejan PARIS 
-    * @param String loginEns Teacher's login
+    * @param loginEns Teacher's login
     * @return Teacher's ID
     */
     public static int getTeacherID(String loginEns){
@@ -153,7 +153,7 @@ public class Query{
     /**
     * Returns the TU's ID given its name.
     * @author Thomas LEPERCQ 
-    * @param String tu TU's name
+    * @param tu TU's name
     * @return TU's ID
     */
     public static int getTUID(String tu){
@@ -186,7 +186,7 @@ public class Query{
     /**
     * Returns user's information given its login.
     * @author Dejan PARIS
-    * @param String login User's login
+    * @param login User's login
     * @return an Array with user's information (login, password, name, firstname and role)
     */
     public static ArrayList<Object> userData(String login){
@@ -225,7 +225,7 @@ public class Query{
     /**
     * Returns student's information given its login.
     * @author Dejan PARIS
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array with student's information
     */
     public static ArrayList<Object> studentData(String loginEtu){
@@ -263,7 +263,7 @@ public class Query{
     /**
     * Returns module's information given its name.
     * @author Dejan PARIS
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array with the name of TU and the coefficient of the module in this TU.
     */
     public static ArrayList<Object> coeffInTU(String moduleName){
@@ -299,8 +299,8 @@ public class Query{
     /**
     * Returns each evaluations' name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
-    * @param String moduleName Module's name
-    * @param String loginEtu Student's login
+    * @param moduleName Module's name
+    * @param loginEtu Student's login
     * @return an Array of evaluations with Arrays for their names, marks and coefficient 
     */
     public static ArrayList<ArrayList<?>> exams(String moduleName, String loginEtu){
@@ -346,8 +346,8 @@ public class Query{
     /**
     * Returns average mark for a given module and student.
     * @author Thomas LEPERCQ 
-    * @param String moduleName Module's name
-    * @param String loginEtu Student's login
+    * @param moduleName Module's name
+    * @param loginEtu Student's login
     * @return a double (number type) with the average mark
     */
     public static double studentAverage(String moduleName, String loginEtu){
@@ -381,8 +381,8 @@ public class Query{
     /**
     * Returns mark for a given evaluation and student.
     * @author Thomas LEPERCQ 
-    * @param String nomNote Evaluation's name
-    * @param String loginEtu Student's login
+    * @param nomNote Evaluation's name
+    * @param loginEtu Student's login
     * @return an integer with the mark.
     */
     public static int mark(String markName, String loginEtu){
@@ -416,7 +416,7 @@ public class Query{
     /**
     * Returns all attended modules for a given student.
     * @author Thomas LEPERCQ
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array with the courses names.
     */
     public static ArrayList<String> courses(String loginEtu){
@@ -450,7 +450,7 @@ public class Query{
     /**
     * Returns all attended TUs for a given student.
     * @author Thomas LEPERCQ
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array with the TUs names.
     */
     public static ArrayList<String> attendedTUs(String loginEtu){
@@ -484,7 +484,7 @@ public class Query{
     /**
     * Returns all missed classes for a given student.
     * @author Thomas LEPERCQ 
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array of absences with Arrays for their dates, hours and justification state.
     */
     public static ArrayList<ArrayList<?>> absence(String loginEtu){
@@ -532,7 +532,7 @@ public class Query{
     /**
     * Returns all missed classes for a given student and a given module.
     * @author Adam RIVIERE
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array of absences with Arrays for their dates, hours and justification state.
     */
     public static ArrayList<ArrayList<?>> absenceModule(String loginEtu, String moduleName){
@@ -581,7 +581,7 @@ public class Query{
     /**
     * Returns mark of each student for a given evaluation.
     * @author Thomas LEPERCQ 
-    * @param String nomNote Evaluation's name
+    * @param nomNote Evaluation's name
     * @return an Array of results with Arrays for the name and firstname of the student
     * and Arrays for the mark and coefficient associated with the student.
     */
@@ -626,7 +626,7 @@ public class Query{
     /**
     * Returns average mark for a given module.
     * @author Thomas LEPERCQ 
-    * @param String moduleName Module's name
+    * @param moduleName Module's name
     * @return a double (number type) with the average mark.
     */
     public static double courseAverage(String moduleName){
@@ -660,8 +660,8 @@ public class Query{
     /**
     * Returns average mark for a given evaluation.
     * @author Thomas LEPERCQ 
-    * @param String markName Evaluation's name
-    * @param String moduleName Module's name
+    * @param markName Evaluation's name
+    * @param moduleName Module's name
     * @return a double (number type) with the average mark.
     */
     public static double examAverage(String markName, String moduleName){
@@ -694,7 +694,7 @@ public class Query{
     /**
     * Returns average mark of satisfaction for a given module.
     * @author Thomas LEPERCQ 
-    * @param String moduleName Module's name
+    * @param moduleName Module's name
     * @return a double (number type) with the average mark.
     */
     public static double satisfactionAverage(String moduleName){
@@ -727,7 +727,7 @@ public class Query{
     /**
     * Returns all courses taught by a given teacher.
     * @author Dejan PARIS 
-    * @param String loginEns Teacher's login
+    * @param loginEns Teacher's login
     * @return an Array the courses names.
     */
     public static ArrayList<String> coursesTaught(String loginEns){
@@ -760,7 +760,7 @@ public class Query{
     /**
     * Returns all students attending a given course.
     * @author Dejan PARIS 
-    * @param String moduleName Module's name
+    * @param moduleName Module's name
     * @return an Array with the firstnames, surnames and logins of the students.
     */
     public static ArrayList<ArrayList<String>> attendees(String moduleName){
@@ -801,7 +801,7 @@ public class Query{
     /**
     * Returns average mark for each course attended by a given student.
     * @author Dejan PARIS 
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return an Array with Arrays for the modules' names and the average mark associated with it.
     */
     public static ArrayList<ArrayList<?>> studentModulesAverage(String loginEtu){
@@ -840,7 +840,7 @@ public class Query{
     /**
     * Returns name, login and average mark for all student attending a given module.
     * @author Dejan PARIS
-    * @param String moduleName Module's name
+    * @param moduleName Module's name
     * @return an Array with Arrays for the students' name and firstname
     * and the average mark associated with him.
     */
@@ -934,7 +934,7 @@ public class Query{
     /**
     * Returns automatically generated answer wether a given student should double this year, invalidate it or pass it.
     * @author Thomas LEPERCQ
-    * @param String loginEtu Student's login
+    * @param loginEtu Student's login
     * @return a String with the automatically generated answer.
     */
     public static String juryHelper(String loginEtu){
@@ -1075,7 +1075,7 @@ public class Query{
     /**
     * Returns the list of all the absences for a given module.
     * @author Dejan PARIS
-    * @param String moduleName Module's name.
+    * @param moduleName Module's name.
     * @return an Array with the list of all the absences.
     */
     public static ArrayList<ArrayList<?>> allModuleAbsences(String moduleName){
@@ -1180,7 +1180,7 @@ public class Query{
     /**
     * Returns the list of all the satisfactions for a given module.
     * @author Dejan PARIS
-    * @param String moduleName Module's name.
+    * @param moduleName Module's name.
     * @return an Array with the list of all the satisfactions.
     */
     public static ArrayList<ArrayList<?>> allModuleSatisfactions(String moduleName){
@@ -1218,7 +1218,7 @@ public class Query{
     /**
     * Returns the list of all the students in a given course.
     * @author Dejan PARIS
-    * @param String course Course's name.
+    * @param course Course's name.
     * @return an Array with the list of all the students in the course.
     */
     public static ArrayList<ArrayList<String>> allStudentsInCourse(String course){
@@ -1256,7 +1256,7 @@ public class Query{
     /**
     * Search method : finds the students whose name begins like the 'template' parameter.
     * @author Dejan PARIS
-    * @param String template Beginning of the name to search for.
+    * @param template Beginning of the name to search for.
     * @return an Array with the list of all the matching names.
     */
     public static ArrayList<ArrayList<String>> allStudentsNamesLike(String template){
@@ -1294,8 +1294,8 @@ public class Query{
     /**
     * Search method : finds the students whose name begins like the 'template' parameter.
     * @author Adam RIVIERE
-    * @param String login login of the student.
-    * @param String nomMod name of the module.
+    * @param login login of the student.
+    * @param nomMod name of the module.
     * @param Date date date of the absence.
     * @param Time debut begining of the absence.
     * @param Time fin end of the absence.
