@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+// import javax.swing.table.TableModel;
+
 // import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -171,7 +173,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     }
 
-    ObservableList<TableModel> olist = FXCollections.observableArrayList();
+    ObservableList<TableGradesStudent> olist = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -193,17 +195,17 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         tableNotesEleve.setItems(this.olistGradeStudent);
     }
 
-    public ObservableList<TableModel> feelTableMark( ObservableList<TableModel> obl){
+    public ObservableList<TableGradesStudent> feelTableMark( ObservableList<TableGradesStudent> obl){
         ArrayList<ArrayList<String>> array = ( (Student) Stockage.getPerson().getRole() ).viewTableMark();
         for (int i = 0; i< array.size(); i++){
-            obl.add(new TableModel( array.get(i).get(0),
+            obl.add(new TableGradesStudent( array.get(i).get(0),
                                     array.get(i).get(1),
                                     array.get(i).get(2)));
         }
         return obl;
-        olistGradeModule.add(new TableGradesModule("Le gros ds","10"));
-olistGradeModule.add(new TableGradesModule("Le bon ds","0"));
-tableNotesModule.setItems(olistGradeModule);
+//         olistGradeModule.add(new TableGradesModule("Le gros ds","10"));
+// olistGradeModule.add(new TableGradesModule("Le bon ds","0"));
+// tableNotesModule.setItems(olistGradeModule);
     }
 
 }
