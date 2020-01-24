@@ -18,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 public class ModulesProfController extends ControllerAbs{
 
 
+      ObservableList<TableModuleList> olist = FXCollections.observableArrayList();
+
         @FXML
         private ResourceBundle resources;
 
@@ -34,10 +36,10 @@ public class ModulesProfController extends ControllerAbs{
         private MenuItem quitterMenu;
 
         @FXML
-        private TableView<?> tableModulesProf;
+        private TableView<TableModuleList> tableModulesProf;
 
         @FXML
-        private TableColumn<?, ?> coursColumn;
+        private TableColumn<TableModuleList, String> coursColumn;
 
         @FXML
         private ComboBox<String> selectionModuleCombo;
@@ -54,7 +56,7 @@ public class ModulesProfController extends ControllerAbs{
     }
 
         @FXML
-        void SelectionModule(MouseEvent event) throws Exception {
+        void SelectionModule(ActionEvent event) throws Exception {
 
             String value = selectionModuleCombo.getValue();
         System.out.println(value);
@@ -90,12 +92,14 @@ public class ModulesProfController extends ControllerAbs{
     @FXML
     public void initialize() {
         this.setData();
+        coursColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        olist.add(new TableModuleList("module1"));
+        olist.add(new TableModuleList("module2"));
+        olist.add(new TableModuleList("module3"));
+        olist.add(new TableModuleList("module4"));
+        olist.add(new TableModuleList("module5"));
+        tableModulesProf.setItems(olist);
     }
 
 
 }
-
-
-
-
-

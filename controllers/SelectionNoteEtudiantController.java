@@ -21,6 +21,17 @@ import javafx.scene.layout.VBox;
 
 public class SelectionNoteEtudiantController extends ControllerAbs{
 
+
+
+    ObservableList<TableGradesStudent> olistGradeStudent = FXCollections.observableArrayList();
+    ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
+
+        @FXML
+        private TableColumn<TableGradesModule, String> nomNoteColumn;
+
+        @FXML
+        private TableColumn<TableGradesModule , String> noteColumn;
+
         @FXML
         private ResourceBundle resources;
 
@@ -43,7 +54,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private ComboBox<String> comboModuleNotes;
 
         @FXML
-        private TableView<?> tableNotesModule;
+        private TableView<TableGradesModule> tableNotesModule;
 
         @FXML
         private ComboBox<String> comboModuleAbsence;
@@ -64,16 +75,16 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private Button ajoutSatisfactionButton;
 
         @FXML
-        private TableView<TableModel> tableNotesEleve;
+        private TableView<TableGradesStudent> tableNotesEleve;
 
         @FXML
-        private TableColumn<TableModel, String> uETableColumn;
+        private TableColumn<TableGradesStudent, String> uETableColumn;
 
         @FXML
-        private TableColumn<TableModel, String> moduleTableColumn;
+        private TableColumn<TableGradesStudent, String> moduleTableColumn;
 
         @FXML
-        private TableColumn<TableModel, String> moyenneTableColumn;
+        private TableColumn<TableGradesStudent, String> moyenneTableColumn;
 
         @FXML
         void ajouterSatisfaction(ActionEvent event) {
@@ -178,8 +189,8 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
         moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
         moyenneTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-        this.olist = this.feelTableMark(this.olist);
-        tableNotesEleve.setItems(this.olist);
+        this.olist = this.feelTableMark(this.olistGradeStudent);
+        tableNotesEleve.setItems(this.olistGradeStudent);
     }
 
     public ObservableList<TableModel> feelTableMark( ObservableList<TableModel> obl){
@@ -190,6 +201,9 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
                                     array.get(i).get(2)));
         }
         return obl;
+        olistGradeModule.add(new TableGradesModule("Le gros ds","10"));
+olistGradeModule.add(new TableGradesModule("Le bon ds","0"));
+tableNotesModule.setItems(olistGradeModule);
     }
 
 }

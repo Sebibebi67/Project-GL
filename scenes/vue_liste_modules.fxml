@@ -37,7 +37,7 @@
                       <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="tableModulesProf" onMouseClicked="#SelectionModule" prefHeight="247.0" prefWidth="640.0">
+                        <TableView fx:id="tableModulesProf" prefHeight="247.0" prefWidth="640.0">
                            <columns>
                               <TableColumn fx:id="coursColumn" prefWidth="639.0" text="liste cours" />
                            </columns>
@@ -45,7 +45,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <ComboBox fx:id="selectionModuleCombo" onMouseClicked="#SelectionModule" prefHeight="46.0" prefWidth="299.0" promptText="selection module" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <ComboBox fx:id="selectionModuleCombo" onAction="#SelectionModule" prefHeight="46.0" prefWidth="299.0" promptText="selection module" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
             </children>

@@ -12,7 +12,7 @@ package controllers;
 // import javafx.scene.layout.AnchorPane;
 // import javafx.stage.Stage;
 
-public class TableModel {
+public class TableGradesStudent {
 
     String ue;
 
@@ -44,7 +44,7 @@ public class TableModel {
         this.ue = ue;
     }
 
-    public TableModel(String ue, String module, String moyenne){
+    public TableGradesStudent(String ue, String module, String moyenne){
         this.ue = ue;
         this.module = module;
         this.moyenne = moyenne;
