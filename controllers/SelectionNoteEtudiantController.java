@@ -1,5 +1,10 @@
 package controllers;
+
+import tools.Stockage;
+import user.Student;
+
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 // import javafx.beans.Observable;
@@ -92,13 +97,16 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         combobox.getItems().clear();
 
-        combobox.getItems().addAll(
-                "Module1 ",
-                "Module 2",
-                "Module 3",
-                "Module 4",
-                "Module 5");
+        combobox = this.feelComboBoxModule(combobox);
 
+    }
+
+    public ComboBox<String> feelComboBoxModule(ComboBox<String> combobox){
+        ArrayList<String> array =  ( (Student) Stockage.getPerson().getRole() ).viewlistModules();
+        for (int i = 0; i<array.size(); i++){
+            combobox.getItems().add(array.get(i));
+        }
+        return combobox;
     }
 
 
@@ -136,7 +144,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("login.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
         Scene sceneFromAnchor = anchorEtuNote.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -170,9 +178,18 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
         moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
         moyenneTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-        olist.add(new TableModel("ue1","module1","moyenne1"));
-        olist.add(new TableModel("ue2","module2","moyenne2"));
-        tableNotesEleve.setItems(olist);
+        this.olist = this.feelTableMark(this.olist);
+        tableNotesEleve.setItems(this.olist);
+    }
+
+    public ObservableList<TableModel> feelTableMark( ObservableList<TableModel> obl){
+        ArrayList<ArrayList<String>> array = ( (Student) Stockage.getPerson().getRole() ).viewTableMark();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableModel( array.get(i).get(0),
+                                    array.get(i).get(1),
+                                    array.get(i).get(2)));
+        }
+        return obl;
     }
 
 }

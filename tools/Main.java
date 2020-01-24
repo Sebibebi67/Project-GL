@@ -33,7 +33,7 @@ public class Main extends Application{
             e.printStackTrace();
             System.out.println("error");
         }
-        window.setTitle("Test");
+        window.setTitle("HORDE, LA QUALITÉ");
         window.setScene(new Scene(root));
         window.setResizable(true);
         window.show();

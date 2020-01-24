@@ -165,8 +165,8 @@ public class Student implements Role{
      * @return the list of the modules and marks
      * @see Query.studentAverage
      */
-    public ArrayList<ArrayList<?>> viewTableMark(){
-        ArrayList<ArrayList<?>> list = new ArrayList<>();
+    public ArrayList<ArrayList<String>> viewTableMark(){
+        ArrayList<ArrayList<String>> list = new ArrayList<>();
         ArrayList<Module> modules = this.form.getModules();
 
         for (int i =0; i<modules.size(); i++){

@@ -54,7 +54,7 @@ public class LoginController extends ControllerAbs {
 
     @FXML
     void loginProgram(ActionEvent event) throws Exception {
-        System.out.println("done");
+        // System.out.println("done");
 
         String login = loginField.getText();
         String pswd = passwordtextField.getText();
@@ -73,14 +73,14 @@ public class LoginController extends ControllerAbs {
 
         } else if (role instanceof Professor) {
             //prof
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_liste_modules.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_liste_modules.fxml"));
 
             Scene sceneFromAnchor = anchorLogin.getScene();
             sceneFromAnchor.setRoot(pane);
 
         } else if (role instanceof Administration) {
             //administration
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_administration.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
             Scene sceneFromAnchor = anchorLogin.getScene();
             sceneFromAnchor.setRoot(pane);
