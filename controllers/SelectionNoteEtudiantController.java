@@ -1,5 +1,10 @@
-package sample;
+package controllers;
+
+import tools.Stockage;
+import user.Student;
+
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 // import javafx.beans.Observable;
@@ -15,6 +20,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 public class SelectionNoteEtudiantController extends ControllerAbs{
+
+
+
+    ObservableList<TableGradesStudent> olistGradeStudent = FXCollections.observableArrayList();
+    ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
+
+        @FXML
+        private TableColumn<TableGradesModule, String> nomNoteColumn;
+
+        @FXML
+        private TableColumn<TableGradesModule , String> noteColumn;
 
         @FXML
         private ResourceBundle resources;
@@ -38,7 +54,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private ComboBox<String> comboModuleNotes;
 
         @FXML
-        private TableView<?> tableNotesModule;
+        private TableView<TableGradesModule> tableNotesModule;
 
         @FXML
         private ComboBox<String> comboModuleAbsence;
@@ -59,16 +75,16 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private Button ajoutSatisfactionButton;
 
         @FXML
-        private TableView<TableModel> tableNotesEleve;
+        private TableView<TableGradesStudent> tableNotesEleve;
 
         @FXML
-        private TableColumn<TableModel, String> uETableColumn;
+        private TableColumn<TableGradesStudent, String> uETableColumn;
 
         @FXML
-        private TableColumn<TableModel, String> moduleTableColumn;
+        private TableColumn<TableGradesStudent, String> moduleTableColumn;
 
         @FXML
-        private TableColumn<TableModel, String> moyenneTableColumn;
+        private TableColumn<TableGradesStudent, String> moyenneTableColumn;
 
         @FXML
         void ajouterSatisfaction(ActionEvent event) {
@@ -92,13 +108,16 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         combobox.getItems().clear();
 
-        combobox.getItems().addAll(
-                "Module1 ",
-                "Module 2",
-                "Module 3",
-                "Module 4",
-                "Module 5");
+        combobox = this.feelComboBoxModule(combobox);
 
+    }
+
+    public ComboBox<String> feelComboBoxModule(ComboBox<String> combobox){
+        ArrayList<String> array =  ( (Student) Stockage.getPerson().getRole() ).viewlistModules();
+        for (int i = 0; i<array.size(); i++){
+            combobox.getItems().add(array.get(i));
+        }
+        return combobox;
     }
 
 
@@ -136,7 +155,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("login.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
         Scene sceneFromAnchor = anchorEtuNote.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -170,9 +189,21 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
         moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
         moyenneTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-        olist.add(new TableModel("ue1","module1","moyenne1"));
-        olist.add(new TableModel("ue2","module2","moyenne2"));
-        tableNotesEleve.setItems(olist);
+        this.olist = this.feelTableMark(this.olistGradeStudent);
+        tableNotesEleve.setItems(this.olistGradeStudent);
+    }
+
+    public ObservableList<TableModel> feelTableMark( ObservableList<TableModel> obl){
+        ArrayList<ArrayList<String>> array = ( (Student) Stockage.getPerson().getRole() ).viewTableMark();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableModel( array.get(i).get(0),
+                                    array.get(i).get(1),
+                                    array.get(i).get(2)));
+        }
+        return obl;
+        olistGradeModule.add(new TableGradesModule("Le gros ds","10"));
+olistGradeModule.add(new TableGradesModule("Le bon ds","0"));
+tableNotesModule.setItems(olistGradeModule);
     }
 
 }

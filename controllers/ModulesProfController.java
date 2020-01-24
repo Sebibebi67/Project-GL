@@ -1,7 +1,10 @@
-package sample;
+package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +14,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 // import javafx.scene.layout.Pane;
 
 public class ModulesProfController extends ControllerAbs{
 
+
+      ObservableList<TableModuleList> olist = FXCollections.observableArrayList();
 
         @FXML
         private ResourceBundle resources;
@@ -34,10 +40,10 @@ public class ModulesProfController extends ControllerAbs{
         private MenuItem quitterMenu;
 
         @FXML
-        private TableView<?> tableModulesProf;
+        private TableView<TableModuleList> tableModulesProf;
 
         @FXML
-        private TableColumn<?, ?> coursColumn;
+        private TableColumn<TableModuleList, String> coursColumn;
 
         @FXML
         private ComboBox<String> selectionModuleCombo;
@@ -54,7 +60,7 @@ public class ModulesProfController extends ControllerAbs{
     }
 
         @FXML
-        void SelectionModule(MouseEvent event) throws Exception {
+        void SelectionModule(ActionEvent event) throws Exception {
 
             String value = selectionModuleCombo.getValue();
         System.out.println(value);
@@ -90,12 +96,14 @@ public class ModulesProfController extends ControllerAbs{
     @FXML
     public void initialize() {
         this.setData();
+        coursColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        olist.add(new TableModuleList("module1"));
+        olist.add(new TableModuleList("module2"));
+        olist.add(new TableModuleList("module3"));
+        olist.add(new TableModuleList("module4"));
+        olist.add(new TableModuleList("module5"));
+        tableModulesProf.setItems(olist);
     }
 
 
 }
-
-
-
-
-

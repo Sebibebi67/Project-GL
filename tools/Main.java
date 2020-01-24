@@ -28,12 +28,12 @@ public class Main extends Application{
         window = primaryStage;
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../sample/login.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("error");
         }
-        window.setTitle("Test");
+        window.setTitle("HORDE, LA QUALITÉ");
         window.setScene(new Scene(root));
         window.setResizable(true);
         window.show();

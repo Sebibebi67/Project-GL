@@ -9,12 +9,12 @@
         exit 1
     fi
 
-    if [[ bool2 == 0 ]];then
+    echo "Update controllers"
+	javac --module-path ./lib --add-modules javafx.controls,javafx.fxml controllers/*.java && bool2=1
+        if [[ bool2 == 0 ]];then
         echo "Update failed"
         exit 1
     fi
-    echo "Update controlors"
-	javac --module-path ./lib --add-modules javafx.controls,javafx.fxml sample/*.java && bool2=1
 
     echo "Start of application"
 	java --module-path ./lib --add-modules javafx.controls,javafx.fxml tools.Main &
