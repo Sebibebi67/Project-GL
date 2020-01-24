@@ -376,20 +376,21 @@ public class EduForm {
         int counter = 0;
         String code = "";
         ArrayList<ArrayList<?>> units = listOfTUs();
+        ArrayList<Integer> rank = new ArrayList<>();
 
         code += "<tr>\n<th id=\"mod0name\"> UE / Module </th>\n<th id=\"mod0mark\"> Moyenne </th>\n";
         for (int k=0 ; k<cols ; k++)
         {
             code += "<th id=\"mod0mark\"> Note (Coefficient) </th>\n";
         }
-        code += "</tr>\n";
+        code += "<th id=\"mod0mark\"> Classement </th>\n</tr>\n";
 
         for (int i=0 ; i<units.get(0).size() ; i++)
         {
             if (i>0)
             {
                 code += "<tr>";
-                for (int k=0 ; k<cols+2 ; k++)
+                for (int k=0 ; k<cols+3 ; k++)
                 {
                     code += "<td id=\"blank\"></td>\n";
                 }
@@ -401,7 +402,8 @@ public class EduForm {
             {
                 code += "<th id=\"mod0mark\"></th>";
             }
-            code += "</tr>\n";
+            rank = unitRank(login, ((TeachingUnit) (units.get(0).get(i))).getName(), (double) units.get(1).get(i));
+            code += "<th id=\"mod0mark\">"+Integer.toString(rank.get(0))+"/"+Integer.toString(rank.get(1))+"</th>\n</tr>\n";
 
             even = -1;
             for (int j=0 ; j<modules.size() ; j++)
@@ -421,7 +423,8 @@ public class EduForm {
                     {
                         code += "<td id=\"mod"+Integer.toString(mod)+"mark\"></td>\n";
                     }
-                    code += "</tr>\n";
+                    rank = moduleRank(login, modules.get(j).getName());
+                    code += "<th id=\"mod"+Integer.toString(mod)+"mark\">"+Integer.toString(rank.get(0))+"/"+Integer.toString(rank.get(1))+"</th>\n</tr>\n";
                     counter = 0;
                     even *= -1;
                     mod += even;
@@ -456,5 +459,62 @@ public class EduForm {
             if (max < list.get(i)) max = list.get(i);
         }
         return max;
+    }
+
+    /**
+     * Gives the rank of a given student in a module.
+     * @param login Login of the student.
+     * @param modName Module's name.
+     * @return Rank and total number of students attending the module.
+     */
+    public ArrayList<Integer> moduleRank(String login, String modName)
+    {
+        int counter = 1;
+        ArrayList<Integer> rank = new ArrayList<>();
+        ArrayList<ArrayList<?>> average = new ArrayList<>();
+        average = Query.moduleStudentsAverage(modName);
+        double mark = markModules.get(modName);
+        rank.set(1, average.size());
+        for (int i=0 ; i<average.size() ; i++)
+        {
+            if ((double) average.get(i).get(2) > mark)
+                counter++;
+        }
+        rank.set(0, counter);
+        return rank;
+    }
+
+    /**
+     * Gives the rank of a given student in a TU.
+     * @param login Login of the student.
+     * @param unit TU's name.
+     * @return Rank and total number of students registered in the TU.
+     */
+    public ArrayList<Integer> unitRank(String login, String unit, double mark)
+    {
+        int counter = 1;
+        double avg; int coeff;
+        ArrayList<Integer> rank = new ArrayList<>();
+        ArrayList<ArrayList<Object>> average = new ArrayList<>();
+        ArrayList<String> modules = Query.modulesInTU(unit);
+        average.set(0, Query.unitAttendees(unit));
+        for (int k=0 ; k<average.get(0).size() ; k++)
+        {
+            avg = 0; coeff = 0;
+            for (int i=0 ; i<modules.size() ; i++)
+            {
+                avg += Query.studentAverage(modules.get(i), (String) average.get(0).get(k));
+                coeff += (int) Query.coeffInTU(modules.get(i)).get(1);
+            }
+            average.get(1).set(k, avg/coeff);
+        }
+        rank.set(1, average.size());
+        for (int i=0 ; i<average.get(1).size() ; i++)
+        {
+            if ((double) average.get(1).get(i) > mark)
+                counter++;
+        }
+        rank.set(0, counter);
+        return rank;
     }
 }

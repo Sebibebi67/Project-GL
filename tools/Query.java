@@ -758,7 +758,7 @@ public class Query{
     }
 
     /**
-    * Returns all students attending a given course.
+    * Returns all students attending a given module.
     * @author Dejan PARIS 
     * @param moduleName Module's name
     * @return an Array with the firstnames, surnames and logins of the students.
@@ -813,7 +813,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = '"+idEtudiant+"';";
+            String query = "SELECT nomMod, SUM(note*coefficient)/SUM(coefficient) AS s FROM Note GROUP BY idModule HAVING idEtudiant = "+idEtudiant+";";
             ArrayList<String> nomMod = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();
             ResultSet res = statement.executeQuery(query);
@@ -842,7 +842,7 @@ public class Query{
     * @author Dejan PARIS
     * @param moduleName Module's name
     * @return an Array with Arrays for the students' name and firstname
-    * and the average mark associated with him.
+    * and the average mark associated with them.
     */
     public static ArrayList<ArrayList<?>> moduleStudentsAverage(String moduleName){
         Connection conn = null;
@@ -862,6 +862,7 @@ public class Query{
                 nom.add(res.getString("nom"));
                 prenom.add(res.getString("prenom"));
                 average.add(res.getFloat("s"));
+                login.add(res.getString("login"));
             }
             queryResult.add(nom);
             queryResult.add(prenom);
@@ -885,7 +886,7 @@ public class Query{
     * Returns all unjustified absences for everyone.
     * @author Dejan PARIS
     * @return an Array of absences with Arrays for the name and firstname of the student and
-    * dates and hours of the absence associated with him.
+    * dates and hours of the absence associated with them.
     */
     public static ArrayList<ArrayList<?>> unjustified(){
         Connection conn = null;
@@ -1328,27 +1329,25 @@ public class Query{
             }
         }
     }
-
+    
     /**
-    * Gives the ranking of a student in a module in his course.
+    * Returns all the modules that are part of the given TU.
     * @author Dejan PARIS
-    * @param login login of the student.
-    * @param nomMod name of the module.
-    * @param course course of the student.
+    * @param unit TU's name
+    * @return an Array of the modules names.
     */
-    public static ArrayList<Integer> moduleRank(String login, String nomMod, String course){
+    public static ArrayList<String> modulesInTU(String unit){
         Connection conn = null;
-        ArrayList<Integer> rank = new ArrayList<>();
-        ArrayList<String> logins = new ArrayList<String>();
+        ArrayList<String> nomMod = new ArrayList<String>();
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT login FROM Utilisateur JOIN Etudiant ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE filiere = '"+course+"';";
+            String query = "SELECT nomMod FROM Module JOIN Constitue ON Module.idModule = Constitute.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE idUE = "+getTUID(unit)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                logins.add(res.getString("login"));
+                nomMod.add(res.getString("nom"));
             }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -1356,18 +1355,44 @@ public class Query{
             try{
                 if(conn != null){
                     conn.close();
-                } 
+                }   
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
         }
-        rank.set(0, logins.size());
-        ArrayList<Double> avg = new ArrayList<>();
-        for (int i=0 ; i<rank.get(0) ; i++)
-        {
-            //avg.add(studentModulesAverage(login));
-        }
-        return rank;
+        return nomMod;
     }
 
+    /**
+    * Returns all students attending a given TU.
+    * @author Dejan PARIS 
+    * @param unit TU's name.
+    * @return an Array with the logins of the students.
+    */
+    public static ArrayList<Object> unitAttendees(String unit){
+        Connection conn = null;
+        ArrayList<Object> login = new ArrayList<>();
+        try {
+            // create a connection to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
+            Statement statement = conn.createStatement();
+            String query = "SELECT login FROM Etudiant JOIN Utilisateur ON Etudiant.idUtilisateur = Utilisateur.idUtilisateur JOIN Assiste ON Assiste.idEtudiant = Etudiant.idEtudiant JOIN Module ON Module.idModule = Assiste.idModule JOIN Constitue ON Module.idModule = Constitue.idModule WHERE idUE = "+getTUID(unit)+";";
+            ResultSet res = statement.executeQuery(query);
+            while(res.next()){
+                login.add(res.getString("login"));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                }   
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return login;
+    }
 }
