@@ -30,6 +30,8 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
     ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
     ObservableList<TableAbsencesModule> olistAbsencesModule = FXCollections.observableArrayList();
 
+    private String mark = null;
+
         @FXML
         private TableColumn<TableGradesModule, String> nomNoteColumn;
 
@@ -96,18 +98,18 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         @FXML
         void ajouterSatisfaction(ActionEvent event) {
             
-            System.out.println(commentaireSatisfactionTextField.getText());
+            String review = commentaireSatisfactionTextField.getText();
+
+            ((Student) Stockage.getPerson().getRole()).newSatisfaction(mark, review);
+
+            mark = null;
 
         }
 
 
         @FXML
         void selectionNoteSatisfaction(ActionEvent event) {
-            String value = noteSatisfactionCombo.getValue();
-            if(value != null) {
-                System.out.println(value);
-            }
-
+            mark = noteSatisfactionCombo.getValue();
         }
 
 
@@ -152,11 +154,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     @FXML
     void selectionModuleSatisfaction(ActionEvent event) {
-        String value = comboModuleStaisfaction.getValue();
-        if(value != null) {
-            System.out.println(value);
-        }
-
+        Stockage.setActiveModuleStudent(comboModuleStaisfaction.getValue());
     }
 
     @FXML

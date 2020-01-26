@@ -467,16 +467,14 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call satisfaction(?,?,?,?)}");
-            call.setString("loginU",loginU);
-            call.setString("nomModule",nomModule);
-            call.setString("questionnaire",questionnaire);
-            call.setInt("note",note);
-            call.execute();
-            statement.close();
+            String request = "call satisfaction(    '"+loginU+"','"+
+                                                    nomModule+"','"+
+                                                    questionnaire+"',"+
+                                                    note+");";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
