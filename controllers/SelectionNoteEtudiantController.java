@@ -28,6 +28,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     ObservableList<TableGradesStudent> olistGradeStudent = FXCollections.observableArrayList();
     ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
+    ObservableList<TableAbsencesModule> olistAbsencesModule = FXCollections.observableArrayList();
 
         @FXML
         private TableColumn<TableGradesModule, String> nomNoteColumn;
@@ -63,7 +64,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private ComboBox<String> comboModuleAbsence;
 
         @FXML
-        private TableView<?> tableAbsencesModule;
+        private TableView<TableAbsencesModule> tableAbsencesModule;
 
         @FXML
         private ComboBox<String> comboModuleStaisfaction;
@@ -131,10 +132,10 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     @FXML
     void selectionModuleAbsence(ActionEvent event) {
-        String value = comboModuleAbsence.getValue();
-        if(value != null) {
-            System.out.println(value);
-        }
+        Stockage.setActiveModuleStudent(comboModuleNotes.getValue());
+
+        this.olistAbsencesModule = feelTableAbsencesModule(this.olistAbsencesModule);
+        tableAbsencesModule.setItems(this.olistAbsencesModule);
 
     }
 
@@ -208,7 +209,16 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
     public ObservableList<TableGradesModule> feelTableMarkModule(ObservableList<TableGradesModule> obl){
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableModuleMarks();
         for (int i = 0; i< array.size(); i++){
-            obl.add(new TableGradesModule(  array.get(i).get(2),
+            obl.add(new TableGradesModule(  array.get(i).get(0),
+                                            array.get(i).get(1)));
+        }
+        return obl;
+    }
+
+    public ObservableList<TableAbsencesModule> feelTableAbsencesModule(ObservableList<TableAbsencesModule> obl){
+        ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableModuleAbsences();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableAbsencesModule(  array.get(i).get(0),
                                             array.get(i).get(1)));
         }
         return obl;
