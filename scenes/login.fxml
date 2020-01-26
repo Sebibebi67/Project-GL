@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorLogin" prefHeight="230.0" prefWidth="411.0" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane fx:id="anchorLogin" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox layoutX="4.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
-          <MenuBar prefHeight="55.0" prefWidth="640.0" VBox.vgrow="NEVER">
+          <MenuBar prefHeight="27.0" prefWidth="641.0" VBox.vgrow="NEVER">
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
