@@ -205,6 +205,7 @@ public class EduForm {
      */
     public void createExams(){
         markExams = new HashMap<>();
+        exams = new ArrayList<>();
         for( int i = 0; i< modules.size(); i++ ){
             ArrayList<ArrayList<?>> array = new ArrayList<>();
             array = Query.exams(this.modules.get(i).getName(), this.login);

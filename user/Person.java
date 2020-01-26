@@ -133,6 +133,7 @@ public class Person{
                 switch(roleType){
                     case "Etudiant":
                         role = new Student(login);
+                        Stockage.setStudent((Student) role);
                         break;
                     case "Enseignant":
                         role = new Professor(login);
