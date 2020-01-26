@@ -28,16 +28,14 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call inscrire(?,?,?,?)}");
-            call.setString("nom",nom);
-            call.setString("prenom",prenom);
-            call.setString("mdp",mdp);
-            call.setString("role",role);
-            call.execute();
-            statement.close();
+            String request = "call inscrire(    '"+nom+"','"+
+                                                    prenom+"','"+
+                                                    mdp+"','"+
+                                                    role+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -65,16 +63,14 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call creerUE(?,?,?,?)}");
-            call.setString("nomUE",nomUE);
-            call.setString("loginRespo",loginRespo);
-            call.setInt("nbCredits",nbCredits);
-            call.setString("filiere",filiere);
-            call.execute();
-            statement.close();
+            String request = "call creerUE(    '"+nomUE+"','"+
+                                                    loginRespo+"',"+
+                                                    nbCredits+",'"+
+                                                    filiere+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -100,14 +96,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call creerModule(?,?)}");
-            call.setString("nomModule",nomModule);
-            call.setString("loginRespo",loginRespo);
-            call.execute();
-            statement.close();
+            String request = "call creerModule(    '"+nomModule+"','"+
+                                                    loginRespo+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -135,16 +129,14 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call constitue(?,?,?,?)}");
-            call.setString("nomModule",nomModule);
-            call.setString("titreUE",titreUE);
-            call.setInt("coefficient",coefficient);
-            call.setString("fil",fil);
-            call.execute();
-            statement.close();
+            String request = "call constitue(    '"+nomModule+"','"+
+                                                    titreUE+"',"+
+                                                    coefficient+",'"+
+                                                    fil+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -176,16 +168,14 @@ public class SQL{
             }
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call enseigne(?,?,?,?)}");
-            call.setString("loginU",loginU);
-            call.setString("nomModule",nomModule);
-            call.setString("role",role);
-            call.setInt("idGroupe",idG);
-            call.execute();
-            statement.close();
+            String request = "call enseigne(    '"+loginU+"','"+
+                                                    nomModule+"','"+
+                                                    role+"',"+
+                                                    idG+");";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -211,14 +201,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call assiste(?,?)}");
-            call.setString("loginU",loginU);
-            call.setString("nomModule",nomModule);
-            call.execute();
-            statement.close();
+            String request = "call assiste(    '"+loginU+"','"+
+                                                    nomModule+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -244,14 +232,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call assignerGroupeTD(?,?)}");
-            call.setInt("numero",numero);
-            call.setString("loginEtu",loginEtu);
-            call.execute();
-            statement.close();
+            String request = "call assignerGroupeTD("+numero+",'"+
+                                                    loginEtu+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -277,14 +263,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call assignerGroupeTP(?,?)}");
-            call.setInt("numero",numero);
-            call.setString("loginEtu",loginEtu);
-            call.execute();
-            statement.close();
+            String request = "call assignerGroupeTP("+numero+",'"+
+                                                    loginEtu+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -316,20 +300,19 @@ public class SQL{
     //     try {
     //         // create a connection to the database
     //         Class.forName("com.mysql.cj.jdbc.Driver");
-    //         conn = DriverManager.getConnection(url, user, password);
+    //         conn = DriverManager.getConnection(url+"/"+user,user,password);
             
     //         Statement statement = conn.createStatement();
-    //         CallableStatement call = conn.prepareCall("{call creerAbsence(?,?,?,?,?,?,?,?)}");
-    //         call.setString("loginEtu",loginEtu);
-    //         call.setString("loginEns",loginEns);
-    //         call.setString("nomModule",nomModule);
-    //         call.setString("fil",fil);
-    //         call.setDate("dateDebut",dateDebut);
-    //         call.setDate("dateFin",dateFin);
-    //         call.setTime("heureDebut",heureDebut);
-    //         call.setTime("heureFin",heureFin);
-    //         call.execute();
-    //         statement.close();
+    //         Statement statement = conn.createStatement();
+    //         String request = "call creerAbsence('"+loginEtu+"','"+
+    //                                             loginEns+"','"+
+    //                                             nomModule+"','"+
+    //                                             fil+"',"+
+    //                                             dateDebut+","+
+    //                                             dateFin+","+
+    //                                             heureDebut+","+
+    //                                             heureFin+");";
+    //         statement.execute(request);
 
     //     } catch(SQLException | ClassNotFoundException e) {
     //         e.printStackTrace();
@@ -362,10 +345,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
+
             Statement statement = conn.createStatement();
             String query = "INSERT INTO Absence(idEtudiant, idEnseignant, idModule, dateDebut, dateFin, heureDebut, heureFin, estJustifiee) VALUES("+idStudent+","+idProfessor+","+idModule+","+date+","+date+","+beginHour+","+endHour+","+false+");";
             statement.executeUpdate(query);
+
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -391,14 +376,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call modifierFiliereEtudiant(?,?)}");
-            call.setString("newFiliere",newFiliere);
-            call.setString("loginEtu",loginEtu);
-            call.execute();
-            statement.close();
+            String request = "call modifierFiliereEtudiant('"+newFiliere+"','"+
+                                                                loginEtu+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -428,18 +411,16 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call note(?,?,?,?,?,?)}");
-            call.setString("nomNote",nomNote);
-            call.setInt("valeur",valeur);
-            call.setInt("coeff",coeff);
-            call.setDate("jour",jour);
-            call.setString("loginU",loginU);
-            call.setString("nomModule",nomModule);
-            call.execute();
-            statement.close();
+            String request = "call modifierFiliereEtudiant('"+nomNote+"',"+
+                                                            valeur+","+
+                                                            coeff+","+
+                                                            jour+",'"+
+                                                            loginU+"','"+
+                                                            nomModule+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -499,13 +480,11 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call supprimer(?)}");
-            call.setString("loginU",loginU);
-            call.execute();
-            statement.close();
+            String request = "call supprimer(    '"+loginU+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -531,14 +510,12 @@ public class SQL{
         try {
             // create a connection to the database
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            CallableStatement call = conn.prepareCall("{call supprUE(?,?)}");
-            call.setString("nom",nom);
-            call.setString("fil",fil);
-            call.execute();
-            statement.close();
+            String request = "call supprUE(    '"+nom+"','"+
+                                                fil+"');";
+            statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
