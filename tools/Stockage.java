@@ -28,6 +28,10 @@ public class Stockage{
         person = p;
     }
 
+    public static void setStudent(Student s){
+        student = s;
+    }
+
     public static Student getStudent(){
         return student;
     }

@@ -2,6 +2,7 @@ package controllers;
 
 import tools.Stockage;
 import user.Student;
+// import study.Module;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,28 +70,31 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         @FXML
         private ComboBox<String> noteSatisfactionCombo;
-
+        
         @FXML
         private TextField commentaireSatisfactionTextField;
-
+        
         @FXML
         private Button ajoutSatisfactionButton;
-
+        
         @FXML
         private TableView<TableGradesStudent> tableNotesEleve;
-
+        
         @FXML
         private TableColumn<TableGradesStudent, String> uETableColumn;
-
+        
         @FXML
         private TableColumn<TableGradesStudent, String> moduleTableColumn;
-
+        
         @FXML
         private TableColumn<TableGradesStudent, String> moyenneTableColumn;
+        
+
+
 
         @FXML
         void ajouterSatisfaction(ActionEvent event) {
-
+            
             System.out.println(commentaireSatisfactionTextField.getText());
 
         }
@@ -136,10 +140,10 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     @FXML
     void selectionModuleNote(ActionEvent event) {
-        String value = comboModuleNotes.getValue();
-        if(value != null) {
-            System.out.println(value);
-        }
+        Stockage.setActiveModuleStudent(comboModuleNotes.getValue());
+
+        this.olistGradeModule = feelTableMarkModule(this.olistGradeModule);
+        tableNotesModule.setItems(this.olistGradeModule);
 
 
     }
@@ -173,25 +177,21 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     }
 
-    ObservableList<TableGradesStudent> olist = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         this.setData(comboModuleAbsence);
         this.setData(comboModuleNotes);
         this.setData(comboModuleStaisfaction);
-        noteSatisfactionCombo.getItems().clear();
 
-        noteSatisfactionCombo.getItems().addAll(
-                "1 ",
-                "2",
-                "3",
-                "4",
-                "5");
+        noteSatisfactionCombo.getItems().clear();
+        noteSatisfactionCombo.getItems().addAll("1 ", "2", "3", "4", "5");
+
         uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
         moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
         moyenneTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-        this.olist = this.feelTableMark(this.olistGradeStudent);
+
+        this.olistGradeStudent = this.feelTableMark(this.olistGradeStudent);
         tableNotesEleve.setItems(this.olistGradeStudent);
     }
 
@@ -203,9 +203,15 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
                                     array.get(i).get(2)));
         }
         return obl;
-//         olistGradeModule.add(new TableGradesModule("Le gros ds","10"));
-// olistGradeModule.add(new TableGradesModule("Le bon ds","0"));
-// tableNotesModule.setItems(olistGradeModule);
+    }
+
+    public ObservableList<TableGradesModule> feelTableMarkModule(ObservableList<TableGradesModule> obl){
+        ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableModuleMarks();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableGradesModule(  array.get(i).get(2),
+                                            array.get(i).get(1)));
+        }
+        return obl;
     }
 
 }
