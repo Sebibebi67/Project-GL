@@ -466,6 +466,8 @@ public class EduForm {
      * @param login Login of the student.
      * @param modName Module's name.
      * @return Rank and total number of students attending the module.
+     * @author Dejan PARIS
+     * @see Query.moduleStudentsAverage
      */
     public ArrayList<Integer> moduleRank(String login, String modName)
     {
@@ -489,6 +491,11 @@ public class EduForm {
      * @param login Login of the student.
      * @param unit TU's name.
      * @return Rank and total number of students registered in the TU.
+     * @author Dejan PARIS
+     * @see Query.modulesInTU
+     * @see Query.unitAttendees
+     * @see Query.studentAverage
+     * @see Query.coeffInTU
      */
     public ArrayList<Integer> unitRank(String login, String unit, double mark)
     {
