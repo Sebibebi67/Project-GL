@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorProfNotes" prefHeight="444.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionNoteProfController">
+<AnchorPane fx:id="anchorProfNotes" prefHeight="444.0" prefWidth="629.0" stylesheets="@styles/style_admin_modules_sel_notes_prof_sel_notes.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionNoteProfController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -53,7 +53,7 @@
                                             </rowConstraints>
                                              <children>
                                                 <ComboBox fx:id="comboEleveNote" onAction="#selectionEleveNote" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
-                                                <TableView fx:id="tableNotesEleve" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                <TableView fx:id="tableNotesEleve" prefHeight="66.0" prefWidth="251.0" GridPane.rowIndex="1">
                                                    <columns>
                                                       <TableColumn prefWidth="135.0" text="Nom note" />
                                                       <TableColumn prefWidth="136.0" text="note" />
