@@ -153,6 +153,7 @@ public class EduForm {
      * @see Query.absence
      */
     public void createAbsences() {
+        this.absences = new ArrayList<>();
         ArrayList<ArrayList<?>> array = new ArrayList<>();
         array = Query.absence(this.login);
 
