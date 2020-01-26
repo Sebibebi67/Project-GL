@@ -451,11 +451,20 @@ public class SQL{
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            String request = "call satisfaction(    '"+loginU+"','"+
-                                                    nomModule+"','"+
-                                                    questionnaire+"',"+
-                                                    note+");";
-            statement.execute(request);
+            String query = "SELECT * from Satisfaction WHERE idEtudiant="+Query.getStudentID(loginU)+" AND idModule="+Query.getModuleID(nomModule)+" ;";
+
+            ResultSet res = statement.executeQuery(query);
+            if (res==null){
+
+
+                String request = "call satisfaction(    '"+loginU+"','"+
+                                                        nomModule+"','"+
+                                                        questionnaire+"',"+
+                                                        note+");";
+                statement.execute(request);
+            }else{
+                System.out.println("error : already exists");
+            }
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();

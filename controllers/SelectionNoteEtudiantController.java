@@ -100,13 +100,13 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
             
             String review = commentaireSatisfactionTextField.getText();
 
-            if (!(mark==null)){
+            if (!(mark==null || comboModuleStaisfaction.getValue() == null)){
                 ((Student) Stockage.getPerson().getRole()).newSatisfaction(mark, review);
+                mark = null;
+                this.commentaireSatisfactionTextField.setText("Commentaire");
+            }else{
+                this.commentaireSatisfactionTextField.setText("Satisfaction non envoyée : merci de remplir tous les champs");
             }
-
-            mark = null;
-            this.commentaireSatisfactionTextField.setText("Satisfaction envoyée");
-
         }
 
 
