@@ -24,7 +24,7 @@
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
                   <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="Retour au menu" />
-                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quit" />
+                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -58,7 +58,7 @@
                                     <Insets left="25.0" right="25.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Label prefHeight="16.0" prefWidth="80.0" text="coefficient:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                              <Label prefHeight="16.0" prefWidth="80.0" text="Coefficient:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                               <TextField fx:id="coefficientField" layoutX="147.0" layoutY="40.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
@@ -87,8 +87,8 @@
                               <TextField fx:id="nomEleveField" text="Nom" />
                               <TextField fx:id="prenomEleveField" text="Prénom" GridPane.columnIndex="1" />
                               <TextField fx:id="noteEleveField" text="Note" GridPane.columnIndex="2" />
-                              <Button fx:id="ajouterNoteButton" mnemonicParsing="false" onAction="#ajouterNote" prefHeight="44.0" prefWidth="108.0" text="ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <Button fx:id="supprimerButton" mnemonicParsing="false" onAction="#supprimerNote" prefHeight="44.0" prefWidth="108.0" text="supprimer" GridPane.columnIndex="4" />
+                              <Button fx:id="ajouterNoteButton" mnemonicParsing="false" onAction="#ajouterNote" prefHeight="44.0" prefWidth="108.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Button fx:id="supprimerButton" mnemonicParsing="false" onAction="#supprimerNote" prefHeight="44.0" prefWidth="108.0" text="Supprimer" GridPane.columnIndex="4" />
                            </children>
                         </GridPane>
                      </children>

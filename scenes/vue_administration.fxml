@@ -22,7 +22,7 @@
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
                   <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="retour au menu" />
-                  <MenuItem fx:id="quiitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quit" />
+                  <MenuItem fx:id="quiitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -55,8 +55,8 @@
                                     <Insets left="25.0" right="25.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <Label prefHeight="32.0" prefWidth="230.0" text="delais pour rentrer les notes:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <Label prefHeight="32.0" prefWidth="230.0" text="delais pour justifier une absence:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Label prefHeight="32.0" prefWidth="230.0" text="Délai pour rentrer les notes:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Label prefHeight="32.0" prefWidth="230.0" text="Délai pour justifier une absence:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                               <TextField fx:id="delaisNotesField" onAction="#modifierDelaisNotes" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="25.0" right="25.0" />
@@ -64,9 +64,9 @@
                               </TextField>
                            </children>
                         </GridPane>
-                        <Button fx:id="absencesButton" layoutX="70.0" layoutY="92.0" mnemonicParsing="false" onAction="#selectionAbsences" prefHeight="63.0" prefWidth="449.0" text="absences" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button fx:id="modulesButton" mnemonicParsing="false" onAction="#selectionModules" prefHeight="63.0" prefWidth="449.0" text="modules" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="etudiantsButton" mnemonicParsing="false" onAction="#selectionEtudiants" prefHeight="63.0" prefWidth="449.0" text="bulletin étudiants" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="absencesButton" layoutX="70.0" layoutY="92.0" mnemonicParsing="false" onAction="#selectionAbsences" prefHeight="63.0" prefWidth="449.0" text="Absences" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="modulesButton" mnemonicParsing="false" onAction="#selectionModules" prefHeight="63.0" prefWidth="449.0" text="Modules" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="etudiantsButton" mnemonicParsing="false" onAction="#selectionEtudiants" prefHeight="63.0" prefWidth="449.0" text="Etudiants" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
