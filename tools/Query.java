@@ -852,7 +852,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant GROUP BY Etudiant.idEtudiant HAVING nomMod = '"+moduleName+"';";
+            String query = "SELECT nom, prenom, SUM(note*coefficient)/SUM(coefficient) AS s,login FROM (Note JOIN Etudiant ON Note.idEtudiant = Etudiant.idEtudiant) JOIN Utilisateur ON Utilisateur.idUtilisateur = Etudiant.idUtilisateur WHERE Note.idModule = "+Query.getModuleID(moduleName)+" GROUP BY Etudiant.idEtudiant ;";
             ArrayList<String> nom = new ArrayList<String>();
             ArrayList<String> prenom = new ArrayList<String>();
             ArrayList<Float> average = new ArrayList<Float>();

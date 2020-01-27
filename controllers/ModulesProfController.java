@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import tools.Stockage;
 import user.Professor;
 import tables.*;
+import study.Module;
 
 public class ModulesProfController extends ControllerAbs{
 
@@ -68,6 +69,8 @@ public class ModulesProfController extends ControllerAbs{
 
             String value = selectionModuleCombo.getValue();
             if(value != null) {
+                Stockage.setActiveModule(new Module(value));
+
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
                 Scene sceneFromAnchor = anchorListeModule.getScene();
