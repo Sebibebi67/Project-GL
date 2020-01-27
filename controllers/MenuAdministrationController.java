@@ -50,7 +50,7 @@ public class MenuAdministrationController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("login.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
         Scene sceneFromAnchor = anchorMenuAdministration.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -70,7 +70,7 @@ public class MenuAdministrationController extends ControllerAbs{
     @FXML
     void selectionAbsences(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_absences_administration.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_absences_administration.fxml"));
 
         Scene sceneFromAnchor = anchorMenuAdministration.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -81,7 +81,7 @@ public class MenuAdministrationController extends ControllerAbs{
 
     @FXML
     void selectionEtudiants(ActionEvent event) throws Exception {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_adminstration_bulletin.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_adminstration_bulletin.fxml"));
 
         Scene sceneFromAnchor = anchorMenuAdministration.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -91,7 +91,7 @@ public class MenuAdministrationController extends ControllerAbs{
 
     @FXML
     void selectionModules(ActionEvent event) throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_admin_modules.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_admin_modules.fxml"));
 
         Scene sceneFromAnchor = anchorMenuAdministration.getScene();
         sceneFromAnchor.setRoot(pane);

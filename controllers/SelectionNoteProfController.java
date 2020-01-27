@@ -53,7 +53,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void nouvelleAbsence(ActionEvent event)  throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("ajout_absence.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/ajout_absence.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -62,7 +62,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void nouvelleNote(ActionEvent event) throws Exception {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("ajout_note.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/ajout_note.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -94,7 +94,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_liste_modules.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_liste_modules.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);

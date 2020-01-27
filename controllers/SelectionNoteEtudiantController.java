@@ -2,6 +2,7 @@ package controllers;
 
 import tools.Stockage;
 import user.Student;
+import tables.*;
 // import study.Module;
 
 import java.net.URL;
