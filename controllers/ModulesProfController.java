@@ -36,29 +36,29 @@ public class ModulesProfController extends ControllerAbs{
         private URL location;
 
         @FXML
-        private AnchorPane anchorListeModule;
+        private AnchorPane anchorModuleList;
 
         @FXML
-        private MenuItem retourMenu;
+        private MenuItem backMenu;
 
         @FXML
-        private MenuItem quitterMenu;
+        private MenuItem quitMenu;
 
         @FXML
-        private TableView<TableModuleList> tableModulesProf;
+        private TableView<TableModuleList> tableModulesTeacher;
 
         @FXML
-        private TableColumn<TableModuleList, String> coursColumn;
+        private TableColumn<TableModuleList, String> coursesColumn;
 
         @FXML
         private ComboBox<String> selectionModuleCombo;
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
-        Scene sceneFromAnchor = anchorListeModule.getScene();
+        Scene sceneFromAnchor = anchorModuleList.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -73,27 +73,27 @@ public class ModulesProfController extends ControllerAbs{
 
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
-                Scene sceneFromAnchor = anchorListeModule.getScene();
+                Scene sceneFromAnchor = anchorModuleList.getScene();
                 sceneFromAnchor.setRoot(pane);
             }
         }
 
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
+    void quitFuntion(ActionEvent event) {
 
-        fromAnchorClose(anchorListeModule);
+        fromAnchorClose(anchorModuleList);
 
     }
 
     @FXML
     public void initialize() {
-        coursColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
-        this.olist = feelModuleList(olist);
-        tableModulesProf.setItems(olist);
+        coursesColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        this.olist = fillModuleList(olist);
+        tableModulesTeacher.setItems(olist);
     }
 
-    public ObservableList<TableModuleList> feelModuleList(ObservableList<TableModuleList> obl){
+    public ObservableList<TableModuleList> fillModuleList(ObservableList<TableModuleList> obl){
         selectionModuleCombo.getItems().clear();
 
 
