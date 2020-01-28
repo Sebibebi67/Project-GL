@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorAjoutAbsence" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutAbsenceController">
+<AnchorPane fx:id="anchorAddNonattendance" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutAbsenceController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,8 +24,8 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Mon compte">
                      <items>
-                        <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="Retour au menu" />
-                        <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
+                        <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour au menu" />
+                        <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                      </items>
                   </Menu>
                </menus>
@@ -45,10 +45,10 @@
                         <RowConstraints maxHeight="285.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="ajouterAbsenceButton" mnemonicParsing="false" onAction="#ajouterAbsence" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <DatePicker fx:id="dateAbsencePicker" onAction="#selectionDate" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                        <ComboBox fx:id="comboEleveAbsence" onAction="#selectionEleveAbsence" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                        <ComboBox fx:id="comboModuleAbsence" layoutX="185.0" layoutY="71.0" onAction="#selectionModuleAbsence" prefHeight="26.0" prefWidth="181.0" promptText="Module" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <Button fx:id="addNonattendanceButton" mnemonicParsing="false" onAction="#addNonattendance" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <DatePicker fx:id="dateNonattendancePicker" onAction="#selectionDate" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <ComboBox fx:id="comboNonattendanceStudent" onAction="#selectionStudentNonattendance" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <ComboBox fx:id="comboModuleNonattendance" layoutX="185.0" layoutY="71.0" onAction="#selectionModulenonattendance" prefHeight="26.0" prefWidth="181.0" promptText="Module" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="146.0" text="Heure de début:" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
                         <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="87.0" prefHeight="24.0" prefWidth="145.0" text="Heure de fin:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane GridPane.columnIndex="1">
@@ -60,8 +60,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="heureDebutCombo" onAction="#selectionHeureDebut" prefWidth="150.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <ComboBox fx:id="minuteDebutCombo" onAction="#selectionMinuteDebut" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="startingHourCombo" onAction="#selectionStartingHour" prefWidth="150.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="startingMinuteCombo" onAction="#selectionStartingMinute" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                         <GridPane prefHeight="154.0" prefWidth="122.0" GridPane.columnIndex="3">
@@ -73,8 +73,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="heureFinCombo" onAction="#selectionHeureFin" prefHeight="20.0" prefWidth="48.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <ComboBox fx:id="minuteFinCombo" onAction="#selectionMinuteFin" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="endingHourCombo" onAction="#selectionEndingHour" prefHeight="20.0" prefWidth="48.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="endingMinuteFinCombo" onAction="#selectionEndingMinute" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                      </children>
