@@ -19,60 +19,60 @@ public class MenuAdministrationController extends ControllerAbs{
     private URL location;
 
     @FXML
-    private AnchorPane anchorMenuAdministration;
+    private AnchorPane anchorStudentOfficeMenu;
 
     @FXML
-    private MenuItem retourMenu;
+    private MenuItem backMenu;
 
     @FXML
-    private MenuItem quiitMenu;
+    private MenuItem quitMenu;
 
     @FXML
-    private TextField delaisAbsence;
+    private TextField delayNonattendance;
 
     @FXML
-    private TextField delaisNotesField;
+    private TextField delayGradesField;
 
     @FXML
-    private Button absencesButton;
+    private Button nonattendanceButton;
 
     @FXML
     private Button modulesButton;
 
     @FXML
-    private Button etudiantsButton;
+    private Button studentsButton;
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
-        fromAnchorClose(anchorMenuAdministration);
+    void quitFunction(ActionEvent event) {
+        fromAnchorClose(anchorStudentOfficeMenu);
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
-        Scene sceneFromAnchor = anchorMenuAdministration.getScene();
+        Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
 
     }
 
     @FXML
-    void modifierDelaisAbsence(ActionEvent event) {
-        System.out.println(delaisAbsence.getText());
+    void changeDelayNonattendance(ActionEvent event) {
+        System.out.println(delayNonattendance.getText());
     }
 
     @FXML
-    void modifierDelaisNotes(ActionEvent event) {
-    System.out.println(delaisNotesField.getText());
+    void changeDelayGrades(ActionEvent event) {
+    System.out.println(delayGradesField.getText());
     }
 
     @FXML
-    void selectionAbsences(ActionEvent event) throws Exception{
+    void selectionNonattendance(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_absences_administration.fxml"));
 
-        Scene sceneFromAnchor = anchorMenuAdministration.getScene();
+        Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -80,10 +80,10 @@ public class MenuAdministrationController extends ControllerAbs{
     }
 
     @FXML
-    void selectionEtudiants(ActionEvent event) throws Exception {
+    void selectionStudents(ActionEvent event) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_adminstration_bulletin.fxml"));
 
-        Scene sceneFromAnchor = anchorMenuAdministration.getScene();
+        Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -93,14 +93,14 @@ public class MenuAdministrationController extends ControllerAbs{
     void selectionModules(ActionEvent event) throws Exception{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_admin_modules.fxml"));
 
-        Scene sceneFromAnchor = anchorMenuAdministration.getScene();
+        Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
 
     }
 
     public void setDelays(){
-        delaisAbsence.setText("1000");
-        delaisNotesField.setText("2");
+        delayNonattendance.setText("1000");
+        delayGradesField.setText("2");
 
 
     }
