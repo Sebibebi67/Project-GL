@@ -9,9 +9,14 @@
     -fx-background-color: rgb(43, 42, 105);
 }
 
+.menu-item
+{
+    -fx-background-color: rgb(43, 42, 105);
+}
+
 .menu:showing
 {
-    -fx-background-color: rgb(48, 47, 110);
+    -fx-background-color: rgb(43, 42, 105);
 }
 
 .menu:showing .label
