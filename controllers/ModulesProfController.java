@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -15,9 +16,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+// import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 // import javafx.scene.layout.Pane;
+import tools.Stockage;
+import user.Professor;
+import tables.*;
+import study.Module;
 
 public class ModulesProfController extends ControllerAbs{
 
@@ -31,29 +36,29 @@ public class ModulesProfController extends ControllerAbs{
         private URL location;
 
         @FXML
-        private AnchorPane anchorListeModule;
+        private AnchorPane anchorModuleList;
 
         @FXML
-        private MenuItem retourMenu;
+        private MenuItem backMenu;
 
         @FXML
-        private MenuItem quitterMenu;
+        private MenuItem quitMenu;
 
         @FXML
-        private TableView<TableModuleList> tableModulesProf;
+        private TableView<TableModuleList> tableModulesTeacher;
 
         @FXML
-        private TableColumn<TableModuleList, String> coursColumn;
+        private TableColumn<TableModuleList, String> coursesColumn;
 
         @FXML
         private ComboBox<String> selectionModuleCombo;
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("login.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
-        Scene sceneFromAnchor = anchorListeModule.getScene();
+        Scene sceneFromAnchor = anchorModuleList.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -63,47 +68,45 @@ public class ModulesProfController extends ControllerAbs{
         void SelectionModule(ActionEvent event) throws Exception {
 
             String value = selectionModuleCombo.getValue();
-        System.out.println(value);
-        if(value != null) {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_prof_selection_note.fxml"));
+            if(value != null) {
+                Stockage.setActiveModule(new Module(value));
 
-            Scene sceneFromAnchor = anchorListeModule.getScene();
-            sceneFromAnchor.setRoot(pane);
-        }
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
+
+                Scene sceneFromAnchor = anchorModuleList.getScene();
+                sceneFromAnchor.setRoot(pane);
+            }
         }
 
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
+    void quitFuntion(ActionEvent event) {
 
-        fromAnchorClose(anchorListeModule);
+        fromAnchorClose(anchorModuleList);
 
-    }
-
-    private void setData() {
-
-        selectionModuleCombo.getItems().clear();
-
-        selectionModuleCombo.getItems().addAll(
-                "Module1 ",
-                "Module 2",
-                "Module 3",
-                "Module 4",
-                "Module 5");
-        selectionModuleCombo.setEditable(false);
     }
 
     @FXML
     public void initialize() {
-        this.setData();
-        coursColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
-        olist.add(new TableModuleList("module1"));
-        olist.add(new TableModuleList("module2"));
-        olist.add(new TableModuleList("module3"));
-        olist.add(new TableModuleList("module4"));
-        olist.add(new TableModuleList("module5"));
-        tableModulesProf.setItems(olist);
+        coursesColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        this.olist = fillModuleList(olist);
+        tableModulesTeacher.setItems(olist);
+    }
+
+    public ObservableList<TableModuleList> fillModuleList(ObservableList<TableModuleList> obl){
+        selectionModuleCombo.getItems().clear();
+
+
+        ArrayList<String> array = ((Professor) Stockage.getPerson().getRole()).viewListModules();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableModuleList(array.get(i)));
+            selectionModuleCombo.getItems().add(array.get(i));
+        }
+        selectionModuleCombo.setEditable(false);
+        return obl;
     }
 
 
 }
+
+

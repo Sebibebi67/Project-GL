@@ -252,7 +252,7 @@ public class Student implements Role{
             int sMark = Tool.stringToInt(mark);
             SQL.satisfaction(this.login, Stockage.getActiveModule().getName(), review, sMark);
         }else{
-            //error message
+            System.out.print("error in new Satisfaction");
         }
     }
 

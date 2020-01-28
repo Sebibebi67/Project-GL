@@ -45,7 +45,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception {
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_administration.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
         Scene sceneFromAnchor = anchorAbsenceAdmin.getScene();
         sceneFromAnchor.setRoot(pane);

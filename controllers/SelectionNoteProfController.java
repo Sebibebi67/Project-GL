@@ -1,7 +1,11 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import tables.TableStudentModule;
+import tools.Stockage;
+import user.Professor;
 
 public class SelectionNoteProfController extends ControllerAbs {
 
@@ -51,9 +58,11 @@ public class SelectionNoteProfController extends ControllerAbs {
     @FXML
     private Button nouvelleNoteButton;
 
+    ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
+
     @FXML
     void nouvelleAbsence(ActionEvent event)  throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("ajout_absence.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/ajout_absence.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -62,7 +71,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void nouvelleNote(ActionEvent event) throws Exception {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("ajout_note.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/ajout_note.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -94,7 +103,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_liste_modules.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_liste_modules.fxml"));
 
         Scene sceneFromAnchor = anchorProfNotes.getScene();
         sceneFromAnchor.setRoot(pane);
@@ -113,8 +122,20 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void initialize() {
-    this.setData(comboEleveAbsence);
-    this.setData(comboEleveNote);
+        this.setData(comboEleveAbsence);
+        this.setData(comboEleveNote);
+        this.olistStudents = feelStudents(this.olistStudents);
+    }
 
+    public ObservableList<TableStudentModule> feelStudents(ObservableList<TableStudentModule> obl){
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableAttendees();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableStudentModule( array.get(i).get(0),
+                                    array.get(i).get(1),
+                                    array.get(i).get(2),
+                                    array.get(i).get(3)));
+        }
+
+        return obl;
     }
 }

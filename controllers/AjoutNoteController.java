@@ -77,7 +77,7 @@ public class AjoutNoteController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_prof_selection_note.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
         Scene sceneFromAnchor = anchorAjoutNote.getScene();
         sceneFromAnchor.setRoot(pane);

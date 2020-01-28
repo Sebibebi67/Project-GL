@@ -1,4 +1,4 @@
-package controllers;
+package tables;
 
 // import java.net.URL;
 // import java.util.Optional;

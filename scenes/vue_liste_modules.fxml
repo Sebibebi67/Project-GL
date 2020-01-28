@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorListeModule" stylesheets="@styles/style_add_note.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulesProfController">
+<AnchorPane fx:id="anchorModuleList" stylesheets="@styles/style_add_note.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModulesProfController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -20,8 +20,8 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="retour au menu" />
-                  <MenuItem fx:id="quitterMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="retour au menu" />
+                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFuntion" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -37,9 +37,9 @@
                       <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="tableModulesProf" prefHeight="247.0" prefWidth="640.0">
+                        <TableView fx:id="tableModulesTeacher" prefHeight="247.0" prefWidth="640.0">
                            <columns>
-                              <TableColumn fx:id="coursColumn" prefWidth="639.0" text="Liste des cours" />
+                              <TableColumn fx:id="coursesColumn" prefWidth="639.0" text="Liste des cours" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -1,4 +1,4 @@
-package controllers;
+package tables;
 
 
 public class TableModuleList {

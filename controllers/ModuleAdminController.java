@@ -55,7 +55,7 @@ public class ModuleAdminController extends ControllerAbs{
     @FXML
     void fonctionRetour(ActionEvent event) throws Exception{
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("vue_administration.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
         Scene sceneFromAnchor = anchorModuleAdmin.getScene();
         sceneFromAnchor.setRoot(pane);
