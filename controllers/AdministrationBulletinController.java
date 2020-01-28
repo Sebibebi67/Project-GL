@@ -22,52 +22,52 @@ public class AdministrationBulletinController extends ControllerAbs{
     private URL location;
 
     @FXML
-    private AnchorPane anchorBulletin;
+    private AnchorPane anchorReport;
 
     @FXML
-    private MenuItem retourMenu;
+    private MenuItem backMenu;
 
     @FXML
     private MenuItem quitMenu;
 
     @FXML
-    private ComboBox<String> comboPromotion;
+    private ComboBox<String> yearGroupCombo;
 
     @FXML
-    private ComboBox<String> comboFiliere;
+    private ComboBox<String> coursesCombo;
 
     @FXML
-    private ComboBox<String> comboEtudiant;
+    private ComboBox<String> studentCombo;
 
     @FXML
-    private TableView<?> tableMoyennesEleve;
+    private TableView<?> tableAverageGradeStudent;
 
     @FXML
-    private TableView<?> tableAbsencesEleve;
+    private TableView<?> tableNonattendanceStudent;
 
     @FXML
-    private Button genererBulletinButton;
+    private Button generateReportButton;
 
     @FXML
     private Button detailButton;
 
     @FXML
-    private TextField aideJuryField;
+    private TextField helpToJuryField;
 
-    String filiere = new String("");
-    String eleve = new String("");
-    String promotion = new String("");
+    String courses = new String("");
+    String student = new String("");
+    String yearGroup = new String("");
     @FXML
-    void fonctionQuit(ActionEvent event) {
-    fromAnchorClose(anchorBulletin);
+    void quitFunction(ActionEvent event) {
+    fromAnchorClose(anchorReport);
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception {
+    void backFunction(ActionEvent event) throws Exception {
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
-        Scene sceneFromAnchor = anchorBulletin.getScene();
+        Scene sceneFromAnchor = anchorReport.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -75,98 +75,98 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void genererBulletinBouton(ActionEvent event) {
+    void generateReportFunction(ActionEvent event) {
 
     }
 
     @FXML
-    void recupererAideJury(ActionEvent event) {
+    void getHelpToJury(ActionEvent event) {
 
     }
 
     @FXML
-    void selectionEtudiant(ActionEvent event) {
+    void selectionStudent(ActionEvent event) {
 
     }
 
     @FXML
-    void selectionFiliere(ActionEvent event) {
-        filiere = comboFiliere.getValue();
-        if(filiere!=null) {
-            setEtudiant();
+    void selectionCourses(ActionEvent event) {
+        courses = coursesCombo.getValue();
+        if(courses !=null) {
+            setStudents();
         }
     }
 
-    private void setEtudiant() {
-        if (filiere.equalsIgnoreCase("TS")) {
-            comboEtudiant.getItems().clear();
+    private void setStudents() {
+        if (courses.equalsIgnoreCase("TS")) {
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 1");
+            studentCombo.getItems().addAll("Eleve 1");
         }
-        else if(filiere.equalsIgnoreCase("IPS")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("IPS")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 2","Eleve 3");
+            studentCombo.getItems().addAll("Eleve 2","Eleve 3");
         }
-        else if(filiere.equalsIgnoreCase("INFO1")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("INFO1")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 4");
+            studentCombo.getItems().addAll("Eleve 4");
         }
-        else if(filiere.equalsIgnoreCase("SNUM1")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("SNUM1")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 5","Eleve 6");
+            studentCombo.getItems().addAll("Eleve 5","Eleve 6");
         }
-        else if(filiere.equalsIgnoreCase("PHOT1")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("PHOT1")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 7");
-        }
-
-        else if(filiere.equalsIgnoreCase("IMR1")){
-            comboEtudiant.getItems().clear();
-            comboEtudiant.getItems().addAll("Eleve 666");
+            studentCombo.getItems().addAll("Eleve 7");
         }
 
-        else if(filiere.equalsIgnoreCase("INFO2")){
-            comboEtudiant.getItems().clear();
-
-            comboEtudiant.getItems().addAll("Eleve 8");
-        }
-        else if(filiere.equalsIgnoreCase("SNUM2")){
-            comboEtudiant.getItems().clear();
-
-            comboEtudiant.getItems().addAll("Eleve 9","Eleve 10");
-        }
-        else if(filiere.equalsIgnoreCase("PHOT2")){
-            comboEtudiant.getItems().clear();
-
-            comboEtudiant.getItems().addAll("Eleve 11");
-        }
-        else if(filiere.equalsIgnoreCase("IMR2")){
-            comboEtudiant.getItems().clear();
-            comboEtudiant.getItems().addAll("Eleve 777");
+        else if(courses.equalsIgnoreCase("IMR1")){
+            studentCombo.getItems().clear();
+            studentCombo.getItems().addAll("Eleve 666");
         }
 
-        else if(filiere.equalsIgnoreCase("INFO3")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("INFO2")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 12");
+            studentCombo.getItems().addAll("Eleve 8");
         }
-        else if(filiere.equalsIgnoreCase("SNUM3")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("SNUM2")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 12","Eleve 13");
+            studentCombo.getItems().addAll("Eleve 9","Eleve 10");
         }
-        else if(filiere.equalsIgnoreCase("PHOT3")){
-            comboEtudiant.getItems().clear();
+        else if(courses.equalsIgnoreCase("PHOT2")){
+            studentCombo.getItems().clear();
 
-            comboEtudiant.getItems().addAll("Eleve 14");
+            studentCombo.getItems().addAll("Eleve 11");
         }
-        else if(filiere.equalsIgnoreCase("IMR3")){
-            comboEtudiant.getItems().clear();
-            comboEtudiant.getItems().addAll("Eleve 888");
+        else if(courses.equalsIgnoreCase("IMR2")){
+            studentCombo.getItems().clear();
+            studentCombo.getItems().addAll("Eleve 777");
+        }
+
+        else if(courses.equalsIgnoreCase("INFO3")){
+            studentCombo.getItems().clear();
+
+            studentCombo.getItems().addAll("Eleve 12");
+        }
+        else if(courses.equalsIgnoreCase("SNUM3")){
+            studentCombo.getItems().clear();
+
+            studentCombo.getItems().addAll("Eleve 12","Eleve 13");
+        }
+        else if(courses.equalsIgnoreCase("PHOT3")){
+            studentCombo.getItems().clear();
+
+            studentCombo.getItems().addAll("Eleve 14");
+        }
+        else if(courses.equalsIgnoreCase("IMR3")){
+            studentCombo.getItems().clear();
+            studentCombo.getItems().addAll("Eleve 888");
         }
         else{
 
@@ -175,32 +175,32 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void selectionPromotion(ActionEvent event) {
-        promotion = comboPromotion.getValue();
-        if (promotion != null) {
-            setComboFiliere();
+    void selectionYearGroup(ActionEvent event) {
+        yearGroup = yearGroupCombo.getValue();
+        if (yearGroup != null) {
+            setComboCourses();
         }
 
     }
 
     @FXML
-    void selectionnerDetailButton(ActionEvent event) {
+    void DetailReportFunction(ActionEvent event) {
 
     }
 
-    public void setComboPromotion(){
-        comboPromotion.getItems().clear();
+    public void setComboYearGroup(){
+        yearGroupCombo.getItems().clear();
 
-        comboPromotion.getItems().addAll(
+        yearGroupCombo.getItems().addAll(
                 "2019-2022",
                 "2020-2023",
                 "2021-2024");
     }
-    public void setComboFiliere() {
-        if (promotion.equalsIgnoreCase("2019-2022")) {
-            comboFiliere.getItems().clear();
+    public void setComboCourses() {
+        if (yearGroup.equalsIgnoreCase("2019-2022")) {
+            coursesCombo.getItems().clear();
 
-            comboFiliere.getItems().addAll(
+            coursesCombo.getItems().addAll(
                     "TS",
                     "IPS",
                     "IMR1",
@@ -208,19 +208,19 @@ public class AdministrationBulletinController extends ControllerAbs{
                     "PHOTO1",
                     "SNUM1");
         }
-        else if(promotion.equalsIgnoreCase("2020-2023")){
-            comboFiliere.getItems().clear();
+        else if(yearGroup.equalsIgnoreCase("2020-2023")){
+            coursesCombo.getItems().clear();
 
-            comboFiliere.getItems().addAll(
+            coursesCombo.getItems().addAll(
                     "IMR2",
                     "INFO2",
                     "PHOTO2",
                     "SNUM2");
         }
-        else if(promotion.equalsIgnoreCase("2021-2024")){
-            comboFiliere.getItems().clear();
+        else if(yearGroup.equalsIgnoreCase("2021-2024")){
+            coursesCombo.getItems().clear();
 
-            comboFiliere.getItems().addAll(
+            coursesCombo.getItems().addAll(
                     "IMR3",
                     "INFO3",
                     "PHOTO3",
@@ -233,7 +233,7 @@ public class AdministrationBulletinController extends ControllerAbs{
 
     @FXML
     void initialize() {
-        this.setComboPromotion();
+        this.setComboYearGroup();
 
 
     }
