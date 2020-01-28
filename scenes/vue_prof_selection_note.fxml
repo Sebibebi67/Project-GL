@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorProfNotes" stylesheets="@styles/style_admin_modules_sel_notes_prof_sel_notes.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionNoteProfController">
+<AnchorPane fx:id="anchorTeacherGrades" stylesheets="@styles/style_admin_modules_sel_notes_prof_sel_notes.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectionNoteProfController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -25,8 +25,8 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="Retour au menu" />
-                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour au menu" />
+                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -50,8 +50,8 @@
                                               <RowConstraints maxHeight="313.0" minHeight="10.0" prefHeight="313.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <ComboBox fx:id="comboEleveNote" onAction="#selectionEleveNote" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
-                                                <TableView fx:id="tableNotesEleve" prefHeight="274.0" prefWidth="251.0" GridPane.rowIndex="1">
+                                                <ComboBox fx:id="comboStudentGrade" onAction="#selectionStudentGrade" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                                <TableView fx:id="tableGradesStudent" prefHeight="274.0" prefWidth="251.0" GridPane.rowIndex="1">
                                                    <columns>
                                                       <TableColumn prefWidth="135.0" text="Evaluation" />
                                                       <TableColumn prefWidth="136.0" text="Note" />
@@ -79,8 +79,8 @@
                                               <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <ComboBox fx:id="comboEleveAbsence" onAction="#selectionEleveAbsence" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
-                                                <TableView fx:id="tableAbsencesEleve" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                <ComboBox fx:id="comboStudentNonattendance" onAction="#selectionNonattendanceStudent" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
+                                                <TableView fx:id="tableNonattendanceStudent" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                   <columns>
                                                     <TableColumn prefWidth="131.0" text="date" />
                                                     <TableColumn prefWidth="140.0" text="justification" />
@@ -107,7 +107,7 @@
                                               <RowConstraints maxHeight="312.0" minHeight="10.0" prefHeight="312.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <TableView fx:id="tableSatisfactionCour" prefHeight="348.0" prefWidth="272.0">
+                                                <TableView fx:id="tableCoursesSatisfaction" prefHeight="348.0" prefWidth="272.0">
                                                   <columns>
                                                     <TableColumn prefWidth="145.0" text="note" />
                                                     <TableColumn prefWidth="126.0" text="commentaire" />
@@ -136,7 +136,7 @@
                                   <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="46.60002441406249" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TableView fx:id="tableNotesElevesCour" prefHeight="301.0" prefWidth="357.0">
+                                    <TableView fx:id="tableStudentsGradesCourses" prefHeight="301.0" prefWidth="357.0">
                                        <columns>
                                           <TableColumn prefWidth="83.0" text="Nom" />
                                           <TableColumn prefWidth="95.0" text="Prénom" />
@@ -147,12 +147,12 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Button fx:id="nouvelleNoteButton" mnemonicParsing="false" onAction="#nouvelleNote" prefHeight="38.0" prefWidth="132.0" text="Nouvelle note" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                    <Button fx:id="newGradeButton" mnemonicParsing="false" onAction="#newGrade" prefHeight="38.0" prefWidth="132.0" text="Nouvelle note" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="nouvelleNoteButton" layoutX="25.0" layoutY="364.0" mnemonicParsing="false" onAction="#nouvelleAbsence" prefHeight="38.0" prefWidth="132.0" text="Nouvelle absence" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                    <Button fx:id="newNonattendanceButton" layoutX="25.0" layoutY="364.0" mnemonicParsing="false" onAction="#newNonattendance" prefHeight="38.0" prefWidth="132.0" text="Nouvelle absence" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets right="25.0" />
                                        </GridPane.margin>
