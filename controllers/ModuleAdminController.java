@@ -20,56 +20,56 @@ public class ModuleAdminController extends ControllerAbs{
     private URL location;
 
     @FXML
-    private AnchorPane anchorModuleAdmin;
+    private AnchorPane anchorModuleStudentOffice;
 
     @FXML
-    private MenuItem retourMenu;
+    private MenuItem backMenu;
 
     @FXML
     private MenuItem quitMenu;
 
     @FXML
-    private ComboBox<String> comboEleveNotes;
+    private ComboBox<String> comboGradesStudent;
 
     @FXML
-    private TableView<?> tableNotesEleve;
+    private TableView<?> tableGradesStudent;
 
     @FXML
-    private ComboBox<String> comboEleveAbsences;
+    private ComboBox<String> comboStudentsNonattendance;
 
     @FXML
-    private TableView<?> tableAbsencesEleve;
+    private TableView<?> tableNonattendanceStudent;
 
     @FXML
-    private TableView<?> tableSatisfactionCour;
+    private TableView<?> tableSatisfactionCourses;
 
     @FXML
-    private TableView<?> tableNotesElevesCour;
+    private TableView<?> tableGradesStudentsCourses;
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
+    void quitFunction(ActionEvent event) {
 
-        fromAnchorClose(anchorModuleAdmin);
+        fromAnchorClose(anchorModuleStudentOffice);
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
-        Scene sceneFromAnchor = anchorModuleAdmin.getScene();
+        Scene sceneFromAnchor = anchorModuleStudentOffice.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
     }
 
     @FXML
-    void selectionEleveNotes(ActionEvent event) {
+    void selectionGradesStudent(ActionEvent event) {
 
     }
 
     @FXML
-    void selectionElevesAbsence(ActionEvent event) {
+    void selectionStudentNonattendance(ActionEvent event) {
 
     }
 
@@ -86,8 +86,8 @@ public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     void initialize() {
-    this.setData(comboEleveAbsences);
-    this.setData(comboEleveNotes);
+    this.setData(comboStudentsNonattendance);
+    this.setData(comboGradesStudent);
 
     }
 }
