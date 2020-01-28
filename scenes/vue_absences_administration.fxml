@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorAbsenceAdmin" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AbsenceAdministrationController">
+<AnchorPane fx:id="anchorNonattendanceStudentOffice" stylesheets="@styles/style_default.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AbsenceAdministrationController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -22,8 +22,8 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="retour au menu" />
-                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="retour au menu" />
+                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitfunction" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -39,7 +39,7 @@
                       <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="tableAbsences" prefHeight="140.0" prefWidth="647.0">
+                        <TableView fx:id="tableNonattendance" prefHeight="140.0" prefWidth="647.0">
                           <columns>
                             <TableColumn prefWidth="126.0" text="Nom" />
                             <TableColumn prefWidth="86.0" text="Prenom" />
@@ -63,12 +63,12 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <CheckBox fx:id="justificationCheckBox" mnemonicParsing="false" onAction="#justificationAbsence" prefHeight="32.0" prefWidth="29.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                              <CheckBox fx:id="justificationCheckBox" mnemonicParsing="false" onAction="#nonattendanceJustification" prefHeight="32.0" prefWidth="29.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </CheckBox>
-                              <TextField fx:id="etudantTextField" editable="false" />
+                              <TextField fx:id="studentTextField" editable="false" />
                               <TextField fx:id="moduleTextField" editable="false" GridPane.columnIndex="1" />
                               <TextField fx:id="dateTextField" editable="false" GridPane.columnIndex="2" />
                            </children>
