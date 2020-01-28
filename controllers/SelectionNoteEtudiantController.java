@@ -29,15 +29,15 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     ObservableList<TableGradesStudent> olistGradeStudent = FXCollections.observableArrayList();
     ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
-    ObservableList<TableAbsencesModule> olistAbsencesModule = FXCollections.observableArrayList();
+    ObservableList<TableAbsencesModule> olistNonattendanceModule = FXCollections.observableArrayList();
 
     private String mark = null;
 
         @FXML
-        private TableColumn<TableGradesModule, String> nomNoteColumn;
+        private TableColumn<TableGradesModule, String> nameGradeColumn;
 
         @FXML
-        private TableColumn<TableGradesModule , String> noteColumn;
+        private TableColumn<TableGradesModule , String> gradeColumn;
 
         @FXML
         private ResourceBundle resources;
@@ -46,43 +46,43 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private URL location;
 
         @FXML
-        private AnchorPane anchorEtuNote;
+        private AnchorPane anchorGradeStudent;
 
         @FXML
-        private VBox vbox_etudiant;
+        private VBox vbox_student;
 
         @FXML
-        private MenuItem retourMenu;
+        private MenuItem backMenu;
 
         @FXML
         private MenuItem quitMenu;
 
         @FXML
-        private ComboBox<String> comboModuleNotes;
+        private ComboBox<String> comboModuleGrades;
 
         @FXML
-        private TableView<TableGradesModule> tableNotesModule;
+        private TableView<TableGradesModule> tableGradesModule;
 
         @FXML
-        private ComboBox<String> comboModuleAbsence;
+        private ComboBox<String> comboModuleNonattendance;
 
         @FXML
-        private TableView<TableAbsencesModule> tableAbsencesModule;
+        private TableView<TableAbsencesModule> tableNonattendanceModule;
 
         @FXML
-        private ComboBox<String> comboModuleStaisfaction;
+        private ComboBox<String> comboModuleSatisfaction;
 
         @FXML
-        private ComboBox<String> noteSatisfactionCombo;
+        private ComboBox<String> gradeSatisfactionCombo;
         
         @FXML
-        private TextField commentaireSatisfactionTextField;
+        private TextField commentarySatisfactionTextField;
         
         @FXML
-        private Button ajoutSatisfactionButton;
+        private Button addSatisfactionButton;
         
         @FXML
-        private TableView<TableGradesStudent> tableNotesEleve;
+        private TableView<TableGradesStudent> tableGradeStudent;
         
         @FXML
         private TableColumn<TableGradesStudent, String> uETableColumn;
@@ -91,29 +91,29 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private TableColumn<TableGradesStudent, String> moduleTableColumn;
         
         @FXML
-        private TableColumn<TableGradesStudent, String> moyenneTableColumn;
+        private TableColumn<TableGradesStudent, String> averageGradeTableColumn;
         
 
 
 
         @FXML
-        void ajouterSatisfaction(ActionEvent event) {
+        void addSatisfaction(ActionEvent event) {
             
-            String review = commentaireSatisfactionTextField.getText();
+            String review = commentarySatisfactionTextField.getText();
 
-            if (!(mark==null || comboModuleStaisfaction.getValue() == null)){
+            if (!(mark==null || comboModuleSatisfaction.getValue() == null)){
                 ((Student) Stockage.getPerson().getRole()).newSatisfaction(mark, review);
                 mark = null;
-                this.commentaireSatisfactionTextField.setText("Commentaire");
+                this.commentarySatisfactionTextField.setText("Commentaire");
             }else{
-                this.commentaireSatisfactionTextField.setText("Satisfaction non envoyée : merci de remplir tous les champs");
+                this.commentarySatisfactionTextField.setText("Satisfaction non envoyée : merci de remplir tous les champs");
             }
         }
 
 
         @FXML
-        void selectionNoteSatisfaction(ActionEvent event) {
-            mark = noteSatisfactionCombo.getValue();
+        void selectionGradeSatisfaction(ActionEvent event) {
+            mark = gradeSatisfactionCombo.getValue();
         }
 
 
@@ -121,11 +121,11 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         combobox.getItems().clear();
 
-        combobox = this.feelComboBoxModule(combobox);
+        combobox = this.fillComboBoxModule(combobox);
 
     }
 
-    public ComboBox<String> feelComboBoxModule(ComboBox<String> combobox){
+    public ComboBox<String> fillComboBoxModule(ComboBox<String> combobox){
         ArrayList<String> array =  ( (Student) Stockage.getPerson().getRole() ).viewlistModules();
         for (int i = 0; i<array.size(); i++){
             combobox.getItems().add(array.get(i));
@@ -137,20 +137,20 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
 
     @FXML
-    void selectionModuleAbsence(ActionEvent event) {
-        Stockage.setActiveModuleStudent(comboModuleNotes.getValue());
+    void selectionModuleNonattendance(ActionEvent event) {
+        Stockage.setActiveModuleStudent(comboModuleGrades.getValue());
 
-        this.olistAbsencesModule = feelTableAbsencesModule(this.olistAbsencesModule);
-        tableAbsencesModule.setItems(this.olistAbsencesModule);
+        this.olistNonattendanceModule = fillTableAbsencesModule(this.olistNonattendanceModule);
+        tableNonattendanceModule.setItems(this.olistNonattendanceModule);
 
     }
 
     @FXML
-    void selectionModuleNote(ActionEvent event) {
-        Stockage.setActiveModuleStudent(comboModuleNotes.getValue());
+    void selectionModuleGrade(ActionEvent event) {
+        Stockage.setActiveModuleStudent(comboModuleGrades.getValue());
 
-        this.olistGradeModule = feelTableMarkModule(this.olistGradeModule);
-        tableNotesModule.setItems(this.olistGradeModule);
+        this.olistGradeModule = fillTableMarkModule(this.olistGradeModule);
+        tableGradesModule.setItems(this.olistGradeModule);
 
 
     }
@@ -158,15 +158,15 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     @FXML
     void selectionModuleSatisfaction(ActionEvent event) {
-        Stockage.setActiveModuleStudent(comboModuleStaisfaction.getValue());
+        Stockage.setActiveModuleStudent(comboModuleSatisfaction.getValue());
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));
 
-        Scene sceneFromAnchor = anchorEtuNote.getScene();
+        Scene sceneFromAnchor = anchorGradeStudent.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -174,31 +174,33 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
+    void quitFunction(ActionEvent event) {
 
-        fromAnchorClose(anchorEtuNote);
+        fromAnchorClose(anchorGradeStudent);
 
     }
 
 
     @FXML
     public void initialize() {
-        this.setData(comboModuleAbsence);
-        this.setData(comboModuleNotes);
-        this.setData(comboModuleStaisfaction);
+        this.setData(comboModuleNonattendance);
+        this.setData(comboModuleGrades);
+        this.setData(comboModuleSatisfaction);
 
-        noteSatisfactionCombo.getItems().clear();
-        noteSatisfactionCombo.getItems().addAll("1 ", "2", "3", "4", "5");
+        gradeSatisfactionCombo.getItems().clear();
+        gradeSatisfactionCombo.getItems().addAll("1 ", "2", "3", "4", "5");
 
         uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
         moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
-        moyenneTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
+        averageGradeTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
 
-        this.olistGradeStudent = this.feelTableMark(this.olistGradeStudent);
-        tableNotesEleve.setItems(this.olistGradeStudent);
+
+
+        this.olistGradeStudent = this.fillTableMark(this.olistGradeStudent);
+        tableGradeStudent.setItems(this.olistGradeStudent);
     }
 
-    public ObservableList<TableGradesStudent> feelTableMark( ObservableList<TableGradesStudent> obl){
+    public ObservableList<TableGradesStudent> fillTableMark(ObservableList<TableGradesStudent> obl){
         ArrayList<ArrayList<String>> array = ( (Student) Stockage.getPerson().getRole() ).viewTableMark();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableGradesStudent( array.get(i).get(0),
@@ -208,7 +210,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         return obl;
     }
 
-    public ObservableList<TableGradesModule> feelTableMarkModule(ObservableList<TableGradesModule> obl){
+    public ObservableList<TableGradesModule> fillTableMarkModule(ObservableList<TableGradesModule> obl){
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableModuleMarks();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableGradesModule(  array.get(i).get(0),
@@ -217,7 +219,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         return obl;
     }
 
-    public ObservableList<TableAbsencesModule> feelTableAbsencesModule(ObservableList<TableAbsencesModule> obl){
+    public ObservableList<TableAbsencesModule> fillTableAbsencesModule(ObservableList<TableAbsencesModule> obl){
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableModuleAbsences();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableAbsencesModule(  array.get(i).get(0),

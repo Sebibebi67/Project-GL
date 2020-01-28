@@ -3,28 +3,28 @@ package tables;
 
 public class TableGradesModule {
 
-    String nomNote, note;
+    String nameGrade, grade;
 
-    public String getNomNote() {
-        return nomNote;
+    public String getNameGrade() {
+        return nameGrade;
     }
 
-    public void setNomNote(String nomNote) {
-        this.nomNote = nomNote;
+    public void setNameGrade(String nameGrade) {
+        this.nameGrade = nameGrade;
 
     }
 
-    public String getNote() {
-        return note;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
-    public TableGradesModule(String nomNote, String note){
-       this.note = note;
-       this.nomNote = nomNote;
+    public TableGradesModule(String nameGrade, String grade){
+       this.grade = grade;
+       this.nameGrade = nameGrade;
     }
 
     }
