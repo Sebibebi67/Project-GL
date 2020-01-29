@@ -2,6 +2,9 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import tables.*;
+
 
 public class AjoutNoteController extends ControllerAbs{
 
@@ -37,16 +42,16 @@ public class AjoutNoteController extends ControllerAbs{
     private TextField coefficientField;
 
     @FXML
-    private TableView<?> tableNewGrades;
+    private TableView<TableNewGrade> tableNewGrades;
 
     @FXML
-    private TableColumn<?, ?> nameColumn;
+    private TableColumn<TableNewGrade, String> nameColumn;
 
     @FXML
-    private TableColumn<?, ?> surnameColumn;
+    private TableColumn<TableNewGrade, String> surnameColumn;
 
     @FXML
-    private TableColumn<?, ?> gradeColumn;
+    private TableColumn<TableNewGrade, String> gradeColumn;
 
     @FXML
     private TextField nameStudentField;
@@ -62,6 +67,12 @@ public class AjoutNoteController extends ControllerAbs{
 
     @FXML
     private Button deleteButton;
+
+    ObservableList<TableNewGrade> olistNewGrade= FXCollections.observableArrayList();
+
+    @FXML
+    private MenuItem validationGradeItem;
+
 
     @FXML
     void addGrade(ActionEvent event) {

@@ -27,6 +27,11 @@
                   <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                 </items>
               </Menu>
+                  <Menu mnemonicParsing="false" text="valider note">
+                     <items>
+                        <MenuItem fx:id="validationGradeItem" mnemonicParsing="false" onAction="#backFunction" text="valider note et revenir" />
+                     </items>
+                  </Menu>
             </menus>
           </MenuBar>
           <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
@@ -64,8 +69,9 @@
                         </GridPane>
                         <TableView fx:id="tableNewGrades" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="nameColumn" prefWidth="218.0" text="Nom" />
+                            <TableColumn fx:id="surnameColumn" prefWidth="218.0" text="Nom" />
                             <TableColumn fx:id="surnameColumn" prefWidth="202.0" text="Prénom" />
+                              <TableColumn fx:id="idColumn" prefWidth="219.0" text="Note" />
                               <TableColumn fx:id="gradeColumn" prefWidth="219.0" text="Note" />
                           </columns>
                            <columnResizePolicy>
