@@ -92,7 +92,7 @@ call note("Comedia del'ENSSAT ",16,1,'2020-03-22','ariviere','Theatre');
 -- satisfaction(IN loginU VARCHAR(45), IN nomModule VARCHAR(45), IN questionnaire TEXT, IN note INT)
 call satisfaction('ajobard','Histoire','Beaucoup de dates à retenir, mais les sujets abordés sont intéressants.',4);
 call satisfaction('shert','Anglais','Very confusing, but I passed it anyway.',2);
-call satisfaction('dapris','Anglais','Yes',4);
+call satisfaction('dparis','Anglais','Yes',4);
 call satisfaction('dparis','Francais','Extrêmement important, la maîtrise orthographique est essentielle. Au passage, le nom du module lui-même est mal orthographié, je mets donc 0 par principe.',0);
 call satisfaction('ariviere','Francais','Cours bien structuré, mon voisin semblait cependant un peu TROP passionné',5);
 call satisfaction('tlepercq','Maths','Le grappin',2);
