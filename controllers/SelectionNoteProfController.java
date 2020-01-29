@@ -13,6 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import tables.TableModuleAbsence;
+import tables.TableProfSatisfaction;
+import tables.TableProfTest;
 import tables.TableStudentModule;
 import tools.Stockage;
 import tools.Tool;
@@ -36,24 +39,24 @@ public class SelectionNoteProfController extends ControllerAbs {
     //column for table in the tab Students grade
 
     @FXML
-    private TableColumn<?, ?> testColumn;
+    private TableColumn<TableProfTest, String> testColumn;
 
     @FXML
-    private TableColumn<?, ?> gradeStudentColumn;
+    private TableColumn<TableProfTest, String> gradeStudentColumn;
 
     //column for table in the satisfaction tab
     @FXML
-    private TableColumn<?, ?> gradeSatisfactionColumn;
+    private TableColumn<TableProfSatisfaction, String> gradeSatisfactionColumn;
 
     @FXML
-    private TableColumn<?, ?> commentaryColumn;
+    private TableColumn<TableProfSatisfaction, String> commentaryColumn;
 
     //column for table in nonattendance table
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<TableModuleAbsence, String> dateColumn;
 
     @FXML
-    private TableColumn<?, ?> justificationColumn;
+    private TableColumn<TableModuleAbsence, String> justificationColumn;
 
     @FXML
     private ResourceBundle resources;
@@ -74,16 +77,16 @@ public class SelectionNoteProfController extends ControllerAbs {
     private ComboBox<String> comboStudentGrade;
 
     @FXML
-    private TableView<?> tableGradesStudent;
+    private TableView<TableProfTest> tableGradesStudent;
 
     @FXML
     private ComboBox<String> comboStudentNonattendance;
 
     @FXML
-    private TableView<?> tableNonattendanceStudent;
+    private TableView<TableModuleAbsence> tableNonattendanceStudent;
 
     @FXML
-    private TableView<?> tableCoursesSatisfaction;
+    private TableView<TableProfSatisfaction> tableCoursesSatisfaction;
 
     @FXML
     private TableView<TableStudentModule> tableStudentsGradesCourses;
@@ -95,6 +98,10 @@ public class SelectionNoteProfController extends ControllerAbs {
     private Button newNonattendanceButton;
 
     ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
+
+    ObservableList<TableProfTest> olistTest = FXCollections.observableArrayList();
+
+    private String student;
 
     @FXML
     void newNonattendance(ActionEvent event)  throws Exception{
@@ -118,7 +125,8 @@ public class SelectionNoteProfController extends ControllerAbs {
     void selectionNonattendanceStudent(ActionEvent event) {
         String value = comboStudentNonattendance.getValue();
         if(value != null) {
-            System.out.println(value);
+            comboStudentGrade.setValue(value);
+            this.student = value;
         }
     }
 
@@ -126,9 +134,12 @@ public class SelectionNoteProfController extends ControllerAbs {
     void selectionStudentGrade(ActionEvent event) {
         String value = comboStudentGrade.getValue();
         if(value != null) {
-            System.out.println(value);
-        }
+            comboStudentNonattendance.setValue(value);
+            this.student = value;
+            this.olistTest = fillTest(this.olistTest);
+            tableGradesStudent.setItems(this.olistTest);
 
+        }
     }
 
     @FXML
@@ -147,7 +158,6 @@ public class SelectionNoteProfController extends ControllerAbs {
     }
     public void setData(ComboBox<String> combobox){
         combobox.getItems().clear();
-
         combobox = this.fillStudents(combobox);
     }
 
@@ -163,11 +173,8 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     @FXML
     void initialize() {
-
         this.initColumnCellFactory();
-
         ((Professor) Stockage.getPerson().getRole()).createListStudent(Stockage.getActiveModule().getName());
-        
         this.setData(comboStudentNonattendance);
         this.setData(comboStudentGrade);
         this.olistStudents = this.fillStudents(this.olistStudents);
@@ -175,14 +182,13 @@ public class SelectionNoteProfController extends ControllerAbs {
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
+        obl.clear();
         ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableAttendees();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableStudentModule( array.get(i).get(0),
                                     array.get(i).get(1),
                                     array.get(i).get(2),
                                     array.get(i).get(3)));
-            System.out.println(i);
-            System.out.println(obl.get(i).getName());
         }
 
         return obl;
@@ -193,10 +199,22 @@ public class SelectionNoteProfController extends ControllerAbs {
         if (!array.isEmpty()){
             for (int i= 0; i< array.size(); i++){
                 comboBox.getItems().add(Tool.stringForStudent(array.get(i).get(0),
-                                                            array.get(i).get(1), array.get(i).get(2)));
+                                                            array.get(i).get(1),
+                                                            array.get(i).get(2)));
             }
         }
         return comboBox;
+    }
+
+    public ObservableList<TableProfTest> fillTest(ObservableList<TableProfTest> obl){
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewMarksAttendee(Stockage.getActiveModule().getName(), Tool.getLogin(this.student));
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableProfTest(array.get(i).get(0),
+                                    array.get(i).get(1)));
+            System.out.println(i);
+        }
+        obl.add(new TableProfTest("test", "grade"));
+        return obl;
     }
 }
 

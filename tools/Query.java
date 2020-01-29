@@ -327,6 +327,7 @@ public class Query{
             queryResult.add(nomNote);
             queryResult.add(note);
             queryResult.add(coefficient);
+            queryResult.add(dateEvaluation);
 
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -38,7 +38,6 @@ public class Professor implements Role{
      */
     public Professor(String login){
         this.login = login;
-        students = new ArrayList<>();
         this.createModule();
     }
 
@@ -106,6 +105,7 @@ public class Professor implements Role{
      * @see Query.attendees
      */
     public void createListStudent(String module){
+        students = new ArrayList<>();
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         array = Query.attendees(module);
         if (!array.isEmpty()){
@@ -188,19 +188,22 @@ public class Professor implements Role{
         Student student = new Student(login);
         ArrayList<String> examNames = new ArrayList<String>();
         for(int i = 0;i < student.getForm().getExams().size();i++){
-            if(student.getForm().getExams().get(i).getName().equals(moduleName)){
+            if(student.getForm().getExams().get(i).getModule().getName().equals(moduleName)){
                 examNames.add(student.getForm().getExams().get(i).getName());
             }
         }
+
         for(int i = 0;i < student.getForm().getExams().size();i++){
             ArrayList<String> exam = new ArrayList<String>();
-            exam.add(examNames.get(i));
-            if(student.getForm().getMarkExams().get(examNames.get(i)) == -1){
-                exam.add("");
-            }else{
-                exam.add(student.getForm().getMarkExams().get(examNames.get(i)).toString());
+            if (!examNames.isEmpty()){
+                exam.add(examNames.get(i));
+                if(student.getForm().getMarkExams().get(examNames.get(i)) == -1){
+                    exam.add("");
+                }else{
+                    exam.add(student.getForm().getMarkExams().get(examNames.get(i)).toString());
+                }
+                array.add(exam);
             }
-            array.add(exam);
         }
         return array;
     }

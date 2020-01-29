@@ -213,6 +213,7 @@ public class EduForm {
 
             if (! array.isEmpty()){
                 for ( int j = 0; j< array.get(0).size(); j++ ){
+                    // System.out.println(array.get(3).get(j));
                     Exam exam = new Exam(
                         (String) array.get(0).get(j),
                         (Date) array.get(3).get(j),
@@ -220,7 +221,7 @@ public class EduForm {
                         modules.get(i)
                     );
                     exams.add(exam);
-                    markExams.put(exam.getName(), (Double) array.get(1).get(j));
+                    markExams.put(exam.getName(), Double.valueOf((Integer)array.get(1).get(j)));
                 }
             }
         }
