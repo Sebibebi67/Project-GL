@@ -87,7 +87,7 @@ call note('DS1',8,1,'2019-12-18','shert','Maths');
 call note('Composition',13,4,'2020-07-01','ajobard','Histoire');
 call note('TOEIC',19,1,'2019-11-26','dparis','Anglais');
 call note('Synthèse',2,3,'2019-12-07','dparis','Francais');
-call note("Comedia del'ENSSAT ",16,1,'2020-03-22','ariviere','Theatre');
+call note("Comedia del'ENSSAT",16,1,'2020-03-22','ajobard','Theatre');
 
 -- satisfaction(IN loginU VARCHAR(45), IN nomModule VARCHAR(45), IN questionnaire TEXT, IN note INT)
 call satisfaction('ajobard','Histoire','Beaucoup de dates à retenir, mais les sujets abordés sont intéressants.',4);
