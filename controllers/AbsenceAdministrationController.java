@@ -11,6 +11,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import tables.TableNonattendance;
+
 
 public class AbsenceAdministrationController extends ControllerAbs{
 
@@ -30,7 +32,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
     private AnchorPane anchorNonattendanceStudentOffice;
 
     @FXML
-    private TableView<?> tableNonattendance;
+    private TableView<TableNonattendance> tableNonattendance;
 
     @FXML
     private CheckBox justificationCheckBox;
