@@ -51,8 +51,8 @@
                                                 <ComboBox fx:id="comboEleveNotes" onAction="#selectionEleveNotes" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
                                                 <TableView fx:id="tableNotesEleve" prefHeight="277.0" prefWidth="260.0" GridPane.rowIndex="1">
                                                    <columns>
-                                                      <TableColumn prefWidth="135.0" text="Nom note" />
-                                                      <TableColumn prefWidth="136.0" text="note" />
+                                                      <TableColumn prefWidth="135.0" text="Evaluation" />
+                                                      <TableColumn prefWidth="136.0" text="Note" />
                                                    </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
