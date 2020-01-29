@@ -80,11 +80,16 @@ call constitue('Francais','Langues',2,'SNUM2');
 call constitue('Anglais','Langues',3,'PHOT2');
 call constitue('Anglais','Langues',3,'SNUM2');
 
--- note ('IN nomNote VARCHAR('45')',' IN valeur INT',' IN coeff INT',' IN jour DATE', 'IN loginU VARCHAR('45')', 'IN nomModule VARCHAR('45')')
-call note('DS1',4,1,'2019-12-18','tlepercq','Maths');
-call note('DS2',10,1,'2020-01-10','tlepercq','Maths');
-call note('DS1',8,1,'2019-12-18','shert','Maths');
-call note('Composition',13,4,'2020-07-01','ajobard','Histoire');
-call note('TOEIC',19,1,'2019-11-26','dparis','Anglais');
-call note('Synthèse',2,3,'2019-12-07','dparis','Francais');
-call note("Comedia del'ENSSAT ",16,1,'2020-03-22','ariviere','Theatre');
+
+
+-- note(IN nomNote VARCHAR(45), IN valeur INT, IN coeff INT, IN jour DATE, IN loginU VARCHAR(45), IN nomModule VARCHAR(45))
+
+
+
+-- satisfaction(IN loginU VARCHAR(45), IN nomModule VARCHAR(45), IN questionnaire TEXT, IN note INT)
+call satisfaction('ajobard','Histoire','Beaucoup de dates à retenir, mais les sujets abordés sont intéressants.',4);
+call satisfaction('shert','Anglais','Very confusing, but I passed it anyway.',2);
+call satisfaction('dapris','Anglais','Yes',4);
+call satisfaction('dparis','Francais','Extrêmement important, la maîtrise orthographique est essentielle. Au passage, le nom du module lui-même est mal orthographié, je mets donc 0 par principe.',0);
+call satisfaction('ariviere','Francais','Cours bien structuré, mon voisin semblait cependant un peu TROP passionné',5);
+call satisfaction('tlepercq','Maths','Le grappin',2);

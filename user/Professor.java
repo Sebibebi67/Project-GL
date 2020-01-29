@@ -141,41 +141,13 @@ public class Professor implements Role{
     * @return an Array with the list of all the students of the module with their average mark.
     */
     public ArrayList<ArrayList<String>> viewTableAttendees(){
-        // ArrayList<ArrayList<String>> array = new ArrayList<>();
-        // String name = Stockage.getActiveModule().getName();
-        // ArrayList<ArrayList<?>> attendees = Query.moduleStudentsAverage(name);
-
-        // if(!students.isEmpty()){
-        //     // int size = students.size();
-        //     // // System.out.println(size);
-        //     // for(int i = 0;i < size;i++){
-        //     //     ArrayList<String> student = new ArrayList<String>();
-        //     //     for(int j = 0;j < students.get;j++){
-        //     //         // student.add(attendees.get(j).get(i).toString());
-        //     //         student.add((String) students.get(i));
-        //     //     }
-        //     //     array.add(student);
-        //     // }
-
-        //     // ArrayList<ArrayList<String>> array = new ArrayList<>();
-        //     for (int i =0; i<students.size(); i++){
-        //         ArrayList<String> student = new ArrayList<>();
-        //         student.add((String)students.get(i).get(0));
-        //         student.add((String)students.get(i).get(1));
-        //         student.add("0");
-        //         student.add((String)students.get(i).get(2));
-        //         array.add(student);
-        //         Tool.print(student);
-        //     }
-        // }
-        // return array;
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         if(!this.students.isEmpty()){
             for(int i = 0;i < students.size();i++){
                 ArrayList<String> student = new ArrayList<String>();
                 student.add(this.students.get(i).get(0).toString());
                 student.add(this.students.get(i).get(1).toString());
-                student.add("0");
+                student.add(Double.toString(Query.studentAverage(Stockage.getActiveModule().getName(), this.students.get(i).get(2).toString())));
                 student.add(this.students.get(i).get(2).toString());
                 array.add(student);
             }
