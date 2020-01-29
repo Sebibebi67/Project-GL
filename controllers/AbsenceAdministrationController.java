@@ -7,11 +7,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class AbsenceAdministrationController extends ControllerAbs{
+
+    @FXML
+    private MenuItem backMenu;
+
+    @FXML
+    private MenuItem quitMenu;
 
     @FXML
     private ResourceBundle resources;
@@ -20,16 +27,16 @@ public class AbsenceAdministrationController extends ControllerAbs{
     private URL location;
 
     @FXML
-    private AnchorPane anchorAbsenceAdmin;
+    private AnchorPane anchorNonattendanceStudentOffice;
 
     @FXML
-    private TableView<?> tableAbsences;
+    private TableView<?> tableNonattendance;
 
     @FXML
     private CheckBox justificationCheckBox;
 
     @FXML
-    private TextField etudantTextField;
+    private TextField studentTextField;
 
     @FXML
     private TextField moduleTextField;
@@ -38,16 +45,16 @@ public class AbsenceAdministrationController extends ControllerAbs{
     private TextField dateTextField;
 
     @FXML
-    void justificationAbsence(ActionEvent event) {
+    void nonattendanceJustification(ActionEvent event) {
 
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception {
+    void backFunction(ActionEvent event) throws Exception {
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
-        Scene sceneFromAnchor = anchorAbsenceAdmin.getScene();
+        Scene sceneFromAnchor = anchorNonattendanceStudentOffice.getScene();
         sceneFromAnchor.setRoot(pane);
 
 
@@ -55,8 +62,8 @@ public class AbsenceAdministrationController extends ControllerAbs{
     }
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
-        fromAnchorClose(anchorAbsenceAdmin);
+    void quitfunction(ActionEvent event) {
+        fromAnchorClose(anchorNonattendanceStudentOffice);
     }
 
     @FXML

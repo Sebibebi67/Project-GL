@@ -21,53 +21,53 @@ public class AjoutAbsenceController extends ControllerAbs {
     private URL location;
 
     @FXML
-    private AnchorPane anchorAjoutAbsence;
+    private AnchorPane anchorAddNonattendance;
 
     @FXML
-    private MenuItem retourMenu;
+    private MenuItem backMenu;
 
     @FXML
     private MenuItem quitMenu;
 
     @FXML
-    private Button ajouterAbsenceButton;
+    private Button addNonattendanceButton;
 
     @FXML
-    private DatePicker dateAbsencePicker;
+    private DatePicker dateNonattendancePicker;
 
     @FXML
-    private ComboBox<String> comboEleveAbsence;
+    private ComboBox<String> comboNonattendanceStudent;
 
     @FXML
-    private ComboBox<String> comboModuleAbsence;
+    private ComboBox<String> comboModuleNonattendance;
 
     @FXML
-    private ComboBox<String> heureDebutCombo;
+    private ComboBox<String> startingHourCombo;
 
     @FXML
-    private ComboBox<String> minuteDebutCombo;
+    private ComboBox<String> startingMinuteCombo;
 
     @FXML
-    private ComboBox<String> heureFinCombo;
+    private ComboBox<String> endingHourCombo;
 
     @FXML
-    private ComboBox<String> minuteFinCombo;
+    private ComboBox<String> endingMinuteFinCombo;
 
     @FXML
-    void ajouterAbsence(ActionEvent event) {
+    void addNonattendance(ActionEvent event) {
 
     }
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
-        fromAnchorClose(anchorAjoutAbsence);
+    void quitFunction(ActionEvent event) {
+        fromAnchorClose(anchorAddNonattendance);
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception {
+    void backFunction(ActionEvent event) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
-        Scene sceneFromAnchor = anchorAjoutAbsence.getScene();
+        Scene sceneFromAnchor = anchorAddNonattendance.getScene();
         sceneFromAnchor.setRoot(pane);
 
     }
@@ -79,8 +79,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionEleveAbsence(ActionEvent event) {
-        String value = comboEleveAbsence.getValue();
+    void selectionStudentNonattendance(ActionEvent event) {
+        String value = comboNonattendanceStudent.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -89,8 +89,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionHeureDebut(ActionEvent event) {
-        String value = heureDebutCombo.getValue();
+    void selectionStartingHour(ActionEvent event) {
+        String value = startingHourCombo.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -99,8 +99,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionHeureFin(ActionEvent event) {
-        String value = heureFinCombo.getValue();
+    void selectionEndingHour(ActionEvent event) {
+        String value = endingHourCombo.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -109,8 +109,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionMinuteDebut(ActionEvent event) {
-        String value = minuteDebutCombo.getValue();
+    void selectionStartingMinute(ActionEvent event) {
+        String value = startingMinuteCombo.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -119,8 +119,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionMinuteFin(ActionEvent event) {
-        String value = minuteFinCombo.getValue();
+    void selectionEndingMinute(ActionEvent event) {
+        String value = endingMinuteFinCombo.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -129,8 +129,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionModuleAbsence(ActionEvent event) {
-        String value = comboModuleAbsence.getValue();
+    void selectionModulenonattendance(ActionEvent event) {
+        String value = comboModuleNonattendance.getValue();
         if (value != null) {
             System.out.println(value);
         }
@@ -146,7 +146,7 @@ public class AjoutAbsenceController extends ControllerAbs {
         }
     }
 
-    public void setHeure(ComboBox<String> combobox) {
+    public void setHour(ComboBox<String> combobox) {
         combobox.getItems().clear();
         int i;
         for (i = 0; i < 24; i++) {
@@ -158,9 +158,9 @@ public class AjoutAbsenceController extends ControllerAbs {
     public void setModule() {
 
 
-        comboModuleAbsence.getItems().clear();
+        comboModuleNonattendance.getItems().clear();
 
-        comboModuleAbsence.getItems().addAll(
+        comboModuleNonattendance.getItems().addAll(
                 "Module1 ",
                 "Module 2",
                 "Module 3",
@@ -170,11 +170,11 @@ public class AjoutAbsenceController extends ControllerAbs {
 
 }
 
-public void setEleve(){
+public void setStudent(){
 
-    comboEleveAbsence.getItems().clear();
+    comboNonattendanceStudent.getItems().clear();
 
-    comboEleveAbsence.getItems().addAll(
+    comboNonattendanceStudent.getItems().addAll(
             "eleve 1",
             "eleve 2",
             "eleve 3",
@@ -186,11 +186,11 @@ public void setEleve(){
 
     @FXML
     void initialize() {
-        setMinute(minuteDebutCombo);
-        setMinute(minuteFinCombo);
-        setHeure(heureDebutCombo);
-        setHeure(heureFinCombo);
-        setEleve();
+        setMinute(startingMinuteCombo);
+        setMinute(endingMinuteFinCombo);
+        setHour(startingHourCombo);
+        setHour(endingHourCombo);
+        setStudent();
         setModule();
 
     }

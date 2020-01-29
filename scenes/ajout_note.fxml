@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorAjoutNote" stylesheets="@styles/style_add_note.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutNoteController">
+<AnchorPane fx:id="anchorAddGrade" stylesheets="@styles/style_add_note.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutNoteController">
    <children>
       <VBox prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -23,8 +23,8 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="retourMenu" mnemonicParsing="false" onAction="#fonctionRetour" text="Retour au menu" />
-                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#fonctionQuit" text="Quitter" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour au menu" />
+                  <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                 </items>
               </Menu>
             </menus>
@@ -53,7 +53,7 @@
                           </rowConstraints>
                            <children>
                               <Label text="Nom de la note:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                              <TextField fx:id="nomNoteField" GridPane.columnIndex="1">
+                              <TextField fx:id="nameGradeField" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="25.0" right="25.0" />
                                  </GridPane.margin>
@@ -62,11 +62,11 @@
                               <TextField fx:id="coefficientField" layoutX="147.0" layoutY="40.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
-                        <TableView fx:id="tableNouvellesNotes" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <TableView fx:id="tableNewGrades" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="nomColumn" prefWidth="218.0" text="Nom" />
-                            <TableColumn fx:id="prenomColumn" prefWidth="202.0" text="Prénom" />
-                              <TableColumn fx:id="noteColumn" prefWidth="219.0" text="Note" />
+                            <TableColumn fx:id="nameColumn" prefWidth="218.0" text="Nom" />
+                            <TableColumn fx:id="surnameColumn" prefWidth="202.0" text="Prénom" />
+                              <TableColumn fx:id="gradeColumn" prefWidth="219.0" text="Note" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -84,11 +84,11 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="nomEleveField" text="Nom" />
-                              <TextField fx:id="prenomEleveField" text="Prénom" GridPane.columnIndex="1" />
-                              <TextField fx:id="noteEleveField" text="Note" GridPane.columnIndex="2" />
-                              <Button fx:id="ajouterNoteButton" mnemonicParsing="false" onAction="#ajouterNote" prefHeight="44.0" prefWidth="108.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <Button fx:id="supprimerButton" mnemonicParsing="false" onAction="#supprimerNote" prefHeight="44.0" prefWidth="108.0" text="Supprimer" GridPane.columnIndex="4" />
+                              <TextField fx:id="nameStudentField" text="Nom" />
+                              <TextField fx:id="surnameStudentField" text="Prénom" GridPane.columnIndex="1" />
+                              <TextField fx:id="gradeStudentField" text="Note" GridPane.columnIndex="2" />
+                              <Button fx:id="addGradeButton" mnemonicParsing="false" onAction="#addGrade" prefHeight="44.0" prefWidth="108.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteGrade" prefHeight="44.0" prefWidth="108.0" text="Supprimer" GridPane.columnIndex="4" />
                            </children>
                         </GridPane>
                      </children>

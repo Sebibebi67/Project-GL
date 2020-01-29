@@ -22,69 +22,69 @@ public class AjoutNoteController extends ControllerAbs{
     private URL location;
 
     @FXML
-    private AnchorPane anchorAjoutNote;
+    private AnchorPane anchorAddGrade;
 
     @FXML
-    private MenuItem retourMenu;
+    private MenuItem backMenu;
 
     @FXML
     private MenuItem quitMenu;
 
     @FXML
-    private TextField nomNoteField;
+    private TextField nameGradeField;
 
     @FXML
     private TextField coefficientField;
 
     @FXML
-    private TableView<?> tableNouvellesNotes;
+    private TableView<?> tableNewGrades;
 
     @FXML
-    private TableColumn<?, ?> nomColumn;
+    private TableColumn<?, ?> nameColumn;
 
     @FXML
-    private TableColumn<?, ?> prenomColumn;
+    private TableColumn<?, ?> surnameColumn;
 
     @FXML
-    private TableColumn<?, ?> noteColumn;
+    private TableColumn<?, ?> gradeColumn;
 
     @FXML
-    private TextField nomEleveField;
+    private TextField nameStudentField;
 
     @FXML
-    private TextField prenomEleveField;
+    private TextField surnameStudentField;
 
     @FXML
-    private TextField noteEleveField;
+    private TextField gradeStudentField;
 
     @FXML
-    private Button ajouterNoteButton;
+    private Button addGradeButton;
 
     @FXML
-    private Button supprimerButton;
+    private Button deleteButton;
 
     @FXML
-    void ajouterNote(ActionEvent event) {
+    void addGrade(ActionEvent event) {
 
     }
 
     @FXML
-    void fonctionQuit(ActionEvent event) {
+    void quitFunction(ActionEvent event) {
 
-        fromAnchorClose(anchorAjoutNote);
+        fromAnchorClose(anchorAddGrade);
     }
 
     @FXML
-    void fonctionRetour(ActionEvent event) throws Exception{
+    void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
-        Scene sceneFromAnchor = anchorAjoutNote.getScene();
+        Scene sceneFromAnchor = anchorAddGrade.getScene();
         sceneFromAnchor.setRoot(pane);
     }
 
     @FXML
-    void supprimerNote(ActionEvent event) {
+    void deleteGrade(ActionEvent event) {
 
     }
 
