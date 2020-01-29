@@ -91,7 +91,7 @@ public class MenuAdministrationController extends ControllerAbs{
 
     @FXML
     void selectionModules(ActionEvent event) throws Exception{
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_admin_modules.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/moduleList_ViewStudentOffice.fxml"));
 
         Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
