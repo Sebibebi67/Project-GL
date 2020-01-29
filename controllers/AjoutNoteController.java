@@ -51,6 +51,9 @@ public class AjoutNoteController extends ControllerAbs{
     private TableColumn<TableNewGrade, String> surnameColumn;
 
     @FXML
+    private TableColumn<TableNewGrade, String>  idColumn;
+
+    @FXML
     private TableColumn<TableNewGrade, String> gradeColumn;
 
     @FXML

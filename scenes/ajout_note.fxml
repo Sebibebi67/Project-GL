@@ -69,9 +69,9 @@
                         </GridPane>
                         <TableView fx:id="tableNewGrades" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="surnameColumn" prefWidth="218.0" text="Nom" />
+                            <TableColumn fx:id="nameColumn" prefWidth="218.0" text="Nom" />
                             <TableColumn fx:id="surnameColumn" prefWidth="202.0" text="Prénom" />
-                              <TableColumn fx:id="idColumn" prefWidth="219.0" text="Note" />
+                              <TableColumn fx:id="idColumn" prefWidth="219.0" text="identifiant" />
                               <TableColumn fx:id="gradeColumn" prefWidth="219.0" text="Note" />
                           </columns>
                            <columnResizePolicy>
