@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import tables.TableStudentModule;
 import tools.Stockage;
+import tools.Tool;
 import user.Professor;
 
 public class SelectionNoteProfController extends ControllerAbs {
@@ -41,7 +42,7 @@ public class SelectionNoteProfController extends ControllerAbs {
     private ComboBox<String> comboStudentGrade;
 
     @FXML
-    private TableView<?> tableGradesStudent;
+    private TableView<TableStudentModule> tableGradesStudent;
 
     @FXML
     private ComboBox<String> comboStudentNonattendance;
@@ -115,19 +116,17 @@ public class SelectionNoteProfController extends ControllerAbs {
     public void setData(ComboBox<String> combobox){
         combobox.getItems().clear();
 
-        combobox.getItems().addAll(
-                "Eleve 1 ",
-                "Eleve 2",
-                "Eleve 3",
-                "Eleve 4",
-                "Eleve 5");
+        combobox = this.fillStudents(combobox);
     }
 
     @FXML
     void initialize() {
+        ((Professor) Stockage.getPerson().getRole()).createListStudent(Stockage.getActiveModule().getName());
+        
         this.setData(comboStudentNonattendance);
         this.setData(comboStudentGrade);
         this.olistStudents = fillStudents(this.olistStudents);
+        tableGradesStudent.setItems(this.olistStudents);
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
@@ -137,8 +136,22 @@ public class SelectionNoteProfController extends ControllerAbs {
                                     array.get(i).get(1),
                                     array.get(i).get(2),
                                     array.get(i).get(3)));
+            System.out.println(i);
+            System.out.println(obl.get(i).getName());
         }
 
         return obl;
     }
+
+    public ComboBox<String> fillStudents (ComboBox<String> comboBox){
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewListAttendees();
+        if (!array.isEmpty()){
+            for (int i= 0; i< array.size(); i++){
+                comboBox.getItems().add(Tool.stringForStudent(array.get(i).get(0),
+                                                            array.get(i).get(1), array.get(i).get(2)));
+            }
+        }
+        return comboBox;
+    }
 }
+

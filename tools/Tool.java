@@ -240,4 +240,13 @@ public class Tool{
         return Time.valueOf(newS[1]+":"+newS[0]+":00");
     }
 
+    public static String stringForStudent(String name, String firstName, String login){
+        return name+" "+firstName+" - "+login;
+    }
+
+    public static String getLogin(String student){
+        String[] s = student.split("- ");
+        return s[1];
+    }
+
 }
