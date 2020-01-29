@@ -74,7 +74,7 @@ public class SelectionNoteProfController extends ControllerAbs {
     private ComboBox<String> comboStudentGrade;
 
     @FXML
-    private TableView<TableStudentModule> tableGradesStudent;
+    private TableView<?> tableGradesStudent;
 
     @FXML
     private ComboBox<String> comboStudentNonattendance;
@@ -86,7 +86,7 @@ public class SelectionNoteProfController extends ControllerAbs {
     private TableView<?> tableCoursesSatisfaction;
 
     @FXML
-    private TableView<?> tableStudentsGradesCourses;
+    private TableView<TableStudentModule> tableStudentsGradesCourses;
 
     @FXML
     private Button newGradeButton;
@@ -164,14 +164,14 @@ public class SelectionNoteProfController extends ControllerAbs {
     @FXML
     void initialize() {
 
-
+        this.initColumnCellFactory();
 
         ((Professor) Stockage.getPerson().getRole()).createListStudent(Stockage.getActiveModule().getName());
         
         this.setData(comboStudentNonattendance);
         this.setData(comboStudentGrade);
-        this.olistStudents = fillStudents(this.olistStudents);
-        tableGradesStudent.setItems(this.olistStudents);
+        this.olistStudents = this.fillStudents(this.olistStudents);
+        tableStudentsGradesCourses.setItems(this.olistStudents);
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
