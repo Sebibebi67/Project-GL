@@ -10,10 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableStudentModule;
 import tools.Stockage;
@@ -22,6 +20,40 @@ import user.Professor;
 
 public class SelectionNoteProfController extends ControllerAbs {
 
+    //column for table with all students and their grades
+    @FXML
+    private TableColumn<TableStudentModule, String> nameColumn;
+
+    @FXML
+    private TableColumn<TableStudentModule, String> surnameColumn;
+
+    @FXML
+    private TableColumn<TableStudentModule, String> gradeColumn;
+
+    @FXML
+    private TableColumn<TableStudentModule, String> idColumn;
+
+    //column for table in the tab Students grade
+
+    @FXML
+    private TableColumn<?, ?> testColumn;
+
+    @FXML
+    private TableColumn<?, ?> gradeStudentColumn;
+
+    //column for table in the satisfaction tab
+    @FXML
+    private TableColumn<?, ?> gradeSatisfactionColumn;
+
+    @FXML
+    private TableColumn<?, ?> commentaryColumn;
+
+    //column for table in nonattendance table
+    @FXML
+    private TableColumn<?, ?> dateColumn;
+
+    @FXML
+    private TableColumn<?, ?> justificationColumn;
 
     @FXML
     private ResourceBundle resources;
@@ -119,8 +151,21 @@ public class SelectionNoteProfController extends ControllerAbs {
         combobox = this.fillStudents(combobox);
     }
 
+    private void initColumnCellFactory(){
+        //column for table with all students and their grades
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        gradeColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
+
+
+    }
+
     @FXML
     void initialize() {
+
+
+
         ((Professor) Stockage.getPerson().getRole()).createListStudent(Stockage.getActiveModule().getName());
         
         this.setData(comboStudentNonattendance);

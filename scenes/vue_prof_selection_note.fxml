@@ -53,8 +53,8 @@
                                                 <ComboBox fx:id="comboStudentGrade" onAction="#selectionStudentGrade" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
                                                 <TableView fx:id="tableGradesStudent" prefHeight="274.0" prefWidth="251.0" GridPane.rowIndex="1">
                                                    <columns>
-                                                      <TableColumn prefWidth="135.0" text="Evaluation" />
-                                                      <TableColumn prefWidth="136.0" text="Note" />
+                                                      <TableColumn fx:id="testColumn" prefWidth="135.0" text="Evaluation" />
+                                                      <TableColumn fx:id="gradeStudentColumn" prefWidth="136.0" text="Note" />
                                                    </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -82,8 +82,8 @@
                                                 <ComboBox fx:id="comboStudentNonattendance" onAction="#selectionNonattendanceStudent" prefHeight="34.0" prefWidth="280.0" promptText="Élève" />
                                                 <TableView fx:id="tableNonattendanceStudent" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                   <columns>
-                                                    <TableColumn prefWidth="131.0" text="date" />
-                                                    <TableColumn prefWidth="140.0" text="justification" />
+                                                    <TableColumn fx:id="dateColumn" prefWidth="131.0" text="date" />
+                                                    <TableColumn fx:id="justificationColumn" prefWidth="140.0" text="justification" />
                                                   </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -109,8 +109,8 @@
                                              <children>
                                                 <TableView fx:id="tableCoursesSatisfaction" prefHeight="348.0" prefWidth="272.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="145.0" text="note" />
-                                                    <TableColumn prefWidth="126.0" text="commentaire" />
+                                                    <TableColumn fx:id="gradeSatisfactionColumn" prefWidth="145.0" text="note" />
+                                                    <TableColumn fx:id="commentaryColumn" prefWidth="126.0" text="commentaire" />
                                                   </columns>
                                                 </TableView>
                                              </children>
@@ -138,10 +138,10 @@
                                  <children>
                                     <TableView fx:id="tableStudentsGradesCourses" prefHeight="301.0" prefWidth="357.0">
                                        <columns>
-                                          <TableColumn prefWidth="83.0" text="Nom" />
-                                          <TableColumn prefWidth="95.0" text="Prénom" />
-                                          <TableColumn prefWidth="81.0" text="Note" />
-                                          <TableColumn prefWidth="108.0" text="Identifiant" />
+                                          <TableColumn fx:id="nameColumn" prefWidth="83.0" text="Nom" />
+                                          <TableColumn fx:id="surnameColumn" prefWidth="95.0" text="Prénom" />
+                                          <TableColumn fx:id="gradeColumn" prefWidth="81.0" text="Note" />
+                                          <TableColumn fx:id="idColumn" prefWidth="108.0" text="Identifiant" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
