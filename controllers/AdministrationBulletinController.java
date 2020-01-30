@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 import tools.Query;
 import tools.Stockage;
 import tools.Tool;
-import user.Person;
 import user.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -204,12 +203,13 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    public void detailedReportFunction(ActionEvent event)  throws IOException
+    public void detailedReportFunction(ActionEvent event) throws IOException
     {
         String login = Tool.getLogin(studentCombo.getValue());
-        String pswd = (String) Query.userData(login).get(1);
-        Person student = new Person(login, pswd);
-        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 1);
+        ArrayList<Object> array = Query.userData(login);
+        String firstname = (String) array.get(3);
+        String surname = (String) array.get(2);
+        Stockage.getStudent().getForm().generateReport(firstname, surname, Stockage.getStudent().getCourse(), 1);
     }
 
     public void setComboYearGroup(){
