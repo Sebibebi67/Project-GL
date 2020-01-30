@@ -111,7 +111,7 @@
                     </rowConstraints>
                      <children>
                         <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReportFunction" prefHeight="50.0" prefWidth="132.0" text="Bulletin résumé" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button fx:id="detailButton" mnemonicParsing="false" onAction="#DetailReportFunction" prefHeight="50.0" prefWidth="132.0" text="Bulletin détaillé" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="detailButton" mnemonicParsing="false" onAction="#detailReportFunction" prefHeight="50.0" prefWidth="132.0" text="Bulletin détaillé" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Label text="Aide au jury:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets right="15.0" />
