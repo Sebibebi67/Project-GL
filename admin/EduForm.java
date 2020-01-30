@@ -162,6 +162,7 @@ public class EduForm {
             for (int i = 0; i < array.get(0).size(); i++) {
                 absences.add(new Absence((Date) array.get(0).get(i), (Time) array.get(1).get(i),
                         (Date) array.get(2).get(i), (Time) array.get(3).get(i), (Boolean) array.get(4).get(i)));
+                        System.out.println(i);
             }
         }
     }

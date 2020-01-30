@@ -11,6 +11,15 @@ public class Stockage{
     private static Module activeModule;
     private static Student student;
     private static Professor professor;
+    private static String loginStudent;
+
+    public String getLoginStudent() {
+		return loginStudent;
+	}
+
+    public void setLoginStudent(String login) {
+		loginStudent = login;
+	}
 
     /**
      * @return stored Professor

@@ -242,7 +242,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
         obl.clear();
-        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableAbsences();
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewAbsences();
         for(int i = 0; i<array.size(); i++){
             obl.add(new TableModuleAbsence(array.get(i).get(0), array.get(i).get(1)));
         }
