@@ -181,19 +181,24 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
     }
 
 
+    private void initColumns(){
+        uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
+        moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        averageGradeTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
+
+        nameGradeColumn.setCellValueFactory(new PropertyValueFactory<>("nameGrade"));
+        gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
+    }
+
     @FXML
     public void initialize() {
+        initColumns();
         this.setData(comboModuleNonattendance);
         this.setData(comboModuleGrades);
         this.setData(comboModuleSatisfaction);
 
         gradeSatisfactionCombo.getItems().clear();
         gradeSatisfactionCombo.getItems().addAll("1 ", "2", "3", "4", "5");
-
-        uETableColumn.setCellValueFactory(new PropertyValueFactory<>("ue"));
-        moduleTableColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
-        averageGradeTableColumn.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
-
 
 
         this.olistGradeStudent = this.fillTableMark(this.olistGradeStudent);

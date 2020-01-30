@@ -2,8 +2,6 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.mysql.cj.xdevapi.Table;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tables.TableAbsencesModule;
