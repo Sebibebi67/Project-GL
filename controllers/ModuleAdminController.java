@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import tables.TableAbsencesModule;
 import tables.TableGradesModule;
+import tables.TableModuleAbsence;
 import tables.TableStudentModule;
 import tools.Tool;
 import tools.Stockage;
@@ -26,7 +26,7 @@ import tables.TableProfSatisfaction;
 /**
  * 
  * This class contains all the methods which are linked with the Module view for Administration
- * @author Alex JOBART
+ * @author Alex JOBARD
  * @author Adam RIVIERE
  * 
  */
@@ -74,11 +74,11 @@ public class ModuleAdminController extends ControllerAbs{
     *
     */
     @FXML
-    private TableView<TableAbsencesModule> tableNonattendanceStudent;
+    private TableView<TableModuleAbsence> tableNonattendanceStudent;
     @FXML
-    private TableColumn<TableAbsencesModule, String> dateColumn;
+    private TableColumn<TableModuleAbsence, String> dateColumn;
     @FXML
-    private TableColumn<TableAbsencesModule, String> justificationColumn;
+    private TableColumn<TableModuleAbsence, String> justificationColumn;
 
     /*
     *
@@ -116,7 +116,7 @@ public class ModuleAdminController extends ControllerAbs{
     ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
     ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
     ObservableList<TableGradesModule> olistTest = FXCollections.observableArrayList();
-    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
+    ObservableList<TableModuleAbsence> olistAbsences = FXCollections.observableArrayList();
 
     /*
     *
@@ -308,11 +308,11 @@ public class ModuleAdminController extends ControllerAbs{
      * @return obl observableList of TableAbsencesModule
      * @author Adam RIVIERE
      */
-    public ObservableList<TableAbsencesModule> fillAbsences (ObservableList<TableAbsencesModule> obl){
+    public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewAbsencesStudent();
         for(int i = 0; i<array.size(); i++){
-            obl.add(new TableAbsencesModule(array.get(i).get(0), array.get(i).get(1)));
+            obl.add(new TableModuleAbsence(array.get(i).get(0), array.get(i).get(1)));
         }
         return obl;
     }

@@ -29,7 +29,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
     ObservableList<TableGradesStudent> olistGradeStudent = FXCollections.observableArrayList();
     ObservableList<TableGradesModule> olistGradeModule = FXCollections.observableArrayList();
-    ObservableList<TableAbsencesModule> olistNonattendanceModule = FXCollections.observableArrayList();
+    ObservableList<TableModuleAbsence> olistNonattendanceModule = FXCollections.observableArrayList();
 
     private String mark = null;
 
@@ -67,13 +67,13 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private ComboBox<String> comboModuleNonattendance;
 
         @FXML
-        private TableView<TableAbsencesModule> tableNonattendanceModule;
+        private TableView<TableModuleAbsence> tableNonattendanceModule;
 
         @FXML
-        private TableColumn<TableAbsencesModule, String> dateColumn;
+        private TableColumn<TableModuleAbsence, String> dateColumn;
 
         @FXML
-        private TableColumn<TableAbsencesModule, String> justificationColumn;
+        private TableColumn<TableModuleAbsence, String> justificationColumn;
 
         @FXML
         private ComboBox<String> comboModuleSatisfaction;
@@ -244,11 +244,11 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         return obl;
     }
 
-    public ObservableList<TableAbsencesModule> fillTableAbsencesModule(ObservableList<TableAbsencesModule> obl){
+    public ObservableList<TableModuleAbsence> fillTableAbsencesModule(ObservableList<TableModuleAbsence> obl){
         ArrayList<ArrayList<String>> array = ( (Student) Stockage.getPerson().getRole() ).viewTableModuleAbsences();
         obl.clear();
         for (int i = 0; i< array.size(); i++){
-            obl.add(new TableAbsencesModule(  array.get(i).get(0),
+            obl.add(new TableModuleAbsence(  array.get(i).get(0),
                                             array.get(i).get(1)));
         }
         return obl;

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import tables.TableModuleAbsence;
 import tools.Query;
 import tools.Stockage;
 import tools.Tool;
@@ -18,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import tables.TableAbsencesModule;
 import tables.TableAverageGradeStudent;
 
 public class AdministrationBulletinController extends ControllerAbs{
@@ -64,13 +64,13 @@ public class AdministrationBulletinController extends ControllerAbs{
     //columns for tableNonattendanceStudent
 
     @FXML
-    private TableView<TableAbsencesModule> tableNonattendanceStudent;
+    private TableView<TableModuleAbsence> tableNonattendanceStudent;
 
     @FXML
-    private TableColumn<TableAbsencesModule, String> NonattendanceDateColumn;
+    private TableColumn<TableModuleAbsence, String> NonattendanceDateColumn;
 
     @FXML
-    private TableColumn<TableAbsencesModule, String> justificationColumn;
+    private TableColumn<TableModuleAbsence, String> justificationColumn;
 
     @FXML
     private Button generateReportButton;
@@ -81,7 +81,7 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     private TextField helpToJuryField;
 
-    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
+    ObservableList<TableModuleAbsence> olistAbsences = FXCollections.observableArrayList();
 
     ObservableList<TableAverageGradeStudent> olistMarks = FXCollections.observableArrayList();
 
@@ -147,11 +147,11 @@ public class AdministrationBulletinController extends ControllerAbs{
         }
     }
 
-    public ObservableList<TableAbsencesModule> fillAbsences (ObservableList<TableAbsencesModule> obl){
+    public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableAbsences();
         for(int i = 0; i<array.size(); i++){
-            obl.add(new TableAbsencesModule(array.get(i).get(0), array.get(i).get(1)));
+            obl.add(new TableModuleAbsence(array.get(i).get(0), array.get(i).get(1)));
         }
         return obl;
     }
