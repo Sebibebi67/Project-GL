@@ -49,7 +49,6 @@
 .table-view
 {
     -fx-color: #f0f4ff;
-    -fx-border-width: 3px;
     -fx-border-color: rgb(47, 84, 151);
 }
 
