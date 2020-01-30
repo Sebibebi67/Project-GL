@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableNonattendance;
 
@@ -45,6 +46,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
 
     @FXML
     private TextField dateTextField;
+
 
     @FXML
     void nonattendanceJustification(ActionEvent event) {
@@ -84,6 +86,14 @@ public class AbsenceAdministrationController extends ControllerAbs{
     void quitFunction(ActionEvent event) {
         fromAnchorClose(anchorNonattendanceStudentOffice);
     }
+
+    public void initCellFactoryColumn() {
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        moduleColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
 
     @FXML
     void initialize() {
