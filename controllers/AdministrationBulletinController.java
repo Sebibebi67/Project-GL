@@ -1,7 +1,10 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,10 +100,25 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void getHelpToJury() {
-        //TODO: looking at average and saying retake the year or pass
-
-        helpToJuryField.setText("redoublement");
+    void getHelpToJury()
+    {
+        int fx = 0;
+        // int abs = 0;
+        String text;
+        ArrayList<Double> avg = new ArrayList<>();
+        ObservableList<TableAverageGradeStudent> obl = tableAverageGradeStudent.getItems();
+        for (int i = 0; i< obl.size(); i++)
+        {
+            avg.add(Double.parseDouble(obl.get(i).getAverageGrade()));
+        }
+        for (int i = 0; i< avg.size(); i++)
+        {
+            if (avg.get(i) < 11) fx++;
+        }
+        if (fx == 0) text = "Passage automatique";
+        else if (fx < 2) text = "Redoublement";
+        else text = "Exclusion";
+        helpToJuryField.setText(text);
     }
 
     @FXML
