@@ -88,6 +88,9 @@ public class ModuleAdminController extends ControllerAbs{
     private TableView<TableProfSatisfaction> tableSatisfactionCourses;
 
     ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
+
+    ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
+
     @FXML
     private TableColumn<TableProfSatisfaction, String> gradeSatisfactionColumn;
 
@@ -147,6 +150,19 @@ public class ModuleAdminController extends ControllerAbs{
         return obl;
     }
 
+    public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewTableAttendees();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableStudentModule( array.get(i).get(0),
+                                    array.get(i).get(1),
+                                    array.get(i).get(2),
+                                    array.get(i).get(3)));
+        }
+
+        return obl;
+    }
+
     private void initColumnsFactory(){
         //satisfaction
         gradeSatisfactionColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
@@ -159,7 +175,7 @@ public class ModuleAdminController extends ControllerAbs{
         justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
         //main table
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("fistName"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         gradeModuleColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));
     }
@@ -170,6 +186,8 @@ public class ModuleAdminController extends ControllerAbs{
         ((Administration) Stockage.getPerson().getRole()).createStudentsInModule();
         this.setData(comboStudentsNonattendance);
         this.setData(comboGradesStudent);
+        this.olistStudents = this.fillStudents(this.olistStudents);
+        tableGradesStudentsCourses.setItems(this.olistStudents);
         this.olistSatisfaction = this.fillSatisfaction(this.olistSatisfaction);
         tableSatisfactionCourses.setItems(this.olistSatisfaction);
 
