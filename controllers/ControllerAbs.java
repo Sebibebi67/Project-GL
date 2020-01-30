@@ -29,6 +29,13 @@ public abstract class ControllerAbs {
             }
         }
 
+    public void warningLogin(){
+        Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+        alertLogin.setTitle("Warning Login");
+        alertLogin.setContentText("wrong password/Login");
+        Optional<ButtonType> resultLogin = alertLogin.showAndWait();
+    }
+
 
     }
 

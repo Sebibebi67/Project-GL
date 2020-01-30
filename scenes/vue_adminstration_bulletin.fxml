@@ -73,9 +73,9 @@
                      <children>
                         <TableView fx:id="tableAverageGradeStudent" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn prefWidth="129.0" text="Module" />
-                            <TableColumn minWidth="0.0" prefWidth="96.0" text="Moyenne" />
-                              <TableColumn minWidth="0.0" prefWidth="89.0" text="Rattrapage" />
+                            <TableColumn fx:id="moduleColumn" prefWidth="129.0" text="Module" />
+                            <TableColumn fx:id="averageGradeColumn" minWidth="0.0" prefWidth="96.0" text="Moyenne" />
+                              <TableColumn fx:id="retakeColumn" minWidth="0.0" prefWidth="89.0" text="Rattrapage" />
                           </columns>
                            <GridPane.margin>
                               <Insets right="5.0" />
@@ -83,8 +83,8 @@
                         </TableView>
                         <TableView fx:id="tableNonattendanceStudent" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                           <columns>
-                            <TableColumn prefWidth="165.0" text="Date de l'absence" />
-                            <TableColumn prefWidth="149.20001220703125" text="Justification" />
+                            <TableColumn fx:id="NonattendanceDateColumn" prefWidth="165.0" text="Date de l'absence" />
+                            <TableColumn fx:id="justificationColumn" prefWidth="149.20001220703125" text="Justification" />
                           </columns>
                            <GridPane.margin>
                               <Insets left="5.0" />
