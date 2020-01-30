@@ -115,5 +115,6 @@ call satisfaction('tlepercq','Maths','Le grappin',2);
 
 -- Generating missed classes
 -- INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(INT,INT,INT,'YYYY-MM-DD','YYYY-MM-DD','HH:MM:SS','HH:MM:SS',INT);
-INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(25,35,28,'2020-01-30','2020-01-30','08:15:00','10:15:00',0);
-INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(29,32,25,'2020-01-08','2020-01-08','14:00:00','16:00:00',1);
+-- Those queries won't work, the procedure supposed to generate absences doesn't work and direct inserts require the user to look for specific IDs.
+--INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(30,41,33,'2020-01-30','2020-01-30','08:15:00','10:15:00',0);
+--INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(34,38,30,'2020-01-08','2020-01-08','14:00:00','16:00:00',1);
