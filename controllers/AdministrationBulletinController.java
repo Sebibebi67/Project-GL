@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import tables.TableAbsencesModule;
 import tables.TableAverageGradeStudent;
 
 public class AdministrationBulletinController extends ControllerAbs{
@@ -47,13 +48,19 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     private TableColumn<TableAverageGradeStudent, String> averageGradeColumn;
 
-    //columns for tableNonattendanceStudent
-
     @FXML
     private TableColumn<TableAverageGradeStudent, String> retakeColumn;
 
+    //columns for tableNonattendanceStudent
+
     @FXML
-    private TableView<?> tableNonattendanceStudent;
+    private TableView<TableAbsencesModule> tableNonattendanceStudent;
+
+    @FXML
+    private TableColumn<TableAbsencesModule, String> NonattendanceDateColumn;
+
+    @FXML
+    private TableColumn<TableAbsencesModule, String> justificationColumn;
 
     @FXML
     private Button generateReportButton;
