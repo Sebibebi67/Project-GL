@@ -97,13 +97,15 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void getHelpToJury(ActionEvent event) {
+    void getHelpToJury() {
+        //TODO: looking at average and saying retake the year or pass
 
+        helpToJuryField.setText("redoublement");
     }
 
     @FXML
     void selectionStudent(ActionEvent event) {
-
+        getHelpToJury();
     }
 
     @FXML

@@ -1,6 +1,7 @@
 package tables;
 
 
+
 public class TableAverageGradeStudent {
 
     String module,averageGrade,retake;
