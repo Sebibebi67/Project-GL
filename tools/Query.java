@@ -546,7 +546,7 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM absences WHERE idEtudiant = "+idEtudiant+" AND idModule = "+idModule+";";
+            String query = "SELECT dateDebut, heureDebut, dateFin, heureFin, estJustifiee FROM Absence WHERE idEtudiant = "+idEtudiant+" AND idModule = "+idModule+";";
             ResultSet res = statement.executeQuery(query);
             ArrayList<Date> dateDebut = new ArrayList<Date>();
             ArrayList<Time> heureDebut = new ArrayList<Time>();

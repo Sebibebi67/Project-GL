@@ -324,17 +324,35 @@ public class Professor implements Role{
         ArrayList<ArrayList<?>> query = Query.absenceModule(
             Stockage.getLoginStudent(),
             Stockage.getActiveModule().getName());
-        for (int i = 0; i< query.size(); i++){
-            ArrayList<String> abs = new ArrayList<>();
-            String date = Tool.dateToString(
-                (Date) query.get(0).get(0),
-                (Time) query.get(1).get(0),
-                (Time) query.get(3).get(0));
-            abs.add(date);
-            abs.add(Tool.booleanToString((Boolean) query.get(4).get(i)));
-            array.add(abs);
+        if (!query.isEmpty()){
+            for (int i = 0; i< query.get(0).size(); i++){
+                ArrayList<String> abs = new ArrayList<>();
+                String date = Tool.dateToString(
+                    (Date) query.get(0).get(i),
+                    (Time) query.get(1).get(i),
+                    (Time) query.get(3).get(i));
+                abs.add(date);
+                abs.add(Tool.booleanToString((Boolean) query.get(4).get(i)));
+                array.add(abs);
+            }
         }
     return array;
+    }
+
+    public ArrayList<ArrayList<String>> viewMarks(){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        ArrayList<ArrayList<?>> query = Query.exams(
+            Stockage.getActiveModule().getName(),
+            Stockage.getLoginStudent());
+        if(!query.isEmpty()){
+            for( int i = 0; i<query.get(0).size(); i++){
+                ArrayList<String> exam = new ArrayList<>();
+                exam.add( (String) (query.get(0).get(i)) );
+                exam.add((query.get(1).get(i)).toString());
+                array.add(exam);
+            }
+        }
+        return array;
     }
 
 }

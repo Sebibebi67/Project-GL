@@ -98,10 +98,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     void generateReportFunction(ActionEvent event)
     {
-        String firstname = Tool.getFirstname(studentCombo.getValue());
-        String surname = Tool.getSurname(studentCombo.getValue());
-        Course course = Tool.getCourse(studentCombo.getValue());
-        ((Student) student).getForm().generateReport();
+        // String firstname = Tool.getFirstname(studentCombo.getValue());
+        // String surname = Tool.getSurname(studentCombo.getValue());
+        // Course course = Tool.getCourse(studentCombo.getValue());
+        // ((Student) student).getForm().generateReport();
     }
 
     @FXML
