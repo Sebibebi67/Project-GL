@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableNonattendance;
-import tables.TableStudentModule;
+// import tables.TableStudentModule;
 
 
 public class AbsenceAdministrationController extends ControllerAbs{

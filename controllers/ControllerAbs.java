@@ -33,7 +33,7 @@ public abstract class ControllerAbs {
         Alert alertLogin = new Alert(Alert.AlertType.WARNING);
         alertLogin.setTitle("alerte login");
         alertLogin.setContentText("mauvaise combinaison mot de passe/identifiant");
-        Optional<ButtonType> resultLogin = alertLogin.showAndWait();
+        alertLogin.showAndWait();
     }
 
 
