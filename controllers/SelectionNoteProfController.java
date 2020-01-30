@@ -180,11 +180,6 @@ public class SelectionNoteProfController extends ControllerAbs {
         this.setData(comboStudentGrade);
         this.olistStudents = this.fillStudents(this.olistStudents);
         tableStudentsGradesCourses.setItems(this.olistStudents);
-        /*System.out.println("debug 1");
-        this.olistTest = this.fillTest(this.olistTest);
-        System.out.println("debug 2");
-        tableGradesStudent.setItems(this.olistTest);
-        System.out.println("debug 3");*/
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
@@ -213,13 +208,12 @@ public class SelectionNoteProfController extends ControllerAbs {
     }
 
     public ObservableList<TableProfTest> fillTest(ObservableList<TableProfTest> obl){
+        obl.clear();
         ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewMarksAttendee(Stockage.getActiveModule().getName(), Tool.getLogin(this.student));
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableProfTest(array.get(i).get(0),
                                     array.get(i).get(1)));
-            System.out.println(i);
         }
-        obl.add(new TableProfTest("test", "grade"));
         return obl;
     }
 }
