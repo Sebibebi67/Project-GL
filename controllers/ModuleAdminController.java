@@ -22,6 +22,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import tables.TableProfSatisfaction;
+//import tables.TableProfTest;
 
 public class ModuleAdminController extends ControllerAbs{
 
@@ -91,11 +92,15 @@ public class ModuleAdminController extends ControllerAbs{
 
     ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
 
+    ObservableList<TableGradesModule> olistTest = FXCollections.observableArrayList();
+
     @FXML
     private TableColumn<TableProfSatisfaction, String> gradeSatisfactionColumn;
 
     @FXML
     private TableColumn<TableProfSatisfaction, String> commentaryColumn;
+
+    private String student;
 
     @FXML
     void quitFunction(ActionEvent event) {
@@ -116,7 +121,16 @@ public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     void selectionGradesStudent(ActionEvent event) {
+        String value = comboGradesStudent.getValue();
+        if(value != null) {
+            comboStudentsNonattendance.setValue(value);
+            this.student = value;
+            // this.createStudent();
+            Stockage.setLoginStudent(Tool.getLogin(student));
+            this.olistTest = fillTest(this.olistTest);
+            tableGradesStudent.setItems(this.olistTest);
 
+        }
     }
 
     @FXML
@@ -191,5 +205,15 @@ public class ModuleAdminController extends ControllerAbs{
         this.olistSatisfaction = this.fillSatisfaction(this.olistSatisfaction);
         tableSatisfactionCourses.setItems(this.olistSatisfaction);
 
+    }
+
+    public ObservableList<TableGradesModule> fillTest(ObservableList<TableGradesModule> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewMarks();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableGradesModule(array.get(i).get(0),
+                                    array.get(i).get(1)));
+        }
+        return obl;
     }
 }

@@ -357,4 +357,20 @@ public abstract class Administration implements Role {
         return array;
     }
 
+    public ArrayList<ArrayList<String>> viewMarks(){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        ArrayList<ArrayList<?>> query = Query.exams(
+            Stockage.getActiveModule().getName(),
+            Stockage.getLoginStudent());
+        if(!query.isEmpty()){
+            for( int i = 0; i<query.get(0).size(); i++){
+                ArrayList<String> exam = new ArrayList<>();
+                exam.add( (String) (query.get(0).get(i)) );
+                exam.add((query.get(1).get(i)).toString());
+                array.add(exam);
+            }
+        }
+        return array;
+    }
+
 }
