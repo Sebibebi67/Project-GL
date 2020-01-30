@@ -512,6 +512,7 @@ public class Query{
                 heureFin.add(res.getTime("heureFin"));
                 estJustifiee.add(res.getBoolean("estJustifiee"));
                 idModule.add(res.getInt("idModule"));
+                // System.out.println(res.getInt("idModule"));
             }
             queryResult.add(dateDebut);
             queryResult.add(heureDebut);

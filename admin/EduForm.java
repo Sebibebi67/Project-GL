@@ -160,9 +160,14 @@ public class EduForm {
 
         if (!array.isEmpty()) {
             for (int i = 0; i < array.get(0).size(); i++) {
-                absences.add(new Absence((Date) array.get(0).get(i), (Time) array.get(1).get(i),
-                        (Date) array.get(2).get(i), (Time) array.get(3).get(i), (Boolean) array.get(4).get(i)));
-                        System.out.println(i);
+                absences.add(new Absence(
+                    (Date) array.get(0).get(i),
+                    (Time) array.get(1).get(i),
+                    (Date) array.get(2).get(i),
+                    (Time) array.get(3).get(i),
+                    (Boolean) array.get(4).get(i),
+                    Query.getModuleName((int) array.get(5).get(i))));
+                    // System.out.println((int) array.get(5).get(i));
             }
         }
     }
@@ -193,7 +198,6 @@ public class EduForm {
         ArrayList<String> modulesNames = new ArrayList<>();
 
         modulesNames = Query.courses(this.login);
-
 
         for (int i = 0 ; i < modulesNames.size(); i++){
             modules.add(new Module((String) modulesNames.get(i)));

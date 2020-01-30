@@ -48,6 +48,18 @@ public class Absence {
 
         this.justified = justified;
     }
+
+    public Absence (Date beginDate, Time beginHour, Date endDate, Time endHour, Boolean justified, String module) {
+        this.beginDate = beginDate;
+        this.beginHour = beginHour;
+
+        this.endDate = endDate;
+        this.endHour = endHour;
+
+        this.justified = justified;
+
+        this.moduleName = module;
+    }
     
     /**
      * Constructor
