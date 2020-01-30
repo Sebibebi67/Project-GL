@@ -99,7 +99,7 @@ public class ModulesStudentOfficeController extends ControllerAbs{
         selectionModuleCombo.getItems().clear();
 
 
-        ArrayList<String> array = ((StudentOffice) Stockage.getPerson().getRole()).viewListModules();
+        ArrayList<String> array = ((Administration) Stockage.getPerson().getRole()).viewListModules();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableModuleList(array.get(i)));
             selectionModuleCombo.getItems().add(array.get(i));

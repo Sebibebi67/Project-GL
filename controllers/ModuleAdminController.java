@@ -2,6 +2,12 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import tools.Tool;
+import tools.Stockage;
+import java.util.ArrayList;
+import user.Administration;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,13 +81,19 @@ public class ModuleAdminController extends ControllerAbs{
 
     public void setData(ComboBox<String> combobox){
         combobox.getItems().clear();
+        combobox = this.fillStudents(combobox);
+    }
 
-        combobox.getItems().addAll(
-                "Eleve 1 ",
-                "Eleve 2",
-                "Eleve 3",
-                "Eleve 4",
-                "Eleve 5");
+    public ComboBox<String> fillStudents (ComboBox<String> comboBox){
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewListAttendees();
+        if (!array.isEmpty()){
+            for (int i= 0; i< array.size(); i++){
+                comboBox.getItems().add(Tool.stringForStudent(array.get(i).get(0),
+                                                            array.get(i).get(1),
+                                                            array.get(i).get(2)));
+            }
+        }
+        return comboBox;
     }
 
     @FXML

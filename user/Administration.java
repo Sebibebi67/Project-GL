@@ -292,9 +292,7 @@ public abstract class Administration implements Role {
     }
 
     public ArrayList<String> viewListModules(){
-	    //TODO: afficher tous les modules pour l'administration (utilisé dans modulesStudentOfficeController ligne 102. supprimer les 2 prochaines lignes
-         ArrayList<String> oui = new ArrayList<>();
-         return oui;
+         return this.modules;
     }
 
 }
