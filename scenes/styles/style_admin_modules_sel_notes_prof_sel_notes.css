@@ -84,9 +84,3 @@
 {
     -fx-color: #c4ceff;
 }
-
-GridPane
-{
-    -fx-padding: 5px;
-    -fx-hgap: 5px;
-}
