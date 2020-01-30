@@ -194,7 +194,8 @@ public class Tool{
     * @return a string with the time
     */
     public static String getHMTime(Time time){
-        String[] newTime = time.toString().split("-");
+        // System.out.println(time.toString());
+        String[] newTime = time.toString().split(":");
         return newTime[0]+"H"+newTime[1];
     }    
 
