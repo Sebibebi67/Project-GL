@@ -383,7 +383,7 @@ public class EduForm {
         else
             table = createDetailedReportTable();
 
-        String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, table, Integer.toString(absenceTotal)};
+        String[] data = {Integer.toString(y1), Integer.toString(y2), Integer.toString(year), surname, firstname, course.toString(), table, Integer.toString(absenceTotal)};
         String[] tags = {"$y1", "$y2", "$year", "$lastname", "$firstname", "$course", "$table", "$absences"};
 
         String text = Files.readString(Path.of(path));
