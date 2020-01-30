@@ -83,6 +83,11 @@ public class AjoutNoteController extends ControllerAbs{
     }
 
     @FXML
+    void validationAllGrade(ActionEvent event) {
+
+    }
+
+    @FXML
     void quitFunction(ActionEvent event) {
 
         fromAnchorClose(anchorAddGrade);
