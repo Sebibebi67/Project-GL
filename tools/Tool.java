@@ -238,7 +238,7 @@ public class Tool{
     */
     public static Time parseTime(String s){
         String[] newS = s.split("H");
-        return Time.valueOf(newS[1]+":"+newS[0]+":00");
+        return Time.valueOf(newS[0]+":"+newS[1]+":00");
     }
 
     public static String stringForStudent(String name, String firstName, String login){

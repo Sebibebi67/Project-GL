@@ -166,10 +166,10 @@ public abstract class Administration implements Role {
 				for (int j = 0; j<4; j++){
 					absence.add((String) array.get(j).get(i));
 				}
-				absence.add(Tool.dateToString(	(Date) array.get(5).get(i),
-												(Time) array.get(6).get(i),
-												(Time) array.get(7).get(i)));
-				absence.add(Tool.booleanToString((Boolean) array.get(8).get(i)));
+				absence.add(Tool.dateToString(	(Date) array.get(4).get(i),
+												(Time) array.get(5).get(i),
+												(Time) array.get(6).get(i)));
+				absence.add(Tool.booleanToString((Boolean) array.get(7).get(i)));
 				absences.add(absence);
 			}
 		}

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -14,6 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableNonattendance;
 // import tables.TableStudentModule;
+import tools.Stockage;
+import tools.Tool;
+import user.Administration;
 
 
 public class AbsenceAdministrationController extends ControllerAbs{
@@ -74,7 +78,12 @@ public class AbsenceAdministrationController extends ControllerAbs{
 
     @FXML
     void nonattendanceJustification(ActionEvent event) {
-
+        String student = Tool.getLogin(studentTextField.getText());
+        String module = moduleTextField.getText();
+        String date = dateTextField.getText();
+        ((Administration) Stockage.getPerson().getRole()).updateJustification(student, module, date);
+        this.olistNonattendance = fillAbsences(olistNonattendance);
+        tableNonattendance.setItems(olistNonattendance);
     }
 
     @FXML
@@ -94,7 +103,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
             String strSurname = tablerow.getSurname();
             String strId = tablerow.getId();
 
-            studentTextField.setText(strName+","+strSurname+","+strId);
+            studentTextField.setText(strName+","+strSurname+"- "+strId);
             moduleTextField.setText(tablerow.getModule());
             dateTextField.setText(tablerow.getDate());
             if(tablerow.getJustification() == "Oui") {
@@ -123,9 +132,23 @@ public class AbsenceAdministrationController extends ControllerAbs{
     @FXML
     void initialize(){
         initCellFactoryColumn();
-        olistNonattendance.add(new TableNonattendance("nom", "prenom", "id", "module", "22-12-2019", "Oui"));
-        olistNonattendance.add(new TableNonattendance("nom2", "prenom2", "id2", "module2", "22-12-2019", "Non"));
+        this.olistNonattendance = fillAbsences(olistNonattendance);
         tableNonattendance.setItems(olistNonattendance);
 
+    }
+
+    ObservableList<TableNonattendance> fillAbsences(ObservableList<TableNonattendance> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewAbsences();
+        for(int i = 0; i<array.size(); i++){
+            obl.add(new TableNonattendance(
+                array.get(i).get(0),
+                array.get(i).get(1),
+                array.get(i).get(2),
+                array.get(i).get(3),
+                array.get(i).get(4),
+                array.get(i).get(5)));
+        }
+        return obl;
     }
 }
