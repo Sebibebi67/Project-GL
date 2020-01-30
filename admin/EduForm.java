@@ -264,8 +264,7 @@ public class EduForm {
             if (!units.contains(modules.get(i).getUnit()))
             {
                 units.add(modules.get(i).getUnit());
-                double zero = 0;
-                averages.add(zero);
+                averages.add(0.0);
             }
         }
         for (int i=0 ; i<units.size() ; i++)
@@ -276,7 +275,7 @@ public class EduForm {
                 if (units.get(i).equals(modules.get(j).getUnit()))
                 {
                     prev = averages.get(i);
-                    averages.set(i, prev + markModules.get(modules.get(j).getName()));
+                    averages.set(i, prev + markModules.get(modules.get(j).getName())*modules.get(j).getCoeff());
                     coeff += modules.get(j).getCoeff();
                 }
             }
