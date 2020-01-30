@@ -97,7 +97,7 @@
                                           <ComboBox fx:id="comboModuleNonattendance" onAction="#selectionModuleNonattendance" prefHeight="34.0" prefWidth="280.0" promptText="Module" />
                                           <TableView fx:id="tableNonattendanceModule" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                              <columns>
-                                                <TableColumn fx:id="dateAbsenceColumn" prefWidth="131.0" text="date" />
+                                                <TableColumn fx:id="dateColumn" prefWidth="131.0" text="date" />
                                                 <TableColumn fx:id="justificationColumn" prefWidth="140.0" text="justification" />
                                              </columns>
                                              <columnResizePolicy>

@@ -70,6 +70,12 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private TableView<TableAbsencesModule> tableNonattendanceModule;
 
         @FXML
+        private TableColumn<TableAbsencesModule, String> dateColumn;
+
+        @FXML
+        private TableColumn<TableAbsencesModule, String> justificationColumn;
+
+        @FXML
         private ComboBox<String> comboModuleSatisfaction;
 
         @FXML
@@ -188,6 +194,11 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         nameGradeColumn.setCellValueFactory(new PropertyValueFactory<>("nameGrade"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+
     }
 
     @FXML
