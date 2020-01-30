@@ -29,7 +29,7 @@
               </Menu>
                   <Menu mnemonicParsing="false" text="valider note">
                      <items>
-                        <MenuItem fx:id="validationGradeItem" mnemonicParsing="false" onAction="#backFunction" text="valider note et revenir" />
+                        <MenuItem fx:id="validationGradeItem" mnemonicParsing="false" onAction="#validationAllGrade" text="tout valider et revenir" />
                      </items>
                   </Menu>
             </menus>
