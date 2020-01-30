@@ -20,9 +20,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 // import javafx.scene.layout.Pane;
 import tools.Stockage;
+import user.Administration;
 import user.Professor;
 import tables.*;
 import study.Module;
+import user.StudentOffice;
 
 public class ModulesStudentOfficeController extends ControllerAbs{
 
@@ -97,7 +99,7 @@ public class ModulesStudentOfficeController extends ControllerAbs{
         selectionModuleCombo.getItems().clear();
 
 
-        ArrayList<String> array = ((Professor) Stockage.getPerson().getRole()).viewListModules();
+        ArrayList<String> array = ((StudentOffice) Stockage.getPerson().getRole()).viewListModules();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableModuleList(array.get(i)));
             selectionModuleCombo.getItems().add(array.get(i));
