@@ -31,14 +31,14 @@ public abstract class Administration implements Role {
 	public Administration () {}
 
     /**
-     * @return login the login
+     * @return studentsInModule, list of the students in the active module
      */
 	public ArrayList<ArrayList<String>> getstudentsInModule(){
 		return this.studentsInModule;
 	}
 
     /**
-     * @param login the login to set
+     * @param studentsInModule the list to set
      */
 	public void setstudentsInModule(ArrayList<ArrayList<String>> studentsInModule){
 		this.studentsInModule = studentsInModule;
@@ -59,7 +59,7 @@ public abstract class Administration implements Role {
 	}
 
     /**
-     * @return students the AL<AL<String> which contains the name, the firstname,the login and the course for each student
+     * @return the AL<AL<String> which contains the name, the firstname, the login and the course for each student
      */
 	public ArrayList<ArrayList<String>> getStudents() {
 		return this.students;
@@ -73,7 +73,7 @@ public abstract class Administration implements Role {
 	}
 
     /**
-     * @return modules the AL<String> which contains the name of all modules
+     * @return the AL<String> which contains the name of all modules
      */
 	public ArrayList<String> getModules() {
 		return this.modules;
@@ -148,7 +148,7 @@ public abstract class Administration implements Role {
 	}
 
     /**
-     * Creates the list which contains the name, the firstname and the login of a student, the module name, the date and the hour and if his/her  absence is jusitified. All parameters are Strings.
+     * Creates the list which contains the name, the firstname and the login of a student, the module name, the date and the hour and if his / her  absence is jusitified (all as String).
      * @author Sébastien HERT
      * @author Adam RIVIERE
      * @return list of absences for the UI

@@ -107,9 +107,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     void generateReportFunction(ActionEvent event) throws IOException
     {
         String login = Tool.getLogin(studentCombo.getValue());
-        String pswd = (String) Query.userData(login).get(1);
-        Person student = new Person(login, pswd);
-        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 0);
+        ArrayList<Object> array = Query.userData(login);
+        String firstname = (String) array.get(3);
+        String surname = (String) array.get(2);
+        Stockage.getStudent().getForm().generateReport(firstname, surname, Stockage.getStudent().getCourse(), 0);
     }
 
     @FXML
