@@ -111,3 +111,9 @@ call satisfaction('dparis','Anglais','Yes',4);
 call satisfaction('dparis','Francais','Extrêmement important, la maîtrise orthographique est essentielle. Au passage, le nom du module lui-même est mal orthographié, je mets donc 0 par principe.',0);
 call satisfaction('ariviere','Francais','Cours bien structuré, mon voisin semblait cependant un peu TROP passionné',5);
 call satisfaction('tlepercq','Maths','Le grappin',2);
+
+
+-- Generating missed classes
+-- INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(INT,INT,INT,'YYYY-MM-DD','YYYY-MM-DD','HH:MM:SS','HH:MM:SS',INT);
+INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(25,35,28,'2020-01-30','2020-01-30','08:15:00','10:15:00',0);
+INSERT INTO Absence(idEtudiant,idEnseignant,idModule,dateDebut,dateFin,heureDebut,heureFin,estJustifiee) VALUES(29,32,25,'2020-01-08','2020-01-08','14:00:00','16:00:00',1);
