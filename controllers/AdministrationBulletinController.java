@@ -227,9 +227,12 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    public void detailedReportFunction(ActionEvent event) 
+    public void detailedReportFunction(ActionEvent event)  throws IOException
     {
-
+        String login = Tool.getLogin(studentCombo.getValue());
+        String pswd = (String) Query.userData(login).get(1);
+        Person student = new Person(login, pswd);
+        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 0);
     }
 
     public void setComboYearGroup(){
