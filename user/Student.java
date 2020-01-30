@@ -290,4 +290,17 @@ public class Student implements Role{
         return array;
     }
 
+    public ArrayList<ArrayList<String>> viewModuleAverage(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        for(int i = 0;i < this.form.getModules().size();i++){
+            double average = this.form.getMarkModules().get(this.form.getModules().get(i).getName());
+            ArrayList<String> mark = new ArrayList<String>();
+            mark.add(this.form.getModules().get(i).getName());
+            mark.add(Double.toString(average));
+            mark.add(Tool.booleanToString(average<11));
+            array.add(mark);
+        }
+        return array;
+    }
+
 }

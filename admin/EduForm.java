@@ -134,6 +134,20 @@ public class EduForm {
     }
 
     /**
+     * @return the modules and the marks
+     */
+    public Map<String, Double> getMarkModules(){
+        return this.markModules;
+    }
+
+    /**
+     * @param map modules and marks to set
+     */
+    public void getMarkModules(Map<String, Double>  map){
+        this.markModules = map;
+    }
+
+    /**
      * @return a list of modules
      */
     public ArrayList<Module> getModules() {

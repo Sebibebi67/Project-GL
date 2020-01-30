@@ -6,15 +6,18 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import tools.Query;
+import tools.Stockage;
 import tools.Tool;
 import user.Person;
 import user.Student;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableAbsencesModule;
 import tables.TableAverageGradeStudent;
@@ -79,6 +82,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     private TextField helpToJuryField;
 
+    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
+
+    ObservableList<TableAverageGradeStudent> olistMarks = FXCollections.observableArrayList();
+
     String courses = new String("");
     String student = new String("");
     String yearGroup = new String("");
@@ -129,7 +136,33 @@ public class AdministrationBulletinController extends ControllerAbs{
 
     @FXML
     void selectionStudent(ActionEvent event) {
-        getHelpToJury();
+        if(studentCombo.getValue() != null){
+            String login = Tool.getLogin(studentCombo.getValue());
+            Stockage.setStudent(new Student(login));
+            this.olistAbsences = fillAbsences(this.olistAbsences);
+            this.tableNonattendanceStudent.setItems(this.olistAbsences);
+            this.olistMarks = fillMarks(this.olistMarks);
+            this.tableAverageGradeStudent.setItems(this.olistMarks);
+            getHelpToJury();
+        }
+    }
+
+    public ObservableList<TableAbsencesModule> fillAbsences (ObservableList<TableAbsencesModule> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableAbsences();
+        for(int i = 0; i<array.size(); i++){
+            obl.add(new TableAbsencesModule(array.get(i).get(0), array.get(i).get(1)));
+        }
+        return obl;
+    }
+
+    public ObservableList<TableAverageGradeStudent> fillMarks(ObservableList<TableAverageGradeStudent> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = Stockage.getStudent().viewModuleAverage();
+        for(int i = 0; i<array.size(); i++){
+            obl.add(new TableAverageGradeStudent(array.get(i).get(0), array.get(i).get(1), array.get(i).get(2)));
+        }
+        return obl;
     }
 
     @FXML
@@ -204,7 +237,7 @@ public class AdministrationBulletinController extends ControllerAbs{
             coursesCombo.getItems().addAll(
                     "IMR2",
                     "INFO2",
-                    "PHOTO2",
+                    "PHOT2",
                     "SNUM2");
         }
         else if(yearGroup.equalsIgnoreCase("3ème Années")){
@@ -224,7 +257,16 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     void initialize() {
         this.setComboYearGroup();
+        this.initColumnsFactory();
+    }
 
-
+    private void initColumnsFactory(){
+        //nonattendance
+        NonattendanceDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
+        //grades
+        moduleColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
+        averageGradeColumn.setCellValueFactory(new PropertyValueFactory<>("averageGrade"));
+        retakeColumn.setCellValueFactory(new PropertyValueFactory<>("retake"));
     }
 }
