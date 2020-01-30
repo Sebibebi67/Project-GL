@@ -322,7 +322,7 @@ public class Professor implements Role{
     public ArrayList<ArrayList<String>> viewAbsences(){
         ArrayList<ArrayList<String>> array = new ArrayList<>();
         ArrayList<ArrayList<?>> query = Query.absenceModule(
-            ((Student)Stockage.getPerson().getRole()).getLogin(),
+            Stockage.getLoginStudent(),
             Stockage.getActiveModule().getName());
         for (int i = 0; i< query.size(); i++){
             ArrayList<String> abs = new ArrayList<>();
