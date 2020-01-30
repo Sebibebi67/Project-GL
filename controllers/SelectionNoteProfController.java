@@ -132,7 +132,8 @@ public class SelectionNoteProfController extends ControllerAbs {
         if(value != null) {
             comboStudentGrade.setValue(value);
             this.student = value;
-            this.createStudent();
+            // this.createStudent();
+            Stockage.setLoginStudent(Tool.getLogin(student));
             this.olistAbsences = fillAbsences(this.olistAbsences);
             this.tableNonattendanceStudent.setItems(this.olistAbsences);
         }
@@ -144,7 +145,8 @@ public class SelectionNoteProfController extends ControllerAbs {
         if(value != null) {
             comboStudentNonattendance.setValue(value);
             this.student = value;
-            this.createStudent();
+            // this.createStudent();
+            Stockage.setLoginStudent(Tool.getLogin(student));
             this.olistTest = fillTest(this.olistTest);
             tableGradesStudent.setItems(this.olistTest);
 
@@ -232,7 +234,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     public ObservableList<TableProfTest> fillTest(ObservableList<TableProfTest> obl){
         obl.clear();
-        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewMarksAttendee(Stockage.getActiveModule().getName(), Tool.getLogin(this.student));
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewMarks();
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableProfTest(array.get(i).get(0),
                                     array.get(i).get(1)));
