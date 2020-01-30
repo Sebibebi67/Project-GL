@@ -1347,10 +1347,10 @@ public class Query{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             Statement statement = conn.createStatement();
-            String query = "SELECT nomMod FROM Module JOIN Constitue ON Module.idModule = Constitute.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE idUE = "+getTUID(unit)+";";
+            String query = "SELECT nomMod FROM Module JOIN Constitue ON Module.idModule = Constitue.idModule JOIN UE ON UE.idUE = Constitue.idUE WHERE UE.idUE = "+getTUID(unit)+";";
             ResultSet res = statement.executeQuery(query);
             while(res.next()){
-                nomMod.add(res.getString("nom"));
+                nomMod.add(res.getString("nomMod"));
             }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();

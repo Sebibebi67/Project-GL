@@ -270,9 +270,9 @@ public class EduForm {
         }
         for (int i=0 ; i<units.size() ; i++)
         {
+            coeff = 0;
             for (int j=0 ; j<modules.size() ; j++)
             {
-                coeff = 0;
                 if (units.get(i).equals(modules.get(j).getUnit()))
                 {
                     prev = averages.get(i);
@@ -394,7 +394,7 @@ public class EduForm {
         fw.write(text);
         fw.close();
 
-        Desktop.getDesktop().open(new File(path));
+        // Desktop.getDesktop().open(new File(path));
     }
 
     /**
@@ -510,13 +510,13 @@ public class EduForm {
         ArrayList<ArrayList<?>> average = new ArrayList<>();
         average = Query.moduleStudentsAverage(modName);
         double mark = markModules.get(modName);
-        rank.set(1, average.size());
-        for (int i=0 ; i<average.size() ; i++)
+        for (int i=0 ; i<average.get(2).size() ; i++)
         {
-            if ((double) average.get(i).get(2) > mark)
+            if ((float) average.get(2).get(i) > (float) mark)
                 counter++;
         }
-        rank.set(0, counter);
+        rank.add(counter);
+        rank.add(average.size());
         return rank;
     }
 
@@ -543,6 +543,10 @@ public class EduForm {
         average.set(0, Query.unitAttendees(unit));
         for (int k=0 ; k<average.get(0).size() ; k++)
         {
+            average.get(1).add(new ArrayList<>());
+        }
+        for (int k=0 ; k<average.get(0).size() ; k++)
+        {
             avg = 0; coeff = 0;
             for (int i=0 ; i<modules.size() ; i++)
             {
@@ -551,13 +555,13 @@ public class EduForm {
             }
             average.get(1).set(k, avg/coeff);
         }
-        rank.set(1, average.size());
         for (int i=0 ; i<average.get(1).size() ; i++)
         {
             if ((double) average.get(1).get(i) > mark)
                 counter++;
         }
-        rank.set(0, counter);
+        rank.add(counter);
+        rank.add(average.size());
         return rank;
     }
 }

@@ -6,7 +6,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tables.TableAbsencesModule;
 import tables.TableGradesModule;
-// import tables.TableModuleAbsence;
 import tables.TableStudentModule;
 import tools.Tool;
 import tools.Stockage;
@@ -23,94 +22,125 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import tables.TableProfSatisfaction;
-//import tables.TableProfTest;
+
+/**
+ * 
+ * This class contains all the methods which are linked with the Module view for Administration
+ * @author Alex JOBART
+ * @author Adam RIVIERE
+ * 
+ */
 
 public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private AnchorPane anchorModuleStudentOffice;
 
+
     @FXML
     private MenuItem backMenu;
-
     @FXML
     private MenuItem quitMenu;
 
+    /*
+    *
+    * ComboBoxes
+    *
+    */
     @FXML
     private ComboBox<String> comboGradesStudent;
-
-
     @FXML
     private ComboBox<String> comboStudentsNonattendance;
-
-    //columns for table of grades from a student
+    
+    /*
+    *
+    * Columns for table of grades from a student
+    *
+    */
     @FXML
     private TableView<TableGradesModule> tableGradesStudent;
-
     @FXML
     private TableColumn<TableGradesModule, String> testColumn;
-
     @FXML
     private TableColumn<TableGradesModule, String> gradeColumn;
 
-    //table from nonattendance from a student
+    /*
+    *
+    * Table from nonattendance from a student
+    *
+    */
     @FXML
     private TableView<TableAbsencesModule> tableNonattendanceStudent;
     @FXML
     private TableColumn<TableAbsencesModule, String> dateColumn;
-
     @FXML
     private TableColumn<TableAbsencesModule, String> justificationColumn;
 
-
-    //columns for tests from a student
+    /*
+    *
+    * Columns for tests from a student
+    *
+    */
     @FXML
     private TableView<TableStudentModule> tableGradesStudentsCourses;
-
     @FXML
     private TableColumn<TableStudentModule, String> nameColumn;
-
     @FXML
     private TableColumn<TableStudentModule, String> surnameColumn;
-
     @FXML
     private TableColumn<TableStudentModule, String> gradeModuleColumn;
-
     @FXML
     private TableColumn<TableStudentModule, String> idColumn;
 
-    //columns for table satisfaction from module
+    /*
+    *
+    * Columns for table satisfaction from module
+    *
+    */
     @FXML
     private TableView<TableProfSatisfaction> tableSatisfactionCourses;
-
-    ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
-
-    ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
-
-    ObservableList<TableGradesModule> olistTest = FXCollections.observableArrayList();
-
-    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
-
     @FXML
     private TableColumn<TableProfSatisfaction, String> gradeSatisfactionColumn;
-
     @FXML
     private TableColumn<TableProfSatisfaction, String> commentaryColumn;
 
-    private String student;
+    /*
+    *
+    * ObservableLists
+    *
+    */
+    ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
+    ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
+    ObservableList<TableGradesModule> olistTest = FXCollections.observableArrayList();
+    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
 
+    /*
+    *
+    * Local value
+    *
+    */
+    private String student;
+    
+    /**
+     * Quits the app
+     * @param event
+     * @author Alex JOBARD
+     */
     @FXML
     void quitFunction(ActionEvent event) {
-
         fromAnchorClose(anchorModuleStudentOffice);
     }
 
+    /**
+     * Goes back to the previous view
+     * @param event
+     * @throws Exception
+     * @author Alex JOBARD
+     */
     @FXML
     void backFunction(ActionEvent event) throws Exception{
 
@@ -118,17 +148,19 @@ public class ModuleAdminController extends ControllerAbs{
 
         Scene sceneFromAnchor = anchorModuleStudentOffice.getScene();
         sceneFromAnchor.setRoot(pane);
-
-
     }
-
+    
+    /**
+     * Triggers the comboGradeStudent comboBox
+     * @param event
+     * @author Alex JOBARD
+     */
     @FXML
     void selectionGradesStudent(ActionEvent event) {
         String value = comboGradesStudent.getValue();
         if(value != null) {
             comboStudentsNonattendance.setValue(value);
             this.student = value;
-            // this.createStudent();
             Stockage.setLoginStudent(Tool.getLogin(student));
             this.olistTest = fillTest(this.olistTest);
             tableGradesStudent.setItems(this.olistTest);
@@ -136,6 +168,11 @@ public class ModuleAdminController extends ControllerAbs{
         }
     }
 
+    /**
+     * Triggers the comboStudentsNonAttendance comboBox
+     * @param event
+     * @author Alex JOBARD
+     */
     @FXML
     void selectionStudentNonattendance(ActionEvent event) {
         String value = comboStudentsNonattendance.getValue();
@@ -149,11 +186,22 @@ public class ModuleAdminController extends ControllerAbs{
         }
     }
 
+    /**
+     * Inits the comboBox
+     * @param combobox
+     * @author Alex JOBARD
+     */
     public void setData(ComboBox<String> combobox){
         combobox.getItems().clear();
         combobox = this.fillStudents(combobox);
     }
 
+    /**
+     * Fills the comboBox with an array of students and returns it
+     * @param comboBox ComboBox of String
+     * @return comboBox
+     * @author Adam RIVIERE
+     */
     public ComboBox<String> fillStudents (ComboBox<String> comboBox){
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewListAttendees();
         if (!array.isEmpty()){
@@ -166,6 +214,12 @@ public class ModuleAdminController extends ControllerAbs{
         return comboBox;
     }
 
+    /**
+     * fills the satisfaction observableList and returns it
+     * @param obl observableList of TableProfSatisfaction
+     * @return obl observableList of TableProfSatisfaction
+     * @author Adam RIVIERE
+     */
     public ObservableList<TableProfSatisfaction> fillSatisfaction(ObservableList<TableProfSatisfaction> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewTableSatisfaction();
@@ -175,6 +229,12 @@ public class ModuleAdminController extends ControllerAbs{
         return obl;
     }
 
+    /**
+     * fills the students observableList and returns it
+     * @param obl observableList of TableStudentModule
+     * @return obl observableList of TableStudentModule
+     * @author Adam RIVIERE
+     */
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewTableAttendees();
@@ -188,23 +248,32 @@ public class ModuleAdminController extends ControllerAbs{
         return obl;
     }
 
+    /**
+     * inits all the colums
+     * @author Alex JOBARD
+     */
     private void initColumnsFactory(){
-        //satisfaction
+            //satisfaction
         gradeSatisfactionColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
         commentaryColumn.setCellValueFactory(new PropertyValueFactory<>("comments"));
-        //grade students
+            //grade students
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
         testColumn.setCellValueFactory(new PropertyValueFactory<>("nameGrade"));
-        //nonattendance
+            //nonattendance
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
-        //main table
+            //main table
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         gradeModuleColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));
     }
 
+    /**
+     * Initialize the view
+     * @author Alex JOBARD
+     * @author Adam RIVIERE
+     */
     @FXML
     void initialize() {
         initColumnsFactory();
@@ -215,9 +284,14 @@ public class ModuleAdminController extends ControllerAbs{
         tableGradesStudentsCourses.setItems(this.olistStudents);
         this.olistSatisfaction = this.fillSatisfaction(this.olistSatisfaction);
         tableSatisfactionCourses.setItems(this.olistSatisfaction);
-
     }
 
+    /**
+     * fills the grades observableList and returns it
+     * @param obl observableList of TableGradesModule
+     * @return obl observableList of TableGradesModule
+     * @author Adam RIVIERE
+     */
     public ObservableList<TableGradesModule> fillTest(ObservableList<TableGradesModule> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewMarks();
@@ -228,6 +302,12 @@ public class ModuleAdminController extends ControllerAbs{
         return obl;
     }
 
+    /**
+     * fills the grades observableList and returns it
+     * @param obl observableList of TableAbsencesModule
+     * @return obl observableList of TableAbsencesModule
+     * @author Adam RIVIERE
+     */
     public ObservableList<TableAbsencesModule> fillAbsences (ObservableList<TableAbsencesModule> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewAbsencesStudent();
