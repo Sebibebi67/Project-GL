@@ -334,4 +334,27 @@ public abstract class Administration implements Role {
          return this.modules;
     }
 
+    /**
+    * Returns the list of all the satisfaction reviews for a given module to be displayed.
+    * @author Sébastien HERT
+    * @author Adam RIVIERE
+    * @param moduleName name of the selected module
+    * @return an Array with the list of all the satisfaction reviews for a given module.
+    */
+    public ArrayList<ArrayList<String>> viewTableSatisfaction(String moduleName){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        Module module = new Module(moduleName);
+        for(int i = 0;i < module.getlistSatisfaction().size();i++){
+            ArrayList<String> satisfaction = new ArrayList<String>();
+            if(module.getlistSatisfaction().get(i).getRating() == -1){
+                satisfaction.add("");
+            }else{
+                satisfaction.add(Integer.toString(module.getlistSatisfaction().get(i).getRating()));
+            }
+            satisfaction.add(module.getlistSatisfaction().get(i).getReview());
+            array.add(satisfaction);
+        }
+        return array;
+    }
+
 }

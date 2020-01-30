@@ -2,6 +2,9 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableNonattendance;
+import tables.TableStudentModule;
 
 
 public class AbsenceAdministrationController extends ControllerAbs{
+
+
 
     @FXML
     private MenuItem backMenu;
@@ -64,6 +70,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
     @FXML
     private TextField dateTextField;
 
+    private ObservableList<TableNonattendance> olistNonattendance = FXCollections.observableArrayList();
 
     @FXML
     void nonattendanceJustification(ActionEvent event) {
@@ -115,6 +122,10 @@ public class AbsenceAdministrationController extends ControllerAbs{
 
     @FXML
     void initialize(){
+        initCellFactoryColumn();
+        olistNonattendance.add(new TableNonattendance("nom", "prenom", "id", "module", "22-12-2019", "Oui"));
+        olistNonattendance.add(new TableNonattendance("nom2", "prenom2", "id2", "module2", "22-12-2019", "Non"));
+        tableNonattendance.setItems(olistNonattendance);
 
     }
 }

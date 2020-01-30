@@ -39,7 +39,7 @@
                       <RowConstraints maxHeight="316.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="tableNonattendance" prefHeight="140.0" prefWidth="647.0">
+                        <TableView fx:id="tableNonattendance" onMouseClicked="#fillFields" prefHeight="140.0" prefWidth="647.0">
                           <columns>
                             <TableColumn fx:id="nameColumn" editable="false" prefWidth="126.0" text="Nom" />
                             <TableColumn fx:id="surnameColumn" editable="false" prefWidth="86.0" text="Prenom" />

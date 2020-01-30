@@ -13,11 +13,11 @@ public class Stockage{
     private static Professor professor;
     private static String loginStudent;
 
-    public String getLoginStudent() {
+    public static String getLoginStudent() {
 		return loginStudent;
 	}
 
-    public void setLoginStudent(String login) {
+    public static void setLoginStudent(String login) {
 		loginStudent = login;
 	}
 
