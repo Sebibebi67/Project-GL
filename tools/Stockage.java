@@ -5,6 +5,14 @@ import user.Professor;
 import user.Student;
 import study.Module;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to the stockage of data
+ * 
+ * @author Sébastien HERT
+ * 
+ */
+
 public class Stockage{
 
     private static Person person;
@@ -13,10 +21,16 @@ public class Stockage{
     private static Professor professor;
     private static String loginStudent;
 
+    /**
+     * @return stored student's login
+     */
     public static String getLoginStudent() {
 		return loginStudent;
 	}
 
+    /**
+     * @param login login to store
+     */
     public static void setLoginStudent(String login) {
 		loginStudent = login;
 	}
