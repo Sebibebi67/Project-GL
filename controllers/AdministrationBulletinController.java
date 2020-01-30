@@ -6,12 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import tables.TableAverageGradeStudent;
 
 public class AdministrationBulletinController extends ControllerAbs{
 
@@ -39,8 +36,21 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     private ComboBox<String> studentCombo;
 
+    //columns for tableAverageGradeStudent
+
     @FXML
-    private TableView<?> tableAverageGradeStudent;
+    private TableView<TableAverageGradeStudent> tableAverageGradeStudent;
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> moduleColumn;
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> averageGradeColumn;
+
+    //columns for tableNonattendanceStudent
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> retakeColumn;
 
     @FXML
     private TableView<?> tableNonattendanceStudent;
