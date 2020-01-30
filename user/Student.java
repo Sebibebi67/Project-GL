@@ -276,4 +276,18 @@ public class Student implements Role{
         return array;
     }
 
+    public ArrayList<ArrayList<String>> viewTableAbsences(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
+        for(int i = 0;i < this.form.getAbsences().size();i++){
+            ArrayList<String> absence = new ArrayList<String>();
+            absence.add(Tool.dateToString(
+                this.form.getAbsences().get(i).getBeginDate(),
+                this.form.getAbsences().get(i).getBeginHour(),
+                this.form.getAbsences().get(i).getEndHour()));
+            absence.add(Tool.booleanToString(this.form.getAbsences().get(i).isJustified()));
+            array.add(absence);     
+        }
+        return array;
+    }
+
 }
