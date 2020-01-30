@@ -373,4 +373,24 @@ public abstract class Administration implements Role {
         return array;
     }
 
+    public ArrayList<ArrayList<String>> viewAbsencesStudent(){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        ArrayList<ArrayList<?>> query = Query.absenceModule(
+            Stockage.getLoginStudent(),
+            Stockage.getActiveModule().getName());
+        if (!query.isEmpty()){
+            for (int i = 0; i< query.get(0).size(); i++){
+                ArrayList<String> abs = new ArrayList<>();
+                String date = Tool.dateToString(
+                    (Date) query.get(0).get(i),
+                    (Time) query.get(1).get(i),
+                    (Time) query.get(3).get(i));
+                abs.add(date);
+                abs.add(Tool.booleanToString((Boolean) query.get(4).get(i)));
+                array.add(abs);
+            }
+        }
+    return array;
+    }
+
 }

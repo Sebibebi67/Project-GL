@@ -6,6 +6,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tables.TableAbsencesModule;
 import tables.TableGradesModule;
+// import tables.TableModuleAbsence;
 import tables.TableStudentModule;
 import tools.Tool;
 import tools.Stockage;
@@ -94,6 +95,8 @@ public class ModuleAdminController extends ControllerAbs{
 
     ObservableList<TableGradesModule> olistTest = FXCollections.observableArrayList();
 
+    ObservableList<TableAbsencesModule> olistAbsences = FXCollections.observableArrayList();
+
     @FXML
     private TableColumn<TableProfSatisfaction, String> gradeSatisfactionColumn;
 
@@ -135,7 +138,15 @@ public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     void selectionStudentNonattendance(ActionEvent event) {
-
+        String value = comboStudentsNonattendance.getValue();
+        if(value != null) {
+            comboGradesStudent.setValue(value);
+            this.student = value;
+            // this.createStudent();
+            Stockage.setLoginStudent(Tool.getLogin(student));
+            this.olistAbsences = fillAbsences(this.olistAbsences);
+            this.tableNonattendanceStudent.setItems(this.olistAbsences);
+        }
     }
 
     public void setData(ComboBox<String> combobox){
@@ -213,6 +224,15 @@ public class ModuleAdminController extends ControllerAbs{
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableGradesModule(array.get(i).get(0),
                                     array.get(i).get(1)));
+        }
+        return obl;
+    }
+
+    public ObservableList<TableAbsencesModule> fillAbsences (ObservableList<TableAbsencesModule> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewAbsencesStudent();
+        for(int i = 0; i<array.size(); i++){
+            obl.add(new TableAbsencesModule(array.get(i).get(0), array.get(i).get(1)));
         }
         return obl;
     }
