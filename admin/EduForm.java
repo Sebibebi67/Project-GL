@@ -387,7 +387,7 @@ public class EduForm {
         String[] tags = {"$y1", "$y2", "$year", "$lastname", "$firstname", "$course", "$table", "$absences"};
 
         String text = Files.readString(Path.of(path));
-        for (int i=0 ; i<9 ; i++)
+        for (int i=0 ; i<8 ; i++)
             text = text.replace(tags[i], data[i]);
         FileWriter fw = new FileWriter(path, false);
         fw.write(text);
