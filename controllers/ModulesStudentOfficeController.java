@@ -21,10 +21,10 @@ import javafx.scene.layout.AnchorPane;
 // import javafx.scene.layout.Pane;
 import tools.Stockage;
 import user.Administration;
-import user.Professor;
+// import user.Professor;
 import tables.*;
 import study.Module;
-import user.StudentOffice;
+// import user.StudentOffice;
 
 public class ModulesStudentOfficeController extends ControllerAbs{
 

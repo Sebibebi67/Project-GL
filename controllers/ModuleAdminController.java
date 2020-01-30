@@ -7,7 +7,8 @@ import tools.Tool;
 import tools.Stockage;
 import java.util.ArrayList;
 import user.Administration;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import tables.TableProfSatisfaction;
 
 public class ModuleAdminController extends ControllerAbs{
 
@@ -51,6 +53,11 @@ public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     private TableView<?> tableGradesStudentsCourses;
+
+    @FXML
+    private TableView<TableProfSatisfaction> tableCoursesSatisfaction;
+
+    ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
 
     @FXML
     void quitFunction(ActionEvent event) {
@@ -96,11 +103,22 @@ public class ModuleAdminController extends ControllerAbs{
         return comboBox;
     }
 
+    public ObservableList<TableProfSatisfaction> fillSatisfaction(ObservableList<TableProfSatisfaction> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewTableSatisfaction();
+        for(int i =0; i<array.size(); i++){
+            obl.add(new TableProfSatisfaction(array.get(i).get(0), array.get(i).get(1)));
+        }
+        return obl;
+    }
+
     @FXML
     void initialize() {
         ((Administration) Stockage.getPerson().getRole()).createStudentsInModule();
         this.setData(comboStudentsNonattendance);
         this.setData(comboGradesStudent);
+        this.olistSatisfaction = this.fillSatisfaction(this.olistSatisfaction);
+        tableCoursesSatisfaction.setItems(this.olistSatisfaction);
 
     }
 }
