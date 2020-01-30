@@ -167,8 +167,9 @@ public class SelectionNoteProfController extends ControllerAbs {
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
-
-
+        //column for table with all tests from a student
+        testColumn.setCellValueFactory(new PropertyValueFactory<>("test"));
+        gradeStudentColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
     }
 
     @FXML
@@ -179,6 +180,11 @@ public class SelectionNoteProfController extends ControllerAbs {
         this.setData(comboStudentGrade);
         this.olistStudents = this.fillStudents(this.olistStudents);
         tableStudentsGradesCourses.setItems(this.olistStudents);
+        /*System.out.println("debug 1");
+        this.olistTest = this.fillTest(this.olistTest);
+        System.out.println("debug 2");
+        tableGradesStudent.setItems(this.olistTest);
+        System.out.println("debug 3");*/
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){

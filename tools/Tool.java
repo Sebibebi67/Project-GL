@@ -245,8 +245,12 @@ public class Tool{
     }
 
     public static String getLogin(String student){
-        String[] s = student.split("- ");
-        return s[1];
+        //to remove a nullPointerException
+        if(student != null) {
+            String[] s = student.split("- ");
+            return s[1];
+        }
+        else return "";
     }
 
 }
