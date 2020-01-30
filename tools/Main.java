@@ -17,6 +17,12 @@ public class Main extends Application{
         launch(args);
     }
 
+    /**
+     * Instantiates a new Person.
+     * @param pswd Their password
+     * @param login Their login
+     * @author Sébastien HERT
+     */
     public static void createPerson(String pswd, String login){
         Person person = new Person(login, pswd);
         Stockage.setPerson(person);

@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * 
  * This class is composed of methods used to interact with the database
- * @author Adam RIVIERE 
+ * @author Adam RIVIÈRE 
  * 
  */
 

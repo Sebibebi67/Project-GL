@@ -54,7 +54,7 @@ public class Test{
     }
 
     /**
-     * Tests an invalid login
+     * Tests for an invalid login
      * @author Sébastien HERT
      */
     public static void initErrorLogin(){
@@ -65,7 +65,7 @@ public class Test{
     }
 
     /**
-     * Tests an invalid password
+     * Tests for an invalid password
      * @author Sébastien HERT
      */
     public static void initErrorPswd(){

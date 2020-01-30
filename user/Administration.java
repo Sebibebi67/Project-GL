@@ -15,7 +15,7 @@ import study.Module;
  * This class contains all methods and attributes linked to an Exam
  * 
  * @author Sébastien HERT
- * @author Adam RIVIERE
+ * @author Adam RIVIÈRE
  * 
  */
 public abstract class Administration implements Role {
@@ -291,6 +291,9 @@ public abstract class Administration implements Role {
         return array;
     }
 
+    /**
+     * @return list of all modules
+     */
     public ArrayList<String> viewListModules(){
          return this.modules;
     }

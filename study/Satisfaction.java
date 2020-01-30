@@ -105,7 +105,7 @@ public class Satisfaction{
     }
 
     /**
-     * @return the name of the student, the name of the module, the mark and the review
+     * @return the name of the student, the name of the module, the rating and the review
      */
     public String toString() {
         return loginStudent + " rated " + moduleName + " " + Integer.toString(rating) + " stars and wrote : " + review;

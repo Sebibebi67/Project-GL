@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * This class is made of useful complex SQL queries for the program 
  * @author Dejan PARIS
  * @author Thomas LEPERCQ 
- * @author Adam RIVIERE
+ * @author Adam RIVIÈRE
  * 
  */
 public class Query{
@@ -297,7 +297,7 @@ public class Query{
     }
 
     /**
-    * Returns each evaluations' name, mark and coefficient for a given module and student.
+    * Returns each evaluation's name, mark and coefficient for a given module and student.
     * @author Thomas LEPERCQ 
     * @param moduleName Module's name
     * @param loginEtu Student's login
@@ -1258,8 +1258,9 @@ public class Query{
     /**
     * Search method : finds the students whose name begins like the 'template' parameter.
     * @author Dejan PARIS
-    * @param template Beginning of the name to search for.
-    * @return an Array with the list of all the matching names.
+    * @param template Beginning of the name to search for
+    * @return an Array with the list of all the matching names
+    * @deprecated
     */
     public static ArrayList<ArrayList<String>> allStudentsNamesLike(String template){
         Connection conn = null;
@@ -1294,13 +1295,13 @@ public class Query{
     }
 
     /**
-    * Search method : finds the students whose name begins like the 'template' parameter.
+    * Sets an absence to "justified".
     * @author Adam RIVIERE
-    * @param login login of the student.
-    * @param nomMod name of the module.
-    * @param Date date date of the absence.
-    * @param Time debut begining of the absence.
-    * @param Time fin end of the absence.
+    * @param login login of the student
+    * @param nomMod name of the module
+    * @param Date date date of the absence
+    * @param Time debut begining of the absence
+    * @param Time fin end of the absence
     */
     public static void justify(String login, String nomMod, Date date, Time debut, Time fin){
         Connection conn = null;
