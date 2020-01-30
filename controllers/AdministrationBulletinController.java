@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import tools.Tool;
+import user.Person;
+import user.Student;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import study.Course;
 import tables.TableAbsencesModule;
 import tables.TableAverageGradeStudent;
 
@@ -89,14 +93,15 @@ public class AdministrationBulletinController extends ControllerAbs{
 
         Scene sceneFromAnchor = anchorReport.getScene();
         sceneFromAnchor.setRoot(pane);
-
-
-
     }
 
     @FXML
-    void generateReportFunction(ActionEvent event) {
-
+    void generateReportFunction(ActionEvent event)
+    {
+        String firstname = Tool.getFirstname(studentCombo.getValue());
+        String surname = Tool.getSurname(studentCombo.getValue());
+        Course course = Tool.getCourse(studentCombo.getValue());
+        ((Student) student).getForm().generateReport();
     }
 
     @FXML
@@ -212,7 +217,7 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void selectionYearGroup(ActionEvent event) {
+    public void selectionYearGroup(ActionEvent event) {
         yearGroup = yearGroupCombo.getValue();
         if (yearGroup != null) {
             setComboCourses();
@@ -221,7 +226,8 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void DetailReportFunction(ActionEvent event) {
+    public void detailedReportFunction(ActionEvent event) 
+    {
 
     }
 

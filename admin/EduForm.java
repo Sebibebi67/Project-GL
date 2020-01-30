@@ -307,7 +307,7 @@ public class EduForm {
      * @param option The report will be short if 0, detailed if not.
      * @author Dejan PARIS
      */
-    public void generateReport(Person student, int option) throws IOException
+    public void generateReport(String firstname, String surname, Course course, int option) throws IOException
     {
         File tmpDir = new File("./reports");
         File tmpFile;
@@ -332,10 +332,6 @@ public class EduForm {
                 temp.write("<!DOCTYPE html>\n<html style=\"font-family:helvetica\">\n<meta charset=\"UTF-8\">\n<body>\n\n<div class=\"container\"><img src=\"logo.png\" alt=\"ERiP\" style=\"width:96px; height:96px; position:absolute; left:20px\"><p align=\"right\">Année universitaire $y1/$y2</p></div>\n<h1 align=\"center\"><span style=\"border:2px solid black\">&nbspRELEVE DE NOTES DETAILLE&nbsp</span><br><small>$year année</small></h1>\n<table style=\"width:100%\">\n  <tr></tr>\n</table> \n<p><b>&nbsp &nbsp Nom :</b> $lastname &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<b>Prénom :</b> $firstname &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<b>Filière :</b> $course</p>\n<table style=\"width:100%\">\n  <tr></tr>\n</table> \n<p align=\"center\" style=\"background-color:gainsboro; padding:2px\"><b><big>Notes et résultats</big></b></p>\n<style>\n      table, th {\n          border-collapse: collapse;\n      }\n      #mod0name {\n        padding: 4px;\n        min-width: 150px;\n        text-align: center;\n          border: 2px solid black;\n      }\n      #mod0mark {\n        min-width: 100px;\n        padding: 4px;\n        text-align: center;\n        border: 2px solid black;\n      }\n      #mod1name {\n        background-color: #f0f0f0;\n        min-width: 150px;\n        padding: 4px;\n        text-align: center;\n        border: 1px solid black;\n      }\n      #mod1mark {\n        background-color: #f0f0f0;\n        min-width: 100px;\n        padding: 4px;\n        text-align: center;\n        border: 1px solid black;\n      }\n      #mod2name {\n        padding: 4px;\n        min-width: 150px;\n        text-align: center;\n        border: 1px solid black;\n      }\n      #mod2mark {\n        padding: 4px;\n        min-width: 100px;\n        text-align: center;\n        border: 1px solid black;\n      }\n      #blank {\n        padding: 12px;\n        border: 0px;\n        border-bottom: 2px solid black;\n        border-top: 2px solid black;\n      }\n</style>\n\n<table style=\"width:100%\" border=\"4\">\n$table\n<br><p><b>&nbsp &nbsp Absences injustifiées :</b> $absences</p>\n\n</body>\n</meta>\n</html>\n\n");
             temp.close();
         }
-
-        String surname = student.getSurname();
-        String firstname = student.getFirstname();
-        Course course = ((Student) student.getRole()).getCourse();
 
         String path = "./reports/"+surname+"_"+firstname+"_"+course.toString();
         if (option != 0)
