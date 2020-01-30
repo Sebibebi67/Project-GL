@@ -20,6 +20,7 @@ import tables.TableStudentModule;
 import tools.Stockage;
 import tools.Tool;
 import user.Professor;
+import user.Student;
 
 public class SelectionNoteProfController extends ControllerAbs {
 
@@ -101,6 +102,10 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     ObservableList<TableProfTest> olistTest = FXCollections.observableArrayList();
 
+    ObservableList<TableModuleAbsence> olistAbsences = FXCollections.observableArrayList();
+
+    ObservableList<TableProfSatisfaction> olistSatisfaction = FXCollections.observableArrayList();
+
     private String student;
 
     @FXML
@@ -127,6 +132,9 @@ public class SelectionNoteProfController extends ControllerAbs {
         if(value != null) {
             comboStudentGrade.setValue(value);
             this.student = value;
+            this.createStudent();
+            this.olistAbsences = fillAbsences(this.olistAbsences);
+            this.tableNonattendanceStudent.setItems(this.olistAbsences);
         }
     }
 
@@ -136,6 +144,7 @@ public class SelectionNoteProfController extends ControllerAbs {
         if(value != null) {
             comboStudentNonattendance.setValue(value);
             this.student = value;
+            this.createStudent();
             this.olistTest = fillTest(this.olistTest);
             tableGradesStudent.setItems(this.olistTest);
 
@@ -167,9 +176,21 @@ public class SelectionNoteProfController extends ControllerAbs {
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("mark"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
+
         //column for table with all tests from a student
         testColumn.setCellValueFactory(new PropertyValueFactory<>("test"));
         gradeStudentColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
+
+        //column for table with all the absences from a student
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
+
+        //column for table with all the satisfaction from a student
+        commentaryColumn.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        gradeSatisfactionColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
+
+
+
     }
 
     @FXML
@@ -180,6 +201,8 @@ public class SelectionNoteProfController extends ControllerAbs {
         this.setData(comboStudentGrade);
         this.olistStudents = this.fillStudents(this.olistStudents);
         tableStudentsGradesCourses.setItems(this.olistStudents);
+        this.olistSatisfaction = this.fillSatisfaction(this.olistSatisfaction);
+        tableCoursesSatisfaction.setItems(this.olistSatisfaction);
     }
 
     public ObservableList<TableStudentModule> fillStudents(ObservableList<TableStudentModule> obl){
@@ -213,6 +236,30 @@ public class SelectionNoteProfController extends ControllerAbs {
         for (int i = 0; i< array.size(); i++){
             obl.add(new TableProfTest(array.get(i).get(0),
                                     array.get(i).get(1)));
+        }
+        return obl;
+    }
+
+    public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableAbsences();
+        for(int i = 0; i<array.size(); i++){
+            obl.add(new TableModuleAbsence(array.get(i).get(0), array.get(i).get(1)));
+        }
+        return obl;
+    }
+
+    public void createStudent(){
+        if (this.student!=null){
+            Stockage.setStudent(new Student(Tool.getLogin(student)));
+        }
+    }
+
+    public ObservableList<TableProfSatisfaction> fillSatisfaction(ObservableList<TableProfSatisfaction> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableSatisfaction();
+        for(int i =0; i<array.size(); i++){
+            obl.add(new TableProfSatisfaction(array.get(i).get(0), array.get(i).get(1)));
         }
         return obl;
     }
