@@ -3,6 +3,7 @@ package admin;
 import user.*;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -318,7 +319,11 @@ public class EduForm {
             tmpDir.mkdirs();
         if (!tmpFile.exists())
         {
-            // appeler une erreur ou recréer le template
+            Files.createFile(Path.of(tmpFile.getPath()));
+            FileWriter temp = new FileWriter(tmpFile, false);
+            if (option == 0)
+                temp.write("<!DOCTYPE html>\n<html style=\"font-family:helvetica\">\n<meta charset=\"UTF-8\">\n<body>\n\n<div class=\"container\"><img src=\"logo.png\" alt=\"ERiP\" style=\"width:96px; height:96px; position:absolute; left:20px\"><p align=\"right\">Année universitaire $y1/$y2</p></div>\n<h1 align=\"center\"><span style=\"border:2px solid black\">&nbspRELEVE DE NOTES&nbsp</span><br><small>$year année</small></h1>\n<table style=\"width:100%\">\n  <tr></tr>\n</table> \n<p><b>&nbsp &nbsp Nom :</b> $lastname &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<b>Prénom :</b> $firstname &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<b>Filière :</b> $course</p>\n<table style=\"width:100%\">\n  <tr></tr>\n</table> \n<p align=\"center\" style=\"background-color:gainsboro; padding:2px\"><b><big>Résultats</big></b></p>\n<style>\n      table, th {\n          border-collapse: collapse;\n      }\n      th {\n        padding: 4px;\n          border: 2px solid black;\n      }\n      #mod1 {\n        background-color: #f0f0f0;\n        padding: 4px;\n        text-align: center;\n    border: 1px solid black;\n      }\n      #mod2 {\n        padding: 4px;\n        text-align: center;\n    border: 1px solid black;\n      }\n      #blank {\n        padding: 12px;\n    border: 0px;\n      }\n</style>\n\n<table style=\"width:100%\" border=\"4\">\n$table\n</table> \n<br><p><b>&nbsp &nbsp Absences injustifiées :</b> $absences</p>\n\n</body>\n</meta>\n</html>\n\n");
+            temp.close();
         }
 
         String surname = student.getSurname();
@@ -333,7 +338,7 @@ public class EduForm {
         Files.copy(Path.of(tmpFile.getPath()), Path.of(path), StandardCopyOption.REPLACE_EXISTING);
         if (!(new File(path)).exists())
         {
-            // appeler une erreur ou recommencer
+            throw new IOException("Error creating file");
         }
 
         int year = course.year();
@@ -363,7 +368,9 @@ public class EduForm {
         String text = Files.readString(Path.of(path));
         for (int i=0 ; i<9 ; i++)
             text = text.replace(tags[i], data[i]);
-        Files.writeString(Path.of(path), text);
+        FileWriter fw = new FileWriter(path, false);
+        fw.write(text);
+        fw.close();
     }
 
     /**
