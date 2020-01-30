@@ -145,16 +145,19 @@ public class AdministrationBulletinController extends ControllerAbs{
         ArrayList<ArrayList<String>> array = Query.allStudentsInCourse(courses);
         ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
         if(!array.isEmpty()){
-            for(int i = 0;i < array.size();i++){
+            for(int i = 0;i < array.get(0).size();i++){
                 ArrayList<String> student = new ArrayList<String>();
-                student.add(array.get(i).get(0).toString());
-                student.add(array.get(i).get(1).toString());
-                student.add(array.get(i).get(2).toString());
+                student.add(array.get(0).get(i).toString());
+                student.add(array.get(1).get(i).toString());
+                student.add(array.get(2).get(i).toString());
                 students.add(student);
             }
+            for (int i= 0; i< students.size(); i++){
+                studentCombo.getItems().add(Tool.stringForStudent(students.get(i).get(0),
+                                                                students.get(i).get(1),
+                                                                students.get(i).get(2)));
+            }
         }
-
-        studentCombo.getItems().addAll("Eleve 1");
     }
 
     @FXML
@@ -192,7 +195,7 @@ public class AdministrationBulletinController extends ControllerAbs{
                     "IPS",
                     "IMR1",
                     "INFO1",
-                    "PHOTO1",
+                    "PHOT1",
                     "SNUM1");
         }
         else if(yearGroup.equalsIgnoreCase("2ème Années")){
