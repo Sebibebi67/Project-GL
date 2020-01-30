@@ -62,11 +62,6 @@
     -fx-color:white;
 }
 
-.table-row-cell:filled:odd
-{
-    -fx-background-color: white;
-}
-
 .table-column
 {
     -fx-border-color: rgb(165, 165, 165);
