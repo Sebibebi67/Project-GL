@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tables.TableNonattendance;
@@ -32,8 +29,28 @@ public class AbsenceAdministrationController extends ControllerAbs{
     @FXML
     private AnchorPane anchorNonattendanceStudentOffice;
 
+    //columns for table of Non attendance
+
     @FXML
     private TableView<TableNonattendance> tableNonattendance;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> nameColumn;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> surnameColumn;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> idColumn;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> moduleColumn;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> dateColumn;
+
+    @FXML
+    private TableColumn<TableNonattendance, String> justificationColumn;
 
     @FXML
     private CheckBox justificationCheckBox;
@@ -94,9 +111,10 @@ public class AbsenceAdministrationController extends ControllerAbs{
         moduleColumn.setCellValueFactory(new PropertyValueFactory<>("module"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         justificationColumn.setCellValueFactory(new PropertyValueFactory<>("justification"));
+    }
 
     @FXML
-    void initialize() {
+    void initialize(){
 
     }
 }
