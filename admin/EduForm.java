@@ -15,6 +15,7 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.awt.Desktop;
 
 import study.*;
 import study.Module;
@@ -392,6 +393,8 @@ public class EduForm {
         FileWriter fw = new FileWriter(path, false);
         fw.write(text);
         fw.close();
+
+        Desktop.getDesktop().open(new File(path));
     }
 
     /**
