@@ -538,6 +538,8 @@ public class EduForm {
         ArrayList<Integer> rank = new ArrayList<>();
         ArrayList<ArrayList<Object>> average = new ArrayList<>();
         ArrayList<String> modules = Query.modulesInTU(unit);
+        average.add(new ArrayList<>());
+        average.add(new ArrayList<>());
         average.set(0, Query.unitAttendees(unit));
         for (int k=0 ; k<average.get(0).size() ; k++)
         {
