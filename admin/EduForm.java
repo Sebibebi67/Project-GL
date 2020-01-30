@@ -352,7 +352,7 @@ public class EduForm {
             temp.close();
         }
 
-        String path = "./reports/"+surname+"_"+firstname+"_"+course.toString();
+        String path = "../Reports/"+surname+"_"+firstname+"_"+course.toString();
         if (option != 0)
             path += "_detail";
         path += ".html";
