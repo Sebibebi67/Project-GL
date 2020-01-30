@@ -1,9 +1,11 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import tools.Query;
 import tools.Tool;
 import user.Person;
 import user.Student;
@@ -14,7 +16,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import study.Course;
 import tables.TableAbsencesModule;
 import tables.TableAverageGradeStudent;
 
@@ -96,12 +97,12 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
-    void generateReportFunction(ActionEvent event)
+    void generateReportFunction(ActionEvent event) throws IOException
     {
-        String firstname = Tool.getFirstname(studentCombo.getValue());
-        String surname = Tool.getSurname(studentCombo.getValue());
-        Course course = Tool.getCourse(studentCombo.getValue());
-        ((Student) student).getForm().generateReport();
+        String login = Tool.getLogin(studentCombo.getValue());
+        String pswd = (String) Query.userData(login).get(1);
+        Person student = new Person(login, pswd);
+        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 1);
     }
 
     @FXML
