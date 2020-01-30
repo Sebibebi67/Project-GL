@@ -59,12 +59,29 @@ public class AbsenceAdministrationController extends ControllerAbs{
         Scene sceneFromAnchor = anchorNonattendanceStudentOffice.getScene();
         sceneFromAnchor.setRoot(pane);
 
+    }
 
+    public void fillFields(javafx.scene.input.MouseEvent mouseEvent) {
+        TableNonattendance tablerow = tableNonattendance.getSelectionModel().getSelectedItem();
+        if (tablerow != null){
+            String strName = tablerow.getName();
+            String strSurname = tablerow.getSurname();
+            String strId = tablerow.getId();
 
+            studentTextField.setText(strName+","+strSurname+","+strId);
+            moduleTextField.setText(tablerow.getModule());
+            dateTextField.setText(tablerow.getDate());
+            if(tablerow.getJustification() == "Oui") {
+                justificationCheckBox.setSelected(true);
+            }
+            else{
+                justificationCheckBox.setSelected(false);
+            }
+        }
     }
 
     @FXML
-    void quitfunction(ActionEvent event) {
+    void quitFunction(ActionEvent event) {
         fromAnchorClose(anchorNonattendanceStudentOffice);
     }
 
