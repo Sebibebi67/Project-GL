@@ -141,80 +141,20 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     private void setStudents() {
-        if (courses.equalsIgnoreCase("TS")) {
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 1");
-        }
-        else if(courses.equalsIgnoreCase("IPS")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 2","Eleve 3");
-        }
-        else if(courses.equalsIgnoreCase("INFO1")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 4");
-        }
-        else if(courses.equalsIgnoreCase("SNUM1")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 5","Eleve 6");
-        }
-        else if(courses.equalsIgnoreCase("PHOT1")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 7");
+        studentCombo.getItems().clear();
+        ArrayList<ArrayList<String>> array = Query.allStudentsInCourse(courses);
+        ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
+        if(!array.isEmpty()){
+            for(int i = 0;i < array.size();i++){
+                ArrayList<String> student = new ArrayList<String>();
+                student.add(array.get(i).get(0).toString());
+                student.add(array.get(i).get(1).toString());
+                student.add(array.get(i).get(2).toString());
+                students.add(student);
+            }
         }
 
-        else if(courses.equalsIgnoreCase("IMR1")){
-            studentCombo.getItems().clear();
-            studentCombo.getItems().addAll("Eleve 666");
-        }
-
-        else if(courses.equalsIgnoreCase("INFO2")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 8");
-        }
-        else if(courses.equalsIgnoreCase("SNUM2")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 9","Eleve 10");
-        }
-        else if(courses.equalsIgnoreCase("PHOT2")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 11");
-        }
-        else if(courses.equalsIgnoreCase("IMR2")){
-            studentCombo.getItems().clear();
-            studentCombo.getItems().addAll("Eleve 777");
-        }
-
-        else if(courses.equalsIgnoreCase("INFO3")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 12");
-        }
-        else if(courses.equalsIgnoreCase("SNUM3")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 12","Eleve 13");
-        }
-        else if(courses.equalsIgnoreCase("PHOT3")){
-            studentCombo.getItems().clear();
-
-            studentCombo.getItems().addAll("Eleve 14");
-        }
-        else if(courses.equalsIgnoreCase("IMR3")){
-            studentCombo.getItems().clear();
-            studentCombo.getItems().addAll("Eleve 888");
-        }
-        else{
-
-        }
-
+        studentCombo.getItems().addAll("Eleve 1");
     }
 
     @FXML
@@ -239,12 +179,12 @@ public class AdministrationBulletinController extends ControllerAbs{
         yearGroupCombo.getItems().clear();
 
         yearGroupCombo.getItems().addAll(
-                "2019-2022",
-                "2020-2023",
-                "2021-2024");
+                "1ère Années",
+                "2ème Années",
+                "3ème Années");
     }
     public void setComboCourses() {
-        if (yearGroup.equalsIgnoreCase("2019-2022")) {
+        if (yearGroup.equalsIgnoreCase("1ère Années")) {
             coursesCombo.getItems().clear();
 
             coursesCombo.getItems().addAll(
@@ -255,7 +195,7 @@ public class AdministrationBulletinController extends ControllerAbs{
                     "PHOTO1",
                     "SNUM1");
         }
-        else if(yearGroup.equalsIgnoreCase("2020-2023")){
+        else if(yearGroup.equalsIgnoreCase("2ème Années")){
             coursesCombo.getItems().clear();
 
             coursesCombo.getItems().addAll(
@@ -264,7 +204,7 @@ public class AdministrationBulletinController extends ControllerAbs{
                     "PHOTO2",
                     "SNUM2");
         }
-        else if(yearGroup.equalsIgnoreCase("2021-2024")){
+        else if(yearGroup.equalsIgnoreCase("3ème Années")){
             coursesCombo.getItems().clear();
 
             coursesCombo.getItems().addAll(
