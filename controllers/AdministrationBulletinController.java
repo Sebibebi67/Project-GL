@@ -102,7 +102,7 @@ public class AdministrationBulletinController extends ControllerAbs{
         String login = Tool.getLogin(studentCombo.getValue());
         String pswd = (String) Query.userData(login).get(1);
         Person student = new Person(login, pswd);
-        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 1);
+        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 0);
     }
 
     @FXML
@@ -232,7 +232,7 @@ public class AdministrationBulletinController extends ControllerAbs{
         String login = Tool.getLogin(studentCombo.getValue());
         String pswd = (String) Query.userData(login).get(1);
         Person student = new Person(login, pswd);
-        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 0);
+        ((Student) student.getRole()).getForm().generateReport(login, pswd, ((Student) student.getRole()).getCourse(), 1);
     }
 
     public void setComboYearGroup(){
