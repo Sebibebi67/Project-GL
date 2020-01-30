@@ -98,8 +98,9 @@ public class ModuleAdminController extends ControllerAbs{
 
     @FXML
     void initialize() {
-    this.setData(comboStudentsNonattendance);
-    this.setData(comboGradesStudent);
+        ((Administration) Stockage.getPerson().getRole()).createStudentsInModule();
+        this.setData(comboStudentsNonattendance);
+        this.setData(comboGradesStudent);
 
     }
 }

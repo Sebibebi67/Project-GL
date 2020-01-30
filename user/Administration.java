@@ -23,13 +23,26 @@ public abstract class Administration implements Role {
 	private String login;
 	private ArrayList<ArrayList<String>> students;
 	private ArrayList<String> modules;
-
+    private ArrayList<ArrayList<String>> studentsInModule;
 
     /**
      * Constructor
      */
 	public Administration () {}
 
+    /**
+     * @return login the login
+     */
+	public ArrayList<ArrayList<String>> getstudentsInModule(){
+		return this.studentsInModule;
+	}
+
+    /**
+     * @param login the login to set
+     */
+	public void setstudentsInModule(ArrayList<ArrayList<String>> studentsInModule){
+		this.studentsInModule = studentsInModule;
+	}
 
     /**
      * @return login the login
@@ -78,7 +91,8 @@ public abstract class Administration implements Role {
      */
 	public void initArray(){
 		students = new ArrayList<>();
-		modules = new ArrayList<>();
+        modules = new ArrayList<>();
+        studentsInModule = new ArrayList<>();
 	}
 
     /**
@@ -98,6 +112,27 @@ public abstract class Administration implements Role {
 					student.add(array.get(j).get(i));
 				}
 				this.students.add(student);
+			}
+		}
+    }
+    
+    /**
+     * Creates the list which contains the name, the firstname, and the for each student to set
+     * @author Adam RIVIERE
+     * @see Query.attendees()
+     */
+	public void createStudentsInModule(){
+        ArrayList<ArrayList<String>> array = new ArrayList<>();
+        String module = Stockage.getActiveModule().getName();
+        array = Query.attendees(module);
+
+		if (!array.get(0).isEmpty()){
+			for (int i = 0; i < array.get(0).size(); i++){
+				ArrayList<String> student = new ArrayList<>();
+				for (int j = 0; j<3; j++){
+					student.add(array.get(j).get(i));
+                }
+				this.studentsInModule.add(student);
 			}
 		}
 	}
@@ -209,11 +244,12 @@ public abstract class Administration implements Role {
     */
 	public ArrayList<ArrayList<String>> viewListAttendees(){
         ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
-        if(!this.students.isEmpty()){
-            for(int i = 0;i < students.size();i++){
+        if(!this.studentsInModule.isEmpty()){
+            for(int i = 0;i < studentsInModule.size();i++){
                 ArrayList<String> student = new ArrayList<String>();
-                student.add(this.students.get(i).get(0).toString());
-                student.add(this.students.get(i).get(1).toString());
+                student.add(this.studentsInModule.get(i).get(0).toString());
+                student.add(this.studentsInModule.get(i).get(1).toString());
+                student.add(this.studentsInModule.get(i).get(2).toString());
                 array.add(student);
             }
         }
