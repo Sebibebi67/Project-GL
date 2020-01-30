@@ -9,6 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * This class contains all methods and attributes linked to an Exam
+ * 
+ * @author Sébastien HERT
+ * @author Alex JOBARD
+ * 
+ */
 
 public class Main extends Application{
 
@@ -28,6 +36,11 @@ public class Main extends Application{
         Stockage.setPerson(person);
     }
 
+    /**
+     * Starts the application
+     * @param primarystage contains all the scenes
+     * @author Alex JOBARD
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -39,12 +52,10 @@ public class Main extends Application{
             e.printStackTrace();
             System.out.println("error");
         }
-        window.setTitle("HORDE, LA QUALITÉ");
+        window.setTitle("Univ Grap 1");
         window.setScene(new Scene(root));
         window.setResizable(true);
         window.show();
-
-        // System.out.println("ok");
 
     }
 }

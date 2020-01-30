@@ -534,6 +534,12 @@ public class Query{
         return queryResult;
     }
 
+    /**
+    * Returns the name of a module.
+    * @author Adam RIVIERE 
+    * @param moduleId id of the module
+    * @return the name of the module.
+    */
     public static String getModuleName(int moduleId){
         Connection conn = null;
         String result = "";
@@ -1289,45 +1295,6 @@ public class Query{
         return result;
     }
     
-    // /**
-    // * Search method : finds the students whose name begins like the 'template' parameter.
-    // * @author Dejan PARIS
-    // * @param template Beginning of the name to search for
-    // * @return an Array with the list of all the matching names
-    // * @deprecated
-    // */
-    // public static ArrayList<ArrayList<String>> allStudentsNamesLike(String template){
-    //     Connection conn = null;
-    //     ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
-    //     try {
-    //         // create a connection to the database
-    //         Class.forName("com.mysql.cj.jdbc.Driver");
-    //         conn = DriverManager.getConnection(url+"/"+user,user,password);
-    //         Statement statement = conn.createStatement();
-    //         String query = "SELECT nom, prenom FROM Utilisateur WHERE role = ‘Etudiant’ AND SUBSTRING(CONCAT(nom, CONCAT(‘ ‘, prenom)), 1, "+Integer.toString(template.length())+") ='"+template+"';";
-    //         ResultSet res = statement.executeQuery(query);
-    //         ArrayList<String> nom = new ArrayList<String>();
-    //         ArrayList<String> prenom = new ArrayList<String>();
-    //         while(res.next()){
-    //             nom.add(res.getString("nom"));
-    //             prenom.add(res.getString("prenom"));
-    //         }
-    //         result.add(nom);
-    //         result.add(prenom);
-    //     } catch(SQLException | ClassNotFoundException e) {
-    //         e.printStackTrace();
-    //     } finally {
-    //         try{
-    //             if(conn != null){
-    //                 conn.close();
-    //             } 
-    //         }catch(SQLException ex){
-    //             ex.printStackTrace();
-    //         }
-    //     }
-    //     return result;
-    // }
-
     /**
     * Sets an absence to "justified".
     * @author Adam RIVIERE

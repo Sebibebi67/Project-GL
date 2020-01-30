@@ -283,50 +283,6 @@ public class SQL{
         }
     }
 
-    // /**
-    // * Add an absence in a module for a student
-    // * @author Adam RIVIERE 
-    // * @param String loginEtu login of the student
-    // * @param String loginEns login of the teacher
-    // * @param String nomModule name of the module
-    // * @param String fil sector of the student
-    // * @param Date dateDebut day of the begining of the absence
-    // * @param Date dateFin day of the end of the absence
-    // * @param Time heureDebut hour of the begining of the absence
-    // * @param Time heureFin hour of the end of the absence
-    // */
-    // public static void creerAbsence(String loginEtu, String loginEns, String nomModule, String fil, Date dateDebut, Date dateFin, Time heureDebut, Time heureFin){
-    //     Connection conn = null;
-    //     try {
-    //         // create a connection to the database
-    //         Class.forName("com.mysql.cj.jdbc.Driver");
-    //         conn = DriverManager.getConnection(url+"/"+user,user,password);
-            
-    //         Statement statement = conn.createStatement();
-    //         Statement statement = conn.createStatement();
-    //         String request = "call creerAbsence('"+loginEtu+"','"+
-    //                                             loginEns+"','"+
-    //                                             nomModule+"','"+
-    //                                             fil+"',"+
-    //                                             dateDebut+","+
-    //                                             dateFin+","+
-    //                                             heureDebut+","+
-    //                                             heureFin+");";
-    //         statement.execute(request);
-
-    //     } catch(SQLException | ClassNotFoundException e) {
-    //         e.printStackTrace();
-    //     } finally {
-    //         try{
-    //             if(conn != null){
-    //                 conn.close();
-    //             }
-    //         }catch(SQLException ex){
-    //             ex.printStackTrace();
-    //         }
-    //     }
-    // }
-
     /**
     * Creates a new absence in the database.
     * @author Adam RIVIERE
