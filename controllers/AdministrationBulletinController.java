@@ -6,12 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import tables.TableAbsencesModule;
+import tables.TableAverageGradeStudent;
 
 public class AdministrationBulletinController extends ControllerAbs{
 
@@ -39,11 +37,30 @@ public class AdministrationBulletinController extends ControllerAbs{
     @FXML
     private ComboBox<String> studentCombo;
 
-    @FXML
-    private TableView<?> tableAverageGradeStudent;
+    //columns for tableAverageGradeStudent
 
     @FXML
-    private TableView<?> tableNonattendanceStudent;
+    private TableView<TableAverageGradeStudent> tableAverageGradeStudent;
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> moduleColumn;
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> averageGradeColumn;
+
+    @FXML
+    private TableColumn<TableAverageGradeStudent, String> retakeColumn;
+
+    //columns for tableNonattendanceStudent
+
+    @FXML
+    private TableView<TableAbsencesModule> tableNonattendanceStudent;
+
+    @FXML
+    private TableColumn<TableAbsencesModule, String> NonattendanceDateColumn;
+
+    @FXML
+    private TableColumn<TableAbsencesModule, String> justificationColumn;
 
     @FXML
     private Button generateReportButton;
