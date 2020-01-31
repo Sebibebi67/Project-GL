@@ -25,7 +25,7 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="retour au menu" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour" />
                   <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                 </items>
               </Menu>

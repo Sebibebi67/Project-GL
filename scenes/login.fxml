@@ -41,10 +41,10 @@
                         <RowConstraints maxHeight="54.399993896484375" minHeight="10.0" prefHeight="54.399993896484375" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <PasswordField fx:id="passwordtextField" prefHeight="26.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Label layoutX="99.0" layoutY="188.0" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <TextField fx:id="loginField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <PasswordField fx:id="passwordtextField" prefHeight="26.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <Button fx:id="connexion" mnemonicParsing="false" onAction="#loginProgram" text="Connexion" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>

@@ -26,7 +26,7 @@ import study.Module;
  * This class contains all the methods which are linked with the module view for
  * Professors
  * 
- * @author Alex JOBART
+ * @author Alex JOBARD
  * @author Sébastien HERT
  * 
  */

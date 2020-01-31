@@ -1,7 +1,13 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import tools.Tool;
+
+import tools.Query;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +17,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import tools.Stockage;
+import user.Professor;
 
 public class AjoutAbsenceController extends ControllerAbs {
 
@@ -52,6 +60,8 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     @FXML
     private ComboBox<String> endingMinuteFinCombo;
+
+    String module = new String("");
 
     @FXML
     void addNonattendance(ActionEvent event) {
@@ -130,9 +140,9 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     @FXML
     void selectionModulenonattendance(ActionEvent event) {
-        String value = comboModuleNonattendance.getValue();
-        if (value != null) {
-            System.out.println(value);
+        module = comboModuleNonattendance.getValue();
+        if(!module.equalsIgnoreCase("")) {
+            setStudent();
         }
 
 
@@ -156,31 +166,32 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     public void setModule() {
-
-
         comboModuleNonattendance.getItems().clear();
+        ArrayList<String> array = ((Professor) Stockage.getPerson().getRole()).viewListModules();
+        for (int i = 0; i< array.size(); i++){
+            comboModuleNonattendance.getItems().add(array.get(i));
+        }
+        comboModuleNonattendance.setEditable(false);
+    }
 
-        comboModuleNonattendance.getItems().addAll(
-                "Module1 ",
-                "Module 2",
-                "Module 3",
-                "Module 4",
-                "Module 5");
-
-
-}
-
-public void setStudent(){
-
+public void setStudent(){/////////////////////////////////////////////////////////////////////////////////////////////
     comboNonattendanceStudent.getItems().clear();
-
-    comboNonattendanceStudent.getItems().addAll(
-            "eleve 1",
-            "eleve 2",
-            "eleve 3",
-            "eleve 4",
-            "eleve 5");
-
+    ArrayList<ArrayList<String>> array = Query.allStudentsInCourse(module);
+        ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
+        if(!array.isEmpty()){
+            for(int i = 0;i < array.get(0).size();i++){
+                ArrayList<String> student = new ArrayList<String>();
+                student.add(array.get(0).get(i).toString());
+                student.add(array.get(1).get(i).toString());
+                student.add(array.get(2).get(i).toString());
+                students.add(student);
+            }
+            for (int i= 0; i< students.size(); i++){
+                comboNonattendanceStudent.getItems().add(Tool.stringForStudent(students.get(i).get(0),
+                                                                students.get(i).get(1),
+                                                                students.get(i).get(2)));
+            }
+        }
 }
 
 

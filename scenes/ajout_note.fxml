@@ -23,7 +23,7 @@
             <menus>
               <Menu mnemonicParsing="false" text="Mon compte">
                 <items>
-                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour au menu" />
+                  <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour" />
                   <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                 </items>
               </Menu>
@@ -71,8 +71,7 @@
                           <columns>
                             <TableColumn fx:id="nameColumn" prefWidth="218.0" text="Nom" />
                             <TableColumn fx:id="surnameColumn" prefWidth="202.0" text="Prénom" />
-                              <TableColumn fx:id="idColumn" prefWidth="219.0" text="identifiant" />
-                              <TableColumn fx:id="gradeColumn" prefWidth="219.0" text="Note" />
+                              <TableColumn fx:id="gradeColumn" onEditCommit="#onEditGrade" prefWidth="219.0" text="Note" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
