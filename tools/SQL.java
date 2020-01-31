@@ -358,11 +358,10 @@ public class SQL{
     * @param nomNote name of the evaluation
     * @param valeur grade of the student
     * @param coeff coefficient of the evaluation
-    * @param date of the evaluation
     * @param loginU login of the student
     * @param nomModule name of the module
     */
-    public static void note(String nomNote, int valeur, int coeff, Date jour, String loginU, String nomModule){
+    public static void note(String nomNote, int valeur, int coeff, String loginU, String nomModule){
         Connection conn = null;
         try {
             // create a connection to the database
@@ -370,10 +369,9 @@ public class SQL{
             conn = DriverManager.getConnection(url+"/"+user,user,password);
             
             Statement statement = conn.createStatement();
-            String request = "call modifierFiliereEtudiant('"+nomNote+"',"+
+            String request = "call note('"+nomNote+"',"+
                                                             valeur+","+
-                                                            coeff+","+
-                                                            jour+",'"+
+                                                            coeff+",'2020-01-01','"+
                                                             loginU+"','"+
                                                             nomModule+"');";
             statement.execute(request);
