@@ -80,41 +80,41 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         @FXML
         private ComboBox<String> gradeSatisfactionCombo;
-        
+
         @FXML
         private TextField commentarySatisfactionTextField;
-        
+
         @FXML
         private Button addSatisfactionButton;
-        
+
         @FXML
         private TableView<TableGradesStudent> tableGradeStudent;
-        
+
         @FXML
         private TableColumn<TableGradesStudent, String> uETableColumn;
-        
+
         @FXML
         private TableColumn<TableGradesStudent, String> moduleTableColumn;
-        
+
         @FXML
         private TableColumn<TableGradesStudent, String> averageGradeTableColumn;
-        
 
-        private void warningAlreadySent(){
+
+        public void warningAlreadySent(){
             Alert alertLogin = new Alert(Alert.AlertType.WARNING);
             alertLogin.setTitle("Déjà envoyée");
             alertLogin.setContentText("vous avez déjà envoyé une satisfaction");
             alertLogin.showAndWait();
         }
 
-        private void warningCompletion(){
+        public void warningCompletion(){
             Alert alertLogin = new Alert(Alert.AlertType.INFORMATION);
             alertLogin.setTitle("Confirmation");
             alertLogin.setContentText("La satisfaction a bien été envoyée");
             alertLogin.showAndWait();
         }
 
-        private void warningIncomplete(){
+        public void warningIncomplete(){
             Alert alertLogin = new Alert(Alert.AlertType.WARNING);
             alertLogin.setTitle("Incomplet");
             alertLogin.setContentText("Satisfaction non envoyée : merci de remplir tous les champs");
@@ -124,7 +124,7 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
 
         @FXML
         void addSatisfaction(ActionEvent event) {
-            
+
             String review = commentarySatisfactionTextField.getText();
 
             if (!(mark==null || comboModuleSatisfaction.getValue() == null)){
