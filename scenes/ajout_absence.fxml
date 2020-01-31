@@ -47,7 +47,7 @@
                      <children>
                         <Button fx:id="addNonattendanceButton" mnemonicParsing="false" onAction="#addNonattendance" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <DatePicker fx:id="dateNonattendancePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                        <ComboBox fx:id="comboNonattendanceStudent" onAction="#selectionStudentNonattendance" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <ComboBox fx:id="comboNonattendanceStudent" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <ComboBox fx:id="comboModuleNonattendance" layoutX="185.0" layoutY="71.0" onAction="#selectionModulenonattendance" prefHeight="26.0" prefWidth="181.0" promptText="Module" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="146.0" text="Heure de début:" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
                         <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="87.0" prefHeight="24.0" prefWidth="145.0" text="Heure de fin:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
