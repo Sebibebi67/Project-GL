@@ -176,7 +176,7 @@ public class AjoutAbsenceController extends ControllerAbs {
 
 public void setStudent(){/////////////////////////////////////////////////////////////////////////////////////////////
     comboNonattendanceStudent.getItems().clear();
-    ArrayList<ArrayList<String>> array = Query.allStudentsInCourse(module);
+    ArrayList<ArrayList<String>> array = Query.attendees(module);
         ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
         if(!array.isEmpty()){
             for(int i = 0;i < array.get(0).size();i++){
