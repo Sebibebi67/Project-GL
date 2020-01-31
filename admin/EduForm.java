@@ -329,10 +329,12 @@ public class EduForm {
         File newDir = new File("../Reports");
 
         if (!newDir.exists())
+        {
             newDir.mkdirs();
+            Files.copy(Path.of("./logo.png"), Path.of("../Reports/logo.png"));
+        }
         if (!newDir.exists())
             throw new IOException("Error creating file");
-        Files.copy(Path.of("./logo.png"), Path.of("../Reports/logo.png"));
         
         String html;
         if (option == 0)
