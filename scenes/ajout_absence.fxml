@@ -24,7 +24,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Mon compte">
                      <items>
-                        <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour au menu" />
+                        <MenuItem fx:id="backMenu" mnemonicParsing="false" onAction="#backFunction" text="Retour" />
                         <MenuItem fx:id="quitMenu" mnemonicParsing="false" onAction="#quitFunction" text="Quitter" />
                      </items>
                   </Menu>
@@ -45,7 +45,7 @@
                         <RowConstraints maxHeight="285.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="addNonattendanceButton" mnemonicParsing="false" onAction="#addNonattendance" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="addNonattendanceButton" mnemonicParsing="false" onAction="#addNonattendance" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <DatePicker fx:id="dateNonattendancePicker" onAction="#selectionDate" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <ComboBox fx:id="comboNonattendanceStudent" onAction="#selectionStudentNonattendance" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <ComboBox fx:id="comboModuleNonattendance" layoutX="185.0" layoutY="71.0" onAction="#selectionModulenonattendance" prefHeight="26.0" prefWidth="181.0" promptText="Module" GridPane.rowIndex="1" GridPane.valignment="TOP" />
