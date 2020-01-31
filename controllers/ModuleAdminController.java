@@ -25,7 +25,7 @@ import tables.TableProfSatisfaction;
 
 /**
  * 
- * This class contains all the methods which are linked with the Module view for Administration
+ * This class contains all the methods which are linked with the main view for Administration
  * @author Alex JOBARD
  * @author Adam RIVIERE
  * 
@@ -120,7 +120,7 @@ public class ModuleAdminController extends ControllerAbs{
 
     /*
     *
-    * Local value
+    * Global value
     *
     */
     private String student;
@@ -215,7 +215,7 @@ public class ModuleAdminController extends ControllerAbs{
     }
 
     /**
-     * fills the satisfaction observableList and returns it
+     * Fills the satisfaction observableList and returns it
      * @param obl observableList of TableProfSatisfaction
      * @return obl observableList of TableProfSatisfaction
      * @author Adam RIVIERE
@@ -230,7 +230,7 @@ public class ModuleAdminController extends ControllerAbs{
     }
 
     /**
-     * fills the students observableList and returns it
+     * Fills the students observableList and returns it
      * @param obl observableList of TableStudentModule
      * @return obl observableList of TableStudentModule
      * @author Adam RIVIERE
@@ -244,12 +244,11 @@ public class ModuleAdminController extends ControllerAbs{
                                     array.get(i).get(2),
                                     array.get(i).get(3)));
         }
-
         return obl;
     }
 
     /**
-     * inits all the colums
+     * Inits all the colums
      * @author Alex JOBARD
      */
     private void initColumnsFactory(){
