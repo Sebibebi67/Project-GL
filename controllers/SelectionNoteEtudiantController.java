@@ -100,6 +100,26 @@ public class SelectionNoteEtudiantController extends ControllerAbs{
         private TableColumn<TableGradesStudent, String> averageGradeTableColumn;
         
 
+        private void warningAlreadySent(){
+            Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+            alertLogin.setTitle("Déjà envoyée");
+            alertLogin.setContentText("vous avez déjà envoyé une satisfaction");
+            alertLogin.showAndWait();
+        }
+
+        private void warningCompletion(){
+            Alert alertLogin = new Alert(Alert.AlertType.INFORMATION);
+            alertLogin.setTitle("Confirmation");
+            alertLogin.setContentText("La satisfaction a bien été envoyée");
+            alertLogin.showAndWait();
+        }
+
+        private void warningIncomplete(){
+            Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+            alertLogin.setTitle("Incomplet");
+            alertLogin.setContentText("Satisfaction non envoyée : merci de remplir tous les champs");
+            alertLogin.showAndWait();
+        }
 
 
         @FXML
