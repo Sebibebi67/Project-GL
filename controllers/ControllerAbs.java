@@ -29,6 +29,10 @@ public abstract class ControllerAbs {
             }
         }
 
+    /**
+     * Alerts the user that their login or password is incorrect.
+     * @author Alex JOBARD
+     */
     public void warningLogin(){
         Alert alertLogin = new Alert(Alert.AlertType.WARNING);
         alertLogin.setTitle("alerte login");

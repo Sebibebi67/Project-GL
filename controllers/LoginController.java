@@ -53,33 +53,32 @@ public class LoginController extends ControllerAbs {
 
 
     @FXML
+    /**
+     * Opens the window corresponding to the role of the user who logged in.
+     * @author Alex JOBARD
+     * @throws Exception
+     */
     void loginProgram(ActionEvent event) throws Exception {
-        // System.out.println("done");
 
         String login = loginField.getText();
         String pswd = passwordtextField.getText();
         Main.createPerson(pswd, login);
-        // System.out.println(c);
-        // System.out.println(passwordtextField.getText());
 
         Role role = Stockage.getPerson().getRole();
 
         if (role instanceof Student){
-            //eleve
             AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_etudiant_selection_note.fxml"));
 
             Scene sceneFromAnchor = anchorLogin.getScene();
             sceneFromAnchor.setRoot(pane);
 
         } else if (role instanceof Professor) {
-            //prof
             AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_liste_modules.fxml"));
 
             Scene sceneFromAnchor = anchorLogin.getScene();
             sceneFromAnchor.setRoot(pane);
 
         } else if (role instanceof Administration) {
-            //administration
             AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
 
             Scene sceneFromAnchor = anchorLogin.getScene();
