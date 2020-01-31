@@ -74,6 +74,10 @@ public class AjoutNoteController extends ControllerAbs{
 
 
     @FXML
+    /**
+     * Verifies that the entered data is in the correct format before registering the new grade in the database.
+     * @author Alex JOBARD
+     */
     void validationAllGrade(ActionEvent event) throws Exception{
         String module = Stockage.getActiveModule().getName();
         ObservableList<TableNewGrade> allGrade;
@@ -94,6 +98,9 @@ public class AjoutNoteController extends ControllerAbs{
         callingBack();
     }
 
+    /**
+     * @see backFunction
+     */
     void callingBack() throws Exception{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
 
@@ -102,12 +109,18 @@ public class AjoutNoteController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Quits the app
+     */
     void quitFunction(ActionEvent event) {
 
         fromAnchorClose(anchorAddGrade);
     }
 
     @FXML
+    /**
+     * Returns to the previous window
+     */
     void backFunction(ActionEvent event) throws Exception{
         callingBack();
     }
@@ -126,9 +139,13 @@ public class AjoutNoteController extends ControllerAbs{
             }
         }catch(NoSuchElementException e){}
 
-    }*/
-
+    }
+*/
     @FXML
+    /**
+     * Sets the name of all the grades in the table to the entered name.
+     * @author Alex JOBARD
+     */
     void setAllNameGrade(ActionEvent event){
         ObservableList<TableNewGrade> allGrade;
         allGrade = tableNewGrades.getItems();
@@ -138,6 +155,10 @@ public class AjoutNoteController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Sets the coefficient of all the grades int he table to the entered coefficient.
+     * @author Alex JOBARD
+     */
     void setAllCoeff(ActionEvent event){
         ObservableList<TableNewGrade> allGrade;
         allGrade = tableNewGrades.getItems();
@@ -170,12 +191,19 @@ public class AjoutNoteController extends ControllerAbs{
 
 
     @FXML
+    /**
+     * Registers the newly entered grade.
+     * @author Alex JOBARD
+     */
     void onEditGrade(TableColumn.CellEditEvent<TableNewGrade, String> event) {
-    TableNewGrade modifiedNewGrade = tableNewGrades.getSelectionModel().getSelectedItem();
-    modifiedNewGrade.setGrade(event.getNewValue());
-
+        TableNewGrade modifiedNewGrade = tableNewGrades.getSelectionModel().getSelectedItem();
+        modifiedNewGrade.setGrade(event.getNewValue());
     }
 
+    /**
+     * Gives names to all columns.
+     * @author Alex JOBARD
+     */
     private void initColumns(){
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
@@ -184,6 +212,10 @@ public class AjoutNoteController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Fills all entries in the table with the corresponding data.
+     * @author Alex JOBARD
+     */
     void initialize() {
         initColumns();
         fillStudents(olistNewGrade);
