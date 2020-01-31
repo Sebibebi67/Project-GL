@@ -23,6 +23,15 @@ import javafx.scene.layout.AnchorPane;
 import tools.Stockage;
 import user.Professor;
 
+
+/**
+ * 
+ * This class contains all the methods and attributs linked with the management of absences
+ * @author Alex JOBARD
+ * @author Adam RIVIERE
+ * 
+ */
+
 public class AjoutAbsenceController extends ControllerAbs {
 
     @FXML
@@ -66,6 +75,10 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     String module = new String("");
 
+    /**
+     * Displays an error window
+     * @author Alex JOBARD
+     */
     private void alertFill(){
         Alert alertLogin = new Alert(Alert.AlertType.WARNING);
         alertLogin.setTitle("Incomplet");
@@ -73,6 +86,11 @@ public class AjoutAbsenceController extends ControllerAbs {
         alertLogin.showAndWait();
     }
 
+    /**
+     * Displays an error window
+     * @author Alex JOBARD
+     * @author Adam RIVIERE
+     */
     @FXML
     void addNonattendance(ActionEvent event) {
         String professor = ((Professor) Stockage.getPerson().getRole()).getLogin();
@@ -93,11 +111,19 @@ public class AjoutAbsenceController extends ControllerAbs {
         }
     }
 
+    /**
+     * Quits the application
+     * @author Alex JOBARD
+     */
     @FXML
     void quitFunction(ActionEvent event) {
         fromAnchorClose(anchorAddNonattendance);
     }
 
+    /**
+     * Returns to the previous window
+     * @author Alex JOBARD
+     */
     @FXML
     void backFunction(ActionEvent event) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_prof_selection_note.fxml"));
@@ -107,16 +133,23 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     }
 
+    /**
+     * Gets the selected module
+     * @author Alex JOBARD
+     */
     @FXML
     void selectionModulenonattendance(ActionEvent event) {
         module = comboModuleNonattendance.getValue();
         if(!module.equalsIgnoreCase("")) {
             setStudent();
         }
-
-
     }
 
+    /**
+     * Creates a combobx
+     * @author Alex JOBARD
+     * @param combobox combobox to set
+     */
     public void setMinute(ComboBox<String> combobox) {
         combobox.getItems().clear();
         int i;
@@ -125,6 +158,11 @@ public class AjoutAbsenceController extends ControllerAbs {
         }
     }
 
+    /**
+     * Creates a combobox
+     * @author Alex JOBARD
+     * @param combobox combobox to set
+     */
     public void setHour(ComboBox<String> combobox) {
         combobox.getItems().clear();
         int i;
@@ -134,6 +172,11 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     }
 
+    /**
+     * Creates a combobox
+     * @author Alex JOBARD
+     * @param combobox combobox to set
+     */
     public void setModule() {
         comboModuleNonattendance.getItems().clear();
         ArrayList<String> array = ((Professor) Stockage.getPerson().getRole()).viewListModules();
@@ -143,27 +186,35 @@ public class AjoutAbsenceController extends ControllerAbs {
         comboModuleNonattendance.setEditable(false);
     }
 
-public void setStudent(){
-    comboNonattendanceStudent.getItems().clear();
-    ArrayList<ArrayList<String>> array = Query.attendees(module);
-        ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
-        if(!array.isEmpty()){
-            for(int i = 0;i < array.get(0).size();i++){
-                ArrayList<String> student = new ArrayList<String>();
-                student.add(array.get(0).get(i).toString());
-                student.add(array.get(1).get(i).toString());
-                student.add(array.get(2).get(i).toString());
-                students.add(student);
+    /**
+     * Fills the students list
+     * @author Alex JOBARD
+     * @author Adam RIVIERE
+     */
+    public void setStudent(){
+        comboNonattendanceStudent.getItems().clear();
+        ArrayList<ArrayList<String>> array = Query.attendees(module);
+            ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
+            if(!array.isEmpty()){
+                for(int i = 0;i < array.get(0).size();i++){
+                    ArrayList<String> student = new ArrayList<String>();
+                    student.add(array.get(0).get(i).toString());
+                    student.add(array.get(1).get(i).toString());
+                    student.add(array.get(2).get(i).toString());
+                    students.add(student);
+                }
+                for (int i= 0; i< students.size(); i++){
+                    comboNonattendanceStudent.getItems().add(Tool.stringForStudent(students.get(i).get(0),
+                                                                    students.get(i).get(1),
+                                                                    students.get(i).get(2)));
+                }
             }
-            for (int i= 0; i< students.size(); i++){
-                comboNonattendanceStudent.getItems().add(Tool.stringForStudent(students.get(i).get(0),
-                                                                students.get(i).get(1),
-                                                                students.get(i).get(2)));
-            }
-        }
-}
+    }
 
-
+    /**
+     * Initializes the window
+     * @author Alex JOBARD
+     */
     @FXML
     void initialize() {
         setMinute(startingMinuteCombo);
