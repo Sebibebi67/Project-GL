@@ -23,6 +23,8 @@ import tables.*;
 import tools.Stockage;
 import user.Professor;
 
+import javax.swing.*;
+
 
 public class AjoutNoteController extends ControllerAbs{
 
@@ -112,6 +114,25 @@ public class AjoutNoteController extends ControllerAbs{
         }catch(NoSuchElementException e){}
 
     }*/
+
+    @FXML
+    void setAllNameGrade(ActionEvent event){
+        ObservableList<TableNewGrade> allGrade;
+        allGrade = tableNewGrades.getItems();
+        allGrade.forEach((obl) -> {
+            obl.setTestName(nameGradeField.getText());
+        });
+    }
+
+    @FXML
+    void setAllCoeff(ActionEvent event){
+        ObservableList<TableNewGrade> allGrade;
+        allGrade = tableNewGrades.getItems();
+        allGrade.forEach((obl) -> {
+            obl.setCoefficient(coefficientField.getText());
+        });
+    }
+
     /**
      * Fills the student observableList and returns it
      * @param obl observableList of TableStudentModule
@@ -131,6 +152,9 @@ public class AjoutNoteController extends ControllerAbs{
         }
         return obl;
     }
+
+
+
 
     @FXML
     void onEditGrade(TableColumn.CellEditEvent<TableNewGrade, String> event) {
