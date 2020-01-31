@@ -3,7 +3,7 @@ package tables;
 
 public class TableNewGrade {
 
-    String name,surname,grade,testName,coefficient;
+    String name,surname,id, grade,testName,coefficient;
 
     public String getName() {
         return name;
@@ -45,12 +45,21 @@ public class TableNewGrade {
         this.coefficient = coefficient;
     }
 
-    public TableNewGrade(String name, String surname, String grade, String testName, String coefficient){
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public TableNewGrade(String name, String surname, String grade, String testName, String coefficient, String id){
         this.name = name;
         this.coefficient=coefficient;
         this.grade=grade;
         this.surname=surname;
         this.testName=testName;
+        this.id=id;
     }
 
     }

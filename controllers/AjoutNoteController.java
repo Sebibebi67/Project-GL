@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
@@ -20,6 +21,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import tables.*;
 import tools.Stockage;
+import user.Professor;
 
 
 public class AjoutNoteController extends ControllerAbs{
@@ -58,32 +60,14 @@ public class AjoutNoteController extends ControllerAbs{
     private TableColumn<TableNewGrade, String> gradeColumn;
 
     @FXML
-    private TextField nameStudentField;
+    private TableColumn<TableNewGrade, String> idColumn;
 
-    @FXML
-    private TextField surnameStudentField;
-
-    @FXML
-    private TextField gradeStudentField;
-
-    @FXML
-    private Button addGradeButton;
-
-    @FXML
-    private Button deleteButton;
 
     ObservableList<TableNewGrade> olistNewGrade= FXCollections.observableArrayList();
 
     @FXML
     private MenuItem validationGradeItem;
 
-
-    @FXML
-    void addGrade(ActionEvent event) {
-
-        olistNewGrade.add(new TableNewGrade(nameStudentField.getText(),surnameStudentField.getText(),gradeStudentField.getText(),nameGradeField.getText(),coefficientField.getText()));
-
-    }
 
     @FXML
     void validationAllGrade(ActionEvent event) {
@@ -112,7 +96,7 @@ public class AjoutNoteController extends ControllerAbs{
         Scene sceneFromAnchor = anchorAddGrade.getScene();
         sceneFromAnchor.setRoot(pane);
     }
-
+/*
     @FXML
     void deleteGrade(ActionEvent event) {
         try {
@@ -127,8 +111,26 @@ public class AjoutNoteController extends ControllerAbs{
             }
         }catch(NoSuchElementException e){}
 
+    }*/
+    /**
+     * Fills the student observableList and returns it
+     * @param obl observableList of TableStudentModule
+     * @return obl observableList of TableStudentModule
+     * @author Sébastien HERT
+     */
+    public ObservableList<TableNewGrade> fillStudents(ObservableList<TableNewGrade> obl){
+        obl.clear();
+        ArrayList<ArrayList<String>> array = ((Professor) Stockage.getPerson().getRole()).viewTableAttendees();
+        for (int i = 0; i< array.size(); i++){
+            obl.add(new TableNewGrade( array.get(i).get(0),
+                    array.get(i).get(1),
+                    "à remplir",
+                    "PlaceHolder",
+                    "PlaceHolder",
+                    array.get(i).get(3)));
+        }
+        return obl;
     }
-
 
     @FXML
     void onEditGrade(TableColumn.CellEditEvent<TableNewGrade, String> event) {
@@ -141,12 +143,13 @@ public class AjoutNoteController extends ControllerAbs{
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         gradeColumn.setCellValueFactory(new PropertyValueFactory<>("grade"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
     }
 
     @FXML
     void initialize() {
         initColumns();
-        olistNewGrade.add(new TableNewGrade("name","surname","grade","surname","coefficient"));
+        fillStudents(olistNewGrade);
         tableNewGrades.setItems(olistNewGrade);
         tableNewGrades.setEditable(true);
         gradeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
