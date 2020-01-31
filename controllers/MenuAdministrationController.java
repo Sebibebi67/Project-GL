@@ -43,11 +43,20 @@ public class MenuAdministrationController extends ControllerAbs{
     private Button studentsButton;
 
     @FXML
+    /**
+     * Quits the app
+     */
     void quitFunction(ActionEvent event) {
         fromAnchorClose(anchorStudentOfficeMenu);
     }
 
     @FXML
+    /**
+     * Goes back to the previous view
+     * @param event
+     * @throws Exception
+     * @author Alex JOBARD
+     */
     void backFunction(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/login.fxml"));

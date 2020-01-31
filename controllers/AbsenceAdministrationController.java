@@ -91,6 +91,12 @@ public class AbsenceAdministrationController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Goes back to the previous view
+     * @param event
+     * @throws Exception
+     * @author Alex JOBARD
+     */
     void backFunction(ActionEvent event) throws Exception {
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
@@ -124,6 +130,9 @@ public class AbsenceAdministrationController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Quits the app
+     */
     void quitFunction(ActionEvent event) {
         fromAnchorClose(anchorNonattendanceStudentOffice);
     }

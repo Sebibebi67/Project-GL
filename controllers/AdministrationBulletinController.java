@@ -88,12 +88,22 @@ public class AdministrationBulletinController extends ControllerAbs{
     String courses = new String("");
     String student = new String("");
     String yearGroup = new String("");
+
     @FXML
+    /**
+     * Quits the app
+     */
     void quitFunction(ActionEvent event) {
     fromAnchorClose(anchorReport);
     }
 
     @FXML
+    /**
+     * Goes back to the previous view
+     * @param event
+     * @throws Exception
+     * @author Alex JOBARD
+     */
     void backFunction(ActionEvent event) throws Exception {
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_administration.fxml"));
