@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import tables.*;
+import tools.Stockage;
 
 
 public class AjoutNoteController extends ControllerAbs{
@@ -86,7 +87,15 @@ public class AjoutNoteController extends ControllerAbs{
 
     @FXML
     void validationAllGrade(ActionEvent event) {
-
+        String module = Stockage.getActiveModule().getName();
+        ObservableList<TableNewGrade> allGrade;
+        TableNewGrade singleGrade;
+        allGrade = tableNewGrades.getItems();
+        if (!allGrade.isEmpty()) {
+            for(int i = 0;i < allGrade.size();i++){
+                singleGrade = allGrade.get(i);
+            }
+        }
     }
 
     @FXML
