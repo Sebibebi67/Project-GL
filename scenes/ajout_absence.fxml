@@ -46,7 +46,7 @@
                      </rowConstraints>
                      <children>
                         <Button fx:id="addNonattendanceButton" mnemonicParsing="false" onAction="#addNonattendance" prefHeight="46.0" prefWidth="122.0" text="Ajouter" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                        <DatePicker fx:id="dateNonattendancePicker" onAction="#selectionDate" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <DatePicker fx:id="dateNonattendancePicker" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <ComboBox fx:id="comboNonattendanceStudent" onAction="#selectionStudentNonattendance" prefHeight="26.0" prefWidth="183.0" promptText="Élève" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <ComboBox fx:id="comboModuleNonattendance" layoutX="185.0" layoutY="71.0" onAction="#selectionModulenonattendance" prefHeight="26.0" prefWidth="181.0" promptText="Module" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                         <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="146.0" text="Heure de début:" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
@@ -60,8 +60,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="startingHourCombo" onAction="#selectionStartingHour" prefWidth="60.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <ComboBox fx:id="startingMinuteCombo" onAction="#selectionStartingMinute" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="startingHourCombo" prefWidth="60.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="startingMinuteCombo" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                         <GridPane prefHeight="154.0" prefWidth="122.0" GridPane.columnIndex="3">
@@ -73,8 +73,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox fx:id="endingHourCombo" onAction="#selectionEndingHour" prefHeight="20.0" prefWidth="59.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <ComboBox fx:id="endingMinuteFinCombo" onAction="#selectionEndingMinute" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="endingHourCombo" prefHeight="20.0" prefWidth="59.0" promptText="hh" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <ComboBox fx:id="endingMinuteFinCombo" prefWidth="150.0" promptText="mm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                      </children>

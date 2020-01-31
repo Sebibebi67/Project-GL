@@ -71,6 +71,8 @@ public class AjoutAbsenceController extends ControllerAbs {
         String startingMinute = startingMinuteCombo.getValue();
         String endingHour = endingHourCombo.getValue();
         String endingMinute = endingMinuteFinCombo.getValue();
+        java.sql.Date gettedDatePickerDate = java.sql.Date.valueOf(dateNonattendancePicker.getValue());
+        System.out.println(moduleValue+studentValue+startingHour+startingMinute+endingHour+endingMinute+gettedDatePickerDate);
     }
 
     @FXML
@@ -88,54 +90,8 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionDate(ActionEvent event) {
-
-
-    }
-
-    @FXML
     void selectionStudentNonattendance(ActionEvent event) {
         String value = comboNonattendanceStudent.getValue();
-        if (value != null) {
-            System.out.println(value);
-        }
-
-
-    }
-
-    @FXML
-    void selectionStartingHour(ActionEvent event) {
-        String value = startingHourCombo.getValue();
-        if (value != null) {
-            System.out.println(value);
-        }
-
-
-    }
-
-    @FXML
-    void selectionEndingHour(ActionEvent event) {
-        String value = endingHourCombo.getValue();
-        if (value != null) {
-            System.out.println(value);
-        }
-
-
-    }
-
-    @FXML
-    void selectionStartingMinute(ActionEvent event) {
-        String value = startingMinuteCombo.getValue();
-        if (value != null) {
-            System.out.println(value);
-        }
-
-
-    }
-
-    @FXML
-    void selectionEndingMinute(ActionEvent event) {
-        String value = endingMinuteFinCombo.getValue();
         if (value != null) {
             System.out.println(value);
         }
