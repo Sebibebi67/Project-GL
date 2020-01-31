@@ -119,7 +119,7 @@ public class SelectionNoteProfController extends ControllerAbs {
 
     /*
     *
-    * Buttons
+    * OservableLists
     *
     */
     ObservableList<TableStudentModule> olistStudents = FXCollections.observableArrayList();
