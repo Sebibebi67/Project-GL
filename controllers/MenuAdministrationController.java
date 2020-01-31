@@ -117,8 +117,8 @@ public class MenuAdministrationController extends ControllerAbs{
     }
 
     public void setDelays(){
-        delayNonattendance.setText("1000");
-        delayGradesField.setText("2");
+        delayNonattendance.setText("15");
+        delayGradesField.setText("15");
     }
 
     @FXML
