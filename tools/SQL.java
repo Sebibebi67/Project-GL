@@ -2,6 +2,8 @@ package tools;
 
 import java.sql.*;
 
+import javafx.scene.control.Alert;
+
 /**
  * 
  * This class is composed of methods used to interact with the database
@@ -353,6 +355,17 @@ public class SQL{
     }
 
     /**
+     * Displays an error window
+     * @author Alex JOBARD
+     */
+    private static void alertFill(){
+        Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+        alertLogin.setTitle("Incomplet");
+        alertLogin.setContentText("Cette évaluation a déjà été entrée.");
+        alertLogin.showAndWait();
+    }
+    
+    /**
     * Add a grade to a student
     * @author Adam RIVIERE  
     * @param nomNote name of the evaluation
@@ -377,14 +390,14 @@ public class SQL{
             statement.execute(request);
 
         } catch(SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            alertFill();
         } finally {
             try{
                 if(conn != null){
                     conn.close();
                 }
             }catch(SQLException ex){
-                ex.printStackTrace();
+                alertFill();
             }
         }
     }

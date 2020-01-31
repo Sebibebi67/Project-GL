@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 // import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -72,30 +73,45 @@ public class AjoutNoteController extends ControllerAbs{
     @FXML
     private MenuItem validationGradeItem;
 
+    /**
+     * Displays an error window
+     * @author Alex JOBARD
+     */
+    private void alertFill(){
+        Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+        alertLogin.setTitle("Incomplet");
+        alertLogin.setContentText("Cette évaluation a déjà été entrée.");
+        alertLogin.showAndWait();
+    }
 
     @FXML
     /**
      * Verifies that the entered data is in the correct format before registering the new grade in the database.
      * @author Alex JOBARD
      */
-    void validationAllGrade(ActionEvent event) throws Exception{
-        String module = Stockage.getActiveModule().getName();
-        ObservableList<TableNewGrade> allGrade;
-        TableNewGrade singleGrade;
-        allGrade = tableNewGrades.getItems();
-        if (!allGrade.isEmpty()) {
-            for(int i = 0;i < allGrade.size();i++){
-                singleGrade = allGrade.get(i);
-                if(Tool.isInt(singleGrade.getGrade()) && Tool.isInt(singleGrade.getCoefficient())){
-                    String id = singleGrade.getId();
-                    int grade = Tool.stringToInt(singleGrade.getGrade());
-                    String testName = singleGrade.getTestName();
-                    int coefficient = Tool.stringToInt(singleGrade.getCoefficient());
-                    SQL.note(testName, grade, coefficient, id, module);
+    void validationAllGrade(ActionEvent event){
+        try {
+            String module = Stockage.getActiveModule().getName();
+            ObservableList<TableNewGrade> allGrade;
+            TableNewGrade singleGrade;
+            allGrade = tableNewGrades.getItems();
+            if (!allGrade.isEmpty()) {
+                for(int i = 0;i < allGrade.size();i++){
+                    singleGrade = allGrade.get(i);
+                    if(Tool.isInt(singleGrade.getGrade()) && Tool.isInt(singleGrade.getCoefficient())){
+                        String id = singleGrade.getId();
+                        int grade = Tool.stringToInt(singleGrade.getGrade());
+                        String testName = singleGrade.getTestName();
+                        int coefficient = Tool.stringToInt(singleGrade.getCoefficient());
+                        SQL.note(testName, grade, coefficient, id, module);
+                    }
                 }
             }
+            callingBack();
+        } catch (Exception e) {
+            alertFill();
         }
-        callingBack();
+        
     }
 
     /**
@@ -124,23 +140,7 @@ public class AjoutNoteController extends ControllerAbs{
     void backFunction(ActionEvent event) throws Exception{
         callingBack();
     }
-/*
-    @FXML
-    void deleteGrade(ActionEvent event) {
-        try {
-            ObservableList<TableNewGrade> allGrade, singleGrade;
-            allGrade = tableNewGrades.getItems();
-            if (!allGrade.isEmpty()) {
-                singleGrade = tableNewGrades.getSelectionModel().getSelectedItems();
-                singleGrade.forEach(allGrade::remove);
-                tableNewGrades.setItems(allGrade);
-                tableNewGrades.setEditable(true);
 
-            }
-        }catch(NoSuchElementException e){}
-
-    }
-*/
     @FXML
     /**
      * Sets the name of all the grades in the table to the entered name.
