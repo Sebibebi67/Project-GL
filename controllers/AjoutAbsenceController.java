@@ -65,7 +65,12 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     @FXML
     void addNonattendance(ActionEvent event) {
-
+        String moduleValue = comboModuleNonattendance.getValue();
+        String studentValue = comboNonattendanceStudent.getValue();
+        String startingHour = startingHourCombo.getValue();
+        String startingMinute = startingMinuteCombo.getValue();
+        String endingHour = endingHourCombo.getValue();
+        String endingMinute = endingMinuteFinCombo.getValue();
     }
 
     @FXML
