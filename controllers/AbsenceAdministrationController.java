@@ -103,7 +103,7 @@ public class AbsenceAdministrationController extends ControllerAbs{
             String strSurname = tablerow.getSurname();
             String strId = tablerow.getId();
 
-            studentTextField.setText(strName+","+strSurname+"- "+strId);
+            studentTextField.setText(Tool.stringForStudent(strName,strSurname,strId));
             moduleTextField.setText(tablerow.getModule());
             dateTextField.setText(tablerow.getDate());
             if(tablerow.getJustification() == "Oui") {
