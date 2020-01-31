@@ -103,6 +103,11 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Generates the short report of the selected student.
+     * @author Dejan PARIS
+     * @throws IOException
+     */
     void generateReportFunction(ActionEvent event) throws IOException
     {
         String login = Tool.getLogin(studentCombo.getValue());
@@ -114,6 +119,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Gives the advice for the jury, based on the average marks of the selected student.
+     * @author Dejan PARIS
+     */
     void getHelpToJury()
     {
         int fx = 0;
@@ -136,6 +145,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Fills the tables with the selected student's information.
+     * @author Alex JOBARD
+     */
     void selectionStudent(ActionEvent event) {
         if(studentCombo.getValue() != null){
             String login = Tool.getLogin(studentCombo.getValue());
@@ -148,7 +161,10 @@ public class AdministrationBulletinController extends ControllerAbs{
         }
     }
 
-
+    /**
+     * Alerts the user that a report has been created successfully.
+     * @author Alex JOBARD
+     */
     public void informCompletion() {
         Alert alertLogin = new Alert(Alert.AlertType.INFORMATION);
         alertLogin.setTitle("Confirmation");
@@ -156,8 +172,12 @@ public class AdministrationBulletinController extends ControllerAbs{
         alertLogin.showAndWait();
     }
 
-
-
+    /**
+     * Fills obl with the absences of the stored student.
+     * @param obl The observable list to fill
+     * @return Completed observable list
+     * @author Alex JOBARD
+     */
     public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewTableAbsences();
@@ -167,6 +187,12 @@ public class AdministrationBulletinController extends ControllerAbs{
         return obl;
     }
 
+    /**
+     * Fills obl with the marks of the stored student.
+     * @param obl The observable list to fill
+     * @return Completed observable list
+     * @author Alex JOBARD
+     */
     public ObservableList<TableAverageGradeStudent> fillMarks(ObservableList<TableAverageGradeStudent> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = Stockage.getStudent().viewModuleAverage();
@@ -177,6 +203,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Registers the selection of a course.
+     * @author Alex JOBARD
+     */
     void selectionCourses(ActionEvent event) {
         courses = coursesCombo.getValue();
         if(courses !=null) {
@@ -184,6 +214,10 @@ public class AdministrationBulletinController extends ControllerAbs{
         }
     }
 
+    /**
+     * Fills the dedicated combo box with the students linked to the selected course.
+     * @author Alex JOBARD
+     */
     private void setStudents() {
         studentCombo.getItems().clear();
         ArrayList<ArrayList<String>> array = Query.allStudentsInCourse(courses);
@@ -205,6 +239,10 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Registers the selection of a year.
+     * @author Alex JOBARD
+     */
     public void selectionYearGroup(ActionEvent event) {
         yearGroup = yearGroupCombo.getValue();
         if (yearGroup != null) {
@@ -214,6 +252,11 @@ public class AdministrationBulletinController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Generates the detailed report of the selected student.
+     * @throws IOException
+     * @author Dejan PARIS
+     */
     public void detailedReportFunction(ActionEvent event) throws IOException
     {
         String login = Tool.getLogin(studentCombo.getValue());
@@ -224,6 +267,10 @@ public class AdministrationBulletinController extends ControllerAbs{
         informCompletion();
     }
 
+    /**
+     * Fills the dedicated combo box with the possible years.
+     * @author Alex JOBARD
+     */
     public void setComboYearGroup(){
         yearGroupCombo.getItems().clear();
 
@@ -232,6 +279,11 @@ public class AdministrationBulletinController extends ControllerAbs{
                 "2ème Années",
                 "3ème Années");
     }
+
+    /**
+     * Fills the dedicated combo box with the possible courses.
+     * @author Alex JOBARD
+     */
     public void setComboCourses() {
         if (yearGroup.equalsIgnoreCase("1ère Années")) {
             coursesCombo.getItems().clear();
