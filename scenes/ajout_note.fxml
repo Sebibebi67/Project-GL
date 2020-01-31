@@ -56,13 +56,13 @@
                           </rowConstraints>
                            <children>
                               <Label text="Nom de la note:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                              <TextField fx:id="nameGradeField" GridPane.columnIndex="1">
+                              <TextField fx:id="nameGradeField" onAction="#setAllNameGrade" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="25.0" right="25.0" />
                                  </GridPane.margin>
                               </TextField>
                               <Label prefHeight="16.0" prefWidth="80.0" text="Coefficient:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                              <TextField fx:id="coefficientField" layoutX="147.0" layoutY="40.0" GridPane.columnIndex="3" />
+                              <TextField fx:id="coefficientField" layoutX="147.0" layoutY="40.0" onAction="#setAllCoeff" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                         <TableView fx:id="tableNewGrades" editable="true" prefHeight="290.0" prefWidth="630.0" GridPane.rowIndex="1">
