@@ -124,9 +124,9 @@ public class ModulesProfController extends ControllerAbs {
     }
 
     /**
-     * 
-     * @param obl
-     * @return
+     * Fills obl with the modules taught by the teacher logged in.
+     * @param obl The list to fill
+     * @return Completed list
      */
     public ObservableList<TableModuleList> fillModuleList(ObservableList<TableModuleList> obl) {
         selectionModuleCombo.getItems().clear();

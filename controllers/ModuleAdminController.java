@@ -27,7 +27,7 @@ import tables.TableProfSatisfaction;
  * 
  * This class contains all the methods which are linked with the main view for Administration
  * @author Alex JOBARD
- * @author Adam RIVIERE
+ * @author Adam RIVIÈRE
  * 
  */
 

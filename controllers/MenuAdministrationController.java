@@ -68,46 +68,52 @@ public class MenuAdministrationController extends ControllerAbs{
     }
 
     @FXML
+    /**
+     * Opens the absence manager window for administrators.
+     * @author Alex JOBARD
+     * @throws Exception
+     */
     void selectionNonattendance(ActionEvent event) throws Exception{
 
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_absences_administration.fxml"));
 
         Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
-
-
-
     }
 
     @FXML
+    /**
+     * Opens the students manager window for administrators.
+     * @author Alex JOBARD
+     * @throws Exception
+     */
     void selectionStudents(ActionEvent event) throws Exception {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/vue_adminstration_bulletin.fxml"));
 
         Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
-
-
     }
 
     @FXML
+    /**
+     * Opens the modules manager window for administrators.
+     * @author Alex JOBARD
+     * @throws Exception
+     */
     void selectionModules(ActionEvent event) throws Exception{
         AnchorPane pane = FXMLLoader.load(getClass().getResource("../scenes/moduleList_ViewStudentOffice.fxml"));
 
         Scene sceneFromAnchor = anchorStudentOfficeMenu.getScene();
         sceneFromAnchor.setRoot(pane);
-
     }
 
     public void setDelays(){
         delayNonattendance.setText("1000");
         delayGradesField.setText("2");
-
-
     }
 
     @FXML
     void initialize() {
         this.setDelays();
-
     }
 }
