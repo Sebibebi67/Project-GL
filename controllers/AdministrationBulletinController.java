@@ -110,6 +110,7 @@ public class AdministrationBulletinController extends ControllerAbs{
         String firstname = (String) array.get(3);
         String surname = (String) array.get(2);
         Stockage.getStudent().getForm().generateReport(firstname, surname, Stockage.getStudent().getCourse(), 0);
+        informCompletion();
     }
 
     @FXML
@@ -146,6 +147,16 @@ public class AdministrationBulletinController extends ControllerAbs{
             getHelpToJury();
         }
     }
+
+
+    public void informCompletion() {
+        Alert alertLogin = new Alert(Alert.AlertType.INFORMATION);
+        alertLogin.setTitle("Confirmation");
+        alertLogin.setContentText("Le bulletin a bien été généré");
+        alertLogin.showAndWait();
+    }
+
+
 
     public ObservableList<TableModuleAbsence> fillAbsences (ObservableList<TableModuleAbsence> obl){
         obl.clear();
@@ -210,6 +221,7 @@ public class AdministrationBulletinController extends ControllerAbs{
         String firstname = (String) array.get(3);
         String surname = (String) array.get(2);
         Stockage.getStudent().getForm().generateReport(firstname, surname, Stockage.getStudent().getCourse(), 1);
+        informCompletion();
     }
 
     public void setComboYearGroup(){
