@@ -77,6 +77,10 @@ public class AbsenceAdministrationController extends ControllerAbs{
     private ObservableList<TableNonattendance> olistNonattendance = FXCollections.observableArrayList();
 
     @FXML
+    /**
+     * Registers the justification of an absence.
+     * @author Alex JOBARD
+     */
     void nonattendanceJustification(ActionEvent event) {
         String student = Tool.getLogin(studentTextField.getText());
         String module = moduleTextField.getText();
@@ -96,6 +100,10 @@ public class AbsenceAdministrationController extends ControllerAbs{
 
     }
 
+    /**
+     * Prints the information of the selected absence in the right text fields.
+     * @author Alex JOBARD
+     */
     public void fillFields(javafx.scene.input.MouseEvent mouseEvent) {
         TableNonattendance tablerow = tableNonattendance.getSelectionModel().getSelectedItem();
         if (tablerow != null){
@@ -137,6 +145,10 @@ public class AbsenceAdministrationController extends ControllerAbs{
 
     }
 
+    /**
+     * Fills the table of absences with those of the stored Person.
+     * @author Alex JOBARD
+     */
     ObservableList<TableNonattendance> fillAbsences(ObservableList<TableNonattendance> obl){
         obl.clear();
         ArrayList<ArrayList<String>> array = ((Administration) Stockage.getPerson().getRole()).viewAbsences();
