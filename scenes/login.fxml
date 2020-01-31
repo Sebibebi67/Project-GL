@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -35,8 +37,8 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="1.0" prefWidth="1.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="37.19997787475586" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="54.79998016357422" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="147.0" minHeight="0.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="67.20001983642578" minHeight="10.0" prefHeight="49.200006103515605" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="54.399993896484375" minHeight="10.0" prefHeight="54.399993896484375" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
@@ -46,6 +48,11 @@
                         <Label text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <PasswordField fx:id="passwordtextField" prefHeight="26.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                         <Button fx:id="connexion" mnemonicParsing="false" onAction="#loginProgram" text="Connexion" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <ImageView fitHeight="139.0" fitWidth="165.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../logo.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
             </children>
