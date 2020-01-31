@@ -181,7 +181,6 @@ public class EduForm {
                     (Time) array.get(3).get(i),
                     (Boolean) array.get(4).get(i),
                     Query.getModuleName((int) array.get(5).get(i))));
-                    // System.out.println((int) array.get(5).get(i));
             }
         }
     }
@@ -233,7 +232,6 @@ public class EduForm {
 
             if (! array.isEmpty()){
                 for ( int j = 0; j< array.get(0).size(); j++ ){
-                    // System.out.println(array.get(3).get(j));
                     Exam exam = new Exam(
                         (String) array.get(0).get(j),
                         (Date) array.get(3).get(j),

@@ -108,16 +108,6 @@ public class AjoutAbsenceController extends ControllerAbs {
     }
 
     @FXML
-    void selectionStudentNonattendance(ActionEvent event) {
-        String value = comboNonattendanceStudent.getValue();
-        if (value != null) {
-            System.out.println(value);
-        }
-
-
-    }
-
-    @FXML
     void selectionModulenonattendance(ActionEvent event) {
         module = comboModuleNonattendance.getValue();
         if(!module.equalsIgnoreCase("")) {

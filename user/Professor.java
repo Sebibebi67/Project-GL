@@ -260,7 +260,6 @@ public class Professor implements Role{
         Student student = Stockage.getStudent();
         ArrayList<Absence> absences = student.getForm().getAbsences();
         for(int i = 0;i < absences.size();i++){
-            // System.out.println(absences.get(0).getModuleName());
             if(absences.get(i).getModuleName().equals(module.getName())){
                 ArrayList<String> list = new ArrayList<String>();
                 list.add(absences.get(i).getBeginDate().toString());
