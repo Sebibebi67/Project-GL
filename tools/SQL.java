@@ -304,7 +304,7 @@ public class SQL{
             conn = DriverManager.getConnection(url+"/"+user,user,password);
 
             Statement statement = conn.createStatement();
-            String query = "INSERT INTO Absence(idEtudiant, idEnseignant, idModule, dateDebut, dateFin, heureDebut, heureFin, estJustifiee) VALUES("+idStudent+","+idProfessor+","+idModule+","+date+","+date+","+beginHour+","+endHour+","+false+");";
+            String query = "INSERT INTO Absence(idEtudiant, idEnseignant, idModule, dateDebut, dateFin, heureDebut, heureFin, estJustifiee) VALUES("+idStudent+","+idProfessor+","+idModule+",'"+date+"','"+date+"','"+beginHour+"','"+endHour+"',"+false+");";
             statement.executeUpdate(query);
 
         } catch(SQLException | ClassNotFoundException e) {

@@ -1,17 +1,20 @@
 package controllers;
 
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import tools.Tool;
 
 import tools.Query;
-
+import tools.SQL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -63,16 +66,31 @@ public class AjoutAbsenceController extends ControllerAbs {
 
     String module = new String("");
 
+    private void alertFill(){
+        Alert alertLogin = new Alert(Alert.AlertType.WARNING);
+        alertLogin.setTitle("Incomplet");
+        alertLogin.setContentText("Merci de remplir tous les champs");
+        alertLogin.showAndWait();
+    }
+
     @FXML
     void addNonattendance(ActionEvent event) {
+        String professor = ((Professor) Stockage.getPerson().getRole()).getLogin();
         String moduleValue = comboModuleNonattendance.getValue();
-        String studentValue = comboNonattendanceStudent.getValue();
+        String studentValue = Tool.getLogin(comboNonattendanceStudent.getValue());
         String startingHour = startingHourCombo.getValue();
         String startingMinute = startingMinuteCombo.getValue();
         String endingHour = endingHourCombo.getValue();
         String endingMinute = endingMinuteFinCombo.getValue();
-        java.sql.Date gettedDatePickerDate = java.sql.Date.valueOf(dateNonattendancePicker.getValue());
-        System.out.println(moduleValue+studentValue+startingHour+startingMinute+endingHour+endingMinute+gettedDatePickerDate);
+        LocalDate date = dateNonattendancePicker.getValue();
+        if(!((moduleValue == null) || (studentValue == null) || (startingHour == null) || (startingMinute == null) || (endingHour == null) || (endingMinute == null) || (date == null))){
+            java.sql.Date gettedDatePickerDate = java.sql.Date.valueOf(date);
+            Time beginTime = Tool.parseTime(Tool.addingZero(startingHour)+"H"+Tool.addingZero(startingMinute));
+            Time endTime = Tool.parseTime(Tool.addingZero(endingHour)+"H"+Tool.addingZero(endingMinute));
+            SQL.createAbsence(beginTime, endTime, moduleValue, studentValue, professor, gettedDatePickerDate);
+        }else{
+            alertFill();
+        }
     }
 
     @FXML
@@ -135,7 +153,7 @@ public class AjoutAbsenceController extends ControllerAbs {
         comboModuleNonattendance.setEditable(false);
     }
 
-public void setStudent(){/////////////////////////////////////////////////////////////////////////////////////////////
+public void setStudent(){
     comboNonattendanceStudent.getItems().clear();
     ArrayList<ArrayList<String>> array = Query.attendees(module);
         ArrayList<ArrayList<String>> students = new ArrayList<ArrayList<String>>();
